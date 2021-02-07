@@ -241,20 +241,6 @@ at org<span class="token punctuation">.</span>apache<span class="token punctuati
       </tags>
   </entry>
   <entry>
-    <title>使用wget或者curl下载github release文件</title>
-    <url>/2020/02/14/cmd-download-file/</url>
-    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker-compose-基础</title>
     <url>/2018/07/11/docker-compose-start/</url>
     <content><![CDATA[<h3 id="docker-compose介绍"><a href="#docker-compose介绍" class="headerlink" title="docker-compose介绍"></a>docker-compose介绍</h3><p>Docker-Compose 是 Docker 的一种编排服务，是一个用于在 Docker 上定义并运行复杂应用的工具，可以让用户在集群中部署分布式应用。</p>
@@ -330,6 +316,20 @@ docker-compose stop</code></pre>
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用wget或者curl下载github release文件</title>
+    <url>/2020/02/14/cmd-download-file/</url>
+    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1388,6 +1388,35 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </tags>
   </entry>
   <entry>
+    <title>Hexo Matery 常见问题及解决</title>
+    <url>/2021/02/07/hexo-matery-problems/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="1blog检索不生效"><a href="#1blog检索不生效" class="headerlink" title="1blog检索不生效"></a>1blog检索不生效</h4><p>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
+<h4 id="step1-运行下面命令安装-searchdb"><a href="#step1-运行下面命令安装-searchdb" class="headerlink" title="step1:运行下面命令安装 searchdb"></a>step1:运行下面命令安装 <code>searchdb</code></h4><pre class=" language-shell"><code class="language-shell">cnpm install hexo-generator-search –-save
+cnpm install hexo-generator-searchdb --save</code></pre>
+<p>这两个都需要安装,只安装第一个不能全文搜索。<br>但是我在 <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>Mastery github源码教程</code></a> 只看到了安装<code>hexo-generator-search</code>即可,<br>但实际的情况是这样install并配置完成之后只对主页的搜索检索是生效的,进入具体的blog中是不生效的。看来实践还是检验真理的唯一标准啊<br><img src="/images/hexo-matery-problems/hexo-generator-search.jpg" alt="hexo-generator-search"></p>
+<h4 id="step2-在themes-hexo-theme-matery-config-yml中添加下面配置"><a href="#step2-在themes-hexo-theme-matery-config-yml中添加下面配置" class="headerlink" title="step2: 在themes/hexo-theme-matery/_config.yml中添加下面配置"></a>step2: 在<code>themes/hexo-theme-matery/_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Local search</span>
+<span class="token key atrule">local_search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">trigger</span><span class="token punctuation">:</span> auto
+  <span class="token key atrule">top_n_per_article</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">unescape</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+<h4 id="step3-在项目的根目录-config-yml中添加下面配置"><a href="#step3-在项目的根目录-config-yml中添加下面配置" class="headerlink" title="step3: 在项目的根目录_config.yml中添加下面配置"></a>step3: 在项目的根目录<code>_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#搜索插件</span>
+<span class="token key atrule">search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
+  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p><img src="/images/hexo-matery-problems/hexo-search-config.png" alt="hexo-search-config"></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Matery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hadoop常用运维命令</title>
     <url>/2020/08/03/hadoop-ops-command/</url>
     <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
@@ -1431,35 +1460,6 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </categories>
       <tags>
         <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Matery 常见问题及解决</title>
-    <url>/2021/02/07/hexo-matery-problems/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>####1blog检索不生效<br>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
-<h4 id="step1-运行下面命令安装-searchdb"><a href="#step1-运行下面命令安装-searchdb" class="headerlink" title="step1:运行下面命令安装 searchdb"></a>step1:运行下面命令安装 <code>searchdb</code></h4><pre class=" language-shell"><code class="language-shell">cnpm install hexo-generator-search –-save
-cnpm install hexo-generator-searchdb --save</code></pre>
-<p>这两个都需要安装,只安装第一个不能全文搜索。<br>但是我在 <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>Mastery github源码教程</code></a> 只看到了安装<code>hexo-generator-search</code>即可,<br>但实际的情况是这样install并配置完成之后只对主页的搜索检索是生效的,进入具体的blog中是不生效的。看来实践还是检验真理的唯一标准啊<br><img src="/images/hexo-matery-problems/hexo-generator-search.jpg" alt="hexo-generator-search"></p>
-<h4 id="step2-在themes-hexo-theme-matery-config-yml中添加下面配置"><a href="#step2-在themes-hexo-theme-matery-config-yml中添加下面配置" class="headerlink" title="step2: 在themes/hexo-theme-matery/_config.yml中添加下面配置"></a>step2: 在<code>themes/hexo-theme-matery/_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Local search</span>
-<span class="token key atrule">local_search</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">trigger</span><span class="token punctuation">:</span> auto
-  <span class="token key atrule">top_n_per_article</span><span class="token punctuation">:</span> <span class="token number">1</span>
-  <span class="token key atrule">unescape</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
-<h4 id="step3-在项目的根目录-config-yml中添加下面配置"><a href="#step3-在项目的根目录-config-yml中添加下面配置" class="headerlink" title="step3: 在项目的根目录_config.yml中添加下面配置"></a>step3: 在项目的根目录<code>_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#搜索插件</span>
-<span class="token key atrule">search</span><span class="token punctuation">:</span>
-  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
-  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
-  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
-<p><img src="/images/hexo-matery-problems/hexo-search-config.png" alt="hexo-search-config"></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Matery</tag>
       </tags>
   </entry>
   <entry>
@@ -3102,49 +3102,78 @@ total 5416
       </tags>
   </entry>
   <entry>
-    <title>kafka常用操作笔记</title>
-    <url>/2018/07/30/kafka-note/</url>
-    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
-<p>解压下载文件到指定目录，比如 /usr/local</p>
-<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
-</blockquote>
-<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-stop.sh
-./bin/kafka-server-stop.sh</code></pre>
-<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
-<blockquote>
-<p>-daemon 表示后台运行</p>
-</blockquote>
-<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
-<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
-netstat -ntpul | grep 9092</code></pre>
-<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
-<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
-<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
-<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
-<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
-<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
-<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
-<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
-<p>org.apache.kafka.common.errors.TimeoutException</p>
-</blockquote>
-<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
+    <title>logstash 启动脚本</title>
+    <url>/2020/12/09/lsboot/</url>
+    <content><![CDATA[<ul>
+<li>logstash 通用启动脚本</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment" spellcheck="true"># FileName: lsboot</span>
+<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
+<span class="token comment" spellcheck="true"># Dispatcher:</span>
+<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
+<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
 
-加入以下配置然后重启zookeeper与kafka
-advertised.host.name=192.168.1.200
-advertised.port=9092</code></pre>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
+    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
+    <span class="token keyword">exit</span> 1
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#config file OR path</span>
+conFile<span class="token operator">=</span><span class="token variable">$1</span>
+conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
+currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+
+LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
+<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+
+check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
+  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
+
+<span class="token comment" spellcheck="true">#./stop.sh</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+check_pid
+cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
+  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
+  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
+  <span class="token keyword">exit</span> 0
+<span class="token keyword">else</span>
+  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token variable">$cmd</span>
+  <span class="token keyword">else</span>
+    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
+    <span class="token function">sleep</span> 1
+    check_pid
+    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
+  <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
+
+<span class="token keyword">exit</span> 0
+</code></pre>
+<ul>
+<li>logstash将时间转换成unix时间戳</li>
+</ul>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
+ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
 ]]></content>
-      <categories>
-        <category>Kafka</category>
-      </categories>
       <tags>
-        <tag>kafka</tag>
+        <tag>Logstash</tag>
       </tags>
   </entry>
   <entry>
@@ -3488,78 +3517,49 @@ The stdin plugin is now waiting for input:
       </tags>
   </entry>
   <entry>
-    <title>logstash 启动脚本</title>
-    <url>/2020/12/09/lsboot/</url>
-    <content><![CDATA[<ul>
-<li>logstash 通用启动脚本</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token comment" spellcheck="true"># FileName: lsboot</span>
-<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
-<span class="token comment" spellcheck="true"># Dispatcher:</span>
-<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
-<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
+    <title>kafka常用操作笔记</title>
+    <url>/2018/07/30/kafka-note/</url>
+    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
+<p>解压下载文件到指定目录，比如 /usr/local</p>
+<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
+</blockquote>
+<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-stop.sh
+./bin/kafka-server-stop.sh</code></pre>
+<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
+<blockquote>
+<p>-daemon 表示后台运行</p>
+</blockquote>
+<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
+<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
+netstat -ntpul | grep 9092</code></pre>
+<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
+<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
+<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
+<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
+<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
+<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
+<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
+<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
+<p>org.apache.kafka.common.errors.TimeoutException</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
+<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
 
-<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
-    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
-    <span class="token keyword">exit</span> 1
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#config file OR path</span>
-conFile<span class="token operator">=</span><span class="token variable">$1</span>
-conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
-currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-
-LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
-<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-
-check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
-  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
-<span class="token punctuation">}</span>
-
-<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
-
-<span class="token comment" spellcheck="true">#./stop.sh</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-check_pid
-cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
-  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
-  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
-  <span class="token keyword">exit</span> 0
-<span class="token keyword">else</span>
-  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
-  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-    <span class="token variable">$cmd</span>
-  <span class="token keyword">else</span>
-    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
-    <span class="token function">sleep</span> 1
-    check_pid
-    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
-  <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
-
-<span class="token keyword">exit</span> 0
-</code></pre>
-<ul>
-<li>logstash将时间转换成unix时间戳</li>
-</ul>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
-ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
+加入以下配置然后重启zookeeper与kafka
+advertised.host.name=192.168.1.200
+advertised.port=9092</code></pre>
 ]]></content>
+      <categories>
+        <category>Kafka</category>
+      </categories>
       <tags>
-        <tag>Logstash</tag>
+        <tag>kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -6538,6 +6538,89 @@ Process finished <span class="token keyword">with</span> exit code <span class="
       </tags>
   </entry>
   <entry>
+    <title>redisTemplate常规Jackson2Json Serializer介绍及使用区别</title>
+    <url>/2021/02/07/spring-boot-redis-serializer-problems/</url>
+    <content><![CDATA[<h2 id="一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据"><a href="#一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据" class="headerlink" title="一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据"></a>一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据</h2><h3 id="1、使用Jackson2JsonRedisSerializer序列化value的代码："><a href="#1、使用Jackson2JsonRedisSerializer序列化value的代码：" class="headerlink" title="1、使用Jackson2JsonRedisSerializer序列化value的代码："></a>1、使用Jackson2JsonRedisSerializer序列化value的代码：</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//redis config基础设置</span>
+RedisTemplate<span class="token operator">&lt;</span>Object<span class="token punctuation">,</span> Object<span class="token operator">></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span>Object<span class="token punctuation">,</span>Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+template<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+template<span class="token punctuation">.</span><span class="token function">setValueSerializer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//序列化到redis db</span>
+UserToken userToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userToken<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span><span class="token string">"176****6708"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span>list<span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="2、使用Jackson2JsonRedisSerializer序列化后的数据形式："><a href="#2、使用Jackson2JsonRedisSerializer序列化后的数据形式：" class="headerlink" title="2、使用Jackson2JsonRedisSerializer序列化后的数据形式："></a>2、使用Jackson2JsonRedisSerializer序列化后的数据形式：</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">"userId"</span><span class="token operator">:</span><span class="token null">null</span><span class="token punctuation">,</span>
+    <span class="token property">"mobile"</span><span class="token operator">:</span><span class="token string">"176****6708"</span><span class="token punctuation">,</span>
+    <span class="token property">"token"</span><span class="token operator">:</span><span class="token null">null</span><span class="token punctuation">,</span>
+    <span class="token property">"platform"</span><span class="token operator">:</span><span class="token null">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<h3 id="3、使用Jackson2JsonRedisSerializer反序列化时报错"><a href="#3、使用Jackson2JsonRedisSerializer反序列化时报错" class="headerlink" title="3、使用Jackson2JsonRedisSerializer反序列化时报错"></a>3、使用Jackson2JsonRedisSerializer反序列化时报错</h3><pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list2 <span class="token operator">=</span> <span class="token punctuation">(</span>List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span><span class="token punctuation">)</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list2<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>userToken1 <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userToken1<span class="token punctuation">.</span><span class="token function">getMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-verilog"><code class="language-verilog">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ClassCastException<span class="token punctuation">:</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>LinkedHashMap cannot be cast to com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>model<span class="token punctuation">.</span>UserToken</code></pre>
+<p>原因：序列化带泛型的数据时，会以map的结构进行存储，反序列化是不能将map解析成对象。</p>
+<h3 id="4、解决方案：序列化存储时，转成JSON字符串"><a href="#4、解决方案：序列化存储时，转成JSON字符串" class="headerlink" title="4、解决方案：序列化存储时，转成JSON字符串"></a>4、解决方案：序列化存储时，转成JSON字符串</h3><pre class=" language-java"><code class="language-java">UserToken userToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userToken<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span><span class="token string">"176****6708"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"test3"</span><span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+String list2 <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"test3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+JSON<span class="token punctuation">.</span><span class="token function">parseArray</span><span class="token punctuation">(</span>list2<span class="token punctuation">,</span>UserToken<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>userToken1 <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userToken1<span class="token punctuation">.</span><span class="token function">getMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="二、使用GenericJackson2JsonRedisSerializer序列化反序列化带泛型的List数据"><a href="#二、使用GenericJackson2JsonRedisSerializer序列化反序列化带泛型的List数据" class="headerlink" title="二、使用GenericJackson2JsonRedisSerializer序列化反序列化带泛型的List数据"></a>二、使用GenericJackson2JsonRedisSerializer序列化反序列化带泛型的List数据</h2><h3 id="1、使用GenericJackson2JsonRedisSerializer序列化value的代码："><a href="#1、使用GenericJackson2JsonRedisSerializer序列化value的代码：" class="headerlink" title="1、使用GenericJackson2JsonRedisSerializer序列化value的代码："></a>1、使用GenericJackson2JsonRedisSerializer序列化value的代码：</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//redis core serializer</span>
+RedisTemplate<span class="token operator">&lt;</span>Object<span class="token punctuation">,</span> Object<span class="token operator">></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span>Object<span class="token punctuation">,</span>Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+template<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+template<span class="token punctuation">.</span><span class="token function">setValueSerializer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">GenericJackson2JsonRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//redis option</span>
+UserToken userToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userToken<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span><span class="token string">"176****6708"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"test2"</span><span class="token punctuation">,</span>list<span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="2、使用GenericJackson2JsonRedisSerializer序列化后的数据形式："><a href="#2、使用GenericJackson2JsonRedisSerializer序列化后的数据形式：" class="headerlink" title="2、使用GenericJackson2JsonRedisSerializer序列化后的数据形式："></a>2、使用GenericJackson2JsonRedisSerializer序列化后的数据形式：</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+ <span class="token string">"java.util.ArrayList"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>
+     <span class="token punctuation">{</span>
+       <span class="token property">"@class"</span><span class="token operator">:</span> <span class="token string">"com.xiaozhangge.model.UserToken"</span><span class="token punctuation">,</span>
+       <span class="token property">"userId"</span><span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+       <span class="token property">"mobile"</span><span class="token operator">:</span> <span class="token string">"176****6708"</span><span class="token punctuation">,</span>
+       <span class="token property">"token"</span><span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+       <span class="token property">"platform"</span><span class="token operator">:</span> <span class="token null">null</span>
+     <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">]</span></code></pre>
+<h3 id="3、使用GenericJackson2JsonRedisSerializer可以正常反序列化"><a href="#3、使用GenericJackson2JsonRedisSerializer可以正常反序列化" class="headerlink" title="3、使用GenericJackson2JsonRedisSerializer可以正常反序列化"></a>3、使用GenericJackson2JsonRedisSerializer可以正常反序列化</h3><pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list2 <span class="token operator">=</span> <span class="token punctuation">(</span>List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span><span class="token punctuation">)</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"test2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list2<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>userToken1 <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userToken1<span class="token punctuation">.</span><span class="token function">getMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4、原因："><a href="#4、原因：" class="headerlink" title="4、原因："></a>4、原因：</h3><p>使用GenericJackson2JsonRedisSerializer序列化时，会保存序列化的对象的包名和类名，反序列化时以这个作为标示就可以反序列化成指定的对象。</p>
+<h3 id="5、也可以以JSON字符串保存："><a href="#5、也可以以JSON字符串保存：" class="headerlink" title="5、也可以以JSON字符串保存："></a>5、也可以以JSON字符串保存：</h3><pre class=" language-java"><code class="language-java">UserToken userToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userToken<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span><span class="token string">"176****6708"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"test4"</span><span class="token punctuation">,</span>JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+String list2 <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"test4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+JSON<span class="token punctuation">.</span><span class="token function">parseArray</span><span class="token punctuation">(</span>list2<span class="token punctuation">,</span>UserToken<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>userToken1 <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userToken1<span class="token punctuation">.</span><span class="token function">getMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="三、使用GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo都可以正常序列化反序列化非泛型数组对象。"><a href="#三、使用GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo都可以正常序列化反序列化非泛型数组对象。" class="headerlink" title="三、使用GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo都可以正常序列化反序列化非泛型数组对象。"></a>三、使用GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo都可以正常序列化反序列化非泛型数组对象。</h2><h2 id="四、GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo效率："><a href="#四、GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo效率：" class="headerlink" title="四、GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo效率："></a>四、GenericJackson2JsonRedisSerializer和Jackson2JsonRedisSerializerdo效率：</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">long</span> start  <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+UserToken userToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userToken<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span><span class="token string">"176****6708"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayListWithCapacity</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>userToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span>JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+String data <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>UserToken<span class="token operator">></span> list2 <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parseArray</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> UserToken<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> end <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> time <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span></code></pre>
+<p>测试后：<br>使用<code>GenericJacksonRedisSerializer</code>序列化反序列化耗时：<code>1467</code><br>使用<code>Jackson2JsonRedisSerializer</code>序列化反序列化耗时：<code>914</code></p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>1、使用Jackson2JsonRedisSerializer需要指明序列化的类Class，可以使用Obejct.class<br>2、使用GenericJacksonRedisSerializer比Jackson2JsonRedisSerializer效率低，占用内存高。<br>3、GenericJacksonRedisSerializer反序列化带泛型的数组类会报转换异常，解决办法存储以JSON字符串存储。<br>4、GenericJacksonRedisSerializer和Jackson2JsonRedisSerializer都是以JSON格式去存储数据，都可以作为Redis的序列化方式。</p>
+]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>RedisTemplate Serializer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Cloud 配置中⼼</title>
     <url>/2019/04/06/spring-cloud-config/</url>
     <content><![CDATA[<p>在系统架构中，和安全、⽇日志、监控等⾮非功能需求⼀一样，配置管理理也是⼀一种⾮非功能需求。配置中⼼心是整<br>个微服务基础架构体系中的⼀一个组件，它的功能看上去并不不起眼，⽆无⾮非就是简单配置的管理理和存取，但<br>它是整个微服务架构中不不可或缺的⼀一环。另外，配置中⼼心如果真得⽤用好了了，它还能推动技术组织持续交<br>付和DevOps⽂文化转型。</p>
@@ -6693,6 +6776,188 @@ http://localhost:8899/life-example-producer/pro</code></pre>
 <li>配置中心有众多的应用场景，配置中心+功能开关是DevOps最佳实践。用好配置中心，它能帮助技术组织实现持续交付和DevOps文化转型。</li>
 <li>Spring Cloud Config相对来说还是达不到生产级别，目前来看携程开源的<a href="https://github.com/ctripcorp/apollo">Apollo</a>配置中心，企业级功能完善，经过大规模生产验证，社区活跃度高，是开源配置中心产品的首选。</li>
 </ol>
+]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Cloud Eureka 注册中心</title>
+    <url>/2019/03/17/spring-cloud-eureka/</url>
+    <content><![CDATA[<h1 id="什么是Spring-Cloud"><a href="#什么是Spring-Cloud" class="headerlink" title="什么是Spring Cloud"></a>什么是Spring Cloud</h1><p>Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+<p>下图是一个基本的Spring Cloud组件架构，核心组件有Eureka、Zuul、Ribbon、Fegin、Hystrix等等。接下来将介绍第一个Eureka组件</p>
+<p><img src="/images/spring-cloud-framework.jpg" alt="图片来源于网络，侵删"></p>
+<h1 id="Eureka注册中心"><a href="#Eureka注册中心" class="headerlink" title="Eureka注册中心"></a>Eureka注册中心</h1><p>注册中心，管理各种服务功能包括服务的注册、发现、熔断、负载、降级等，比如dubbo admin后台的各种功能。有了服务中心之后，任何一个服务都不能直接去掉用，都需要通过服务中心来调用。通过服务中心来获取服务你不需要关注你调用的项目IP地址，由几台服务器组成，每次直接去服务中心获取可以使用的服务去调用既可。</p>
+<p>Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供了完整的Service Registry和Service Discovery实现。也是Spring Cloud体系中最重要最核心的组件之一。</p>
+<p>官方介绍:</p>
+<blockquote>
+<p>Eureka is a REST (Representational State Transfer) based service that is primarily used in the AWS cloud for locating services for the purpose of load balancing and failover of middle-tier servers.</p>
+<p>Eureka 是一个基于 REST 的服务，主要在 AWS 云中使用, 定位服务来进行中间层服务器的负载均衡和故障转移。</p>
+</blockquote>
+<p>用一张图简单说明:</p>
+<p><img src="/images/eureka/eureka-architecture-overview.png" alt="图片来源于网络，侵删"></p>
+<p>上图简要描述了Eureka的基本架构，由3个角色组成：</p>
+<p>1、Eureka Server</p>
+<ul>
+<li>提供服务注册和发现</li>
+</ul>
+<p>2、Service Provider</p>
+<ul>
+<li>服务提供方</li>
+<li>将自身服务注册到Eureka，从而使服务消费方能够找到</li>
+</ul>
+<p>3、Service Consumer</p>
+<ul>
+<li>服务消费方</li>
+<li>从Eureka获取注册服务列表，从而能够消费服务</li>
+</ul>
+<h2 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h2><p>我们可以用Spring  initialize 构建一个基本的maven项目，基于Spring Cloud Greenwich.SR1 然后自己添加相应的依赖</p>
+<h3 id="pom依赖"><a href="#pom依赖" class="headerlink" title="pom依赖"></a>pom依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-server<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${spring-cloud.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencyManagement</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>executions</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>execution</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goals</span><span class="token punctuation">></span></span>
+                        <span class="token comment" spellcheck="true">&lt;!-- 默认goal。在mvn package之后，再次打包可执行的jar/war，同时保留mvn package生成的jar/war为.origin --></span>
+                        <span class="token comment" spellcheck="true">&lt;!-- https://docs.spring.io/spring-boot/docs/current/maven-plugin/repackage-mojo.html --></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goal</span><span class="token punctuation">></span></span>repackage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goal</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goals</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>execution</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>executions</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>eureka<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>server<span class="token punctuation">.</span>EnableEurekaServer<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 添加启动代码中添加@EnableEurekaServer注解
+ * Created by xiaozhangge on 2019-03-15.
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@EnableEurekaServer</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EurekaServerApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>EurekaServerApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="application-properties-配置"><a href="#application-properties-配置" class="headerlink" title="application.properties 配置"></a>application.properties 配置</h3><p>eureka使用8761端口</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">personal-life-cloud-eureka</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8761</span>
+<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">localhost</span>
+<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token comment" spellcheck="true"># 健康检查</span>
+<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 清理间隔</span>
+<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
+<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
+<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
+<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://${eureka.instance.hostname}:${server.port}/eureka/</span></code></pre>
+<p>然后启动项目，访问</p>
+<pre><code>http://localhost:8761/</code></pre>
+<p><img src="/images/eureka/eureka-instance.png" alt="img"></p>
+<h2 id="Eureka-高可用"><a href="#Eureka-高可用" class="headerlink" title="Eureka 高可用"></a>Eureka 高可用</h2><p>注册中心这么关键的服务，如果是单点话，遇到故障就是毁灭性的。在生产中我们可能需要三台或者大于三台的注册中心来保证服务的稳定性，在一个分布式系统中，服务注册中心是最重要的基础部分，理应随时处于可以提供服务的状态。为了维持其可用性，使用集群是很好的解决方案。Eureka通过互相注册的方式来实现高可用的部署，所以我们只需要将Eureke Server配置其他可用的serviceUrl就能实现高可用部署。</p>
+<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><p>hosts文件中添加以下内容<code>vim /etc/hosts</code></p>
+<pre class=" language-shell"><code class="language-shell">127.0.0.1 peer1  
+127.0.0.1 peer2  
+127.0.0.1 peer3  </code></pre>
+<h3 id="修改properties文件"><a href="#修改properties文件" class="headerlink" title="修改properties文件"></a>修改properties文件</h3><ul>
+<li>创建 application-peer1.properties 将serviceUrl指向peer2、peer3</li>
+</ul>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8761</span>
+<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer1</span>
+<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token comment" spellcheck="true"># 健康检查</span>
+<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 清理间隔</span>
+<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
+<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
+<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
+<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer2:8762/eureka/,http://peer3:8763/eureka/</span></code></pre>
+<ul>
+<li>创建 application-peer2.properties 将serviceUrl指向peer1、peer3</li>
+</ul>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8762</span>
+<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer2</span>
+<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token comment" spellcheck="true"># 健康检查</span>
+<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 清理间隔</span>
+<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
+<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
+<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
+<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer1:8761/eureka/,http://peer3:8763/eureka/</span></code></pre>
+<ul>
+<li>创建 application-peer3.properties 将serviceUrl指向peer1、peer2</li>
+</ul>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8763</span>
+<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer3</span>
+<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token comment" spellcheck="true"># 健康检查</span>
+<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 清理间隔</span>
+<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
+<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
+<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
+<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer1:8761/eureka/,http://peer2:8762/eureka/</span></code></pre>
+<h3 id="打包依次启动"><a href="#打包依次启动" class="headerlink" title="打包依次启动"></a>打包依次启动</h3><pre class=" language-shell"><code class="language-shell">mvn clean package</code></pre>
+<ul>
+<li>依次启动</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer1
+java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer2
+java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer3</code></pre>
+<p>启动完成后，浏览器输入：<a href="http://localhost:8762/">http://localhost:8762/</a> 效果图如下：</p>
+<p><img src="/images/eureka/eureka-cluster.png" alt="img"></p>
+<p>可以在peer2中看到了peer1、peer3的相关的副本信息。至此eureka集群也已经完成了。</p>
+<p>以上完整代码<a href="https://github.com/xiaomozhang/personal-life-cloud-example">github</a></p>
 ]]></content>
       <categories>
         <category>Spring Cloud</category>
@@ -6981,188 +7246,6 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
 
 <span class="token punctuation">}</span></code></pre>
 <h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>依次启动cloud-eureka、service-producer、service-consumer三个项目，手动停掉服务查看熔断结果</p>
-]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Cloud Eureka 注册中心</title>
-    <url>/2019/03/17/spring-cloud-eureka/</url>
-    <content><![CDATA[<h1 id="什么是Spring-Cloud"><a href="#什么是Spring-Cloud" class="headerlink" title="什么是Spring Cloud"></a>什么是Spring Cloud</h1><p>Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
-<p>下图是一个基本的Spring Cloud组件架构，核心组件有Eureka、Zuul、Ribbon、Fegin、Hystrix等等。接下来将介绍第一个Eureka组件</p>
-<p><img src="/images/spring-cloud-framework.jpg" alt="图片来源于网络，侵删"></p>
-<h1 id="Eureka注册中心"><a href="#Eureka注册中心" class="headerlink" title="Eureka注册中心"></a>Eureka注册中心</h1><p>注册中心，管理各种服务功能包括服务的注册、发现、熔断、负载、降级等，比如dubbo admin后台的各种功能。有了服务中心之后，任何一个服务都不能直接去掉用，都需要通过服务中心来调用。通过服务中心来获取服务你不需要关注你调用的项目IP地址，由几台服务器组成，每次直接去服务中心获取可以使用的服务去调用既可。</p>
-<p>Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供了完整的Service Registry和Service Discovery实现。也是Spring Cloud体系中最重要最核心的组件之一。</p>
-<p>官方介绍:</p>
-<blockquote>
-<p>Eureka is a REST (Representational State Transfer) based service that is primarily used in the AWS cloud for locating services for the purpose of load balancing and failover of middle-tier servers.</p>
-<p>Eureka 是一个基于 REST 的服务，主要在 AWS 云中使用, 定位服务来进行中间层服务器的负载均衡和故障转移。</p>
-</blockquote>
-<p>用一张图简单说明:</p>
-<p><img src="/images/eureka/eureka-architecture-overview.png" alt="图片来源于网络，侵删"></p>
-<p>上图简要描述了Eureka的基本架构，由3个角色组成：</p>
-<p>1、Eureka Server</p>
-<ul>
-<li>提供服务注册和发现</li>
-</ul>
-<p>2、Service Provider</p>
-<ul>
-<li>服务提供方</li>
-<li>将自身服务注册到Eureka，从而使服务消费方能够找到</li>
-</ul>
-<p>3、Service Consumer</p>
-<ul>
-<li>服务消费方</li>
-<li>从Eureka获取注册服务列表，从而能够消费服务</li>
-</ul>
-<h2 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h2><p>我们可以用Spring  initialize 构建一个基本的maven项目，基于Spring Cloud Greenwich.SR1 然后自己添加相应的依赖</p>
-<h3 id="pom依赖"><a href="#pom依赖" class="headerlink" title="pom依赖"></a>pom依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-server<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${spring-cloud.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencyManagement</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>executions</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>execution</span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goals</span><span class="token punctuation">></span></span>
-                        <span class="token comment" spellcheck="true">&lt;!-- 默认goal。在mvn package之后，再次打包可执行的jar/war，同时保留mvn package生成的jar/war为.origin --></span>
-                        <span class="token comment" spellcheck="true">&lt;!-- https://docs.spring.io/spring-boot/docs/current/maven-plugin/repackage-mojo.html --></span>
-                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goal</span><span class="token punctuation">></span></span>repackage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goal</span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goals</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>execution</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>executions</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>eureka<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>server<span class="token punctuation">.</span>EnableEurekaServer<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 添加启动代码中添加@EnableEurekaServer注解
- * Created by xiaozhangge on 2019-03-15.
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token annotation punctuation">@EnableEurekaServer</span>
-<span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EurekaServerApplication</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>EurekaServerApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="application-properties-配置"><a href="#application-properties-配置" class="headerlink" title="application.properties 配置"></a>application.properties 配置</h3><p>eureka使用8761端口</p>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">personal-life-cloud-eureka</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8761</span>
-<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">localhost</span>
-<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token comment" spellcheck="true"># 健康检查</span>
-<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 清理间隔</span>
-<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
-<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
-<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
-<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://${eureka.instance.hostname}:${server.port}/eureka/</span></code></pre>
-<p>然后启动项目，访问</p>
-<pre><code>http://localhost:8761/</code></pre>
-<p><img src="/images/eureka/eureka-instance.png" alt="img"></p>
-<h2 id="Eureka-高可用"><a href="#Eureka-高可用" class="headerlink" title="Eureka 高可用"></a>Eureka 高可用</h2><p>注册中心这么关键的服务，如果是单点话，遇到故障就是毁灭性的。在生产中我们可能需要三台或者大于三台的注册中心来保证服务的稳定性，在一个分布式系统中，服务注册中心是最重要的基础部分，理应随时处于可以提供服务的状态。为了维持其可用性，使用集群是很好的解决方案。Eureka通过互相注册的方式来实现高可用的部署，所以我们只需要将Eureke Server配置其他可用的serviceUrl就能实现高可用部署。</p>
-<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><p>hosts文件中添加以下内容<code>vim /etc/hosts</code></p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1 peer1  
-127.0.0.1 peer2  
-127.0.0.1 peer3  </code></pre>
-<h3 id="修改properties文件"><a href="#修改properties文件" class="headerlink" title="修改properties文件"></a>修改properties文件</h3><ul>
-<li>创建 application-peer1.properties 将serviceUrl指向peer2、peer3</li>
-</ul>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8761</span>
-<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer1</span>
-<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token comment" spellcheck="true"># 健康检查</span>
-<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 清理间隔</span>
-<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
-<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
-<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
-<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer2:8762/eureka/,http://peer3:8763/eureka/</span></code></pre>
-<ul>
-<li>创建 application-peer2.properties 将serviceUrl指向peer1、peer3</li>
-</ul>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8762</span>
-<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer2</span>
-<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token comment" spellcheck="true"># 健康检查</span>
-<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 清理间隔</span>
-<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
-<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
-<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
-<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer1:8761/eureka/,http://peer3:8763/eureka/</span></code></pre>
-<ul>
-<li>创建 application-peer3.properties 将serviceUrl指向peer1、peer2</li>
-</ul>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-eureka</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8763</span>
-<span class="token attr-name">eureka.instance.hostname</span><span class="token punctuation">=</span><span class="token attr-value">peer3</span>
-<span class="token comment" spellcheck="true"># 实例名称显示IP</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token comment" spellcheck="true"># 健康检查</span>
-<span class="token attr-name">eureka.server.enable-self-preservation</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 清理间隔</span>
-<span class="token attr-name">eureka.server.eviction-interval-timer-in-ms</span><span class="token punctuation">=</span><span class="token attr-value">6000</span>
-<span class="token comment" spellcheck="true"># 表示是否将自己注册到Eureka Server，默认为true。</span>
-<span class="token attr-name">eureka.client.register-with-eureka</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># 表示是否从Eureka Server获取注册信息，默认为true。</span>
-<span class="token attr-name">eureka.client.fetch-registry</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
-<span class="token comment" spellcheck="true"># eureka服务地址 多个地址可使用 , 分隔。</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://peer1:8761/eureka/,http://peer2:8762/eureka/</span></code></pre>
-<h3 id="打包依次启动"><a href="#打包依次启动" class="headerlink" title="打包依次启动"></a>打包依次启动</h3><pre class=" language-shell"><code class="language-shell">mvn clean package</code></pre>
-<ul>
-<li>依次启动</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer1
-java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer2
-java -jar cloud-eureka-0.0.1.jar --spring.profiles.active=peer3</code></pre>
-<p>启动完成后，浏览器输入：<a href="http://localhost:8762/">http://localhost:8762/</a> 效果图如下：</p>
-<p><img src="/images/eureka/eureka-cluster.png" alt="img"></p>
-<p>可以在peer2中看到了peer1、peer3的相关的副本信息。至此eureka集群也已经完成了。</p>
-<p>以上完整代码<a href="https://github.com/xiaomozhang/personal-life-cloud-example">github</a></p>
 ]]></content>
       <categories>
         <category>Spring Cloud</category>
@@ -8344,79 +8427,6 @@ export TO VERTICA dbname.test.FCT_TNES_GN_NET_M FROM test.FCT_TNES_GN_NET_M;</co
       </tags>
   </entry>
   <entry>
-    <title>vertica开启ROS</title>
-    <url>/2020/03/12/vertica-enable-ros/</url>
-    <content><![CDATA[<p>vertica默认批量插入是关闭的，需要手动设置<code>DataSourceProperties</code>开启，详细参考<code>JDBC Connection Properties</code>，文档中该参数介绍如下：</p>
-<ul>
-<li>DirectBatchInsert</li>
-</ul>
-<blockquote>
-<p>Determines whether a batch insert stored data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a> (true) or using <a href="javascript:void(0);">AUTO</a> mode (false).</p>
-<p>When you load data using AUTO mode, Vertica inserts the data first into the <a href="../../Glossary/WOSWriteOptimizedStore.htm">WOS</a>. If the WOS is full, Vertica inserts the data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a>. For details about load options, see <a href="../../AdministratorsGuide/BulkLoadCOPY/ChoosingALoadMethod.htm">Choosing a Load Method</a>.</p>
-<p><strong>Set After Connection:</strong><code> VerticaConnection.setProperty()</code></p>
-<p><strong>Default Value:</strong> false</p>
-</blockquote>
-<p>在jdbc方式和spring中集成数据源方式略有不同，下面分开介绍</p>
-<h3 id="JDBC方式"><a href="#JDBC方式" class="headerlink" title="JDBC方式"></a><code>JDBC</code>方式</h3><p>jdbc方式配置比较灵活，可以在<code>DriverManager.getConnection</code>获取连接设置属性</p>
-<p>也可以获取到<code>connection</code>以后设置</p>
-<ul>
-<li>获取连接时</li>
-</ul>
-<pre class=" language-java"><code class="language-java">Properties myProp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"ExampleUser"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">,</span> <span class="token string">"password123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// Enable directBatchInsert for this connection</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Connection conn<span class="token punctuation">;</span>
-<span class="token keyword">try</span> <span class="token punctuation">{</span>
-    conn <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>
-         <span class="token string">"jdbc:vertica://VerticaHost:5433/ExampleDB"</span><span class="token punctuation">,</span> myProp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span></code></pre>
-<ul>
-<li>获取连接后</li>
-</ul>
-<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span><span class="token punctuation">(</span>VerticaConnection<span class="token punctuation">)</span>conn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h3 id="使用HikariDataSource连接池"><a href="#使用HikariDataSource连接池" class="headerlink" title="使用HikariDataSource连接池"></a>使用<code>HikariDataSource</code>连接池</h3><p>当我们使用spring框架开发时，一般会使用数据库连接池对象，spring boot中默认的连接池是<code>HikariCP</code>，下面介绍``HikariCP`如何配置该参数，思路可以参考使用jdbc时获取连接以后的方式。</p>
-<p>但是又因为spring中的bean是基于proxy进行创建的，所有我们获取到的连接对象不再是<code>VerticaConnection</code>，而是<code>HikariProxyConnection</code>，但是该对象并没有<code>setProperty()</code>方法，所以<strong>不能使用强制类型转换并且设置该属性</strong>。</p>
-<pre class=" language-java"><code class="language-java">Connection connection <span class="token operator">=</span> dataSource<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">boolean</span> flag1 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>vertica<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>VerticaConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
-<span class="token keyword">boolean</span> flag2 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>pool<span class="token punctuation">.</span>HikariProxyConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span></code></pre>
-<p><strong>正确做法如下：</strong></p>
-<p>获取到当前连接的<code>HikariDataSource</code>对象，然后给该对象设置<code>DataSourceProperties</code>即可开启<code>ROS</code>，并且可以使用连接池管理<code>jdbc</code>连接</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> DataSource <span class="token function">config</span><span class="token punctuation">(</span>DataSource dataSource<span class="token punctuation">,</span> HikariConfig config<span class="token punctuation">,</span> <span class="token keyword">boolean</span> isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  HikariDataSource hikariDataSource <span class="token operator">=</span> null<span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 连接池配置</span>
-    hikariDataSource <span class="token operator">=</span> <span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">)</span> dataSource<span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      Properties properties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// Loading Batches Directly into ROS Enable directBatchInsert for this connection</span>
-      properties<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      hikariDataSource<span class="token punctuation">.</span><span class="token function">setDataSourceProperties</span><span class="token punctuation">(</span>properties<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setPoolName</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getPoolName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">isAutoCommit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTestQuery</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTestQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setIdleTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getIdleTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaximumPoolSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaxLifetime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMinimumIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> hikariDataSource <span class="token operator">==</span> null <span class="token operator">?</span> dataSource <span class="token operator">:</span> hikariDataSource<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-]]></content>
-      <categories>
-        <category>Vertica</category>
-      </categories>
-      <tags>
-        <tag>Vertica</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vertica 分析函数</title>
     <url>/2019/03/14/vertica-03/</url>
     <content><![CDATA[<p>分析函数作为 SQL 言语的一种扩展已经被纳入了美国国家标准化组织SQL 委员会的SQL 规范说明书中。所以不同数据库厂商支持的分析函数其语法结构和函数名称也基本一致。这里仅介绍Vertica的的分析函数语法和函数作用，应用函数相关例子略。</p>
@@ -8531,6 +8541,79 @@ Connection conn<span class="token punctuation">;</span>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">OVER</span>（<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> expression <span class="token punctuation">[</span>{<span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span>}<span class="token punctuation">]</span> 
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">[</span>NULLS {<span class="token keyword">FIRST</span> <span class="token operator">|</span> <span class="token keyword">LAST</span> <span class="token operator">|</span> AUTO}<span class="token punctuation">]</span> <span class="token punctuation">[</span>，expression <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>）</code></pre>
 <h1 id="window-frame-clause"><a href="#window-frame-clause" class="headerlink" title="window_frame_clause"></a>window_frame_clause</h1><p>窗口生成语句用以定义滑动或固定数据窗口，分析函数在分组内进行分析。该语句能够对分组中任意定义的滑动或固定窗口进行计算。</p>
+]]></content>
+      <categories>
+        <category>Vertica</category>
+      </categories>
+      <tags>
+        <tag>Vertica</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vertica开启ROS</title>
+    <url>/2020/03/12/vertica-enable-ros/</url>
+    <content><![CDATA[<p>vertica默认批量插入是关闭的，需要手动设置<code>DataSourceProperties</code>开启，详细参考<code>JDBC Connection Properties</code>，文档中该参数介绍如下：</p>
+<ul>
+<li>DirectBatchInsert</li>
+</ul>
+<blockquote>
+<p>Determines whether a batch insert stored data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a> (true) or using <a href="javascript:void(0);">AUTO</a> mode (false).</p>
+<p>When you load data using AUTO mode, Vertica inserts the data first into the <a href="../../Glossary/WOSWriteOptimizedStore.htm">WOS</a>. If the WOS is full, Vertica inserts the data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a>. For details about load options, see <a href="../../AdministratorsGuide/BulkLoadCOPY/ChoosingALoadMethod.htm">Choosing a Load Method</a>.</p>
+<p><strong>Set After Connection:</strong><code> VerticaConnection.setProperty()</code></p>
+<p><strong>Default Value:</strong> false</p>
+</blockquote>
+<p>在jdbc方式和spring中集成数据源方式略有不同，下面分开介绍</p>
+<h3 id="JDBC方式"><a href="#JDBC方式" class="headerlink" title="JDBC方式"></a><code>JDBC</code>方式</h3><p>jdbc方式配置比较灵活，可以在<code>DriverManager.getConnection</code>获取连接设置属性</p>
+<p>也可以获取到<code>connection</code>以后设置</p>
+<ul>
+<li>获取连接时</li>
+</ul>
+<pre class=" language-java"><code class="language-java">Properties myProp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"ExampleUser"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">,</span> <span class="token string">"password123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// Enable directBatchInsert for this connection</span>
+myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Connection conn<span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+    conn <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>
+         <span class="token string">"jdbc:vertica://VerticaHost:5433/ExampleDB"</span><span class="token punctuation">,</span> myProp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span></code></pre>
+<ul>
+<li>获取连接后</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span><span class="token punctuation">(</span>VerticaConnection<span class="token punctuation">)</span>conn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="使用HikariDataSource连接池"><a href="#使用HikariDataSource连接池" class="headerlink" title="使用HikariDataSource连接池"></a>使用<code>HikariDataSource</code>连接池</h3><p>当我们使用spring框架开发时，一般会使用数据库连接池对象，spring boot中默认的连接池是<code>HikariCP</code>，下面介绍``HikariCP`如何配置该参数，思路可以参考使用jdbc时获取连接以后的方式。</p>
+<p>但是又因为spring中的bean是基于proxy进行创建的，所有我们获取到的连接对象不再是<code>VerticaConnection</code>，而是<code>HikariProxyConnection</code>，但是该对象并没有<code>setProperty()</code>方法，所以<strong>不能使用强制类型转换并且设置该属性</strong>。</p>
+<pre class=" language-java"><code class="language-java">Connection connection <span class="token operator">=</span> dataSource<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">boolean</span> flag1 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>vertica<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>VerticaConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token keyword">boolean</span> flag2 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>pool<span class="token punctuation">.</span>HikariProxyConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span></code></pre>
+<p><strong>正确做法如下：</strong></p>
+<p>获取到当前连接的<code>HikariDataSource</code>对象，然后给该对象设置<code>DataSourceProperties</code>即可开启<code>ROS</code>，并且可以使用连接池管理<code>jdbc</code>连接</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> DataSource <span class="token function">config</span><span class="token punctuation">(</span>DataSource dataSource<span class="token punctuation">,</span> HikariConfig config<span class="token punctuation">,</span> <span class="token keyword">boolean</span> isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  HikariDataSource hikariDataSource <span class="token operator">=</span> null<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 连接池配置</span>
+    hikariDataSource <span class="token operator">=</span> <span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">)</span> dataSource<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Properties properties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Loading Batches Directly into ROS Enable directBatchInsert for this connection</span>
+      properties<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      hikariDataSource<span class="token punctuation">.</span><span class="token function">setDataSourceProperties</span><span class="token punctuation">(</span>properties<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setPoolName</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getPoolName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">isAutoCommit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTestQuery</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTestQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setIdleTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getIdleTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaximumPoolSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaxLifetime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMinimumIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> hikariDataSource <span class="token operator">==</span> null <span class="token operator">?</span> dataSource <span class="token operator">:</span> hikariDataSource<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 ]]></content>
       <categories>
         <category>Vertica</category>

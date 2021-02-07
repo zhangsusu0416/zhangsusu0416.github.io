@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-02-07T10:02:43.602Z</updated>
+  <updated>2021-02-07T15:02:58.443Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>redisTemplate常规Jackson2Json Serializer介绍及使用区别</title>
+    <link href="http://xiaomozhang.github.io/2021/02/07/spring-boot-redis-serializer-problems/"/>
+    <id>http://xiaomozhang.github.io/2021/02/07/spring-boot-redis-serializer-problems/</id>
+    <published>2021-02-07T14:18:57.000Z</published>
+    <updated>2021-02-07T15:02:58.443Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据&quot;&gt;&lt;a href=&quot;#一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="http://xiaomozhang.github.io/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="http://xiaomozhang.github.io/tags/SpringBoot/"/>
+    
+    <category term="RedisTemplate Serializer" scheme="http://xiaomozhang.github.io/tags/RedisTemplate-Serializer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexo Matery 常见问题及解决</title>
     <link href="http://xiaomozhang.github.io/2021/02/07/hexo-matery-problems/"/>
     <id>http://xiaomozhang.github.io/2021/02/07/hexo-matery-problems/</id>
     <published>2021-02-07T08:54:57.000Z</published>
-    <updated>2021-02-07T10:02:43.602Z</updated>
+    <updated>2021-02-07T14:03:36.368Z</updated>
     
     
       
@@ -502,32 +529,6 @@
     
     
     <category term="Vertica" scheme="http://xiaomozhang.github.io/tags/Vertica/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven加载本地jar文件</title>
-    <link href="http://xiaomozhang.github.io/2020/02/28/maven-install-local-jar/"/>
-    <id>http://xiaomozhang.github.io/2020/02/28/maven-install-local-jar/</id>
-    <published>2020-02-28T02:40:52.000Z</published>
-    <updated>2021-01-12T03:00:34.377Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;日常开发中都是maven加载在远程仓库的jar文件，如果远程仓库没有相应的jar文件，一般做法就是自己传到一个特定的nexus服务器上，但是本地开发测试的时候可能nexus服务器不太方便，那么我们可以使用maven加载本地的jar文件&lt;/p&gt;
-&lt;pre class=&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="maven" scheme="http://xiaomozhang.github.io/categories/maven/"/>
-    
-    
-    <category term="maven" scheme="http://xiaomozhang.github.io/tags/maven/"/>
     
   </entry>
   

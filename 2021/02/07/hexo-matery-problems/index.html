@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Hexo Matery 常见问题及解决, 小张哥blog">
     <meta name="description" content="前言本文章非 Hexo + Matery Theme 教程，详细教程见blinkfox hexo-theme-matery，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。
-常见问题####1blog检索不生效我本地的情况是这样的">
+常见问题1blog检索不生效我本地的情况是这样的,在主页">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
     
     <script src="/libs/jquery/jquery.min.js"></script>
-    
+    <script data-ad-client="ca-pub-7226904841878107" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
@@ -474,7 +474,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>####1blog检索不生效<br>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="1blog检索不生效"><a href="#1blog检索不生效" class="headerlink" title="1blog检索不生效"></a>1blog检索不生效</h4><p>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
 <h4 id="step1-运行下面命令安装-searchdb"><a href="#step1-运行下面命令安装-searchdb" class="headerlink" title="step1:运行下面命令安装 searchdb"></a>step1:运行下面命令安装 <code>searchdb</code></h4><pre class=" language-shell"><code class="language-shell">cnpm install hexo-generator-search –-save
 cnpm install hexo-generator-searchdb --save</code></pre>
 <p>这两个都需要安装,只安装第一个不能全文搜索。<br>但是我在 <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>Mastery github源码教程</code></a> 只看到了安装<code>hexo-generator-search</code>即可,<br>但实际的情况是这样install并配置完成之后只对主页的搜索检索是生效的,进入具体的blog中是不生效的。看来实践还是检验真理的唯一标准啊<br><img src="/images/hexo-matery-problems/hexo-generator-search.jpg" alt="hexo-generator-search"></p>
@@ -750,53 +750,51 @@ cnpm install hexo-generator-searchdb --save</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/02/07/hexo-matery-problems/">
+                <a href="/2021/02/07/spring-boot-redis-serializer-problems/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Hexo Matery 常见问题及解决">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="redisTemplate常规Jackson2Json Serializer介绍及使用区别">
                         
-                        <span class="card-title">Hexo Matery 常见问题及解决</span>
+                        <span class="card-title">redisTemplate常规Jackson2Json Serializer介绍及使用区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言本文章非 Hexo + Matery Theme 教程，详细教程见blinkfox hexo-theme-matery，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。
-常见问题####1blog检索不生效我本地的情况是这样的
+                            一、使用Jackson2JsonRedisSerializer序列化反序列化带泛型的List数据1、使用Jackson2JsonRedisSerializer序列化value的代码：//redis config基础设置
+RedisTempl
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
-                    <a href="/tags/Matery/">
-                        <span class="chip bg-color">Matery</span>
+                    <a href="/tags/RedisTemplate-Serializer/">
+                        <span class="chip bg-color">RedisTemplate Serializer</span>
                     </a>
                     
                 </div>
@@ -1008,7 +1006,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">85.1k</span>&nbsp;字
+                class="white-color">85.8k</span>&nbsp;字
             
             
             
