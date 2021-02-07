@@ -478,28 +478,6 @@
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/7.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">Spring Boot 整合kafka</div>
-                            <div class="description center-align">
-                                
-                                    关于kafka的介绍这里就不在过多说明，可以看之前写过一遍文章使用docker-compose构建kafka集群 文章里面有关于kafka的一些介绍以及环境搭建，文章中的环境搭建是基于docker和docker-compose的，如果不想通
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2020/01/06/spring-boot-kafka/" class="waves-effect waves-light btn" target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/18.jpg');">
                 <div class="container">
                     <div class="row">
@@ -514,6 +492,28 @@
                             </div>
                             <div class="cover-btns">
                                 <a href="/2020/01/05/spring-boot-jpa-h2/" class="waves-effect waves-light btn" target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/7.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">Spring Boot 整合kafka</div>
+                            <div class="description center-align">
+                                
+                                    关于kafka的介绍这里就不在过多说明，可以看之前写过一遍文章使用docker-compose构建kafka集群 文章里面有关于kafka的一些介绍以及环境搭建，文章中的环境搭建是基于docker和docker-compose的，如果不想通
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2020/01/06/spring-boot-kafka/" class="waves-effect waves-light btn" target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
                             </div>
@@ -615,6 +615,58 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/02/07/hexo-matery-problems/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Hexo Matery 常见问题及解决">
+                            
+                            <span class="card-title">Hexo Matery 常见问题及解决</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                前言本文章非 Hexo + Matery Theme 教程，详细教程见blinkfox hexo-theme-matery，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。
+常见问题####1blog检索不生效我本地的情况是这样的
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-07
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Hexo/" class="post-category">
+                                    Hexo
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Hexo/">
+                            <span class="chip bg-color">Hexo</span>
+                        </a>
+                        
+                        <a href="/tags/Matery/">
+                            <span class="chip bg-color">Matery</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -1170,53 +1222,6 @@ package com.xiaozhangge.commo
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/07/19/mybatis-one-collection-basic-type/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="MyBatis对象中属性 包含List<String>一对多映射处理方式">
-                            
-                            <span class="card-title">MyBatis对象中属性 包含List<String>一对多映射处理方式</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个Collection&lt;String&gt;或者Collection&lt;Integer&gt;  类型，那么我们的ResultMap该如何定义？
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/MyBatis/" class="post-category">
-                                    MyBatis
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/MyBatis/">
-                            <span class="chip bg-color">MyBatis</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1260,7 +1265,7 @@ package com.xiaozhangge.commo
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.7k</span>&nbsp;字
+                class="white-color">85.1k</span>&nbsp;字
             
             
             

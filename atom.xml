@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-02-07T08:09:39.632Z</updated>
+  <updated>2021-02-07T10:02:43.602Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo Matery 常见问题及解决</title>
+    <link href="http://xiaomozhang.github.io/2021/02/07/hexo-matery-problems/"/>
+    <id>http://xiaomozhang.github.io/2021/02/07/hexo-matery-problems/</id>
+    <published>2021-02-07T08:54:57.000Z</published>
+    <updated>2021-02-07T10:02:43.602Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文章非 Hexo + Matery Theme 教程，详细教程见&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="http://xiaomozhang.github.io/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="http://xiaomozhang.github.io/tags/Hexo/"/>
+    
+    <category term="Matery" scheme="http://xiaomozhang.github.io/tags/Matery/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</title>
@@ -501,33 +528,6 @@
     
     
     <category term="maven" scheme="http://xiaomozhang.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IntelliJ IDEA 2019 创建maven web项目</title>
-    <link href="http://xiaomozhang.github.io/2020/02/26/idea-web-project/"/>
-    <id>http://xiaomozhang.github.io/2020/02/26/idea-web-project/</id>
-    <published>2020-02-26T14:51:03.000Z</published>
-    <updated>2021-02-01T13:35:34.979Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;IntelliJ-IDEA-2019-创建maven-web项目&quot;&gt;&lt;a href=&quot;#IntelliJ-IDEA-2019-创建maven-web项目&quot; class=&quot;headerlink&quot; title=&quot;IntelliJ IDEA 2019 创建maven</summary>
-        
-      
-    
-    
-    
-    <category term="工具使用" scheme="http://xiaomozhang.github.io/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
-    
-    
-    <category term="Maven" scheme="http://xiaomozhang.github.io/tags/Maven/"/>
-    
-    <category term="IDEA" scheme="http://xiaomozhang.github.io/tags/IDEA/"/>
     
   </entry>
   
