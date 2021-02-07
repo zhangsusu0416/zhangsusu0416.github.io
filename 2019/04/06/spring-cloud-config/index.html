@@ -26,10 +26,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -445,7 +445,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.7k
                 </div>
                 
 
@@ -487,14 +487,14 @@ life-example-producer-test.properties
 <span class="token comment" spellcheck="true"># 生产环境</span>
 life-example-producer-pro.properties</code></pre>
 <p>文件内容为分别为sharplook.instance=sharplook-[dev/test/pro]</p>
-<h3 id="Server-端配置"><a href="#Server-端配置" class="headerlink" title="Server 端配置"></a>Server 端配置</h3><h4 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-config-server<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h3 id="Server-端配置"><a href="#Server-端配置" class="headerlink" title="Server 端配置"></a>Server 端配置</h3><h4 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-config-server<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <h4 id="属性文件配置"><a href="#属性文件配置" class="headerlink" title="属性文件配置"></a>属性文件配置</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-config</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8899</span>
 <span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
@@ -522,12 +522,12 @@ life-example-producer-pro.properties</code></pre>
 <span class="token annotation punctuation">@EnableConfigServer</span>
 <span class="token annotation punctuation">@EnableEurekaClient</span>
 <span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApplication</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApplication</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ConfigApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>浏览器访问</p>
 <pre class=" language-html"><code class="language-html">http://localhost:8899/life-example-producer/dev
 http://localhost:8899/life-example-producer/test
@@ -536,7 +536,7 @@ http://localhost:8899/life-example-producer/pro</code></pre>
 <pre class=" language-json"><code class="language-json">// <span class="token number">20190317102625</span>
 // http<span class="token operator">:</span>//localhost<span class="token operator">:</span><span class="token number">8899</span>/life-example-producer/dev
 
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"life-example-producer"</span><span class="token punctuation">,</span>
   <span class="token property">"profiles"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token string">"dev"</span>
@@ -545,14 +545,14 @@ http://localhost:8899/life-example-producer/pro</code></pre>
   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"131d288174b48601af4461dfde809913c87b91ca"</span><span class="token punctuation">,</span>
   <span class="token property">"state"</span><span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
   <span class="token property">"propertySources"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">{</span>
       <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"https://gitlab.eoitek.net/zengtao/life-cloud-example.git/cloud-conf-repo/life-example-producer-dev.properties"</span><span class="token punctuation">,</span>
-      <span class="token property">"source"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token property">"source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token property">"sharplook.instance"</span><span class="token operator">:</span> <span class="token string">"sharplook-dev"</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">]</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>仓库中的配置文件会被转换成web接口，访问可以参照以下的规则：</p>
 <ul>
 <li>/{application}/{profile}[/{label}]</li>
@@ -562,18 +562,18 @@ http://localhost:8899/life-example-producer/pro</code></pre>
 <li>/{label}/{application}-{profile}.properties</li>
 </ul>
 <h3 id="Client配置"><a href="#Client配置" class="headerlink" title="Client配置"></a>Client配置</h3><p>client 主要是其他服务怎么去获取config中的配置信息，还是以service-producer为例</p>
-<h4 id="pom-配置-1"><a href="#pom-配置-1" class="headerlink" title="pom 配置"></a>pom 配置</h4><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 添加config客户端依赖 --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h4 id="pom-配置-1"><a href="#pom-配置-1" class="headerlink" title="pom 配置"></a>pom 配置</h4><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 添加config客户端依赖 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <h4 id="属性文件配置-1"><a href="#属性文件配置-1" class="headerlink" title="属性文件配置"></a>属性文件配置</h4><p>application.properties无需修改，新建bootstrap.properties文件，用于配置spring cloud config的服务器信息</p>
 <pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># 配置中心地址</span>
 <span class="token attr-name">spring.cloud.config.uri</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8899/</span>
 <span class="token comment" spellcheck="true"># 使用哪个环境的配置</span>
 <span class="token attr-name">spring.cloud.config.profile</span><span class="token punctuation">=</span><span class="token attr-value">dev</span>
 <span class="token comment" spellcheck="true"># 当前服务的名称 和 spring.application.name对应即可</span>
-<span class="token attr-name">spring.cloud.config.name</span><span class="token punctuation">=</span><span class="token attr-value">$&amp;#123;spring.application.name&amp;#125;</span>
+<span class="token attr-name">spring.cloud.config.name</span><span class="token punctuation">=</span><span class="token attr-value">${spring.application.name}</span>
 <span class="token comment" spellcheck="true"># 读取指定分支配置</span>
 <span class="token attr-name">spring.cloud.config.label</span><span class="token punctuation">=</span><span class="token attr-value">master</span></code></pre>
 <blockquote>
@@ -595,19 +595,19 @@ http://localhost:8899/life-example-producer/pro</code></pre>
  */</span>
 <span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api/config"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApi</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApi</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
      * 这里key 就是自定义在配置中心中的key
      */</span>
-    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;sharplook.instance&amp;#125;"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${sharplook.instance}"</span><span class="token punctuation">)</span>
     <span class="token keyword">private</span> String instance<span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> String <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><p>启动service-producer服务，访问</p>
 <pre><code>http://localhost:8080/api/config/</code></pre>
 <p>返回</p>
@@ -1118,7 +1118,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

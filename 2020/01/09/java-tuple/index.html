@@ -26,10 +26,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -445,7 +445,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.2k
                 </div>
                 
 
@@ -477,54 +477,54 @@
 <p>Python和Scala语言中有自带元组，Jdk中是没有这个数据类型的，虽然使用数组或者map也能达到想要的效果，但总归是没有元组方便。</p>
 <p>比如说一个方法有多个返回值时，虽然可以用<code>Object[]</code>或者<code>Map</code>进行封装，但是在拆箱的时候类型会缺失，所以还是不太方便。Java中有很多元组库，这里推荐一个我经常使用的<a target="_blank" rel="noopener" href="https://www.vavr.io/">vavr</a>，当然<code>Tuple</code>只是这个库中的一小部分，该库提供了强大的函数式编程的能力，可以像写Scala一样写Java</p>
 <h2 id="引入pom依赖"><a href="#引入pom依赖" class="headerlink" title="引入pom依赖"></a>引入pom依赖</h2><p>目前最新的稳定版是<code>0.10.2</code></p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- https://mvnrepository.com/artifact/io.vavr/vavr --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>0.10.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- https://mvnrepository.com/artifact/io.vavr/vavr --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.10.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <h2 id="常用方法使用"><a href="#常用方法使用" class="headerlink" title="常用方法使用"></a>常用方法使用</h2><h3 id="创建元组对象"><a href="#创建元组对象" class="headerlink" title="创建元组对象"></a>创建元组对象</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">&gt;</span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>可以看到我们通过<code>Tuple.of</code>创建了一个有三个元素的元组对象，输出结果</p>
 <pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">40</span><span class="token punctuation">:</span><span class="token number">26.137</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
 <h3 id="更新元组内容"><a href="#更新元组内容" class="headerlink" title="更新元组内容"></a>更新元组内容</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">&gt;</span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   tuple3 <span class="token operator">=</span> tuple3<span class="token punctuation">.</span><span class="token function">update1</span><span class="token punctuation">(</span><span class="token string">"哈哈哈哈"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>通过<code>update1-n</code>方法，可以实现元组内容的更新，更新结果</p>
 <pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span>
 <span class="token punctuation">(</span>哈哈哈哈<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
 <h3 id="方法多个返回值使用元组接收"><a href="#方法多个返回值使用元组接收" class="headerlink" title="方法多个返回值使用元组接收"></a>方法多个返回值使用元组接收</h3><p>这个需求其实之前在<a href="https://xiaomozhang.github.io/2020/01/04/java8-date-cycle/">Java8 处理常见的日期周期</a>这篇文章已经用过了，比如我们需要获取一个周期数据，有开始和结束，那么元组无疑是最好的选择。比如我们需要封装一个方法获取今天的最小时间和最大时间，那么这里就需要两个返回值，虽然我们可以用<code>Object[]</code>或者<code>Map</code>之类的容器达到我们的效果，但是如果我返回值得类型都不尽想同，那么在获取的时候就要进行类型转换，加到了转换出错的概率，但是使用元组就不会有这个问题。</p>
 <ul>
 <li><p>获取一天的开始和结束时间</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   LocalDate now <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">// 一天中从零时开始</span>
   LocalDateTime startTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MIN<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">// 一天到23:59:59秒结束</span>
   LocalDateTime endTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>startTime<span class="token punctuation">,</span> endTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 </li>
 <li><p>获取返回值</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> tuple2 <span class="token operator">=</span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> tuple2 <span class="token operator">=</span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token comment" spellcheck="true">// 这里通过 _n 或者 _n() 获取每一个元组中的一列数据</span>
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span><span class="token function">_1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"结束时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>我们可以看到<code>getNowRange</code>同时有两个放回值，通过<code>Tuple2</code>进行保存，过 _n 或者 _n() 获取每一个元组中的一列数据。最后获取的结果为</p>
 <pre><code>开始时间:2020-01-09T00:00
 结束时间:2020-01-09T23:59:59.999999999</code></pre>
@@ -1035,7 +1035,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

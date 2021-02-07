@@ -28,10 +28,10 @@ git con">
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -477,7 +477,7 @@ git config --global user.email "email@example.com"</code></pre>
 <h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><pre class=" language-shell"><code class="language-shell">git add <filename>    #添加指定文件到暂存区
 git add .    #添加工作区所有文件到暂存区
 git add -i    #交互方式添加文件到暂存区
-git add -u    #将工作区中已经变动的文件添加到暂存区，当新增加的文件不会被添加</filename></code></pre>
+git add -u    #将工作区中已经变动的文件添加到暂存区，当新增加的文件不会被添加</code></pre>
 <h3 id="提交文件到仓库"><a href="#提交文件到仓库" class="headerlink" title="提交文件到仓库"></a>提交文件到仓库</h3><pre class=" language-shell"><code class="language-shell">git commit -m "描述信息"        #提交更新
 git commit -am "描述信息"    #如果工作目录中仅是已跟踪的文件被修改或被删除，使用此提交命令</code></pre>
 <h3 id="分支的创建、删除、和平、切换、查看"><a href="#分支的创建、删除、和平、切换、查看" class="headerlink" title="分支的创建、删除、和平、切换、查看"></a>分支的创建、删除、和平、切换、查看</h3><pre class=" language-shell"><code class="language-shell">git branch    #查看Git仓库中已有的分支
@@ -549,7 +549,7 @@ git stash clear            #清空Git内部栈</code></pre>
 <p>当Git栈中所有的内容都被恢复后，可以使用<code>git stash clear</code>来将栈清空。</p>
 </blockquote>
 <h3 id="将当前工作区目录文件压缩归档"><a href="#将当前工作区目录文件压缩归档" class="headerlink" title="将当前工作区目录文件压缩归档"></a>将当前工作区目录文件压缩归档</h3><pre class=" language-shell"><code class="language-shell">git archive --format=zip -o arch.zip HEAD
-git arch --format zip head&gt;arch.zip</code></pre>
+git arch --format zip head>arch.zip</code></pre>
 <h2 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h2><blockquote>
 <p>Git相比其他版本控制软件的一个优点就是大多数的操作都可以在本地进行，而不用管远程的仓库，因为操作是在本地，且操作的数据也是在本地，加上指针等原因，所以执行的速度就会比较快。 在多人协作的项目中，就需要涉及与远程仓库交互的问题，主要是如何从远程仓库抓取最新数据合并到自己的本地分支上，将自己的最新成果分享给其他人或让别人审查等 。</p>
 </blockquote>
@@ -913,10 +913,10 @@ git push 远程仓库名 标签名    #将标签推送到远程仓库（Git默�
                         
                             Spring Boot 原生 @Scheduled任务配置@Slf4j
 @Component
-public class ScheduledTask &amp;#123;
+public class ScheduledTask {
 
     @Scheduled(fixedRate = 5000)
- 
+    // 表示每
                         
                     </div>
                     <div class="publish-info">
@@ -1090,7 +1090,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

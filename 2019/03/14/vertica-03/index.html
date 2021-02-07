@@ -26,10 +26,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -445,7 +445,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    820
+                    812
                 </div>
                 
 
@@ -577,8 +577,8 @@
 <h1 id="window-partition-clause"><a href="#window-partition-clause" class="headerlink" title="window_partition_clause"></a>window_partition_clause</h1><p>根据划分表达式设置的规则， PARTITION BY （按… 划分）将一个结果逻辑分成Ñ 个分组划分表达式。在此“ 划分” 和“ 分组” 用作同义词。分析函数独立应用于各个分组，并在应用时重置。</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">OVER</span>（<span class="token keyword">PARTITION</span> <span class="token keyword">BY</span> expression <span class="token punctuation">[</span>，<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>）</code></pre>
 <h1 id="window-order-clause"><a href="#window-order-clause" class="headerlink" title="window_order_clause"></a>window_order_clause</h1><p>ORDER BY （按… 排序）语句规定了每个分组（划分）的数据如何排序。这些必然影响分析函数的结果。</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">OVER</span>（<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> expression <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;ASC | DESC&amp;#125;] </span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">[</span>NULLS <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;FIRST | LAST | AUTO&amp;#125;] [，expression ...]）</span></code></pre>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">OVER</span>（<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> expression <span class="token punctuation">[</span>{<span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span>}<span class="token punctuation">]</span> 
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">[</span>NULLS {<span class="token keyword">FIRST</span> <span class="token operator">|</span> <span class="token keyword">LAST</span> <span class="token operator">|</span> AUTO}<span class="token punctuation">]</span> <span class="token punctuation">[</span>，expression <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>）</code></pre>
 <h1 id="window-frame-clause"><a href="#window-frame-clause" class="headerlink" title="window_frame_clause"></a>window_frame_clause</h1><p>窗口生成语句用以定义滑动或固定数据窗口，分析函数在分组内进行分析。该语句能够对分组中任意定义的滑动或固定窗口进行计算。</p>
 
             </div>
@@ -1081,7 +1081,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

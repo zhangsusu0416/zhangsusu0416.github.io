@@ -29,10 +29,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -439,7 +439,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    2.4k
                 </div>
                 
 
@@ -526,41 +526,41 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz</code
 <span class="token comment" spellcheck="true">/**
  * Created by xiaozhangge on 2020/12/12.
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UnixNanosecondParser</span> <span class="token keyword">implements</span> <span class="token class-name">TimestampParser</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UnixNanosecondParser</span> <span class="token keyword">implements</span> <span class="token class-name">TimestampParser</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">long</span> MAX_EPOCH_NANOSECOND <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> Integer<span class="token punctuation">.</span>MAX_VALUE <span class="token operator">*</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>String value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>String value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">parse</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>Long value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>Long value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Instant</span><span class="token punctuation">(</span>value <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>Double value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>Double value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// XXX: Should we accept a double?</span>
         <span class="token keyword">return</span> <span class="token function">parse</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Instant <span class="token function">parseWithTimeZone</span><span class="token punctuation">(</span>String value<span class="token punctuation">,</span> String timezone<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Instant <span class="token function">parseWithTimeZone</span><span class="token punctuation">(</span>String value<span class="token punctuation">,</span> String timezone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">parse</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>BigDecimal value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Instant <span class="token function">parse</span><span class="token punctuation">(</span>BigDecimal value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">long</span> lv <span class="token operator">=</span> value<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>lv <span class="token operator">&gt;</span> MAX_EPOCH_NANOSECOND<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>lv <span class="token operator">></span> MAX_EPOCH_NANOSECOND<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Cannot parse date for value larger than UNIX NS maximum seconds"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Instant</span><span class="token punctuation">(</span>lv <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h5 id="在解析工厂类添加纳秒解析"><a href="#在解析工厂类添加纳秒解析" class="headerlink" title="在解析工厂类添加纳秒解析"></a>在解析工厂类添加纳秒解析</h5><p><code>org.logstash.filters.parser.TimestampParserFactory</code></p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
@@ -588,7 +588,7 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz</code
 
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Locale<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TimestampParserFactory</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TimestampParserFactory</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> DateTimeZone timezone<span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String ISO8601 <span class="token operator">=</span> <span class="token string">"ISO8601"</span><span class="token punctuation">;</span>
@@ -603,20 +603,20 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz</code
     <span class="token comment" spellcheck="true">/*
      * zone is a String because it can be dynamic and come from the event while we parse it.
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">,</span> Locale locale<span class="token punctuation">,</span> String zone<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>locale <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">,</span> Locale locale<span class="token punctuation">,</span> String zone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>locale <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             locale <span class="token operator">=</span> Locale<span class="token punctuation">.</span><span class="token function">getDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
         String tz <span class="token operator">=</span> zone<span class="token punctuation">;</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>tz <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>tz <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             tz <span class="token operator">=</span> DateTimeZone<span class="token punctuation">.</span><span class="token function">getDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zone<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"%&amp;#123;"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zone<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"%{"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             tz <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">case</span> ISO8601<span class="token operator">:</span> <span class="token comment" spellcheck="true">// Short-hand for a few ISO8601-ish formats</span>
                 <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">CasualISO8601Parser</span><span class="token punctuation">(</span>tz<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">case</span> UNIX<span class="token operator">:</span> <span class="token comment" spellcheck="true">// Unix epoch in seconds</span>
@@ -631,24 +631,24 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz</code
 
             <span class="token keyword">default</span><span class="token operator">:</span>
                 <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JodaParser</span><span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> locale<span class="token punctuation">,</span> tz<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">makeParser</span><span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> <span class="token punctuation">(</span>Locale<span class="token punctuation">)</span> null<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">,</span> String locale<span class="token punctuation">,</span> String zone<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> TimestampParser <span class="token function">makeParser</span><span class="token punctuation">(</span>String pattern<span class="token punctuation">,</span> String locale<span class="token punctuation">,</span> String zone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">makeParser</span><span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> locale <span class="token operator">==</span> null <span class="token operator">?</span> null <span class="token operator">:</span> Locale<span class="token punctuation">.</span><span class="token function">forLanguageTag</span><span class="token punctuation">(</span>locale<span class="token punctuation">)</span><span class="token punctuation">,</span> zone<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="注释一个单元测试"><a href="#注释一个单元测试" class="headerlink" title="注释一个单元测试"></a>注释一个单元测试</h3><p>因为该类会因为找不到方法而导致编译报错，可以注释忽略<code>org.logstash.filters.DateFilterTest#commonAssertions</code></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">commonAssertions</span><span class="token punctuation">(</span>Event event<span class="token punctuation">,</span> ParseExecutionResult code<span class="token punctuation">,</span> String expected<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">commonAssertions</span><span class="token punctuation">(</span>Event event<span class="token punctuation">,</span> ParseExecutionResult code<span class="token punctuation">,</span> String expected<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">/*Assert.assertSame(ParseExecutionResult.SUCCESS, code);
         String actual = ((Timestamp) event.getField("[result_ts]")).toIso8601();
         Assert.assertTrue(String.format("Unequal - expected: %s, actual: %s", expected, actual), expected.equals(actual));*/</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h4><p>修改build.gradle文件中63、66两行的logstash-core配置，改为下载的标准<code>logstash/logstash-core</code>目录</p>
 <pre class=" language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">// 默认配置</span>
 testCompile <span class="token function">fileTree</span><span class="token punctuation">(</span>dir<span class="token punctuation">:</span> logstashCoreGemPath<span class="token punctuation">,</span> include<span class="token punctuation">:</span> <span class="token string">'**/*.jar'</span><span class="token punctuation">)</span>
@@ -704,7 +704,7 @@ Total time: 7.276 secs
 
 # 解压
 tar -zxvf logstash-7.9.3.tar.gz</code></pre>
-<h3 id="查找logstash-filter-date-3-1-6-jar"><a href="#查找logstash-filter-date-3-1-6-jar" class="headerlink" title="查找logstash-filter-date-3.1.6.jar"></a>查找logstash-filter-date-3.1.6.jar</h3><pre class=" language-shell"><code class="language-shell">cd logstash-7.9.3 &amp;&amp; find . -name 'logstash-filter-date*'
+<h3 id="查找logstash-filter-date-3-1-6-jar"><a href="#查找logstash-filter-date-3-1-6-jar" class="headerlink" title="查找logstash-filter-date-3.1.6.jar"></a>查找logstash-filter-date-3.1.6.jar</h3><pre class=" language-shell"><code class="language-shell">cd logstash-7.9.3 && find . -name 'logstash-filter-date*'
 
 # 日志
 ➜  logstash-7.9.3 find . -name 'logstash-filter-date*'
@@ -737,56 +737,56 @@ drwxr-xr-x   4 xiaozhangge  staff   128B 10 16 21:35 vendor
 drwxr-xr-x  14 xiaozhangge  staff   448B 10 16 21:35 x-pack</code></pre>
 <h3 id="编写测试配置conf-test-conf"><a href="#编写测试配置conf-test-conf" class="headerlink" title="编写测试配置conf/test.conf"></a>编写测试配置conf/test.conf</h3><pre class=" language-shell"><code class="language-shell">input {
      stdin { 
-         codec =&gt; "json"
+         codec => "json"
      } 
 }
 
 filter {
     mutate {
-        add_field =&gt; { "name" =&gt; "哈哈哈" }
+        add_field => { "name" => "哈哈哈" }
     }
 
     # https://zerlong.com/886.html
-    ruby { code =&gt; 'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)' }
+    ruby { code => 'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)' }
 
     date {
             # 注意这里的UNIX_NS就是我们在TimestampParserFactory新建的纳秒解析器，官方版本是不支持的
-        match =&gt; ["unix_ns", "UNIX_NS"]
-        target =&gt; "date_ns"
+        match => ["unix_ns", "UNIX_NS"]
+        target => "date_ns"
     }
 }
 
 output { 
     stdout {} 
 }</code></pre>
-<h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token property">"unix_ns"</span><span class="token operator">:</span> <span class="token number">1607206093000000</span><span class="token punctuation">,</span> <span class="token property">"tags"</span><span class="token operator">:</span> <span class="token string">"test"</span> &amp;#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span> <span class="token property">"unix_ns"</span><span class="token operator">:</span> <span class="token number">1607206093000000</span><span class="token punctuation">,</span> <span class="token property">"tags"</span><span class="token operator">:</span> <span class="token string">"test"</span> <span class="token punctuation">}</span></code></pre>
 <h3 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h3><pre class=" language-shell"><code class="language-shell">➜  logstash-7.9.3 ./lsboot conf/test.conf test
 bin/logstash -f conf/test.conf -l logs/test --path.data data/test -n test
 Sending Logstash logs to logs/test which is now configured via log4j2.properties
-[2020-12-18T20:13:19,801][INFO ][logstash.runner          ] Starting Logstash {"logstash.version"=&gt;"7.9.3", "jruby.version"=&gt;"jruby 9.2.13.0 (2.5.7) 2020-08-03 9a89c94bcc Java HotSpot(TM) 64-Bit Server VM 25.201-b09 on 1.8.0_201-b09 +indy +jit [darwin-x86_64]"}
-[2020-12-18T20:13:19,932][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=&gt;"path.queue", :path=&gt;"data/test/queue"}
-[2020-12-18T20:13:19,935][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=&gt;"path.dead_letter_queue", :path=&gt;"data/test/dead_letter_queue"}
+[2020-12-18T20:13:19,801][INFO ][logstash.runner          ] Starting Logstash {"logstash.version"=>"7.9.3", "jruby.version"=>"jruby 9.2.13.0 (2.5.7) 2020-08-03 9a89c94bcc Java HotSpot(TM) 64-Bit Server VM 25.201-b09 on 1.8.0_201-b09 +indy +jit [darwin-x86_64]"}
+[2020-12-18T20:13:19,932][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=>"path.queue", :path=>"data/test/queue"}
+[2020-12-18T20:13:19,935][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=>"path.dead_letter_queue", :path=>"data/test/dead_letter_queue"}
 [2020-12-18T20:13:20,029][WARN ][logstash.config.source.multilocal] Ignoring the 'pipelines.yml' file because modules or command line options are specified
-[2020-12-18T20:13:20,061][INFO ][logstash.agent           ] No persistent UUID file found. Generating new UUID {:uuid=&gt;"e4188c10-0621-4967-a957-8aa14f1a2945", :path=&gt;"data/test/uuid"}
+[2020-12-18T20:13:20,061][INFO ][logstash.agent           ] No persistent UUID file found. Generating new UUID {:uuid=>"e4188c10-0621-4967-a957-8aa14f1a2945", :path=>"data/test/uuid"}
 [2020-12-18T20:13:21,802][INFO ][org.reflections.Reflections] Reflections took 33 ms to scan 1 urls, producing 22 keys and 45 values
-[2020-12-18T20:13:23,160][INFO ][logstash.javapipeline    ][main] Starting pipeline {:pipeline_id=&gt;"main", "pipeline.workers"=&gt;8, "pipeline.batch.size"=&gt;125, "pipeline.batch.delay"=&gt;50, "pipeline.max_inflight"=&gt;1000, "pipeline.sources"=&gt;["/Users/xiaozhangge/share/tmp/logstash-7.9.3/conf/test.conf"], :thread=&gt;"#<thread:0x49b901aa run="">"}
-[2020-12-18T20:13:23,871][INFO ][logstash.javapipeline    ][main] Pipeline Java execution initialization time {"seconds"=&gt;0.7}
-[2020-12-18T20:13:23,922][INFO ][logstash.inputs.stdin    ][main] Automatically switching from json to json_lines codec {:plugin=&gt;"stdin"}
-[2020-12-18T20:13:23,962][INFO ][logstash.javapipeline    ][main] Pipeline started {"pipeline.id"=&gt;"main"}
+[2020-12-18T20:13:23,160][INFO ][logstash.javapipeline    ][main] Starting pipeline {:pipeline_id=>"main", "pipeline.workers"=>8, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>1000, "pipeline.sources"=>["/Users/xiaozhangge/share/tmp/logstash-7.9.3/conf/test.conf"], :thread=>"#<Thread:0x49b901aa run>"}
+[2020-12-18T20:13:23,871][INFO ][logstash.javapipeline    ][main] Pipeline Java execution initialization time {"seconds"=>0.7}
+[2020-12-18T20:13:23,922][INFO ][logstash.inputs.stdin    ][main] Automatically switching from json to json_lines codec {:plugin=>"stdin"}
+[2020-12-18T20:13:23,962][INFO ][logstash.javapipeline    ][main] Pipeline started {"pipeline.id"=>"main"}
 The stdin plugin is now waiting for input:
-[2020-12-18T20:13:24,041][INFO ][logstash.agent           ] Pipelines running {:count=&gt;1, :running_pipelines=&gt;[:main], :non_running_pipelines=&gt;[]}
-[2020-12-18T20:13:24,244][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=&gt;9600}
+[2020-12-18T20:13:24,041][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:main], :non_running_pipelines=>[]}
+[2020-12-18T20:13:24,244][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
 { "unix_ns": 1607206093000000, "tags": "test" }
 {
-       "unix_ts" =&gt; 1608293606313,
-       "date_ns" =&gt; 2020-12-05T22:08:13.000Z,
-    "@timestamp" =&gt; 2020-12-18T12:13:26.313Z,
-          "tags" =&gt; "test",
-       "unix_ns" =&gt; 1607206093000000,
-          "host" =&gt; "TaoZeng.MBP",
-      "@version" =&gt; "1",
-          "name" =&gt; "哈哈哈"
-}</thread:0x49b901aa></code></pre>
+       "unix_ts" => 1608293606313,
+       "date_ns" => 2020-12-05T22:08:13.000Z,
+    "@timestamp" => 2020-12-18T12:13:26.313Z,
+          "tags" => "test",
+       "unix_ns" => 1607206093000000,
+          "host" => "TaoZeng.MBP",
+      "@version" => "1",
+          "name" => "哈哈哈"
+}</code></pre>
 <p>以上，<code>1607206093000000</code>纳秒时间戳已经支持转换成<code>date</code>类型的数据，但是转换的结果却还有时区显示的问题，这里有两个方案</p>
 <ul>
 <li>第一是在target的时候指定时区；</li>
@@ -1293,7 +1293,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-02-07T05:23:39.740Z</updated>
+  <updated>2021-02-07T06:12:15.311Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -21,15 +21,14 @@
     <link href="http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"/>
     <id>http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/</id>
     <published>2021-02-07T05:04:42.000Z</published>
-    <updated>2021-02-07T05:23:39.740Z</updated>
+    <updated>2021-02-07T06:12:15.311Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;最近公司产品需求,需要使用同一个redis数据库服务使用不同的序列化方式的redisTemplate对缓存数据库进行读写操作,&lt;/p&gt;
-&lt;p&gt;目前大部分网路上的文章在实作Redis分流时，都是以Jedis为范例，但Spring</summary>
+    <summary type="html">&lt;p&gt;最近公司产品需求,需要使用同一个redis数据库服务使用不同的序列化方式的redisTemplate对缓存数据库进行读写操作,&lt;br&gt;目前大部分网上的文章在实作Redis分流时，都是以Jedis为样例，但SpringBoot在2.x版本之后已经将Redis库替换成Lettu</summary>
         
       
     

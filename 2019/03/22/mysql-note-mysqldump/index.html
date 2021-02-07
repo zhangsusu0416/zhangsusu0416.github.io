@@ -7,7 +7,7 @@
     <meta name="keywords" content="MySQL 导出表结构和表数据 mysqldump用法, 小张哥blog">
     <meta name="description" content="命令行下具体用法如下：
 mysqldump -u用戶名 -p密码 -d 数据库名 表名 &amp;gt; 脚本名;
-导出整个数据库结构和数据mysqldump -h localhost -uroot -p123456 database &amp;gt; d">
+导出整个数据库结构和数据mysqldump -h localhost -uroot -p123456 database &gt; dump">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,10 +28,10 @@ mysqldump -u用戶名 -p密码 -d 数据库名 表名 &amp;gt; 脚本名;
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -447,7 +447,7 @@ mysqldump -u用戶名 -p密码 -d 数据库名 表名 &amp;gt; 脚本名;
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    121
+                    117
                 </div>
                 
 
@@ -472,10 +472,10 @@ mysqldump -u用戶名 -p密码 -d 数据库名 表名 &amp;gt; 脚本名;
             <div id="articleContent">
                 <p>命令行下具体用法如下：</p>
 <p>mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;</p>
-<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database &gt; dump.sql</code></pre>
-<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table &gt; dump.sql</code></pre>
-<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database &gt; dump.sql</code></pre>
-<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table &gt; dump.sql</code></pre>
+<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table > dump.sql</code></pre>
+<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table > dump.sql</code></pre>
 
             </div>
             <hr/>
@@ -972,7 +972,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

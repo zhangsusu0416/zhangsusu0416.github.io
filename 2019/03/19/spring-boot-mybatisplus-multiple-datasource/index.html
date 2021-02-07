@@ -26,10 +26,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -445,14 +445,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    12 分
                 </div>
                 
 
@@ -471,22 +471,22 @@
                 <p>项目中使用到了MySQL数据库存储配置数据，Vertica中存储指标数据，这样就有两个基于jdbc的数据源，所以需要做到动态配置与切换，并且项目采用了<a target="_blank" rel="noopener" href="https://mp.baomidou.com/">mybatis-plus</a>作为orm框架，所以使用mybatis-plus配置多数据源，并且配置hikari连接池，这也是Spring Boot-2.x自带的连接池，这里提供一个配置思路与方案，仅供参考。通过查看mybatis-plus的源码发现，该框架目前连接Vertica时会提示一个警告⚠️ 表示不支持该数据库，实际使用时可以直接使用mybatis执行sql的功能即可。</p>
 <pre><code>2019-03-19 17:36:20.877  WARN 14103 --- [  restartedMain] c.b.m.extension.toolkit.JdbcUtils        : The jdbcUrl is jdbc:vertica://192.168.21.188:5433/vertica20190122001, Mybatis Plus Cannot Read Database type or The Database's Not Supported!</code></pre>
 <p>关于MySQL和Vertica的建库建表这边就不放了，直接贴上核心代码。</p>
-<h2 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>$<span class="token entity" title="{">&amp;#123;</span>mybatisplus.spring.version<span class="token entity" title="}">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token comment" spellcheck="true">&lt;!-- jdbc driver 这是是官网下载，自己传到内网服务器的jdbc驱动 --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.xiaozhangge.vertica<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vertica-jdbc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>9.2.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h2 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${mybatisplus.spring.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- jdbc driver 这是是官网下载，自己传到内网服务器的jdbc驱动 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge.vertica<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>vertica-jdbc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>9.2.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
     <span class="token key atrule">name</span><span class="token punctuation">:</span> example<span class="token punctuation">-</span>dynamic<span class="token punctuation">-</span>datasource
@@ -523,7 +523,7 @@
       <span class="token key atrule">username</span><span class="token punctuation">:</span> dbadmin
 
 <span class="token key atrule">logging</span><span class="token punctuation">:</span>
-  <span class="token key atrule">home</span><span class="token punctuation">:</span> $&amp;<span class="token comment" spellcheck="true">#123;user.dir&amp;#125;/logs</span>
+  <span class="token key atrule">home</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>user.dir<span class="token punctuation">}</span>/logs
 <span class="token key atrule">mybatis-plus</span><span class="token punctuation">:</span>
   <span class="token key atrule">configuration</span><span class="token punctuation">:</span>
     <span class="token key atrule">map-underscore-to-camel-case</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
@@ -537,7 +537,7 @@
  * Created by xiaozhangge on 2019-03-20.
  */</span>
 <span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariConfig</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariConfig</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> String poolName<span class="token punctuation">;</span>
 
@@ -554,7 +554,7 @@
     <span class="token keyword">private</span> <span class="token keyword">int</span> minimumIdle<span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> String connectionTestQuery<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="MySQL数据源配置"><a href="#MySQL数据源配置" class="headerlink" title="MySQL数据源配置"></a>MySQL数据源配置</h2><h3 id="连接池配置"><a href="#连接池配置" class="headerlink" title="连接池配置"></a>连接池配置</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>config<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
@@ -569,8 +569,8 @@
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"spring.datasource.mysql.hikari"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariMySQLConfig</span> <span class="token keyword">extends</span> <span class="token class-name">HikariConfig</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariMySQLConfig</span> <span class="token keyword">extends</span> <span class="token class-name">HikariConfig</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="DataSource配置"><a href="#DataSource配置" class="headerlink" title="DataSource配置"></a>DataSource配置</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>datasource<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>extension<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>MybatisSqlSessionFactoryBean<span class="token punctuation">;</span>
@@ -593,20 +593,20 @@
  */</span>
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token string">"com.xiaozhangge.mapper.mysql"</span><span class="token punctuation">,</span> sqlSessionTemplateRef <span class="token operator">=</span> <span class="token string">"mysqlSqlSessionTemplate"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MySQLDataSourceConfigure</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MySQLDataSourceConfigure</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> HikariMySQLConfig mysqlConfig<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">MySQLDataSourceConfigure</span><span class="token punctuation">(</span>HikariMySQLConfig mysqlConfig<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">MySQLDataSourceConfigure</span><span class="token punctuation">(</span>HikariMySQLConfig mysqlConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>mysqlConfig <span class="token operator">=</span> mysqlConfig<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"mysqlDataSource"</span><span class="token punctuation">)</span>
     <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span><span class="token string">"spring.datasource.mysql"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> DataSource <span class="token function">mysql</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> DataSource <span class="token function">mysql</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         DataSource dataSource <span class="token operator">=</span> DataSourceBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         HikariDataSource hikariDataSource <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">// 连接池配置</span>
             hikariDataSource <span class="token operator">=</span> <span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">)</span> dataSource<span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setPoolName</span><span class="token punctuation">(</span>mysqlConfig<span class="token punctuation">.</span><span class="token function">getPoolName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -617,29 +617,29 @@
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>mysqlConfig<span class="token punctuation">.</span><span class="token function">getMaximumPoolSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>mysqlConfig<span class="token punctuation">.</span><span class="token function">getMaxLifetime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>mysqlConfig<span class="token punctuation">.</span><span class="token function">getMinimumIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> hikariDataSource <span class="token operator">==</span> null <span class="token operator">?</span> dataSource <span class="token operator">:</span> hikariDataSource<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"mysqlSqlSessionFactory"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> SqlSessionFactory <span class="token function">mysqlSqlSessionFactory</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> SqlSessionFactory <span class="token function">mysqlSqlSessionFactory</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// MyBatis-Plus使用MybatisSqlSessionFactoryBean  MyBatis直接使用SqlSessionFactoryBean</span>
         MybatisSqlSessionFactoryBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MybatisSqlSessionFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 给MyBatis-Plus注入数据源</span>
         bean<span class="token punctuation">.</span><span class="token function">setDataSource</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> bean<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"mysqlTransactionManager"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> DataSourceTransactionManager <span class="token function">mysqlTransactionManager</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> DataSourceTransactionManager <span class="token function">mysqlTransactionManager</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceTransactionManager</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"mysqlSqlSessionTemplate"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> SqlSessionTemplate <span class="token function">mysqlSqlSessionTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlSqlSessionFactory"</span><span class="token punctuation">)</span> SqlSessionFactory sqlSessionFactory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> SqlSessionTemplate <span class="token function">mysqlSqlSessionTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"mysqlSqlSessionFactory"</span><span class="token punctuation">)</span> SqlSessionFactory sqlSessionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionTemplate</span><span class="token punctuation">(</span>sqlSessionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="Vertica数据源配置"><a href="#Vertica数据源配置" class="headerlink" title="Vertica数据源配置"></a>Vertica数据源配置</h2><h3 id="连接池配置-1"><a href="#连接池配置-1" class="headerlink" title="连接池配置"></a>连接池配置</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>config<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
@@ -654,8 +654,8 @@
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"spring.datasource.vertica.hikari"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariVerticaConfig</span> <span class="token keyword">extends</span> <span class="token class-name">HikariConfig</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HikariVerticaConfig</span> <span class="token keyword">extends</span> <span class="token class-name">HikariConfig</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="DataSource配置-1"><a href="#DataSource配置-1" class="headerlink" title="DataSource配置"></a>DataSource配置</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>datasource<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>extension<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>MybatisSqlSessionFactoryBean<span class="token punctuation">;</span>
@@ -678,20 +678,20 @@
  */</span>
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token string">"com.xiaozhangge.mapper.vertica"</span><span class="token punctuation">,</span> sqlSessionTemplateRef <span class="token operator">=</span> <span class="token string">"verticaSqlSessionTemplate"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VerticaDataSourceConfigure</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VerticaDataSourceConfigure</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> HikariVerticaConfig verticaConfig<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">VerticaDataSourceConfigure</span><span class="token punctuation">(</span>HikariVerticaConfig verticaConfig<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">VerticaDataSourceConfigure</span><span class="token punctuation">(</span>HikariVerticaConfig verticaConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>verticaConfig <span class="token operator">=</span> verticaConfig<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"verticaDataSource"</span><span class="token punctuation">)</span>
     <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span><span class="token string">"spring.datasource.vertica"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> DataSource <span class="token function">vertica</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> DataSource <span class="token function">vertica</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         DataSource dataSource <span class="token operator">=</span> DataSourceBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         HikariDataSource hikariDataSource <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">// 连接池配置</span>
             hikariDataSource <span class="token operator">=</span> <span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">)</span> dataSource<span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setPoolName</span><span class="token punctuation">(</span>verticaConfig<span class="token punctuation">.</span><span class="token function">getPoolName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -702,29 +702,29 @@
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>verticaConfig<span class="token punctuation">.</span><span class="token function">getMaximumPoolSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>verticaConfig<span class="token punctuation">.</span><span class="token function">getMaxLifetime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             hikariDataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>verticaConfig<span class="token punctuation">.</span><span class="token function">getMinimumIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> hikariDataSource <span class="token operator">==</span> null <span class="token operator">?</span> dataSource <span class="token operator">:</span> hikariDataSource<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"verticaSqlSessionFactory"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> SqlSessionFactory <span class="token function">verticaSqlSessionFactory</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> SqlSessionFactory <span class="token function">verticaSqlSessionFactory</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// MyBatis-Plus使用MybatisSqlSessionFactoryBean  MyBatis直接使用SqlSessionFactoryBean</span>
         MybatisSqlSessionFactoryBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MybatisSqlSessionFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 给MyBatis-Plus注入数据源</span>
         bean<span class="token punctuation">.</span><span class="token function">setDataSource</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> bean<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"verticaTransactionManager"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> DataSourceTransactionManager <span class="token function">verticaTransactionManager</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> DataSourceTransactionManager <span class="token function">verticaTransactionManager</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceTransactionManager</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"verticaSqlSessionTemplate"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> SqlSessionTemplate <span class="token function">verticaSqlSessionTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaSqlSessionFactory"</span><span class="token punctuation">)</span> SqlSessionFactory sqlSessionFactory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> SqlSessionTemplate <span class="token function">verticaSqlSessionTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"verticaSqlSessionFactory"</span><span class="token punctuation">)</span> SqlSessionFactory sqlSessionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionTemplate</span><span class="token punctuation">(</span>sqlSessionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h2><h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>mysql<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>core<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>BaseMapper<span class="token punctuation">;</span>
@@ -740,14 +740,14 @@
  * Created by xiaozhangge on 2019-03-19.
  */</span>
 <span class="token annotation punctuation">@Repository</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysUserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token operator">&lt;</span>SysUser<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysUserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token operator">&lt;</span>SysUser<span class="token operator">></span> <span class="token punctuation">{</span>
 
-    <span class="token annotation punctuation">@Insert</span><span class="token punctuation">(</span><span class="token string">"insert into sys_user values(#&amp;#123;x.id&amp;#125;,#&amp;#123;x.name&amp;#125;,#&amp;#123;x.birthday&amp;#125;)"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Insert</span><span class="token punctuation">(</span><span class="token string">"insert into sys_user values(#{x.id},#{x.name},#{x.birthday})"</span><span class="token punctuation">)</span>
     <span class="token keyword">boolean</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">)</span> SysUser user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from sys_user"</span><span class="token punctuation">)</span>
-    List<span class="token operator">&lt;</span>SysUser<span class="token operator">&gt;</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>SysUser<span class="token operator">></span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="Vertica"><a href="#Vertica" class="headerlink" title="Vertica"></a>Vertica</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>vertica<span class="token punctuation">;</span>
 
@@ -762,11 +762,11 @@
  * Created by xiaozhangge on 2019-03-15.
  */</span>
 <span class="token annotation punctuation">@Repository</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token operator">&lt;</span>User<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from public.user"</span><span class="token punctuation">)</span>
-    List<span class="token operator">&lt;</span>User<span class="token operator">&gt;</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    List<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>可以发现只要数据源配置成功以后，两者已经没有任何区别了，就可以像正常写代码一样，需要注意的就是不同数据库的mapper需要放在指定的包下面，否则spring容器无法扫描。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>为了方便，直接就在项目启动以后查询两个数据库的数据就好了</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">;</span>
@@ -790,7 +790,7 @@
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DynamicDataSourceApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DynamicDataSourceApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> UserMapper userMapper<span class="token punctuation">;</span>
@@ -799,26 +799,26 @@
     <span class="token keyword">private</span> SysUserMapper sysUserMapper<span class="token punctuation">;</span>
 
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>DynamicDataSourceApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token keyword">int</span> i <span class="token operator">=</span> userMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>IdHelper<span class="token punctuation">.</span><span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"阿牛-"</span> <span class="token operator">+</span> IdHelper<span class="token punctuation">.</span><span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"description-"</span> <span class="token operator">+</span> IdHelper<span class="token punctuation">.</span><span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 使用自定义的查询方法</span>
-        List<span class="token operator">&lt;</span>User<span class="token operator">&gt;</span> list <span class="token operator">=</span> userMapper<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"insert result:&amp;#123;&amp;#125; list.size:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>User<span class="token operator">></span> list <span class="token operator">=</span> userMapper<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"insert result:{} list.size:{}"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
         <span class="token keyword">boolean</span> b <span class="token operator">=</span> sysUserMapper<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SysUser</span><span class="token punctuation">(</span>IdHelper<span class="token punctuation">.</span><span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"阿牛-"</span> <span class="token operator">+</span> IdHelper<span class="token punctuation">.</span><span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 使用MyBatis-Plus提供的查询方法</span>
-        List<span class="token operator">&lt;</span>SysUser<span class="token operator">&gt;</span> users <span class="token operator">=</span> sysUserMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"insert result:&amp;#123;&amp;#125; list.size:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> b<span class="token punctuation">,</span> users<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        users<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>x <span class="token operator">-</span><span class="token operator">&gt;</span> log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+        List<span class="token operator">&lt;</span>SysUser<span class="token operator">></span> users <span class="token operator">=</span> sysUserMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"insert result:{} list.size:{}"</span><span class="token punctuation">,</span> b<span class="token punctuation">,</span> users<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        users<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>x <span class="token operator">-</span><span class="token operator">></span> log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>项目启动以后，可以看到控制台初始化了多个数据源的日志</p>
 <pre><code>  .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -1131,7 +1131,7 @@
                         
                             命令行下具体用法如下：
 mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;
-导出整个数据库结构和数据mysqldump -h localhost -uroot -p123456 database &gt; d
+导出整个数据库结构和数据mysqldump -h localhost -uroot -p123456 database > dump
                         
                     </div>
                     <div class="publish-info">
@@ -1354,7 +1354,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

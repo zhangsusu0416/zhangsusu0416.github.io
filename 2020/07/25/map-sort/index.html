@@ -28,10 +28,10 @@ package com.xiaozhangge.commo">
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -447,14 +447,14 @@ package com.xiaozhangge.commo">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    934
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 
@@ -485,131 +485,131 @@ package com.xiaozhangge.commo">
 <span class="token comment" spellcheck="true">/**
  * Created by xiaozhangge on 2020/5/25.
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapSortUtils</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapSortUtils</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
      * Sort by key map.
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the map
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token operator">&gt;</span><span class="token punctuation">,</span> V<span class="token operator">&gt;</span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">sortByKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 这里使用了guava简化了map对象的创建，没有guava直接使用 new LinkedHashMap&lt;&gt;();</span>
-        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token operator">></span><span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">sortByKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 这里使用了guava简化了map对象的创建，没有guava直接使用 new LinkedHashMap&lt;>();</span>
+        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span><span class="token function">comparingByKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span><span class="token function">comparingByKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">></span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Sort reversed by key map.
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the map
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token operator">&gt;</span><span class="token punctuation">,</span> V<span class="token operator">&gt;</span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">sortReversedByKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token operator">></span><span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">sortReversedByKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span>&lt;K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span><span class="token function">comparingByKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                        <span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span>&lt;K<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token function">comparingByKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">></span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Sort by value map.
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the map
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token operator">&gt;&gt;</span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">sortByValue</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token operator">>></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">sortByValue</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span><span class="token function">comparingByValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span><span class="token function">comparingByValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">></span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Sort reversed by value map.
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the map
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token operator">&gt;&gt;</span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">sortReversedByValue</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token operator">>></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">sortReversedByValue</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> result <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newLinkedHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span>&lt;K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span><span class="token function">comparingByValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                        <span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">.</span>&lt;K<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token function">comparingByValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEachOrdered</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">></span> result<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Gets first key.
      *
-     * @param &lt;K&gt; the type parameter
+     * @param &lt;K> the type parameter
      * @param map the map
      * @return the first key
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token operator">&gt;</span> K <span class="token function">getFirstKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token operator">></span> K <span class="token function">getFirstKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Gets last key.
      *
-     * @param &lt;K&gt; the type parameter
+     * @param &lt;K> the type parameter
      * @param map the map
      * @return the last key
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token operator">&gt;</span> K <span class="token function">getLastKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Iterator<span class="token operator">&lt;</span>K<span class="token operator">&gt;</span> iterator <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        LinkedList<span class="token operator">&lt;</span>K<span class="token operator">&gt;</span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token operator">></span> K <span class="token function">getLastKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Iterator<span class="token operator">&lt;</span>K<span class="token operator">></span> iterator <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        LinkedList<span class="token operator">&lt;</span>K<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">getLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Gets first.
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the first
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">getFirst</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">getFirst</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * Gets last.
-     * &lt;p&gt;
+     * &lt;p>
      * 通过反射获取LinkedHashMap中的末尾元素：
-     * &lt;p&gt;
+     * &lt;p>
      * 时间复杂度O(1)，访问tail属性
      *
-     * @param &lt;K&gt; the type parameter
-     * @param &lt;V&gt; the type parameter
+     * @param &lt;K> the type parameter
+     * @param &lt;V> the type parameter
      * @param map the map
      * @return the last
      * @throws IllegalAccessException the illegal access exception
      * @throws NoSuchFieldException   the no such field exception
      */</span>
     <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> <span class="token function">getLast</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span> map<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">getLast</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException <span class="token punctuation">{</span>
         Field tail <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"tail"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         tail<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">&gt;</span><span class="token punctuation">)</span> tail<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token punctuation">)</span> tail<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>common<span class="token punctuation">.</span>tests<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>common<span class="token punctuation">.</span>util<span class="token punctuation">.</span>MapSortUtils<span class="token punctuation">;</span>
@@ -623,25 +623,25 @@ package com.xiaozhangge.commo">
 <span class="token comment" spellcheck="true">/**
  * Created by xiaozhangge on 2020/7/25.
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapSortTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapSortTest</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> DEF_DATA <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> DEF_DATA <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
     <span class="token annotation punctuation">@Before</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         DEF_DATA<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         DEF_DATA<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">54</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         DEF_DATA<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"z"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         DEF_DATA<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
 
     <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testKeySort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testKeySort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token comment" spellcheck="true">// 按照key进行正序排序</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> sortByKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortByKey</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> sortByKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortByKey</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment" spellcheck="true">// 获取map中的第一个key</span>
         String firstKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getFirstKey</span><span class="token punctuation">(</span>sortByKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -653,22 +653,22 @@ package com.xiaozhangge.commo">
 
 
         <span class="token comment" spellcheck="true">// 按照key对map进行倒序排序</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> reversedByKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortReversedByKey</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> reversedByKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortReversedByKey</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
         firstKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getFirstKey</span><span class="token punctuation">(</span>reversedByKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
         lastKey <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getLastKey</span><span class="token punctuation">(</span>reversedByKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>firstKey<span class="token punctuation">,</span> <span class="token string">"z"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>lastKey<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
 
     <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchFieldException<span class="token punctuation">,</span> IllegalAccessException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchFieldException<span class="token punctuation">,</span> IllegalAccessException <span class="token punctuation">{</span>
 
         <span class="token comment" spellcheck="true">// 按照value进行正序排序</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> sortByValue <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortByValue</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> first <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span>sortByValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> last <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getLast</span><span class="token punctuation">(</span>sortByValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> sortByValue <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortByValue</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> first <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span>sortByValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> last <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getLast</span><span class="token punctuation">(</span>sortByValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>first<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> first<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -678,7 +678,7 @@ package com.xiaozhangge.commo">
 
 
         <span class="token comment" spellcheck="true">// 按照value进行倒序排序</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> reversedByValue <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortReversedByValue</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> reversedByValue <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">sortReversedByValue</span><span class="token punctuation">(</span>DEF_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment" spellcheck="true">// 获取排序以后的第一个个最后一个元素</span>
         first <span class="token operator">=</span> MapSortUtils<span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span>reversedByValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -689,8 +689,8 @@ package com.xiaozhangge.commo">
 
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>last<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> last<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
             </div>
@@ -1187,7 +1187,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.4k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             
