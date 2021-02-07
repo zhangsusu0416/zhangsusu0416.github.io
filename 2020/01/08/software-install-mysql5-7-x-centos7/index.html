@@ -29,10 +29,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -581,10 +581,10 @@ owners<span class="token punctuation">.</span>
 
 Type <span class="token number">'he</span>lp<span class="token punctuation">;</span>' <span class="token keyword">or</span> '\h' <span class="token keyword">for</span> help<span class="token punctuation">.</span> Type '\c' to clear the current <span class="token keyword">input</span> statement<span class="token punctuation">.</span>
 
-mysql<span class="token operator">></span> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MySQL@<span class="token number">123</span>'<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MySQL@<span class="token number">123</span>'<span class="token punctuation">;</span>
 Query OK<span class="token punctuation">,</span> <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 
-mysql<span class="token operator">></span></code></pre>
+mysql<span class="token operator">&gt;</span></code></pre>
 <h2 id="设置外部IP访问MySQL"><a href="#设置外部IP访问MySQL" class="headerlink" title="设置外部IP访问MySQL"></a>设置外部IP访问MySQL</h2><p>为了能够让外部访问数据库，需要将root的Host值改为’%’，具体步骤如下：</p>
 <p>查看允许连接到本数据库的信息，执行命令<code>select host,user from mysql.user;</code></p>
 <p>默认root只能通过localhost连接，不能远程访问。</p>
@@ -593,23 +593,23 @@ mysql<span class="token operator">></span></code></pre>
 <li>先执行：<code>update user set Host='%' where User='root';</code></li>
 <li> 再执行:<code>flush privileges;</code> # 刷新权限</li>
 </ul>
-<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> <span class="token keyword">use</span> mysql<span class="token punctuation">;</span>
+<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">&gt;</span> <span class="token keyword">use</span> mysql<span class="token punctuation">;</span>
 Reading <span class="token keyword">table</span> information <span class="token keyword">for</span> completion of <span class="token keyword">table</span> <span class="token keyword">and</span> column names
 You can turn off <span class="token keyword">this</span> feature to get a quicker startup <span class="token keyword">with</span> <span class="token operator">-</span>A
 
 Database changed
-mysql<span class="token operator">></span> update user set Host<span class="token operator">=</span>'<span class="token operator">%</span>' where User<span class="token operator">=</span>'root'<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> update user set Host<span class="token operator">=</span>'<span class="token operator">%</span>' where User<span class="token operator">=</span>'root'<span class="token punctuation">;</span>
 Query OK<span class="token punctuation">,</span> <span class="token number">1</span> row affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 Rows matched<span class="token punctuation">:</span> <span class="token number">1</span>  Changed<span class="token punctuation">:</span> <span class="token number">1</span>  Warnings<span class="token punctuation">:</span> <span class="token number">0</span>
 
-mysql<span class="token operator">></span> flush privileges<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> flush privileges<span class="token punctuation">;</span>
 Query OK<span class="token punctuation">,</span> <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 
-mysql<span class="token operator">></span></code></pre>
+mysql<span class="token operator">&gt;</span></code></pre>
 <p>当设置完host=%以后，就可以使用我们熟悉<code>navicat</code>或者<code>sequel</code>进行连接了</p>
 <h2 id="修改MySQL默认编码为utf8"><a href="#修改MySQL默认编码为utf8" class="headerlink" title="修改MySQL默认编码为utf8"></a>修改MySQL默认编码为<code>utf8</code></h2><p>当我们MySQL安装完成以后，默认编码不一定是<code>utf8</code>，虽然在建库建表的时候可以指定，但是始终不方便，那么接下来我们将MySQL默认编码设置为<code>utf8</code></p>
 <h3 id="查看MySQL默认编码"><a href="#查看MySQL默认编码" class="headerlink" title="查看MySQL默认编码"></a>查看MySQL默认编码</h3><p>使用<code>show variables like 'character_set_%';</code></p>
-<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
+<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">&gt;</span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
 <span class="token operator">+--------------------------+----------------------------+</span>
 <span class="token operator">|</span> Variable_name            <span class="token operator">|</span> Value                      <span class="token operator">|</span>
 <span class="token operator">+--------------------------+----------------------------+</span>
@@ -636,7 +636,7 @@ character<span class="token operator">-</span>set<span class="token operator">-<
 
 <span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
 <span class="token keyword">default</span><span class="token operator">-</span>character<span class="token operator">-</span>set<span class="token operator">=</span>utf8</code></pre>
-<h3 id="再次查看修改以后的编码"><a href="#再次查看修改以后的编码" class="headerlink" title="再次查看修改以后的编码"></a>再次查看修改以后的编码</h3><pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
+<h3 id="再次查看修改以后的编码"><a href="#再次查看修改以后的编码" class="headerlink" title="再次查看修改以后的编码"></a>再次查看修改以后的编码</h3><pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">&gt;</span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
 <span class="token operator">+--------------------------+----------------------------+</span>
 <span class="token operator">|</span> Variable_name            <span class="token operator">|</span> Value                      <span class="token operator">|</span>
 <span class="token operator">+--------------------------+----------------------------+</span>
@@ -1196,7 +1196,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

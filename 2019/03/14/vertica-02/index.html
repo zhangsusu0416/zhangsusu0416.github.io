@@ -30,10 +30,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -489,7 +489,7 @@
 </ul>
 <p>Vertica数据库运行在基于Linux的网格服务器上，目前应用于Amazon Elastic Compute Cloud的数据库管理系统。</p>
 <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="进入-vsql-环境"><a href="#进入-vsql-环境" class="headerlink" title="进入 vsql 环境"></a>进入 vsql 环境</h2><pre class=" language-shell"><code class="language-shell">vsql -U dbadmin -w 123456</code></pre>
-<h2 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h2><pre class=" language-shell"><code class="language-shell">dbadmin=> \h</code></pre>
+<h2 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h2><pre class=" language-shell"><code class="language-shell">dbadmin=&gt; \h</code></pre>
 <h2 id="切换vertica用户，用于创建database"><a href="#切换vertica用户，用于创建database" class="headerlink" title="切换vertica用户，用于创建database"></a>切换vertica用户，用于创建database</h2><pre class=" language-shell"><code class="language-shell"># 切换用户
 su - dbadmin
 
@@ -542,7 +542,7 @@ su - dbadmin
                                    fname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                                    membership_card <span class="token keyword">INTEGER</span>
                                   <span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> customer2 <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">,</span><span class="token string">'Carr'</span><span class="token punctuation">,</span> <span class="token string">'Mary'</span><span class="token punctuation">,</span> <span class="token number">87432</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> customer2 <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">,</span><span class="token string">'Carr'</span><span class="token punctuation">,</span> <span class="token string">'Mary'</span><span class="token punctuation">,</span> <span class="token number">87432</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <ul>
 <li>删除序列</li>
 </ul>
@@ -551,7 +551,7 @@ su - dbadmin
 <span class="token keyword">CREATE</span> EXTERNAL <span class="token keyword">TABLE</span> ext1 <span class="token punctuation">(</span>x <span class="token keyword">integer</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> COPY <span class="token keyword">FROM</span> <span class="token string">'/tmp/ext1.dat.bz2'</span> BZIP <span class="token keyword">DELIMITER</span> <span class="token string">','</span><span class="token punctuation">;</span>
 <span class="token keyword">CREATE</span> EXTERNAL <span class="token keyword">TABLE</span> ext1 <span class="token punctuation">(</span>x <span class="token keyword">integer</span><span class="token punctuation">,</span> y <span class="token keyword">integer</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> COPY <span class="token punctuation">(</span>x <span class="token keyword">as</span> <span class="token string">'5'</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token string">'/tmp/ext1.dat.bz2'</span> BZIP <span class="token keyword">DELIMITER</span> <span class="token string">','</span><span class="token punctuation">;</span></code></pre>
 <h1 id="copy执行错误后的Vertica的错误日志"><a href="#copy执行错误后的Vertica的错误日志" class="headerlink" title="copy执行错误后的Vertica的错误日志"></a>copy执行错误后的Vertica的错误日志</h1><pre class=" language-shell"><code class="language-shell">/database/dbname/dbname/v_dbname_node0002_catalog/CopyErrorLogs</code></pre>
-<h1 id="从vertica数据的表中导出数据到数据文件"><a href="#从vertica数据的表中导出数据到数据文件" class="headerlink" title="从vertica数据的表中导出数据到数据文件"></a>从vertica数据的表中导出数据到数据文件</h1><pre class=" language-shell"><code class="language-shell">echo `vsql -d dbname -U dbadmin -Atq -w Zongfen_12 -c "select * from test.dim_flow_direction order by flow_type_code"> /database/datastage/export/dim_all/test`</code></pre>
+<h1 id="从vertica数据的表中导出数据到数据文件"><a href="#从vertica数据的表中导出数据到数据文件" class="headerlink" title="从vertica数据的表中导出数据到数据文件"></a>从vertica数据的表中导出数据到数据文件</h1><pre class=" language-shell"><code class="language-shell">echo `vsql -d dbname -U dbadmin -Atq -w Zongfen_12 -c "select * from test.dim_flow_direction order by flow_type_code"&gt; /database/datastage/export/dim_all/test`</code></pre>
 <h1 id="通过数据文件向vertica数据库里加载数据"><a href="#通过数据文件向vertica数据库里加载数据" class="headerlink" title="通过数据文件向vertica数据库里加载数据"></a>通过数据文件向vertica数据库里加载数据</h1><pre class=" language-shell"><code class="language-shell">copy test.fct_flux_se_bus_res_ana_d from '/database/imp_file/fct_flux_se_bus_res_ana_d' on v_dbname_node0002 delimiter '|';</code></pre>
 <h1 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h1><h2 id="修改字段为非空"><a href="#修改字段为非空" class="headerlink" title="修改字段为非空"></a>修改字段为非空</h2><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> test<span class="token punctuation">.</span>fct_fournet_wlanap_equp_ana_d <span class="token keyword">alter</span> <span class="token keyword">column</span> day_id <span class="token keyword">set</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span></code></pre>
 <h2 id="更改字段数据类型"><a href="#更改字段数据类型" class="headerlink" title="更改字段数据类型"></a>更改字段数据类型</h2><p>对于数值类型：types–INTEGER, INT, BIGINT, TINYINT, INT8, SMALLINT, and all NUMERIC values of scale &lt;=18 and precision 0 之间是可以互相转化的。此外，numeric类型的精度（precision）是无法更改的，但是长度(scale)是可以修改的，（0-18）之间可以互修改，（19-37）之间可以互修改。</p>
@@ -1091,7 +1091,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

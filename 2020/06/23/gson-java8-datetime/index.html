@@ -28,10 +28,10 @@ publ">
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -451,14 +451,14 @@ publ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    10 分
                 </div>
                 
 
@@ -476,7 +476,7 @@ publ">
             <div id="articleContent">
                 <p> Java8开始，JDK中提供了一组新的日期<code>API</code>，当我们需要序列化数据成json时，经常会用到<code>Gson</code>。当<code>Java8</code>中的日期<code>API</code>遇上<code>Gson</code>时，能否按照预期的想法正常的处理我们的数据呢？</p>
 <h2 id="使用Gson序列化与反序列化"><a href="#使用Gson序列化与反序列化" class="headerlink" title="使用Gson序列化与反序列化"></a>使用Gson序列化与反序列化</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   LocalDateTime dateTime <span class="token operator">=</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   LocalDate date <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -484,19 +484,19 @@ publ">
 
   String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Serialization:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Deserialization:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Serialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Deserialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Serialization:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Deserialization:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Serialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Deserialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h3><ul>
 <li>序列化的结果</li>
 </ul>
-<pre class=" language-verilog"><code class="language-verilog">dateTime Serialization<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"date"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">23</span><span class="token operator">}</span><span class="token punctuation">,</span><span class="token string">"time"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"hour"</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token string">"minute"</span><span class="token punctuation">:</span><span class="token number">58</span><span class="token punctuation">,</span><span class="token string">"second"</span><span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token string">"nano"</span><span class="token punctuation">:</span><span class="token number">987000000</span><span class="token operator">}}</span></code></pre>
+<pre class=" language-verilog"><code class="language-verilog">dateTime Serialization<span class="token punctuation">:</span><span class="token operator">&amp;</span><span class="token number">#123</span><span class="token punctuation">;</span><span class="token string">"date"</span><span class="token punctuation">:</span><span class="token operator">&amp;</span><span class="token number">#123</span><span class="token punctuation">;</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">23</span><span class="token operator">&amp;</span><span class="token number">#125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token string">"time"</span><span class="token punctuation">:</span><span class="token operator">&amp;</span><span class="token number">#123</span><span class="token punctuation">;</span><span class="token string">"hour"</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token string">"minute"</span><span class="token punctuation">:</span><span class="token number">58</span><span class="token punctuation">,</span><span class="token string">"second"</span><span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token string">"nano"</span><span class="token punctuation">:</span><span class="token number">987000000</span><span class="token operator">&amp;</span><span class="token number">#125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token number">#125</span><span class="token punctuation">;</span></code></pre>
 <ul>
 <li>反序列化结果</li>
 </ul>
@@ -504,7 +504,7 @@ publ">
 <h3 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a>LocalDate</h3><ul>
 <li>序列化的结果</li>
 </ul>
-<pre class=" language-verilog"><code class="language-verilog">date Serialization<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">23</span><span class="token operator">}</span></code></pre>
+<pre class=" language-verilog"><code class="language-verilog">date Serialization<span class="token punctuation">:</span><span class="token operator">&amp;</span><span class="token number">#123</span><span class="token punctuation">;</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">23</span><span class="token operator">&amp;</span><span class="token number">#125</span><span class="token punctuation">;</span></code></pre>
 <ul>
 <li>反序列化结果</li>
 </ul>
@@ -558,40 +558,40 @@ publ">
 <h2 id="自定义Gson的Adapter解决该问题"><a href="#自定义Gson的Adapter解决该问题" class="headerlink" title="自定义Gson的Adapter解决该问题"></a>自定义<code>Gson</code>的<code>Adapter</code>解决该问题</h2><p><code>Gson</code>本身给我们提供了各种各样的配置，其中有一个就是可以自定义序列化或者反序列化的<code>Adapter</code>，那么既然现在我们序列化不是我们想要的结果，就可以通过自定义<code>Adapter</code>来解决这个问题，废话不说，直接上代码演示。</p>
 <h3 id="自定义LocalDateAdapter"><a href="#自定义LocalDateAdapter" class="headerlink" title="自定义LocalDateAdapter"></a>自定义LocalDateAdapter</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
 * Created by xiaozhangge on 2020/6/23.
-* &lt;p>
+* &lt;p&gt;
 * 处理LocalDate的序列化与反序列化
 */</span>
-<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">&gt;</span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> LocalDate<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="自定义LocalDateTimeAdapter"><a href="#自定义LocalDateTimeAdapter" class="headerlink" title="自定义LocalDateTimeAdapter"></a>自定义LocalDateTimeAdapter</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
 * Created by xiaozhangge on 2020/6/23.
-* &lt;p>
+* &lt;p&gt;
 * 处理LocalDateTime序列化与反序列化
 */</span>
-<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">&gt;</span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="使用自定义Adapter"><a href="#使用自定义Adapter" class="headerlink" title="使用自定义Adapter"></a>使用自定义Adapter</h3><p>既然我们现在自定义了<code>Adapter</code>，那么在使用时就需要将它注册到<code>gson</code>对象中去。在创建<code>gson</code>对象时就不能直接使用<code>Gson gson = new Gson()</code>，而是要使用<code>GsonBuilder</code>去进行构建。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 实例化gson对象时注册Adapter</span>
 Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -600,7 +600,7 @@ Gson gson <span class="token operator">=</span> <span class="token keyword">new<
                 <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>上面我们的代码序列化与反序列时就使用注册了Adapter的gson对象即可</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   LocalDateTime dateTime <span class="token operator">=</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   LocalDate date <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -611,15 +611,15 @@ Gson gson <span class="token operator">=</span> <span class="token keyword">new<
 
   String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Serialization:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Deserialization:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Serialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"dateTime Deserialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Serialization:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Deserialization:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Serialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"date Deserialization:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h4 id="LocalDateTime-1"><a href="#LocalDateTime-1" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h4><pre class=" language-verilog"><code class="language-verilog">dateTime Serialization<span class="token punctuation">:</span><span class="token string">"2020-06-23T22:22:10.816"</span>
 dateTime Deserialization<span class="token punctuation">:</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">23</span>T22<span class="token punctuation">:</span><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">10.816</span></code></pre>
 <h4 id="LocalDate-1"><a href="#LocalDate-1" class="headerlink" title="LocalDate"></a>LocalDate</h4><pre class=" language-verilog"><code class="language-verilog">date Serialization<span class="token punctuation">:</span><span class="token string">"2020-06-23"</span>
@@ -647,10 +647,10 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
  * Created by xiaozhangge on 2020/6/23.
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonParse</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonParse</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Type MAP_STR_OBJ_TYPE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Type MAP_STR_OBJ_TYPE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> Gson GSON <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
             <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>MAP_STR_OBJ_TYPE<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -665,9 +665,9 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
      * @param bean the bean
      * @return the string
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">toJson</span><span class="token punctuation">(</span>Object bean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">toJson</span><span class="token punctuation">(</span>Object bean<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> GSON<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>bean<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * To json string.
@@ -676,59 +676,59 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
      * @param bean    the bean
      * @return the string
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">toJson</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> Object bean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">toJson</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> Object bean<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>bean<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Parse t.
      *
-     * @param &lt;T>  the type parameter
+     * @param &lt;T&gt;  the type parameter
      * @param json the json
      * @param clz  the clz
      * @return the t
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">parse</span><span class="token punctuation">(</span>String json<span class="token punctuation">,</span> Class<span class="token operator">&lt;</span>T<span class="token operator">></span> clz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> T <span class="token function">parse</span><span class="token punctuation">(</span>String json<span class="token punctuation">,</span> Class<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> clz<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> GSON<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> clz<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Parse t.
      *
-     * @param &lt;T>     the type parameter
+     * @param &lt;T&gt;     the type parameter
      * @param builder the builder
      * @param json    the json
      * @param clz     the clz
      * @return the t
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">parse</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> String json<span class="token punctuation">,</span> Class<span class="token operator">&lt;</span>T<span class="token operator">></span> clz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> T <span class="token function">parse</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> String json<span class="token punctuation">,</span> Class<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> clz<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> clz<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Parse t.
      *
-     * @param &lt;T>  the type parameter
+     * @param &lt;T&gt;  the type parameter
      * @param json the json
      * @param type the type
      * @return the t
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">parse</span><span class="token punctuation">(</span>String json<span class="token punctuation">,</span> Type type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> T <span class="token function">parse</span><span class="token punctuation">(</span>String json<span class="token punctuation">,</span> Type type<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> GSON<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> type<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Parse t.
      *
-     * @param &lt;T>     the type parameter
+     * @param &lt;T&gt;     the type parameter
      * @param builder the builder
      * @param json    the json
      * @param type    the type
      * @return the t
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">parse</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> String json<span class="token punctuation">,</span> Type type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> T <span class="token function">parse</span><span class="token punctuation">(</span>GsonBuilder builder<span class="token punctuation">,</span> String json<span class="token punctuation">,</span> Type type<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> type<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * To json bytes byte [ ].
@@ -736,105 +736,105 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
      * @param value the value
      * @return the byte [ ]
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toJsonBytes</span><span class="token punctuation">(</span>Object value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toJsonBytes</span><span class="token punctuation">(</span>Object value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">toJson</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 
     <span class="token comment" spellcheck="true">/**
      * Created by xiaozhangge on 2020/6/4.
-     * &lt;p>
+     * &lt;p&gt;
      * 处理LocalDate的序列化与反序列化
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">&gt;</span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> LocalDate<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Created by xiaozhangge on 2020/6/4.
-     * &lt;p>
+     * &lt;p&gt;
      * 处理LocalDateTime序列化与反序列化
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">&gt;</span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Created by xiaozhangge on 2020/6/4.
-     * &lt;p>
+     * &lt;p&gt;
      * https://gist.github.com/xingstarx/5ddc14ff6ca68ba4097815c90d1c47cc
-     * &lt;p>
+     * &lt;p&gt;
      * https://stackoverflow.com/questions/36508323/how-can-i-prevent-gson-from-converting-integers-to-doubles/36529534#36529534
-     * &lt;p>
-     * &lt;p>
+     * &lt;p&gt;
+     * &lt;p&gt;
      * 解决json数据转换为map结构的时候，会出现int变成double的问题
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span> <span class="token keyword">implements</span> <span class="token class-name">JsonDeserializer</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span> <span class="token keyword">implements</span> <span class="token class-name">JsonDeserializer</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">)</span> <span class="token function">read</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token function">read</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">private</span> Object <span class="token function">read</span><span class="token punctuation">(</span>JsonElement in<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">private</span> Object <span class="token function">read</span><span class="token punctuation">(</span>JsonElement in<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                List<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 JsonArray arr <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span>JsonElement anArr <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>JsonElement anArr <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">read</span><span class="token punctuation">(</span>anArr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedTreeMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedTreeMap</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 JsonObject obj <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                Set<span class="token operator">&lt;</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">>></span> entitySet <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">></span> entry <span class="token operator">:</span> entitySet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Set<span class="token operator">&lt;</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">&gt;&gt;</span> entitySet <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">&gt;</span> entry <span class="token operator">:</span> entitySet<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">read</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> map<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 JsonPrimitive prim <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     Number num <span class="token operator">=</span> prim<span class="token punctuation">.</span><span class="token function">getAsNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token comment" spellcheck="true">// here you can handle double int/long values</span>
                     <span class="token comment" spellcheck="true">// and return any type you want</span>
                     <span class="token comment" spellcheck="true">// this solution will transform 3.0 float to long values</span>
                     <span class="token keyword">if</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                         <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                         <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
+                    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 
             </div>
@@ -1340,7 +1340,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

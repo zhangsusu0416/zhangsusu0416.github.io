@@ -27,10 +27,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.2k
                 </div>
                 
 
@@ -566,31 +566,31 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token comment" spellcheck="true">/**
  * Created by xiaozhangge on 2020-01-03.
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuarterCycle</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuarterCycle</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
 
     <span class="token comment" spellcheck="true">/**
      * 定义四个季度枚举值
      */</span>
-    <span class="token keyword">enum</span> QuarterEnum <span class="token punctuation">{</span>
+    <span class="token keyword">enum</span> QuarterEnum <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         FIRST<span class="token punctuation">,</span> SECOND<span class="token punctuation">,</span> THIRD<span class="token punctuation">,</span> FOURTH
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">class</span> <span class="token class-name">QuarterOfYearQuery</span> <span class="token keyword">implements</span> <span class="token class-name">TemporalQuery</span><span class="token operator">&lt;</span>QuarterEnum<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">QuarterOfYearQuery</span> <span class="token keyword">implements</span> <span class="token class-name">TemporalQuery</span><span class="token operator">&lt;</span>QuarterEnum<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> QuarterEnum <span class="token function">queryFrom</span><span class="token punctuation">(</span>TemporalAccessor temporal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> QuarterEnum <span class="token function">queryFrom</span><span class="token punctuation">(</span>TemporalAccessor temporal<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             LocalDate now <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>temporal<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>APRIL<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>APRIL<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> QuarterEnum<span class="token punctuation">.</span>FIRST<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>JULY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>JULY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> QuarterEnum<span class="token punctuation">.</span>SECOND<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>OCTOBER<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span>Month<span class="token punctuation">.</span>OCTOBER<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withDayOfMonth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> QuarterEnum<span class="token punctuation">.</span>THIRD<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> QuarterEnum<span class="token punctuation">.</span>FOURTH<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 根据 LocalDateTime 获取季度
@@ -598,9 +598,9 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
      * @param dateTime
      * @return
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getQuarter</span><span class="token punctuation">(</span>LocalDateTime dateTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getQuarter</span><span class="token punctuation">(</span>LocalDateTime dateTime<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">getQuarter</span><span class="token punctuation">(</span>dateTime<span class="token punctuation">.</span><span class="token function">toLocalDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 根据 LocalDate 获取季度
@@ -608,10 +608,10 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
      * @param date
      * @return
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getQuarter</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        TemporalQuery<span class="token operator">&lt;</span>QuarterEnum<span class="token operator">></span> quarterOfYearQuery <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuarterOfYearQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getQuarter</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        TemporalQuery<span class="token operator">&lt;</span>QuarterEnum<span class="token operator">&gt;</span> quarterOfYearQuery <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuarterOfYearQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         QuarterEnum quarter <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>quarterOfYearQuery<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>quarter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>quarter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">case</span> FIRST<span class="token operator">:</span>
                 <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
             <span class="token keyword">case</span> SECOND<span class="token operator">:</span>
@@ -620,18 +620,18 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                 <span class="token keyword">return</span> <span class="token number">3</span><span class="token punctuation">;</span>
             <span class="token keyword">case</span> FOURTH<span class="token operator">:</span>
                 <span class="token keyword">return</span> <span class="token number">4</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 
-    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>LocalDateTime dateTime<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>LocalDateTime dateTime<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>dateTime<span class="token punctuation">.</span><span class="token function">getYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> quarter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>LocalDate dateTime<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>LocalDate dateTime<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span>dateTime<span class="token punctuation">.</span><span class="token function">getYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> quarter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 获取某年某季度的第一天和最后一天
@@ -639,9 +639,9 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
      * @param year    哪一年
      * @param quarter 第几季度
      */</span>
-    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span><span class="token keyword">int</span> year<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> <span class="token function">getQuarterRange</span><span class="token punctuation">(</span><span class="token keyword">int</span> year<span class="token punctuation">,</span> <span class="token keyword">int</span> quarter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         LocalDate startDate<span class="token punctuation">,</span> endDate<span class="token punctuation">;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>quarter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>quarter<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
                 <span class="token comment" spellcheck="true">// 01.01-03.31</span>
                 startDate <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -664,10 +664,10 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
             <span class="token keyword">default</span><span class="token operator">:</span>
                 <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"quarter range [1-4]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>startDate<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MIN<span class="token punctuation">)</span><span class="token punctuation">,</span> endDate<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MAX<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre class=" language-java"><code class="language-java">QuarterCycle quarterCycle <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuarterCycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 LocalDateTime now <span class="token operator">=</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -676,7 +676,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token keyword">int</span> quarter <span class="token operator">=</span> quarterCycle<span class="token punctuation">.</span><span class="token function">getQuarter</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前季度:"</span> <span class="token operator">+</span> quarter <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> tuple2 <span class="token operator">=</span> quarterCycle<span class="token punctuation">.</span><span class="token function">getQuarterRange</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> quarter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">&gt;</span> tuple2 <span class="token operator">=</span> quarterCycle<span class="token punctuation">.</span><span class="token function">getQuarterRange</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> quarter<span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前季度开始和结束时间:"</span> <span class="token operator">+</span> tuple2 <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// 输出结果</span>
@@ -1261,8 +1261,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     <div class="summary block-with-text">
                         
                             Spring Boot 开发restful接口时，往往会有很多RESTful API，一般会选择swagger对接口进行管理
-Spring Boot添加swagger支持&lt;dependency>
-  &lt;groupId>io.sp
+Spring Boot添加swagger支持&lt;dependency&gt;
+  &lt;groupId&gt
                         
                     </div>
                     <div class="publish-info">
@@ -1436,7 +1436,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

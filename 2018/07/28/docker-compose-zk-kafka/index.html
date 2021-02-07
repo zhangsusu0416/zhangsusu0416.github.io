@@ -27,10 +27,10 @@ Kafka创建背景Kafka是一个消息系统，原本开发自LinkedI">
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -674,9 +674,9 @@ zoo2_1  | log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig f
 <h4 id="查看zookeeper的运行情况"><a href="#查看zookeeper的运行情况" class="headerlink" title="查看zookeeper的运行情况"></a>查看zookeeper的运行情况</h4><p>新开终端，执行docker ps，可以看到，我们已经有三个zookeeper实例已经运行起来了</p>
 <pre class=" language-shell"><code class="language-shell">➜  ~ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                        NAMES
-7278fca16a38        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 27 seconds       2888/tcp, 0.0.0.0:2181->2181/tcp, 3888/tcp   zk-kafka_zoo1_1
-bc396f78a9d4        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 27 seconds       2888/tcp, 3888/tcp, 0.0.0.0:2183->2181/tcp   zk-kafka_zoo3_1
-dd9b8be8eebe        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 26 seconds       2888/tcp, 3888/tcp, 0.0.0.0:2182->2181/tcp   zk-kafka_zoo2_1</code></pre>
+7278fca16a38        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 27 seconds       2888/tcp, 0.0.0.0:2181-&gt;2181/tcp, 3888/tcp   zk-kafka_zoo1_1
+bc396f78a9d4        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 27 seconds       2888/tcp, 3888/tcp, 0.0.0.0:2183-&gt;2181/tcp   zk-kafka_zoo3_1
+dd9b8be8eebe        zookeeper           "/docker-entrypoint.…"   24 seconds ago      Up 26 seconds       2888/tcp, 3888/tcp, 0.0.0.0:2182-&gt;2181/tcp   zk-kafka_zoo2_1</code></pre>
 <h4 id="运行kakfa"><a href="#运行kakfa" class="headerlink" title="运行kakfa"></a>运行kakfa</h4><p>在kakfa的docker-compose-909*.yml文件夹下面分布执行下面三个命令</p>
 <pre class=" language-shell"><code class="language-shell"># 集群启动方式
 docker-compose -f docker-compose-9092.yml up -d
@@ -685,12 +685,12 @@ docker-compose -f docker-compose-9094.yml scale kafka=3</code></pre>
 <h4 id="查看kafka的运行情况"><a href="#查看kafka的运行情况" class="headerlink" title="查看kafka的运行情况"></a>查看kafka的运行情况</h4><p>docker ps 可以看到现在已经有三个zookeeper实例和三个kafka实例</p>
 <pre class=" language-shell"><code class="language-shell">➜  ~ docker ps
 CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS              PORTS                                        NAMES
-31e7e8ad1fc5        wurstmeister/kafka   "start-kafka.sh"         29 seconds ago      Up 37 seconds       0.0.0.0:9094->9092/tcp                       zk-kafka_kafka_3
-d9c1fa25f46e        wurstmeister/kafka   "start-kafka.sh"         35 seconds ago      Up 43 seconds       0.0.0.0:9093->9092/tcp                       zk-kafka_kafka_2
-caf6b21ba709        wurstmeister/kafka   "start-kafka.sh"         44 seconds ago      Up 52 seconds       0.0.0.0:9092->9092/tcp                       zk-kafka_kafka_1
-7278fca16a38        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 0.0.0.0:2181->2181/tcp, 3888/tcp   zk-kafka_zoo1_1
-bc396f78a9d4        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 3888/tcp, 0.0.0.0:2183->2181/tcp   zk-kafka_zoo3_1
-dd9b8be8eebe        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 3888/tcp, 0.0.0.0:2182->2181/tcp   zk-kafka_zoo2_1
+31e7e8ad1fc5        wurstmeister/kafka   "start-kafka.sh"         29 seconds ago      Up 37 seconds       0.0.0.0:9094-&gt;9092/tcp                       zk-kafka_kafka_3
+d9c1fa25f46e        wurstmeister/kafka   "start-kafka.sh"         35 seconds ago      Up 43 seconds       0.0.0.0:9093-&gt;9092/tcp                       zk-kafka_kafka_2
+caf6b21ba709        wurstmeister/kafka   "start-kafka.sh"         44 seconds ago      Up 52 seconds       0.0.0.0:9092-&gt;9092/tcp                       zk-kafka_kafka_1
+7278fca16a38        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 0.0.0.0:2181-&gt;2181/tcp, 3888/tcp   zk-kafka_zoo1_1
+bc396f78a9d4        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 3888/tcp, 0.0.0.0:2183-&gt;2181/tcp   zk-kafka_zoo3_1
+dd9b8be8eebe        zookeeper            "/docker-entrypoint.…"   37 minutes ago      Up About a minute   2888/tcp, 3888/tcp, 0.0.0.0:2182-&gt;2181/tcp   zk-kafka_zoo2_1
 </code></pre>
 <h3 id="使用kafka集群进行消息生产与消费"><a href="#使用kafka集群进行消息生产与消费" class="headerlink" title="使用kafka集群进行消息生产与消费"></a>使用kafka集群进行消息生产与消费</h3><h4 id="进入kafka容器"><a href="#进入kafka容器" class="headerlink" title="进入kafka容器"></a>进入kafka容器</h4><p>docker exec -it [container-name] /bin/bash，这里使用的是容器的名称，因为有三个kafka集群，通过docker ps可以看到分别是（zk-kafka_kafka_1，zk-kafka_kafka_2，zk-kafka_kafka_3）所以随便一个都可以</p>
 <pre class=" language-shell"><code class="language-shell"># 进入kafka容器
@@ -731,11 +731,11 @@ bash-4.4#</code></pre>
 <pre class=" language-shell"><code class="language-shell">➜  zk-kafka docker exec -it zk-kafka_kafka_1 /bin/bash
 bash-4.4# cd /opt/kafka
 bash-4.4# ./bin/kafka-console-producer.sh --broker-list 192.168.1.6:9092 --topic test
->123
->测试数据
->test data
->阿牛
-></code></pre>
+&gt;123
+&gt;测试数据
+&gt;test data
+&gt;阿牛
+&gt;</code></pre>
 <ul>
 <li>消费者zk-kafka_kafka_2，zk使用9093端口</li>
 </ul>
@@ -1265,7 +1265,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

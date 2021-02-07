@@ -7,10 +7,10 @@
     <meta name="keywords" content="Spring Boot 结合 Quartz 设置定时任务, 小张哥blog">
     <meta name="description" content="Spring Boot 原生 @Scheduled任务配置@Slf4j
 @Component
-public class ScheduledTask {
+public class ScheduledTask &amp;amp;#123;
 
     @Scheduled(fixedRate = 5000)
-    // 表示每">
+ ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,10 +31,10 @@ public class ScheduledTask {
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -450,7 +450,7 @@ public class ScheduledTask {
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -475,35 +475,35 @@ public class ScheduledTask {
             <div id="articleContent">
                 <h2 id="Spring-Boot-原生-Scheduled"><a href="#Spring-Boot-原生-Scheduled" class="headerlink" title="Spring Boot 原生 @Scheduled"></a>Spring Boot 原生 @Scheduled</h2><h3 id="任务配置"><a href="#任务配置" class="headerlink" title="任务配置"></a>任务配置</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScheduledTask</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScheduledTask</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Scheduled</span><span class="token punctuation">(</span>fixedRate <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true">// 表示每隔5000ms，Spring scheduling会调用一次该方法，不论该方法的执行时间是多少</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Scheduled</span><span class="token punctuation">(</span>fixedDelay <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true">// 表示当方法执行完毕5000ms后，Spring scheduling会再次调用该方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTimeAfterSleep</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTimeAfterSleep</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Scheduled</span><span class="token punctuation">(</span>cron <span class="token operator">=</span> <span class="token string">"0 0 1 * * *"</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true">// 提供了一种通用的定时任务表达式，这里表示每隔5秒执行一次，更加详细的信息可以参考cron表达式。</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTimeCron</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTimeCron</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableScheduling</span>
 <span class="token comment" spellcheck="true">// 告诉Spring创建一个task executor，如果我们没有这个标注，所有@Scheduled标注都不会执行</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>App<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h2 id="Spring-Boot-结合-Quartz-实现动态设置定时任务"><a href="#Spring-Boot-结合-Quartz-实现动态设置定时任务" class="headerlink" title="Spring Boot 结合 Quartz 实现动态设置定时任务"></a>Spring Boot 结合 Quartz 实现动态设置定时任务</h2><ul>
 <li>需要spring boot版本大于2.x</li>
 <li><a target="_blank" rel="noopener" href="http://www.quartz-scheduler.org/">http://www.quartz-scheduler.org/</a></li>
@@ -528,26 +528,26 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
  * Created by xiaozhangge on 2019/1/29.
  */</span>
 <span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzConfiguration</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzConfiguration</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 解决Job中注入Spring Bean为null的问题
      */</span>
     <span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">"quartzJobFactory"</span><span class="token punctuation">)</span>
-    <span class="token keyword">class</span> <span class="token class-name">QuartzJobFactory</span> <span class="token keyword">extends</span> <span class="token class-name">SpringBeanJobFactory</span> <span class="token keyword">implements</span> <span class="token class-name">ApplicationContextAware</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">QuartzJobFactory</span> <span class="token keyword">extends</span> <span class="token class-name">SpringBeanJobFactory</span> <span class="token keyword">implements</span> <span class="token class-name">ApplicationContextAware</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 这个对象Spring会帮我们自动注入进来,也属于Spring技术范畴.</span>
         <span class="token annotation punctuation">@Autowired</span>
         <span class="token keyword">private</span> AutowireCapableBeanFactory capableBeanFactory<span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">protected</span> Object <span class="token function">createJobInstance</span><span class="token punctuation">(</span>TriggerFiredBundle bundle<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">protected</span> Object <span class="token function">createJobInstance</span><span class="token punctuation">(</span>TriggerFiredBundle bundle<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token comment" spellcheck="true">// 调用父类的方法</span>
             <span class="token keyword">final</span> Object jobInstance <span class="token operator">=</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">createJobInstance</span><span class="token punctuation">(</span>bundle<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token comment" spellcheck="true">// 进行注入,这属于Spring的技术,不清楚的可以查看Spring的API.</span>
             capableBeanFactory<span class="token punctuation">.</span><span class="token function">autowireBean</span><span class="token punctuation">(</span>jobInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> jobInstance<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 
     <span class="token comment" spellcheck="true">/**
@@ -557,15 +557,15 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @throws Exception
      */</span>
     <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"scheduler"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> Scheduler <span class="token function">scheduler</span><span class="token punctuation">(</span>SchedulerFactoryBean schedulerFactoryBean<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Scheduler <span class="token function">scheduler</span><span class="token punctuation">(</span>SchedulerFactoryBean schedulerFactoryBean<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// schedulerFactoryBean.setJobFactory(quartzJobFactory);</span>
         <span class="token comment" spellcheck="true">// 该方法会再次初始化 quartz 这里的初始化任务交给spring容器即可</span>
         <span class="token comment" spellcheck="true">// schedulerFactoryBean.afterPropertiesSet();</span>
         Scheduler scheduler <span class="token operator">=</span> schedulerFactoryBean<span class="token punctuation">.</span><span class="token function">getScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> scheduler<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="新建一个bean对象，用来保存基本的job信息"><a href="#新建一个bean对象，用来保存基本的job信息" class="headerlink" title="新建一个bean对象，用来保存基本的job信息"></a>新建一个bean对象，用来保存基本的job信息</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>bean<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>AllArgsConstructor<span class="token punctuation">;</span>
@@ -578,7 +578,7 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
 <span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@NoArgsConstructor</span>
 <span class="token annotation punctuation">@AllArgsConstructor</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzJob</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzJob</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Integer STATUS_RUNNING <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Integer STATUS_NOT_RUNNING <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -626,7 +626,7 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * 任务名
      */</span>
     <span class="token keyword">private</span> String jobName<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="新建一个统一的QuartzManager，用来统一管理job"><a href="#新建一个统一的QuartzManager，用来统一管理job" class="headerlink" title="新建一个统一的QuartzManager，用来统一管理job"></a>新建一个统一的QuartzManager，用来统一管理job</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>configure<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>bean<span class="token punctuation">.</span>QuartzJob<span class="token punctuation">;</span>
@@ -644,14 +644,14 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzManager</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzManager</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Resource</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"scheduler"</span><span class="token punctuation">)</span>
     <span class="token keyword">private</span> Scheduler scheduler<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addJob</span><span class="token punctuation">(</span>QuartzJob job<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException<span class="token punctuation">,</span> ClassNotFoundException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addJob</span><span class="token punctuation">(</span>QuartzJob job<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException<span class="token punctuation">,</span> ClassNotFoundException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InstantiationException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 通过类名获取实体类，即要执行的定时任务的类</span>
-        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>job<span class="token punctuation">.</span><span class="token function">getBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> clazz <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>job<span class="token punctuation">.</span><span class="token function">getBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Job jobEntity <span class="token operator">=</span> <span class="token punctuation">(</span>Job<span class="token punctuation">)</span> clazz<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 通过实体类和任务名创建 JobDetail</span>
         JobDetail jobDetail <span class="token operator">=</span> <span class="token function">newJob</span><span class="token punctuation">(</span>jobEntity<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -664,7 +664,7 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
                 <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// 执行定时任务</span>
         scheduler<span class="token punctuation">.</span><span class="token function">scheduleJob</span><span class="token punctuation">(</span>jobDetail<span class="token punctuation">,</span> cronTrigger<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 更新job cron表达式
@@ -672,13 +672,13 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @param quartzJob
      * @throws SchedulerException
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updateJobCron</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updateJobCron</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         TriggerKey triggerKey <span class="token operator">=</span> TriggerKey<span class="token punctuation">.</span><span class="token function">triggerKey</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getJobName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         CronTrigger trigger <span class="token operator">=</span> <span class="token punctuation">(</span>CronTrigger<span class="token punctuation">)</span> scheduler<span class="token punctuation">.</span><span class="token function">getTrigger</span><span class="token punctuation">(</span>triggerKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
         CronScheduleBuilder scheduleBuilder <span class="token operator">=</span> CronScheduleBuilder<span class="token punctuation">.</span><span class="token function">cronSchedule</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getCronExpression</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         trigger <span class="token operator">=</span> trigger<span class="token punctuation">.</span><span class="token function">getTriggerBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withIdentity</span><span class="token punctuation">(</span>triggerKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withSchedule</span><span class="token punctuation">(</span>scheduleBuilder<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">rescheduleJob</span><span class="token punctuation">(</span>triggerKey<span class="token punctuation">,</span> trigger<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 删除一个job
@@ -686,10 +686,10 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @param quartzJob
      * @throws SchedulerException
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         JobKey jobKey <span class="token operator">=</span> JobKey<span class="token punctuation">.</span><span class="token function">jobKey</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getJobName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">deleteJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 恢复一个job
@@ -697,10 +697,10 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @param quartzJob
      * @throws SchedulerException
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">resumeJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">resumeJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         JobKey jobKey <span class="token operator">=</span> JobKey<span class="token punctuation">.</span><span class="token function">jobKey</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getJobName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">resumeJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 立即执行job
@@ -708,10 +708,10 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @param quartzJob
      * @throws SchedulerException
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">runAJobNow</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">runAJobNow</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         JobKey jobKey <span class="token operator">=</span> JobKey<span class="token punctuation">.</span><span class="token function">jobKey</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getJobName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">triggerJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 暂停一个job
@@ -719,11 +719,11 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
      * @param quartzJob
      * @throws SchedulerException
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pauseJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pauseJob</span><span class="token punctuation">(</span>QuartzJob quartzJob<span class="token punctuation">)</span> <span class="token keyword">throws</span> SchedulerException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         JobKey jobKey <span class="token operator">=</span> JobKey<span class="token punctuation">.</span><span class="token function">jobKey</span><span class="token punctuation">(</span>quartzJob<span class="token punctuation">.</span><span class="token function">getJobName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         scheduler<span class="token punctuation">.</span><span class="token function">pauseJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="新建job任务，实现org-quartz-Job接口"><a href="#新建job任务，实现org-quartz-Job接口" class="headerlink" title="新建job任务，实现org.quartz.Job接口"></a>新建job任务，实现org.quartz.Job接口</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>schedule<span class="token punctuation">;</span>
 
 
@@ -741,13 +741,13 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScheduleTask</span> <span class="token keyword">extends</span> <span class="token class-name">QuartzJobBean</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScheduleTask</span> <span class="token keyword">extends</span> <span class="token class-name">QuartzJobBean</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">executeInternal</span><span class="token punctuation">(</span>JobExecutionContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"execute task:{}"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">,</span> Locale<span class="token punctuation">.</span>CHINA<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">executeInternal</span><span class="token punctuation">(</span>JobExecutionContext context<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"execute task:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">,</span> Locale<span class="token punctuation">.</span>CHINA<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="启动类配置"><a href="#启动类配置" class="headerlink" title="启动类配置"></a>启动类配置</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>bean<span class="token punctuation">.</span>QuartzJob<span class="token punctuation">;</span>
@@ -762,18 +762,18 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
  * Created by xiaozhangge on 2019/1/18.
  */</span>
 <span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzSchedulerApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzSchedulerApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> QuartzManager quartzManager<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>QuartzSchedulerApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             String scheduleTask <span class="token operator">=</span> <span class="token string">"com.xiaozhangge.quartz.schedule.ScheduleTask"</span><span class="token punctuation">;</span>
             QuartzJob job <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuartzJob</span><span class="token punctuation">(</span>scheduleTask<span class="token punctuation">,</span>
                     <span class="token string">"*/1 * * * * ?"</span><span class="token punctuation">,</span>
@@ -785,11 +785,11 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
                     QuartzJob<span class="token punctuation">.</span>STATUS_NOT_RUNNING<span class="token punctuation">,</span>
                     scheduleTask<span class="token punctuation">)</span><span class="token punctuation">;</span>
             quartzManager<span class="token punctuation">.</span><span class="token function">addJob</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> <span class="token operator">|</span> ClassNotFoundException <span class="token operator">|</span> IllegalAccessException <span class="token operator">|</span> InstantiationException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> <span class="token operator">|</span> ClassNotFoundException <span class="token operator">|</span> IllegalAccessException <span class="token operator">|</span> InstantiationException e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -1284,7 +1284,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

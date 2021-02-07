@@ -26,10 +26,10 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -449,14 +449,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -501,14 +501,14 @@ docker run -dit --restart=always --name redis \
 <pre class=" language-dockerfile"><code class="language-dockerfile">docker run -dit --name redis -p 6379:6379 redis:latest</code></pre>
 <p>关于docker的一些文章，详细请参考docker官网，这里不做过多赘述</p>
 <h2 id="项目pom配置"><a href="#项目pom配置" class="headerlink" title="项目pom配置"></a>项目pom配置</h2><p>使用Spring Boot集成Redis，只需要将<code>spring-boot-starter-data-redis</code>和<code>commons-pool2</code>加到依赖即可</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-pool2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-pool2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 <h2 id="自定义RedisConfigure"><a href="#自定义RedisConfigure" class="headerlink" title="自定义RedisConfigure"></a>自定义RedisConfigure</h2><p>这里这一步是最重要的，因为Spring Boot默认帮我们维护了一个<code>RedisConnectionFactory</code>，前面说了要使用不同的Redis实例就需要自己在维护一个<code>RedisConnectionFactory</code>，这里就以使用两个redis的database为例</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p><code>spring.redis</code>开头的都是Spring Boot自动注入需要加载的配置，我们为了在使用一个db2，这里加了一个<code>spring.redis-db-2</code>开头的配置</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
@@ -565,22 +565,22 @@ docker run -dit --restart=always --name redis \
 <span class="token comment" spellcheck="true">/**
  * Created by xiaozhangge on 2020-01-10.
  *
- * @Value("${spring.redis-db-2.database}") int database,
- * @Value("${spring.redis-db-2.host}") String host,
- * @Value("${spring.redis-db-2.port}") int port,
- * @Value("${spring.redis-db-2.password}") String password,
- * @Value("${spring.redis-db-2.timeout}") long timeout,
- * @Value("${spring.redis-db-2.lettuce.pool.max-active}") int maxActive,
- * @Value("${spring.redis-db-2.lettuce.pool.max-wait}") int maxWait,
- * @Value("${spring.redis-db-2.lettuce.pool.max-idle}") int maxIdle,
- * @Value("${spring.redis-db-2.lettuce.pool.min-idle}") int minIdle
+ * @Value("$&amp;#123;spring.redis-db-2.database&amp;#125;") int database,
+ * @Value("$&amp;#123;spring.redis-db-2.host&amp;#125;") String host,
+ * @Value("$&amp;#123;spring.redis-db-2.port&amp;#125;") int port,
+ * @Value("$&amp;#123;spring.redis-db-2.password&amp;#125;") String password,
+ * @Value("$&amp;#123;spring.redis-db-2.timeout&amp;#125;") long timeout,
+ * @Value("$&amp;#123;spring.redis-db-2.lettuce.pool.max-active&amp;#125;") int maxActive,
+ * @Value("$&amp;#123;spring.redis-db-2.lettuce.pool.max-wait&amp;#125;") int maxWait,
+ * @Value("$&amp;#123;spring.redis-db-2.lettuce.pool.max-idle&amp;#125;") int maxIdle,
+ * @Value("$&amp;#123;spring.redis-db-2.lettuce.pool.min-idle&amp;#125;") int minIdle
  */</span>
 <span class="token annotation punctuation">@EnableCaching</span>
 <span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfigure</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfigure</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplateDB_2</span><span class="token punctuation">(</span>Tuple6<span class="token operator">&lt;</span>RedisStandaloneConfiguration<span class="token punctuation">,</span> Long<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span> redisConfigurationDB_2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplateDB_2</span><span class="token punctuation">(</span>Tuple6<span class="token operator">&lt;</span>RedisStandaloneConfiguration<span class="token punctuation">,</span> Long<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span> redisConfigurationDB_2<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         Long timeout <span class="token operator">=</span> redisConfigurationDB_2<span class="token punctuation">.</span><span class="token function">_2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -612,7 +612,7 @@ docker run -dit --restart=always --name redis \
 
         <span class="token comment" spellcheck="true">// 创建 RedisTemplate</span>
         <span class="token keyword">return</span> <span class="token function">createRedisTemplate</span><span class="token punctuation">(</span>connectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * lettuceConnectionFactory
@@ -622,12 +622,12 @@ docker run -dit --restart=always --name redis \
      * @param timeout                 超时时间
      * @return
      */</span>
-    <span class="token keyword">private</span> LettuceConnectionFactory <span class="token function">lettuceConnectionFactory</span><span class="token punctuation">(</span>RedisStandaloneConfiguration standaloneConfiguration<span class="token punctuation">,</span> GenericObjectPoolConfig genericObjectPoolConfig<span class="token punctuation">,</span> <span class="token keyword">long</span> timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> LettuceConnectionFactory <span class="token function">lettuceConnectionFactory</span><span class="token punctuation">(</span>RedisStandaloneConfiguration standaloneConfiguration<span class="token punctuation">,</span> GenericObjectPoolConfig genericObjectPoolConfig<span class="token punctuation">,</span> <span class="token keyword">long</span> timeout<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         LettucePoolingClientConfiguration<span class="token punctuation">.</span>LettucePoolingClientConfigurationBuilder builder <span class="token operator">=</span> LettucePoolingClientConfiguration<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         builder<span class="token punctuation">.</span><span class="token function">poolConfig</span><span class="token punctuation">(</span>genericObjectPoolConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
         builder<span class="token punctuation">.</span><span class="token function">commandTimeout</span><span class="token punctuation">(</span>Duration<span class="token punctuation">.</span><span class="token function">ofSeconds</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">LettuceConnectionFactory</span><span class="token punctuation">(</span>standaloneConfiguration<span class="token punctuation">,</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * jedisConnectionFactory
@@ -637,37 +637,37 @@ docker run -dit --restart=always --name redis \
      * @param timeout                 超时时间
      * @return
      */</span>
-    <span class="token keyword">private</span> JedisConnectionFactory <span class="token function">jedisConnectionFactory</span><span class="token punctuation">(</span>RedisStandaloneConfiguration standaloneConfiguration<span class="token punctuation">,</span> GenericObjectPoolConfig genericObjectPoolConfig<span class="token punctuation">,</span> <span class="token keyword">long</span> timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> JedisConnectionFactory <span class="token function">jedisConnectionFactory</span><span class="token punctuation">(</span>RedisStandaloneConfiguration standaloneConfiguration<span class="token punctuation">,</span> GenericObjectPoolConfig genericObjectPoolConfig<span class="token punctuation">,</span> <span class="token keyword">long</span> timeout<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         JedisClientConfiguration<span class="token punctuation">.</span>DefaultJedisClientConfigurationBuilder builder <span class="token operator">=</span> <span class="token punctuation">(</span>JedisClientConfiguration<span class="token punctuation">.</span>DefaultJedisClientConfigurationBuilder<span class="token punctuation">)</span> JedisClientConfiguration
                 <span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         builder<span class="token punctuation">.</span><span class="token function">connectTimeout</span><span class="token punctuation">(</span>Duration<span class="token punctuation">.</span><span class="token function">ofSeconds</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         builder<span class="token punctuation">.</span><span class="token function">usePooling</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         builder<span class="token punctuation">.</span><span class="token function">poolConfig</span><span class="token punctuation">(</span>genericObjectPoolConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JedisConnectionFactory</span><span class="token punctuation">(</span>standaloneConfiguration<span class="token punctuation">,</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * @param redisConnectionFactory
      * @return
      */</span>
     <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">createRedisTemplate</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * json 实现 redisTemplate
-     * &lt;p>
+     * &lt;p&gt;
      * 该方法不能加 @Bean 否则不管如何调用，RedisConnectionFactory 都会是默认配置
      *
      * @param redisConnectionFactory
      * @return
      */</span>
-    <span class="token keyword">private</span> RedisTemplate <span class="token function">createRedisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> redisTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> RedisTemplate <span class="token function">createRedisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;</span> redisTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Jackson2JsonRedisSerializer<span class="token operator">&lt;</span>Object<span class="token operator">></span> jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Jackson2JsonRedisSerializer<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         ObjectMapper objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         objectMapper<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span>PropertyAccessor<span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> JsonAutoDetect<span class="token punctuation">.</span>Visibility<span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
         objectMapper<span class="token punctuation">.</span><span class="token function">enableDefaultTyping</span><span class="token punctuation">(</span>ObjectMapper<span class="token punctuation">.</span>DefaultTyping<span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -679,7 +679,7 @@ docker run -dit --restart=always --name redis \
         redisTemplate<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span>stringRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * 自定义Redis的配置加载
@@ -696,31 +696,31 @@ docker run -dit --restart=always --name redis \
      * @return
      */</span>
     <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> Tuple6<span class="token operator">&lt;</span>RedisStandaloneConfiguration<span class="token punctuation">,</span> Long<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span>
-    <span class="token function">redisConfigurationDB_2</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.database}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> database<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.password}"</span><span class="token punctuation">)</span> String password<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.host}"</span><span class="token punctuation">)</span> String host<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.port}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.timeout}"</span><span class="token punctuation">)</span> <span class="token keyword">long</span> timeout<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.lettuce.pool.max-active}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxActive<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.lettuce.pool.max-wait}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxWait<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.lettuce.pool.max-idle}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxIdle<span class="token punctuation">,</span>
-                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.redis-db-2.lettuce.pool.min-idle}"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> minIdle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Tuple6<span class="token operator">&lt;</span>RedisStandaloneConfiguration<span class="token punctuation">,</span> Long<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token punctuation">,</span> Integer<span class="token operator">&gt;</span>
+    <span class="token function">redisConfigurationDB_2</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.database&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> database<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.password&amp;#125;"</span><span class="token punctuation">)</span> String password<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.host&amp;#125;"</span><span class="token punctuation">)</span> String host<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.port&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.timeout&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">long</span> timeout<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.lettuce.pool.max-active&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxActive<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.lettuce.pool.max-wait&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxWait<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.lettuce.pool.max-idle&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> maxIdle<span class="token punctuation">,</span>
+                           <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;spring.redis-db-2.lettuce.pool.min-idle&amp;#125;"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> minIdle<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         RedisStandaloneConfiguration standaloneConfiguration <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisStandaloneConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         standaloneConfiguration<span class="token punctuation">.</span><span class="token function">setDatabase</span><span class="token punctuation">(</span>database<span class="token punctuation">)</span><span class="token punctuation">;</span>
         standaloneConfiguration<span class="token punctuation">.</span><span class="token function">setHostName</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span><span class="token punctuation">;</span>
         standaloneConfiguration<span class="token punctuation">.</span><span class="token function">setPort</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             RedisPassword redisPassword <span class="token operator">=</span> RedisPassword<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">;</span>
             standaloneConfiguration<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span>redisPassword<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
         <span class="token keyword">return</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>standaloneConfiguration<span class="token punctuation">,</span> timeout<span class="token punctuation">,</span> maxActive<span class="token punctuation">,</span> maxWait<span class="token punctuation">,</span> maxIdle<span class="token punctuation">,</span> minIdle<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <p>这个配置有点长，但是都有注释，而且这里也用到了上篇文章中讲到的<code>tuple</code>（在方法有多个返回值时，元组真香）,其实就已经可以使用两个不同的<code>RedisTemplate</code>了，这时候我们在启动项目时分别注入<code>redisTemplate</code>和<code>redisTemplateDB_2</code>，别问我为啥名字是这两货。</p>
 <h2 id="通过debug查看配置是否成功"><a href="#通过debug查看配置是否成功" class="headerlink" title="通过debug查看配置是否成功"></a>通过debug查看配置是否成功</h2><p>启动类我们实现<code>CommandLineRunner</code>，然后通过debug查看<code>redisTemplate</code>和<code>redisTemplateDB2</code>的<code>RedisConnectionFactory</code></p>
 <p>并且我们在database=0存储了一个string数据，在database=2存储了一个hash数据</p>
@@ -738,7 +738,7 @@ docker run -dit --restart=always --name redis \
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> RedisTemplate redisTemplate<span class="token punctuation">;</span>
@@ -746,20 +746,20 @@ docker run -dit --restart=always --name redis \
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> RedisTemplate redisTemplateDB_2<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>RedisApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplate:{}"</span><span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplate:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"xiaozhangge"</span><span class="token punctuation">,</span> <span class="token string">"redisTemplate save value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplateDB_2:{}"</span><span class="token punctuation">,</span> redisTemplateDB2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplateDB_2:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisTemplateDB2<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplateDB2<span class="token punctuation">.</span><span class="token function">opsForHash</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xiaozhangge"</span><span class="token punctuation">,</span> <span class="token string">"xiaozhangge-hash"</span><span class="token punctuation">,</span> <span class="token string">"redisTemplateDB_2 save value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
 <li>redisTemplate</li>
@@ -780,23 +780,23 @@ docker run -dit --restart=always --name redis \
 </ul>
 <p>因为我们的redis服务是docker启动的，所以要使用<code>redis-cli</code>查看就需要进入docker容器内进行查看，进入容器也很简单，使用<code>docker exec -it fd3da052e6f1 bash</code>，这里的<code>fd3da052e6f1</code>是docker启动的containerId，可以使用<code>docker ps</code>查看</p>
 <pre class=" language-verilog"><code class="language-verilog">root@fd3da052e6f1<span class="token punctuation">:</span><span class="token operator">/</span>data# redis<span class="token operator">-</span>cli
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span> keys <span class="token operator">*</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span> keys <span class="token operator">*</span>
 <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaozhangge"</span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span> get xiaozhangge
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span> get xiaozhangge
 <span class="token string">"\"redisTemplate save value\""</span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">></span> select <span class="token number">2</span> # 选择<span class="token number">2</span>这个数据库
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token operator">&gt;</span> select <span class="token number">2</span> # 选择<span class="token number">2</span>这个数据库
 OK
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span> keys <span class="token operator">*</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> keys <span class="token operator">*</span>
 <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaozhangge"</span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span> HVALS xiaozhangge
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> HVALS xiaozhangge
 <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"\xac\xed\x00\x05t\x00\x1bredisTemplateDB2 save value"</span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span>
-<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">></span></code></pre>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">6379</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">&gt;</span></code></pre>
 </li>
 </ul>
 <p>  通过以上日志我们可以看到分别在不同的数据库已经存储了不同的数据，到这里我们redis配置多实例就已经完成。但是我们每次注入的时候都要记得自己创建的Bean的名字，这样对其他人不太友好，那么我们可以进一步封装一下，自定义一个handler进行获取RedisTemplate，这样会不会更便捷呢？</p>
@@ -832,21 +832,21 @@ OK
  * Created by xiaozhangge on 2020-01-10.
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisOperations</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisOperations</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> RedisTemplate redisTemplate<span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token function">RedisOperations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token function">RedisOperations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">RedisOperations</span><span class="token punctuation">(</span>RedisTemplate redisTemplate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">RedisOperations</span><span class="token punctuation">(</span>RedisTemplate redisTemplate<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> RedisTemplate <span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h3 id="RedisHandler"><a href="#RedisHandler" class="headerlink" title="RedisHandler"></a>RedisHandler</h3><p>  <code>RedisHandler</code>提供了统一操作<code>RedisTemplate</code>的入口，对用户来说下层的<code>RedisTemplate</code>是谁就不需要关心了</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>configure<span class="token punctuation">.</span>handler<span class="token punctuation">;</span>
 
@@ -859,7 +859,7 @@ OK
  * Created by xiaozhangge on 2020-01-10.
  */</span>
 <span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisHandler</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisHandler</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> RedisTemplate redisTemplate<span class="token punctuation">;</span>
@@ -869,20 +869,20 @@ OK
 
     <span class="token keyword">private</span> RedisOperations redisOperations<span class="token punctuation">,</span> redisDB2Operations<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> RedisOperations <span class="token function">redisOperations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>redisOperations <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> RedisOperations <span class="token function">redisOperations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>redisOperations <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             redisOperations <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisOperations</span><span class="token punctuation">(</span>redisTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> redisOperations<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> RedisOperations <span class="token function">redisDB2Operations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>redisDB2Operations <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> RedisOperations <span class="token function">redisDB2Operations</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>redisDB2Operations <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             redisDB2Operations <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisOperations</span><span class="token punctuation">(</span>redisTemplateDB_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> redisDB2Operations<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><p>我们在启动时看一下经过<code>RedisHandler</code>保证的<code>RedisTemplate</code>是否和我们想的一致，修改以后的启动类</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>redis<span class="token punctuation">;</span>
 
@@ -900,7 +900,7 @@ OK
  */</span>
 <span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisApplication</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> RedisTemplate redisTemplate<span class="token punctuation">;</span>
@@ -911,17 +911,17 @@ OK
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> RedisHandler redisHandler<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>RedisApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplate:{}"</span><span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplate:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"xiaozhangge"</span><span class="token punctuation">,</span> <span class="token string">"redisTemplate save value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplateDB_2:{}"</span><span class="token punctuation">,</span> redisTemplateDB_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisTemplateDB_2:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisTemplateDB_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplateDB_2<span class="token punctuation">.</span><span class="token function">opsForHash</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xiaozhangge"</span><span class="token punctuation">,</span> <span class="token string">"xiaozhangge-hash"</span><span class="token punctuation">,</span> <span class="token string">"redisTemplateDB_2 save value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
@@ -931,10 +931,10 @@ OK
         RedisOperations redisOperations <span class="token operator">=</span> redisHandler<span class="token punctuation">.</span><span class="token function">redisOperations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         RedisOperations redisDB2Operations <span class="token operator">=</span> redisHandler<span class="token punctuation">.</span><span class="token function">redisDB2Operations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisOperations redisTemplate:{}"</span><span class="token punctuation">,</span> redisOperations<span class="token punctuation">.</span><span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisDB2Operations redisTemplate:{}"</span><span class="token punctuation">,</span> redisDB2Operations<span class="token punctuation">.</span><span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisOperations redisTemplate:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisOperations<span class="token punctuation">.</span><span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"redisDB2Operations redisTemplate:&amp;#123;&amp;#125;"</span><span class="token punctuation">,</span> redisDB2Operations<span class="token punctuation">.</span><span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <p>启动日志</p>
 <pre class=" language-velocity"><code class="language-velocity">2020-01-10 23:54:39.579  INFO 66673 --- [           main] com.xiaozhangge.redis.RedisApplication      : Started RedisApplication in 8.672 seconds (JVM running for 10.951)
 2020-01-10 23:54:39.580  INFO 66673 --- [           main] com.xiaozhangge.redis.RedisApplication      : redisTemplate:org.springframework.data.redis.core.RedisTemplate@44924587
@@ -1451,7 +1451,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

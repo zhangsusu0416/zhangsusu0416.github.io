@@ -33,10 +33,10 @@ logstash 通用启动脚本
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -443,7 +443,7 @@ logstash 通用启动脚本
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    246
+                    307
                 </div>
                 
 
@@ -484,16 +484,16 @@ logstash 通用启动脚本
 <span class="token comment" spellcheck="true">#config file OR path</span>
 conFile<span class="token operator">=</span><span class="token variable">$1</span>
 conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
+appName<span class="token operator">=</span><span class="token punctuation">$(</span>basename $<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;conFile&amp;#125; | sed s/.conf.*//)</span>
 currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
 
-LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
+LS_HOME<span class="token operator">=</span>$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;LS_HOME:-$currPath&amp;#125;</span>
 <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
 
-check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
-  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
-<span class="token punctuation">}</span>
+check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f $&amp;#123;conFile&amp;#125;"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&amp;#123;print <span class="token variable">$2</span>&amp;#125;'</span>`
+  <span class="token comment" spellcheck="true">#echo "PID : $&amp;#123;pids&amp;#125;"</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
 
 <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
 
@@ -502,7 +502,7 @@ check_pid<span class="token punctuation">(</span><span class="token punctuation"
 <span class="token comment" spellcheck="true">#sleep 1</span>
 
 check_pid
-cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
+cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f $&amp;#123;conFile&amp;#125; -l logs/$&amp;#123;appName&amp;#125; --path.data data/$&amp;#123;appName&amp;#125; -n $&amp;#123;appName&amp;#125;"</span>
 
 <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
   <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
@@ -512,19 +512,19 @@ cmd<span class="token operator">=</span><span class="token string">"bin/logstash
 <span class="token keyword">else</span>
   <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
   <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
-  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;appName&amp;#125; == "test" ];then</span>
     <span class="token variable">$cmd</span>
   <span class="token keyword">else</span>
     <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
     <span class="token function">sleep</span> 1
     check_pid
-    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
+    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"$&amp;#123;pids&amp;#125;"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
   <span class="token keyword">fi</span>
 <span class="token keyword">fi</span>
 
 <span class="token comment" spellcheck="true">#sleep 1</span>
 
-<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
+<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "$&amp;#123;conFile&amp;#125;" | awk '&amp;#123;print $2"\t"$NF&amp;#125;' </span>
 
 <span class="token keyword">exit</span> 0
 </code></pre>
@@ -532,7 +532,7 @@ cmd<span class="token operator">=</span><span class="token string">"bin/logstash
 <li>logstash将时间转换成unix时间戳</li>
 </ul>
 <pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
-ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
+ruby <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; code =&gt; 'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)' &amp;#125;</span></code></pre>
 
             </div>
             <hr/>
@@ -1029,7 +1029,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.2k</span>&nbsp;字
+                class="white-color">87.4k</span>&nbsp;字
             
             
             

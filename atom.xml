@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-02-01T13:35:34.983Z</updated>
+  <updated>2021-02-07T05:23:39.740Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</title>
+    <link href="http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"/>
+    <id>http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/</id>
+    <published>2021-02-07T05:04:42.000Z</published>
+    <updated>2021-02-07T05:23:39.740Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近公司产品需求,需要使用同一个redis数据库服务使用不同的序列化方式的redisTemplate对缓存数据库进行读写操作,&lt;/p&gt;
+&lt;p&gt;目前大部分网路上的文章在实作Redis分流时，都是以Jedis为范例，但Spring</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Boot" scheme="http://xiaomozhang.github.io/categories/Spring-Boot/"/>
+    
+    
+    <category term="Redis" scheme="http://xiaomozhang.github.io/tags/Redis/"/>
+    
+    <category term="SpringBoot" scheme="http://xiaomozhang.github.io/tags/SpringBoot/"/>
+    
+    <category term="Lettuce" scheme="http://xiaomozhang.github.io/tags/Lettuce/"/>
+    
+    <category term="multiple RedisTemplate" scheme="http://xiaomozhang.github.io/tags/multiple-RedisTemplate/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Boot 2.x使用mybatis</title>
@@ -497,34 +529,6 @@
     <category term="Maven" scheme="http://xiaomozhang.github.io/tags/Maven/"/>
     
     <category term="IDEA" scheme="http://xiaomozhang.github.io/tags/IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring事务管理</title>
-    <link href="http://xiaomozhang.github.io/2020/02/16/spring-transaction/"/>
-    <id>http://xiaomozhang.github.io/2020/02/16/spring-transaction/</id>
-    <published>2020-02-16T06:42:08.000Z</published>
-    <updated>2021-02-01T13:35:34.986Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;什么是事务&quot;&gt;&lt;a href=&quot;#什么是事务&quot; class=&quot;headerlink&quot; title=&quot;什么是事务&quot;&gt;&lt;/a&gt;什么是事务&lt;/h2&gt;&lt;p&gt;事务是逻辑上的一组操作，要么都执行，要么都不执行。&lt;/p&gt;
-&lt;h3 id=&quot;原子性&quot;&gt;&lt;a href=&quot;#原子性&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="http://xiaomozhang.github.io/categories/Spring/"/>
-    
-    
-    <category term="spring" scheme="http://xiaomozhang.github.io/tags/spring/"/>
-    
-    <category term="transaction" scheme="http://xiaomozhang.github.io/tags/transaction/"/>
     
   </entry>
   
