@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Maven构建Spring-Boot多模块项目, 小张哥blog">
+    <meta name="description" content="日常开发过程中肯定会用到maven构建项目，用来管理依赖的jar文件，对于使用maven构建多module项目很多时候还是不怎么熟悉，这篇文章将带着大家从头开始搭建一个使用maven构建的多module项目，并集成常用的项目插件。
+使用Sp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Maven构建Spring-Boot多模块项目 | 小张哥blog</title>
+    <link rel="icon" type="image/png" href="/images/avatar.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 5.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/avatar.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小张哥blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/avatar.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小张哥blog</div>
+        <div class="logo-desc">
+            
+            北冥有鱼,其名为鲲,鲲之大,不知其几千里也;化而为鸟,其名为鹏.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Maven构建Spring-Boot多模块项目</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Spring-Boot/">
+                                <span class="chip bg-color">Spring Boot</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Spring-Boot/" class="post-category">
+                                Spring Boot
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-27
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-02-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>日常开发过程中肯定会用到maven构建项目，用来管理依赖的jar文件，对于使用maven构建多module项目很多时候还是不怎么熟悉，这篇文章将带着大家从头开始搭建一个使用maven构建的多module项目，并集成常用的项目插件。</p>
+<h2 id="使用Spring-Initializr创建项目"><a href="#使用Spring-Initializr创建项目" class="headerlink" title="使用Spring Initializr创建项目"></a>使用Spring Initializr创建项目</h2><p>这一步很简单，直接使用idea自带的功能，创建一个spring-boot项目</p>
+<p><img src="/images/multi-module/image-20190715083738989.png" alt="image-20190715083738989"></p>
+<p><img src="/images/multi-module/image-20190715084023794.png" alt="image-20190715084023794"></p>
+<p><img src="/images/multi-module/image-20190715084104125.png" alt="image-20190715084104125"></p>
+<p><img src="/images/multi-module/image-20190715084159602.png" alt="image-20190715084159602"></p>
+<p>一个初始化的项目目录结构如下</p>
+<p><img src="/images/multi-module/image-20190727103316490.png" alt="image-20190727103316490"></p>
+<h2 id="添加新的module"><a href="#添加新的module" class="headerlink" title="添加新的module"></a>添加新的module</h2><p>一个项目中可能需要用到多个子模块，但是又有一些公共的工具类，model之类的，但是又不想传到nexus私服上面去，那么就可以添加子module，然后install以后，提供给当前project来使用了。比如我们需要一个common和一个提供api服务的module，那么可以新建两个module，parent下面的src目录也就没有存在的意义，可以直接删除。在project上面右键新建module，步骤和新建一个maven project是一样的，这里就不做截图展示了。多module的一个完整目录结构如下：</p>
+<p><img src="/images/multi-module/image-20190727103756285.png" alt="image-20190727103756285"></p>
+<h2 id="module间相互依赖"><a href="#module间相互依赖" class="headerlink" title="module间相互依赖"></a>module间相互依赖</h2><p>多module就是为了方便公共部分被其他module引用，其实引用也就很简单了，就类似于一个正常的maven dep就可以，比如在multi-api这个module中引用multi-common，这样一来，multi-common中的类就能被multi-api正常访问使用了</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>multi-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>在multi-common写了一个类叫 <em>com.xiaozhangge.common.util.IdHelper</em> 里面有一个获取UUID的方法，早其他已经引用multi-common的这个module中，只需要直接调用即可</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>common<span class="token punctuation">.</span>util<span class="token punctuation">.</span>IdHelper<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created by xiaozhangge on 2019-07-27.
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainApplicatiom</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 这里的IdHelper 类，来自于multi-common module</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"uuid [{}]"</span><span class="token punctuation">,</span> IdHelper<span class="token punctuation">.</span><span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="打包多module项目"><a href="#打包多module项目" class="headerlink" title="打包多module项目"></a>打包多module项目</h2><p>关于多module项目打包，spring boot升级到2.0以后，打包插件有一些小变化，比如只在multi-common加一个工具类，使用maven自带的打包工具打包，会报错误，但是不影响项目正常运行。日志如下</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Scanning <span class="token keyword">for</span> projects<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Reactor Build Order<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>common
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>api
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span>                                                                         
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage <span class="token punctuation">(</span>repackage<span class="token punctuation">)</span> @ life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span>                                                                         
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building multi<span class="token operator">-</span>common <span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>resources<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">:</span>resources <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>resources<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Using 'UTF<span class="token operator">-</span><span class="token number">8</span>' encoding to copy filtered resources<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>compile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>compile<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Changes detected <span class="token operator">-</span> recompiling the <span class="token keyword">module</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Compiling <span class="token number">2</span> source files to <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>target<span class="token operator">/</span>classes
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>resources<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">:</span>testResources <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>testResources<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Using 'UTF<span class="token operator">-</span><span class="token number">8</span>' encoding to copy filtered resources<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> skip non existing resourceDirectory <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>src<span class="token operator">/</span>test<span class="token operator">/</span>resources
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>testCompile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>testCompile<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Changes detected <span class="token operator">-</span> recompiling the <span class="token keyword">module</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>surefire<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.22</span><span class="token punctuation">.</span><span class="token number">2</span><span class="token punctuation">:</span>test <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>test<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Tests are skipped<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>jar<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">2</span><span class="token punctuation">:</span>jar <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>jar<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building jar<span class="token punctuation">:</span> <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>target<span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT<span class="token punctuation">.</span>jar
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage <span class="token punctuation">(</span>repackage<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Reactor Summary<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> SUCCESS <span class="token punctuation">[</span>  <span class="token number">1.037</span> s<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>common <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> FAILURE <span class="token punctuation">[</span>  <span class="token number">2.536</span> s<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>api <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> SKIPPED
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> BUILD FAILURE
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Total <span class="token keyword">time</span><span class="token punctuation">:</span> <span class="token number">4.037</span> s
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Finished at<span class="token punctuation">:</span> <span class="token number">2019</span><span class="token operator">-</span><span class="token number">07</span><span class="token operator">-</span><span class="token number">27</span>T10<span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">:</span><span class="token number">18</span><span class="token operator">+</span><span class="token number">08</span><span class="token punctuation">:</span><span class="token number">00</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Final Memory<span class="token punctuation">:</span> <span class="token number">35</span>M<span class="token operator">/</span><span class="token number">293</span>M
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> Failed to execute goal org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">:</span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage <span class="token punctuation">(</span>repackage<span class="token punctuation">)</span> on project multi<span class="token operator">-</span>common<span class="token punctuation">:</span> Execution repackage of goal org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">:</span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage failed<span class="token punctuation">:</span> Unable to find main <span class="token keyword">class</span> <span class="token operator">-></span> <span class="token punctuation">[</span>Help <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> To see the full stack trace of the errors<span class="token punctuation">,</span> re<span class="token operator">-</span>run Maven <span class="token keyword">with</span> the <span class="token operator">-</span>e switch<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> Re<span class="token operator">-</span>run Maven using the <span class="token operator">-</span>X switch to enable full debug logging<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> For more information about the errors <span class="token keyword">and</span> possible solutions<span class="token punctuation">,</span> please read the following articles<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token punctuation">[</span>Help <span class="token number">1</span><span class="token punctuation">]</span> http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> After correcting the problems<span class="token punctuation">,</span> you can resume the build <span class="token keyword">with</span> the command
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span>   mvn <span class="token operator">&lt;</span>goals<span class="token operator">></span> <span class="token operator">-</span>rf <span class="token punctuation">:</span>multi<span class="token operator">-</span>common
+</code></pre>
+<p>意思就是说我们在multi-common这个module中缺少了main class，那么我们加上在multi-common中添加一个类，只有一个main方法，然后再来打包，依旧报错，日志如下</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token operator">/</span>Library<span class="token operator">/</span>Java<span class="token operator">/</span>JavaVirtualMachines<span class="token operator">/</span>jdk1<span class="token number">.8</span><span class="token punctuation">.</span><span class="token number">0_201</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span>Contents<span class="token operator">/</span>Home<span class="token operator">/</span>bin<span class="token operator">/</span>java <span class="token operator">-</span>Dvisualvm<span class="token punctuation">.</span>id<span class="token operator">=</span><span class="token number">375540266385044</span> <span class="token operator">-</span>Dmaven<span class="token punctuation">.</span>multiModuleProjectDirectory<span class="token operator">=/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token string">"-Dmaven.home=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3"</span> <span class="token string">"-Dclassworlds.conf=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin/m2.conf"</span> <span class="token string">"-javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=56994:/Applications/IntelliJ IDEA.app/Contents/bin"</span> <span class="token operator">-</span>Dfile<span class="token punctuation">.</span>encoding<span class="token operator">=</span>UTF<span class="token operator">-</span><span class="token number">8</span> <span class="token operator">-</span>classpath <span class="token string">"/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.5.2.jar"</span> org<span class="token punctuation">.</span>codehaus<span class="token punctuation">.</span>classworlds<span class="token punctuation">.</span>Launcher <span class="token operator">-</span>Didea<span class="token punctuation">.</span>version<span class="token operator">=</span><span class="token number">2018.3</span><span class="token punctuation">.</span><span class="token number">5</span> <span class="token operator">-</span>DskipTests<span class="token operator">=</span>true <span class="token keyword">package</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Scanning <span class="token keyword">for</span> projects<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Reactor Build Order<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>common
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>api
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span>                                                                         
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage <span class="token punctuation">(</span>repackage<span class="token punctuation">)</span> @ life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span>                                                                         
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building multi<span class="token operator">-</span>common <span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>resources<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">:</span>resources <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>resources<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Using 'UTF<span class="token operator">-</span><span class="token number">8</span>' encoding to copy filtered resources<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>compile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>compile<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Changes detected <span class="token operator">-</span> recompiling the <span class="token keyword">module</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Compiling <span class="token number">2</span> source files to <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>target<span class="token operator">/</span>classes
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>resources<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">:</span>testResources <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>testResources<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Using 'UTF<span class="token operator">-</span><span class="token number">8</span>' encoding to copy filtered resources<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> skip non existing resourceDirectory <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>src<span class="token operator">/</span>test<span class="token operator">/</span>resources
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>testCompile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>testCompile<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Changes detected <span class="token operator">-</span> recompiling the <span class="token keyword">module</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>surefire<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.22</span><span class="token punctuation">.</span><span class="token number">2</span><span class="token punctuation">:</span>test <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>test<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Tests are skipped<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>jar<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">2</span><span class="token punctuation">:</span>jar <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>jar<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building jar<span class="token punctuation">:</span> <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">/</span>target<span class="token operator">/</span>multi<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT<span class="token punctuation">.</span>jar
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> spring<span class="token operator">-</span>boot<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">6</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">:</span>repackage <span class="token punctuation">(</span>repackage<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>common <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Replacing main artifact <span class="token keyword">with</span> repackaged archive
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span>                                                                         
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Building multi<span class="token operator">-</span>api <span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">-</span>SNAPSHOT
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>resources<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">:</span>resources <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>resources<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>api <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Using 'UTF<span class="token operator">-</span><span class="token number">8</span>' encoding to copy filtered resources<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Copying <span class="token number">0</span> resource
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">---</span> maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>compile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>compile<span class="token punctuation">)</span> @ multi<span class="token operator">-</span>api <span class="token operator">---</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Changes detected <span class="token operator">-</span> recompiling the <span class="token keyword">module</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Compiling <span class="token number">1</span> source file to <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>api<span class="token operator">/</span>target<span class="token operator">/</span>classes
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">-------------------------------------------------------------</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> COMPILATION ERROR <span class="token punctuation">:</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">-------------------------------------------------------------</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>api<span class="token operator">/</span>src<span class="token operator">/</span>main<span class="token operator">/</span>java<span class="token operator">/</span>com<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>MainApplicatiom<span class="token punctuation">.</span>java<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">]</span> 程序包com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>common<span class="token punctuation">.</span>util不存在
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token number">1</span> error
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">-------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Reactor Summary<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> SUCCESS <span class="token punctuation">[</span>  <span class="token number">1.499</span> s<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>common <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> SUCCESS <span class="token punctuation">[</span>  <span class="token number">2.279</span> s<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> multi<span class="token operator">-</span>api <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> FAILURE <span class="token punctuation">[</span>  <span class="token number">0.540</span> s<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> BUILD FAILURE
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Total <span class="token keyword">time</span><span class="token punctuation">:</span> <span class="token number">4.828</span> s
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Finished at<span class="token punctuation">:</span> <span class="token number">2019</span><span class="token operator">-</span><span class="token number">07</span><span class="token operator">-</span><span class="token number">27</span>T10<span class="token punctuation">:</span><span class="token number">52</span><span class="token punctuation">:</span><span class="token number">45</span><span class="token operator">+</span><span class="token number">08</span><span class="token punctuation">:</span><span class="token number">00</span>
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Final Memory<span class="token punctuation">:</span> <span class="token number">38</span>M<span class="token operator">/</span><span class="token number">302</span>M
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> <span class="token operator">------------------------------------------------------------------------</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> Failed to execute goal org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>maven<span class="token punctuation">.</span>plugins<span class="token punctuation">:</span>maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token punctuation">:</span><span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">:</span>compile <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token operator">-</span>compile<span class="token punctuation">)</span> on project multi<span class="token operator">-</span>api<span class="token punctuation">:</span> Compilation failure
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token operator">/</span>Users<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>tmp<span class="token operator">/</span>life<span class="token operator">-</span>multi<span class="token operator">-</span><span class="token keyword">module</span><span class="token operator">/</span>multi<span class="token operator">-</span>api<span class="token operator">/</span>src<span class="token operator">/</span>main<span class="token operator">/</span>java<span class="token operator">/</span>com<span class="token operator">/</span>xiaozhangge<span class="token operator">/</span>MainApplicatiom<span class="token punctuation">.</span>java<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">]</span> 程序包com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>common<span class="token punctuation">.</span>util不存在
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token punctuation">[</span>Help <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> To see the full stack trace of the errors<span class="token punctuation">,</span> re<span class="token operator">-</span>run Maven <span class="token keyword">with</span> the <span class="token operator">-</span>e switch<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> Re<span class="token operator">-</span>run Maven using the <span class="token operator">-</span>X switch to enable full debug logging<span class="token punctuation">.</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> For more information about the errors <span class="token keyword">and</span> possible solutions<span class="token punctuation">,</span> please read the following articles<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token punctuation">[</span>Help <span class="token number">1</span><span class="token punctuation">]</span> http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//cwiki.apache.org/confluence/display/MAVEN/MojoFailureException</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> After correcting the problems<span class="token punctuation">,</span> you can resume the build <span class="token keyword">with</span> the command
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span>   mvn <span class="token operator">&lt;</span>goals<span class="token operator">></span> <span class="token operator">-</span>rf <span class="token punctuation">:</span>multi<span class="token operator">-</span>api
+
+Process finished <span class="token keyword">with</span> exit code <span class="token number">1</span>
+</code></pre>
+<p>这个配置，在spring boot2.0版本之前，其实是完全可以的，在分析错误之前，我们先看一下整个项目的目录结构</p>
+<p><img src="/images/multi-module/image-20190727105533948.png" alt="image-20190727105533948"></p>
+<p>可以看到在multi-common下面有两个class，在multi-api下面有一个class，那里面的内容就是引用了multi-common中的com.xiaozhangge.common.util.IdHelper，但是现在错误日志却说com.xiaozhangge.common.util不存在，这里就很纳闷了吧，接下来，介绍一下spring boot的打包插件，还得回到parent pom.xml中，使用Spring Initializr创建项目后，默认有一个 spring-boot-maven-plugin 这个maven插件，主要原因就在这里，sprint boot2.0升级以后，对插件也做了相应的升级，如果要解决这个问题，需要在此基础上做一些配置</p>
+<pre class=" language-xml"><code class="language-xml"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span></code></pre>
+<p>plugin修改以后，关于configuration的配置介绍，可以看spring boot官方的文档</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/repackage-mojo.html">maven-plugin</a></p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>classifier</span><span class="token punctuation">></span></span>bootJar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>classifier</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>outputDirectory</span><span class="token punctuation">></span></span>${project.build.directory}/boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>outputDirectory</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span></code></pre>
+<p>修改插件以后，在此执行打包命令就可以正常打包，我们再看一下打包以后 target目录的结果，感兴趣的同学可以去相应的目录看一下文件的大小，这里我就不在扩展了，核心日志我也有做标记</p>
+<p><img src="/images/multi-module/image-20190727110524269.png" alt="image-20190727110524269"></p>
+<p>好了，到这里，一个完整的spring boot多module构建的项目骨架基本完成了，下面介绍一些实用的maven插件，配合spring boot食用更佳。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/xiaomozhang/personal-life-multi-module">github</a></p>
+<h2 id="常用插件使用介绍"><a href="#常用插件使用介绍" class="headerlink" title="常用插件使用介绍"></a>常用插件使用介绍</h2><h3 id="spring-boot-maven-plugin"><a href="#spring-boot-maven-plugin" class="headerlink" title="spring-boot-maven-plugin"></a>spring-boot-maven-plugin</h3><p>该插件主要用于spring boot项目构建和打包，上面有简单的介绍和官网链接，主要就是配置</p>
+<h3 id="templating-maven-plugin"><a href="#templating-maven-plugin" class="headerlink" title="templating-maven-plugin"></a>templating-maven-plugin</h3><p>该插件主要生成一个模板类，可以直接读取maven pom中的artifactId、groupId、version等信息，上面的项目源码中我会做出示例，用了该插件以后，第一次checkout project以后 需要使用maven的 compile构建一下</p>
+<h3 id="buildnumber-maven-plugin"><a href="#buildnumber-maven-plugin" class="headerlink" title="buildnumber-maven-plugin"></a>buildnumber-maven-plugin</h3><p>该插件主要解决maven打包以后的时间本地化问题，不然一直会有8小时的时差，一般配合maven-assembly-plugin使用更好</p>
+<h3 id="maven-assembly-plugin"><a href="#maven-assembly-plugin" class="headerlink" title="maven-assembly-plugin"></a>maven-assembly-plugin</h3><p>该插件主要用于项目打包以后的文件归档成指定的压缩包，通过配置文件自定义需要归档的文件</p>
+<h3 id="maven-compiler-plugin"><a href="#maven-compiler-plugin" class="headerlink" title="maven-compiler-plugin"></a>maven-compiler-plugin</h3><p>该插件主要规范maven project的compiler的jdk版本</p>
+<h3 id="git-commit-id-plugin"><a href="#git-commit-id-plugin" class="headerlink" title="git-commit-id-plugin"></a>git-commit-id-plugin</h3><p>该插件用于生产项目的git信息，方便程序读取</p>
+<h3 id="maven-jar-plugin、maven-dependency-plugin"><a href="#maven-jar-plugin、maven-dependency-plugin" class="headerlink" title="maven-jar-plugin、maven-dependency-plugin"></a>maven-jar-plugin、maven-dependency-plugin</h3><p>spring boot打包的jar默认是all in one，既一个jar包含所有依赖，可以使用这两个插件，将打出的jar做一个lib的分离</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://xiaomozhang.github.io" rel="external nofollow noreferrer">小张哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://xiaomozhang.github.io/2019/07/27/spring-boot-multi-module-project/">http://xiaomozhang.github.io/2019/07/27/spring-boot-multi-module-project/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://xiaomozhang.github.io" target="_blank">小张哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Spring-Boot/">
+                                    <span class="chip bg-color">Spring Boot</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/images/pay/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/images/pay/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '030d444ad9269f7d8b2a',
+        clientSecret: 'cf8eee8d0229cdefa0943263806746a2ea317004',
+        repo: 'xiaomozhang.github.io',
+        owner: 'xiaomozhang',
+        admin: "xiaomozhang",
+        id: '2019-07-27T11-18-17',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/10/20/web-vue-starter/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="使用webpack构建vue项目">
+                        
+                        <span class="card-title">使用webpack构建vue项目</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            安装nodejsNodejs 官网下载地址
+推荐下载LTS长期支持版本，然后下一步安装即可
+查看 node版本node -v
+
+# 结果
+➜  ~ node -v
+v10.16.3
+➜  ~
+查看 npm 版本npm -v
+
+# 结果
+➜ 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Web%E5%BC%80%E5%8F%91/" class="post-category">
+                                    Web开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/06/spring-cloud-config/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring Cloud 配置中⼼">
+                        
+                        <span class="card-title">Spring Cloud 配置中⼼</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在系统架构中，和安全、⽇日志、监控等⾮非功能需求⼀一样，配置管理理也是⼀一种⾮非功能需求。配置中⼼心是整个微服务基础架构体系中的⼀一个组件，它的功能看上去并不不起眼，⽆无⾮非就是简单配置的管理理和存取，但它是整个微服务架构中不不可或缺的⼀一
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-04-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-Cloud/" class="post-category">
+                                    Spring Cloud
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring-Cloud/">
+                        <span class="chip bg-color">Spring Cloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2017</span>
+            <a href="http://xiaomozhang.github.io" target="_blank">小张哥</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">83.2k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2017";
+                    var startMonth = "09";
+                    var startDate = "5";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xiaomozhang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyide7@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/yide.zhang.3998" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/yide.zhang.3998" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://twitter.com/zhangyide7" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/zhangyide7" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1678658351" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1678658351" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

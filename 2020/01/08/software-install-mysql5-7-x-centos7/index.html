@@ -1,0 +1,1391 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="CentOS7 安装 MySQL5.7.X, 小张哥blog">
+    <meta name="description" content="安装前准备MySQL安装需要准备root账户
+卸载MariaDB相关组件
+由于MariaDB与MySQL类似，在安装时候会提示与已经安装的RPM包有冲突，因此需要卸载一些包含有MariaDB关键字的RPM包。 
+执行rpm -qa | gr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>CentOS7 安装 MySQL5.7.X | 小张哥blog</title>
+    <link rel="icon" type="image/png" href="/images/avatar.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 5.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/avatar.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小张哥blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/avatar.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小张哥blog</div>
+        <div class="logo-desc">
+            
+            北冥有鱼,其名为鲲,鲲之大,不知其几千里也;化而为鸟,其名为鹏.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CentOS7 安装 MySQL5.7.X</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-01-08
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-01-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a><strong>安装前准备</strong></h2><p>MySQL安装需要准备root账户</p>
+<h3 id="卸载MariaDB相关组件"><a href="#卸载MariaDB相关组件" class="headerlink" title="卸载MariaDB相关组件"></a>卸载MariaDB相关组件</h3><blockquote>
+<p>由于MariaDB与MySQL类似，在安装时候会提示与已经安装的RPM包有冲突，因此需要卸载一些包含有MariaDB关键字的RPM包。 </p>
+<p>执行<code>rpm -qa | grep mysql</code>检查需要卸载的包</p>
+<p> 执行<code>rpm -qa | grep mariadb</code>检查需要卸载的包</p>
+<p>如发现存在<code>mariadb</code>与<code>mysql</code>则使用<code>rpm -e --nodeps xxx</code>进行卸载</p>
+</blockquote>
+<pre class=" language-SHELL"><code class="language-SHELL">[root@vm31_123 mysql-5.7.28-1.el7.x86_64]# rpm -qa | grep mariadb # 检查mariadb
+mariadb-libs-5.5.64-1.el7.x86_64
+
+# 如有就进行卸载
+[root@vm31_123 mysql-5.7.28-1.el7.x86_64]# rpm -e --nodeps mariadb-libs-5.5.64-1.el7.x86_64</code></pre>
+<h3 id="下载安装文件"><a href="#下载安装文件" class="headerlink" title="下载安装文件"></a>下载安装文件</h3><p>这里我直接在官网拿到了MySQL5.7.28的下载地址，通过wget进行下载</p>
+<pre class=" language-shell"><code class="language-shell">wget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar</code></pre>
+<h3 id="解压安装文件"><a href="#解压安装文件" class="headerlink" title="解压安装文件"></a>解压安装文件</h3><p>这里解压文件以后，直接放到新文件夹<code>mysql-5.7.28-1.el7.x86_64</code>了，可以看到目录下面有很多rpm包</p>
+<pre class=" language-verilog"><code class="language-verilog">tar xvf mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm<span class="token operator">-</span>bundle<span class="token punctuation">.</span>tar <span class="token operator">-</span>C mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64
+
+<span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># ll
+总用量 <span class="token number">595272</span>
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>  <span class="token number">45109364</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>client<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>    <span class="token number">318768</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>   <span class="token number">7037096</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>devel<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>  <span class="token number">49329100</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>embedded<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>  <span class="token number">23354908</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>embedded<span class="token operator">-</span>compat<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span> <span class="token number">136837816</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>embedded<span class="token operator">-</span>devel<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>   <span class="token number">4374364</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>libs<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span>   <span class="token number">1353312</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">04</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>libs<span class="token operator">-</span>compat<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span> <span class="token number">208694824</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">05</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span>r<span class="token operator">--</span> <span class="token number">1</span> <span class="token number">7155</span> <span class="token number">31415</span> <span class="token number">133129992</span> <span class="token number">9</span>月  <span class="token number">30</span> <span class="token number">16</span><span class="token punctuation">:</span><span class="token number">05</span> mysql<span class="token operator">-</span>community<span class="token operator">-</span>test<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm</code></pre>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><h3 id="检查3306端口"><a href="#检查3306端口" class="headerlink" title="检查3306端口"></a>检查3306端口</h3><p>MySQL默认使用3306端口，安装前查看端口是否被占用</p>
+<pre class=" language-shell"><code class="language-shell">netstat -anp|grep 3306</code></pre>
+<h3 id="安装相应的rpm包"><a href="#安装相应的rpm包" class="headerlink" title="安装相应的rpm包"></a>安装相应的rpm包</h3><ul>
+<li>mysql-community-common-5.7.28-1.el7.x86_64.rpm</li>
+<li>mysql-community-libs-5.7.28-1.el7.x86_64.rpm</li>
+<li>mysql-community-client-5.7.28-1.el7.x86_64.rpm</li>
+<li>mysql-community-server-5.7.28-1.el7.x86_64.rpm</li>
+</ul>
+<p>以上四个文件按照顺序依次安装，顺序不能错乱</p>
+<pre class=" language-shell"><code class="language-shell">rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</code></pre>
+<p>以下为安装日志，只要之前的<code>mariadb</code>和<code>mysql</code>卸载干净了，一般不会有问题</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># rpm <span class="token operator">-</span>ivh mysql<span class="token operator">-</span>community<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+警告：mysql<span class="token operator">-</span>community<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm<span class="token punctuation">:</span> 头V3 DSA<span class="token operator">/</span>SHA1 Signature<span class="token punctuation">,</span> 密钥 ID <span class="token number">5072e1</span>f5<span class="token punctuation">:</span> NOKEY
+准备中<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>                          ################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+正在升级<span class="token operator">/</span>安装<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+   <span class="token number">1</span><span class="token punctuation">:</span>mysql<span class="token operator">-</span>community<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>e################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># rpm <span class="token operator">-</span>ivh mysql<span class="token operator">-</span>community<span class="token operator">-</span>libs<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+警告：mysql<span class="token operator">-</span>community<span class="token operator">-</span>libs<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm<span class="token punctuation">:</span> 头V3 DSA<span class="token operator">/</span>SHA1 Signature<span class="token punctuation">,</span> 密钥 ID <span class="token number">5072e1</span>f5<span class="token punctuation">:</span> NOKEY
+准备中<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>                          ################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+正在升级<span class="token operator">/</span>安装<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+   <span class="token number">1</span><span class="token punctuation">:</span>mysql<span class="token operator">-</span>community<span class="token operator">-</span>libs<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># rpm <span class="token operator">-</span>ivh mysql<span class="token operator">-</span>community<span class="token operator">-</span>client<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+警告：mysql<span class="token operator">-</span>community<span class="token operator">-</span>client<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm<span class="token punctuation">:</span> 头V3 DSA<span class="token operator">/</span>SHA1 Signature<span class="token punctuation">,</span> 密钥 ID <span class="token number">5072e1</span>f5<span class="token punctuation">:</span> NOKEY
+准备中<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>                          ################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+正在升级<span class="token operator">/</span>安装<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+   <span class="token number">1</span><span class="token punctuation">:</span>mysql<span class="token operator">-</span>community<span class="token operator">-</span>client<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>e################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># rpm <span class="token operator">-</span>ivh mysql<span class="token operator">-</span>community<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm
+警告：mysql<span class="token operator">-</span>community<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">.</span>rpm<span class="token punctuation">:</span> 头V3 DSA<span class="token operator">/</span>SHA1 Signature<span class="token punctuation">,</span> 密钥 ID <span class="token number">5072e1</span>f5<span class="token punctuation">:</span> NOKEY
+准备中<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>                          ################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span>
+正在升级<span class="token operator">/</span>安装<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+   <span class="token number">1</span><span class="token punctuation">:</span>mysql<span class="token operator">-</span>community<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>e################################# <span class="token punctuation">[</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">]</span></code></pre>
+<h2 id="后续工作"><a href="#后续工作" class="headerlink" title="后续工作"></a>后续工作</h2><h3 id="启动MySQL服务"><a href="#启动MySQL服务" class="headerlink" title="启动MySQL服务"></a>启动MySQL服务</h3><pre class=" language-shell"><code class="language-shell">systemctl start mysqld</code></pre>
+<h3 id="查看MySQL服务状态"><a href="#查看MySQL服务状态" class="headerlink" title="查看MySQL服务状态"></a>查看MySQL服务状态</h3><pre class=" language-shell"><code class="language-shell">systemctl status mysqld</code></pre>
+<p>输出日志</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># systemctl status mysqld
+● mysqld<span class="token punctuation">.</span>service <span class="token operator">-</span> MySQL Server
+   Loaded<span class="token punctuation">:</span> loaded <span class="token punctuation">(</span><span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>systemd<span class="token operator">/</span>system<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset<span class="token punctuation">:</span> disabled<span class="token punctuation">)</span>
+   Active<span class="token punctuation">:</span> active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since 三 <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> CST<span class="token punctuation">;</span> <span class="token number">6</span>s ago
+     Docs<span class="token punctuation">:</span> man<span class="token punctuation">:</span><span class="token function">mysqld</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+           http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//dev.mysql.com/doc/refman/en/using-systemd.html</span>
+  Process<span class="token punctuation">:</span> <span class="token number">22483</span> ExecStart<span class="token operator">=/</span>usr<span class="token operator">/</span>sbin<span class="token operator">/</span>mysqld <span class="token operator">--</span>daemonize <span class="token operator">--</span>pid<span class="token operator">-</span>file<span class="token operator">=/</span><span class="token keyword">var</span><span class="token operator">/</span>run<span class="token operator">/</span>mysqld<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>pid <span class="token property">$MYSQLD_OPTS</span> <span class="token punctuation">(</span>code<span class="token operator">=</span>exited<span class="token punctuation">,</span> status<span class="token operator">=</span><span class="token number">0</span><span class="token operator">/</span>SUCCESS<span class="token punctuation">)</span>
+  Process<span class="token punctuation">:</span> <span class="token number">22450</span> ExecStartPre<span class="token operator">=/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>mysqld_pre_systemd <span class="token punctuation">(</span>code<span class="token operator">=</span>exited<span class="token punctuation">,</span> status<span class="token operator">=</span><span class="token number">0</span><span class="token operator">/</span>SUCCESS<span class="token punctuation">)</span>
+ Main PID<span class="token punctuation">:</span> <span class="token number">22486</span> <span class="token punctuation">(</span>mysqld<span class="token punctuation">)</span>
+    Tasks<span class="token punctuation">:</span> <span class="token number">27</span>
+   Memory<span class="token punctuation">:</span> <span class="token number">193.8</span>M
+   CGroup<span class="token punctuation">:</span> <span class="token operator">/</span>system<span class="token punctuation">.</span>slice<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>service
+           └─<span class="token number">22486</span> <span class="token operator">/</span>usr<span class="token operator">/</span>sbin<span class="token operator">/</span>mysqld <span class="token operator">--</span>daemonize <span class="token operator">--</span>pid<span class="token operator">-</span>file<span class="token operator">=/</span><span class="token keyword">var</span><span class="token operator">/</span>run<span class="token operator">/</span>mysqld<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>pid
+
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.468981</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Found ca<span class="token punctuation">.</span>pem<span class="token punctuation">,</span> server<span class="token operator">-</span>cert<span class="token punctuation">.</span>pem <span class="token keyword">and</span> server<span class="token operator">-</span>key<span class="token punctuation">.</span>pem in data directory<span class="token punctuation">.</span> Trying to enable SSL support using them<span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.469015</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Skipping generation of SSL certificates as certificate files are present in data directory<span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.470439</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Warning<span class="token punctuation">]</span> CA certificate ca<span class="token punctuation">.</span>pem is self <span class="token keyword">signed</span><span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.470543</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Skipping generation of RSA key pair as key files are present in data directory<span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.471329</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Server hostname <span class="token punctuation">(</span><span class="token keyword">bind</span><span class="token operator">-</span>address<span class="token punctuation">)</span><span class="token punctuation">:</span> '<span class="token operator">*</span>'<span class="token punctuation">;</span> port<span class="token punctuation">:</span> <span class="token number">3306</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.471412</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> IPv6 is available<span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.471436</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span>   <span class="token operator">-</span> '<span class="token punctuation">:</span><span class="token punctuation">:</span>' resolves to '<span class="token punctuation">:</span><span class="token punctuation">:</span>'<span class="token punctuation">;</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.471467</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Server socket created on IP<span class="token punctuation">:</span> '<span class="token punctuation">:</span><span class="token punctuation">:</span>'<span class="token punctuation">.</span>
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 mysqld<span class="token punctuation">[</span><span class="token number">22483</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T13<span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06.485478</span>Z <span class="token number">0</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> Event Scheduler<span class="token punctuation">:</span> Loaded <span class="token number">0</span> events
+<span class="token number">1</span>月 <span class="token number">08</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">02</span><span class="token punctuation">:</span><span class="token number">06</span> vm31_123 systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> Started MySQL Server<span class="token punctuation">.</span></code></pre>
+<h3 id="修改默认密码"><a href="#修改默认密码" class="headerlink" title="修改默认密码"></a>修改默认密码</h3><h4 id="查看MySQL安装成功以后生成的零时密码"><a href="#查看MySQL安装成功以后生成的零时密码" class="headerlink" title="查看MySQL安装成功以后生成的零时密码"></a>查看MySQL安装成功以后生成的零时密码</h4><pre class=" language-shell"><code class="language-shell">sudo cat /var/log/mysqld.log |grep 'temporary password'</code></pre>
+<p>输出结果，可以看到我们的mysql零时密码是<code>;2o1:2h%!ruT</code></p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># sudo cat <span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>log<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>log <span class="token operator">|</span>grep 'temporary password'
+<span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">08</span>T12<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">09.914526</span>Z <span class="token number">1</span> <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> A temporary password is generated <span class="token keyword">for</span> root@localhost<span class="token punctuation">:</span> <span class="token punctuation">;</span><span class="token number">2</span>o1<span class="token punctuation">:</span><span class="token number">2</span>h<span class="token operator">%!</span>ruT</code></pre>
+<h4 id="使用零时密码登录修改"><a href="#使用零时密码登录修改" class="headerlink" title="使用零时密码登录修改"></a>使用零时密码登录修改</h4><p>输入<code>mysql -uroot -p</code>以后会提示我们输入密码，这时候输入刚刚生成的零时密码<code>;2o1:2h%!ruT</code>即可登录</p>
+<p>接下来就可以使用<code>ALTER USER 'root'@'localhost' IDENTIFIED BY 'MySQL@123';</code>（此处MySQL@123为数据库密码，根据需求自行设置更改）</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>root@vm31_123 mysql<span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>el7<span class="token punctuation">.</span>x86_64<span class="token punctuation">]</span># mysql <span class="token operator">-</span>uroot <span class="token operator">-</span>p
+Enter password<span class="token punctuation">:</span>
+Welcome to the MySQL monitor<span class="token punctuation">.</span>  Commands <span class="token keyword">end</span> <span class="token keyword">with</span> <span class="token punctuation">;</span> <span class="token keyword">or</span> \g<span class="token punctuation">.</span>
+Your MySQL connection id is <span class="token number">2</span>
+Server version<span class="token punctuation">:</span> <span class="token number">5.7</span><span class="token punctuation">.</span><span class="token number">28</span>
+
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">2019</span><span class="token punctuation">,</span> Oracle <span class="token keyword">and</span><span class="token operator">/</span><span class="token keyword">or</span> its affiliates<span class="token punctuation">.</span> All rights reserved<span class="token punctuation">.</span>
+
+Oracle is a registered trademark of Oracle Corporation <span class="token keyword">and</span><span class="token operator">/</span><span class="token keyword">or</span> its
+affiliates<span class="token punctuation">.</span> Other names may be trademarks of their respective
+owners<span class="token punctuation">.</span>
+
+Type <span class="token number">'he</span>lp<span class="token punctuation">;</span>' <span class="token keyword">or</span> '\h' <span class="token keyword">for</span> help<span class="token punctuation">.</span> Type '\c' to clear the current <span class="token keyword">input</span> statement<span class="token punctuation">.</span>
+
+mysql<span class="token operator">></span> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MySQL@<span class="token number">123</span>'<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span></code></pre>
+<h2 id="设置外部IP访问MySQL"><a href="#设置外部IP访问MySQL" class="headerlink" title="设置外部IP访问MySQL"></a>设置外部IP访问MySQL</h2><p>为了能够让外部访问数据库，需要将root的Host值改为’%’，具体步骤如下：</p>
+<p>查看允许连接到本数据库的信息，执行命令<code>select host,user from mysql.user;</code></p>
+<p>默认root只能通过localhost连接，不能远程访问。</p>
+<ul>
+<li>选择数据库：<code>use mysql;</code></li>
+<li>先执行：<code>update user set Host='%' where User='root';</code></li>
+<li> 再执行:<code>flush privileges;</code> # 刷新权限</li>
+</ul>
+<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> <span class="token keyword">use</span> mysql<span class="token punctuation">;</span>
+Reading <span class="token keyword">table</span> information <span class="token keyword">for</span> completion of <span class="token keyword">table</span> <span class="token keyword">and</span> column names
+You can turn off <span class="token keyword">this</span> feature to get a quicker startup <span class="token keyword">with</span> <span class="token operator">-</span>A
+
+Database changed
+mysql<span class="token operator">></span> update user set Host<span class="token operator">=</span>'<span class="token operator">%</span>' where User<span class="token operator">=</span>'root'<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">1</span> row affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+Rows matched<span class="token punctuation">:</span> <span class="token number">1</span>  Changed<span class="token punctuation">:</span> <span class="token number">1</span>  Warnings<span class="token punctuation">:</span> <span class="token number">0</span>
+
+mysql<span class="token operator">></span> flush privileges<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span></code></pre>
+<p>当设置完host=%以后，就可以使用我们熟悉<code>navicat</code>或者<code>sequel</code>进行连接了</p>
+<h2 id="修改MySQL默认编码为utf8"><a href="#修改MySQL默认编码为utf8" class="headerlink" title="修改MySQL默认编码为utf8"></a>修改MySQL默认编码为<code>utf8</code></h2><p>当我们MySQL安装完成以后，默认编码不一定是<code>utf8</code>，虽然在建库建表的时候可以指定，但是始终不方便，那么接下来我们将MySQL默认编码设置为<code>utf8</code></p>
+<h3 id="查看MySQL默认编码"><a href="#查看MySQL默认编码" class="headerlink" title="查看MySQL默认编码"></a>查看MySQL默认编码</h3><p>使用<code>show variables like 'character_set_%';</code></p>
+<pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token operator">|</span> Variable_name            <span class="token operator">|</span> Value                      <span class="token operator">|</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token operator">|</span> character_set_client     <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_connection <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_database   <span class="token operator">|</span> latin1                     <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_filesystem <span class="token operator">|</span> binary                     <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_results    <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_server     <span class="token operator">|</span> latin1                     <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_system     <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_sets_dir       <span class="token operator">|</span> <span class="token operator">/</span>usr<span class="token operator">/</span>share<span class="token operator">/</span>mysql<span class="token operator">/</span>charsets<span class="token operator">/</span> <span class="token operator">|</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token number">8</span> rows in set <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span></code></pre>
+<p>可以看到<code>character_set_server</code>这里是<code>latin1</code>，并不是我们想要的<code>utf8</code>，这时候我们就需要编辑<code>/etc/my.cnf</code>文件进行设置</p>
+<h3 id="编辑my-cnf文件"><a href="#编辑my-cnf文件" class="headerlink" title="编辑my.cnf文件"></a>编辑<code>my.cnf</code>文件</h3><p><code>sudo vim /etc/my.cnf</code>进行编辑，加入以下内容，然后保存重启MySQL服务<code>systemctl restart mysqld</code></p>
+<p><strong>注意：<code>my.cnf</code>中默认包含<code>[mysqld]</code>，修改的时候就在原来的基础上改就好了，不要重复了</strong></p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+<span class="token keyword">default</span><span class="token operator">-</span>character<span class="token operator">-</span>set<span class="token operator">=</span>utf8
+
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+collation<span class="token operator">-</span>server <span class="token operator">=</span> utf8_unicode_ci
+init<span class="token operator">-</span>connect<span class="token operator">=</span>'SET NAMES utf8'
+character<span class="token operator">-</span>set<span class="token operator">-</span>server <span class="token operator">=</span> utf8
+
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
+<span class="token keyword">default</span><span class="token operator">-</span>character<span class="token operator">-</span>set<span class="token operator">=</span>utf8</code></pre>
+<h3 id="再次查看修改以后的编码"><a href="#再次查看修改以后的编码" class="headerlink" title="再次查看修改以后的编码"></a>再次查看修改以后的编码</h3><pre class=" language-verilog"><code class="language-verilog">mysql<span class="token operator">></span> show variables like 'character_set_<span class="token operator">%</span>'<span class="token punctuation">;</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token operator">|</span> Variable_name            <span class="token operator">|</span> Value                      <span class="token operator">|</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token operator">|</span> character_set_client     <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_connection <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_database   <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_filesystem <span class="token operator">|</span> binary                     <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_results    <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_server     <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_system     <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_sets_dir       <span class="token operator">|</span> <span class="token operator">/</span>usr<span class="token operator">/</span>share<span class="token operator">/</span>mysql<span class="token operator">/</span>charsets<span class="token operator">/</span> <span class="token operator">|</span>
+<span class="token operator">+--------------------------+----------------------------+</span>
+<span class="token number">8</span> rows in set <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span></code></pre>
+<p>到这里，MySQL的默认编码就是我么熟悉的<code>utf8</code>了</p>
+<h2 id="忘记MySQL密码"><a href="#忘记MySQL密码" class="headerlink" title="忘记MySQL密码"></a>忘记MySQL密码</h2><p>当忘记MySQL密码或者MySQL密码错误是会提示错误<code>ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)</code></p>
+<p>如果找不到MySQL密码时可以使用跳过mysql权限表启动的方式进行密码重置</p>
+<ol>
+<li><p>停止MySQL服务</p>
+<pre class=" language-shell"><code class="language-shell">systemctl stop mysqld</code></pre>
+</li>
+<li><p>跳过mysql权限表启动</p>
+<pre class=" language-shell"><code class="language-shell">/usr/bin/mysqld_safe --skip-grant-tables</code></pre>
+</li>
+<li><p>无密码登录</p>
+<pre class=" language-shell"><code class="language-shell">mysql -uroot</code></pre>
+</li>
+</ol>
+<ol start="4">
+<li><p>选择<code>mysql</code>数据库</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">use</span> mysql<span class="token punctuation">;</span> </code></pre>
+</li>
+</ol>
+<ol start="5">
+<li><p>重置密码</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">update</span> <span class="token keyword">user</span> <span class="token keyword">set</span> authentication_string<span class="token operator">=</span>password<span class="token punctuation">(</span><span class="token string">'MySQL@123'</span><span class="token punctuation">)</span> <span class="token keyword">where</span> <span class="token keyword">user</span><span class="token operator">=</span><span class="token string">'root'</span><span class="token punctuation">;</span> </code></pre>
+</li>
+</ol>
+<ol start="6">
+<li><p>刷新权限</p>
+<pre class=" language-shell"><code class="language-shell">flush privileges;</code></pre>
+</li>
+</ol>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
+<li><p>修改默认配置，当插入或更新的数据比较大时，需要修改<code>/etc/my.cnf</code>配置文件</p>
+<p>在[mysqlId]下加上 max_allowed_packet=20M (可以通过 mysql –help | grep my.cnf查找文件路径)</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>当重启服务器后，MySQL无法正常启动，遇到以下问题 <code>Job for mysqld.service failed. See 'systemctl status mysqld.service' and 'journalctl -xn' for details.</code> 查看日志，出现如下错误内容：</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token operator">/</span>usr<span class="token operator">/</span>sbin<span class="token operator">/</span>mysqld<span class="token punctuation">:</span> Can't create<span class="token operator">/</span>write to file '<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>run<span class="token operator">/</span>mysqld<span class="token operator">/</span>mysqld<span class="token punctuation">.</span>pid' <span class="token punctuation">(</span>Errcode<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token operator">-</span> No such file <span class="token keyword">or</span> directory<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> Can't start server<span class="token punctuation">:</span> can't create PID file<span class="token punctuation">:</span> No such file <span class="token keyword">or</span> directory
+Copy</code></pre>
+<p>解决方案：</p>
+<pre><code>##授权
+chown mysql.mysql /var/run/mysqld/
+
+##启动
+/etc/init.d/mysqld start</code></pre>
+</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://xiaomozhang.github.io" rel="external nofollow noreferrer">小张哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://xiaomozhang.github.io/2020/01/08/software-install-mysql5-7-x-centos7/">http://xiaomozhang.github.io/2020/01/08/software-install-mysql5-7-x-centos7/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://xiaomozhang.github.io" target="_blank">小张哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/images/pay/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/images/pay/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '030d444ad9269f7d8b2a',
+        clientSecret: 'cf8eee8d0229cdefa0943263806746a2ea317004',
+        repo: 'xiaomozhang.github.io',
+        owner: 'xiaomozhang',
+        admin: "xiaomozhang",
+        id: '2020-01-08T19-31-55',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/01/09/java-tuple/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Java中使用元组">
+                        
+                        <span class="card-title">Java中使用元组</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            元组（Tuple）是固定数量的不同类型的元素的组合。元组与集合的不同之处在于，元组中的元素类型可以是不同的，而且数量固定。元组的好处在于可以把多个元素作为一个单元传递。如果一个方法需要返回多个值，可以把这多个值作为元组返回，而不需要创建额外
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/01/07/java8-date-gson/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Java8 中的日期类序列化问题">
+                        
+                        <span class="card-title">Java8 中的日期类序列化问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            自从习惯了使用Java8 中的日期类以后，就已经完全抛弃了java.sql、java.util中的日期处理类，但是Java8中的日期类在序列化与反序列化时不是我们正常看到的标准格式，这里记录一下如何使用Gson进行序列化和反序列化时正常对J
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java8/" class="post-category">
+                                    Java8
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Gson/">
+                        <span class="chip bg-color">Gson</span>
+                    </a>
+                    
+                    <a href="/tags/Java8/">
+                        <span class="chip bg-color">Java8</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2017</span>
+            <a href="http://xiaomozhang.github.io" target="_blank">小张哥</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">83.2k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2017";
+                    var startMonth = "09";
+                    var startDate = "5";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xiaomozhang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyide7@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/yide.zhang.3998" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/yide.zhang.3998" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://twitter.com/zhangyide7" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/zhangyide7" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1678658351" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1678658351" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
