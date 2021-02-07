@@ -122,6 +122,98 @@ at org<span class="token punctuation">.</span>apache<span class="token punctuati
       </tags>
   </entry>
   <entry>
+    <title>使用wget或者curl下载github release文件</title>
+    <url>/2020/02/14/cmd-download-file/</url>
+    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker-compose-基础</title>
+    <url>/2018/07/11/docker-compose-start/</url>
+    <content><![CDATA[<h3 id="docker-compose介绍"><a href="#docker-compose介绍" class="headerlink" title="docker-compose介绍"></a>docker-compose介绍</h3><p>Docker-Compose 是 Docker 的一种编排服务，是一个用于在 Docker 上定义并运行复杂应用的工具，可以让用户在集群中部署分布式应用。</p>
+<p> Compose 中有两个重要的概念：</p>
+<ul>
+<li>服务 (service) ：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。</li>
+<li>项目 (project) ：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。</li>
+</ul>
+<p>一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理，通过子命令对项目中的一组容器进行便捷地生命周期管理。</p>
+<p>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。</p>
+<h3 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a>docker-compose安装</h3><p>docker-compose 是 Docker 的独立产品，因此需要安装 Docker 之后在单独安装 Docker Compose 。</p>
+<pre class=" language-shell"><code class="language-shell">#下载
+sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+#安装
+chmod +x /usr/local/bin/docker-compose
+
+# 显示docker-compose版本
+docker-compose version</code></pre>
+<p>docker-compose补全工具安装</p>
+<pre class=" language-shell"><code class="language-shell">#安装
+yum install bash-completion
+
+#下载docker-compose脚本
+curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose</code></pre>
+<p>docker-compose常用命令</p>
+<pre class=" language-shell"><code class="language-shell">#查看帮助
+docker-compose -h
+
+# -f  指定使用的 Compose 模板文件，默认为 docker-compose.yml，可以多次指定。
+docker-compose -f docker-compose.yml up -d 
+
+#启动所有容器，-d 将会在后台启动并运行所有的容器
+docker-compose up -d
+
+#停用移除所有容器以及网络相关
+docker-compose down
+
+#查看服务容器的输出
+docker-compose logs
+
+#列出项目中目前的所有容器
+docker-compose ps
+
+#构建（重新构建）项目中的服务容器。服务容器一旦构建后，将会带上一个标记名，例如对于 web 项目中的一个 db 容器，可能是 web_db。可以随时在项目目录下运行 docker-compose build 来重新构建服务
+docker-compose build
+
+#拉取服务依赖的镜像
+docker-compose pull
+
+#重启项目中的服务
+docker-compose restart
+
+#删除所有（停止状态的）服务容器。推荐先执行 docker-compose stop 命令来停止容器。
+docker-compose rm 
+
+#在指定服务上执行一个命令。
+docker-compose run ubuntu ping docker.com
+
+#设置指定服务运行的容器个数。通过 service=num 的参数来设置数量
+docker-compose scale web=3 db=2
+
+#启动已经存在的服务容器。
+docker-compose start
+
+#停止已经处于运行状态的容器，但不删除它。通过 docker-compose start 可以再次启动这些容器。
+docker-compose stop</code></pre>
+<p>本篇全是基本的安装和命令，下篇通过docker和docker-compose构建一些常用的软件运行环境</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.ityouknow.com/docker/2018/03/22/docker-compose.html">Docker(四)：Docker 三剑客之 Docker Compose</a></p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Comparable和Comparator的区别</title>
     <url>/2019/02/17/chinese-sort/</url>
     <content><![CDATA[<h2 id="Comparable"><a href="#Comparable" class="headerlink" title="Comparable"></a><strong>Comparable</strong></h2><p>Comparable可以认为是一个<strong>内比较器</strong>，实现了Comparable接口的类有一个特点，就是这些类是可以和自己比较的，至于具体和另一个实现了Comparable接口的类如何比较，则依赖compareTo方法的实现，compareTo方法也被称为<strong>自然比较方法</strong>。如果开发者add进入一个Collection的对象想要Collections的sort方法帮你自动进行排序的话，那么这个对象必须实现Comparable接口。compareTo方法的返回值是int，有三种情况：</p>
@@ -238,98 +330,6 @@ at org<span class="token punctuation">.</span>apache<span class="token punctuati
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用wget或者curl下载github release文件</title>
-    <url>/2020/02/14/cmd-download-file/</url>
-    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker-compose-基础</title>
-    <url>/2018/07/11/docker-compose-start/</url>
-    <content><![CDATA[<h3 id="docker-compose介绍"><a href="#docker-compose介绍" class="headerlink" title="docker-compose介绍"></a>docker-compose介绍</h3><p>Docker-Compose 是 Docker 的一种编排服务，是一个用于在 Docker 上定义并运行复杂应用的工具，可以让用户在集群中部署分布式应用。</p>
-<p> Compose 中有两个重要的概念：</p>
-<ul>
-<li>服务 (service) ：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。</li>
-<li>项目 (project) ：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。</li>
-</ul>
-<p>一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理，通过子命令对项目中的一组容器进行便捷地生命周期管理。</p>
-<p>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。</p>
-<h3 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a>docker-compose安装</h3><p>docker-compose 是 Docker 的独立产品，因此需要安装 Docker 之后在单独安装 Docker Compose 。</p>
-<pre class=" language-shell"><code class="language-shell">#下载
-sudo curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-
-#安装
-chmod +x /usr/local/bin/docker-compose
-
-# 显示docker-compose版本
-docker-compose version</code></pre>
-<p>docker-compose补全工具安装</p>
-<pre class=" language-shell"><code class="language-shell">#安装
-yum install bash-completion
-
-#下载docker-compose脚本
-curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose</code></pre>
-<p>docker-compose常用命令</p>
-<pre class=" language-shell"><code class="language-shell">#查看帮助
-docker-compose -h
-
-# -f  指定使用的 Compose 模板文件，默认为 docker-compose.yml，可以多次指定。
-docker-compose -f docker-compose.yml up -d 
-
-#启动所有容器，-d 将会在后台启动并运行所有的容器
-docker-compose up -d
-
-#停用移除所有容器以及网络相关
-docker-compose down
-
-#查看服务容器的输出
-docker-compose logs
-
-#列出项目中目前的所有容器
-docker-compose ps
-
-#构建（重新构建）项目中的服务容器。服务容器一旦构建后，将会带上一个标记名，例如对于 web 项目中的一个 db 容器，可能是 web_db。可以随时在项目目录下运行 docker-compose build 来重新构建服务
-docker-compose build
-
-#拉取服务依赖的镜像
-docker-compose pull
-
-#重启项目中的服务
-docker-compose restart
-
-#删除所有（停止状态的）服务容器。推荐先执行 docker-compose stop 命令来停止容器。
-docker-compose rm 
-
-#在指定服务上执行一个命令。
-docker-compose run ubuntu ping docker.com
-
-#设置指定服务运行的容器个数。通过 service=num 的参数来设置数量
-docker-compose scale web=3 db=2
-
-#启动已经存在的服务容器。
-docker-compose start
-
-#停止已经处于运行状态的容器，但不删除它。通过 docker-compose start 可以再次启动这些容器。
-docker-compose stop</code></pre>
-<p>本篇全是基本的安装和命令，下篇通过docker和docker-compose构建一些常用的软件运行环境</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.ityouknow.com/docker/2018/03/22/docker-compose.html">Docker(四)：Docker 三剑客之 Docker Compose</a></p>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1434,94 +1434,6 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA 2019 创建maven web项目</title>
-    <url>/2020/02/26/idea-web-project/</url>
-    <content><![CDATA[<h2 id="IntelliJ-IDEA-2019-创建maven-web项目"><a href="#IntelliJ-IDEA-2019-创建maven-web项目" class="headerlink" title="IntelliJ IDEA 2019 创建maven web项目"></a>IntelliJ IDEA 2019 创建maven web项目</h2><p>本文介绍使用IDEA创建不使用模板的web项目。</p>
-<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p><img src="/images/idea/image-20200226210315550.png" alt="image-20200226210315550"></p>
-<p><img src="/images/idea/image-20200226210458711.png" alt="image-20200226210458711"></p>
-<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><h4 id="修改项目结构设置"><a href="#修改项目结构设置" class="headerlink" title="修改项目结构设置"></a>修改项目结构设置</h4><p><img src="/images/idea/image-20200226212549419.png" alt="image-20200226212549419"></p>
-<h4 id="添加web-module"><a href="#添加web-module" class="headerlink" title="添加web module"></a>添加web module</h4><p><code>Project</code>那边没有什么需要修改配置的地方，不过需要的话可以修改<code>Project compiler output</code>，这里我们使用默认就可以了。</p>
-<p>此项目无任何适配服务组件（因为是手工创建Maven，没有选择任何Maven模板），因此需要我们进行添加。</p>
-<p>这里选择一个<code>Web</code>组件就表示这是一个<code>web project</code>了</p>
-<p><img src="/images/idea/image-20200226212710033.png" alt="image-20200226212710033"></p>
-<h4 id="配置Web-Resource-Directories"><a href="#配置Web-Resource-Directories" class="headerlink" title="配置Web Resource Directories"></a>配置Web Resource Directories</h4><p>这里要选择<code>scr/main</code>目录，并且在后面手动添加一个<code>webapp</code>目录。</p>
-<p>点OK，Web的资源目录便设置好了。</p>
-<p><img src="/images/idea/image-20200226213027305.png" alt="image-20200226213027305"></p>
-<h4 id="配置Deployment-Description"><a href="#配置Deployment-Description" class="headerlink" title="配置Deployment Description"></a>配置Deployment Description</h4><p>这一步是配置<code>web.xml</code>文件的位置，我们需要放在上一步<code>webapp</code>下面去。</p>
-<p><img src="/images/idea/image-20200226213229541.png" alt="image-20200226213229541"></p>
-<h4 id="修改完成的结果"><a href="#修改完成的结果" class="headerlink" title="修改完成的结果"></a>修改完成的结果</h4><p><img src="/images/idea/image-20200226213254439.png" alt="image-20200226213254439"></p>
-<p>到这里我们可以看到底部有一个警告，是我们还没有引入<code>aftifact</code>，接下来配置<code>Aftifacts</code>。</p>
-<h3 id="Aftifacts配置"><a href="#Aftifacts配置" class="headerlink" title="Aftifacts配置"></a>Aftifacts配置</h3><p>这个Aftifacts描述了当前项目发布的信息。现在进行添加，从Modeles中选择。</p>
-<h4 id="选择Modules"><a href="#选择Modules" class="headerlink" title="选择Modules"></a>选择Modules</h4><p><img src="/images/idea/image-20200226214750810.png" alt="image-20200226214750810"></p>
-<p>弹出窗直接选择我们的这个module，然后点击ok就可以了</p>
-<p><img src="/images/idea/image-20200226214919063.png" alt="image-20200226214919063"></p>
-<h4 id="配置完成以后的结果"><a href="#配置完成以后的结果" class="headerlink" title="配置完成以后的结果"></a>配置完成以后的结果</h4><p><img src="/images/idea/image-20200226215113669.png" alt="image-20200226215113669"></p>
-<p>再回过头去看<code>Modules</code>菜单下的警告也没有了。</p>
-<h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>这里我们就可以看到我们<code>web</code>项目必须要有的<code>web.xml</code>文件，并且我们在里面添加了一个<code>welcome-file</code>，当项目启动时打开我我们的<code>index.html</code>文件。</p>
-<p><img src="/images/idea/image-20200226215406335.png" alt="image-20200226215406335"></p>
-<h3 id="配置Tomcat"><a href="#配置Tomcat" class="headerlink" title="配置Tomcat"></a>配置Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a>下载Tomcat</h4><p>首先进入<a href="http://tomcat.apache.org/">Tomcat</a>官网，这里我们选择了一个<a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz">Tomcat-9.0.3</a>的版本进行下载。</p>
-<h4 id="配置Tomcat-Server"><a href="#配置Tomcat-Server" class="headerlink" title="配置Tomcat Server"></a>配置Tomcat Server</h4><p><img src="/images/idea/image-20200226215940914.png" alt="image-20200226215940914"></p>
-<p><img src="/images/idea/image-20200226220025940.png" alt="image-20200226220025940"></p>
-<h5 id="配置Deployment"><a href="#配置Deployment" class="headerlink" title="配置Deployment"></a>配置Deployment</h5><p><img src="/images/idea/image-20200226220205638.png" alt="image-20200226220205638"></p>
-<p><img src="/images/idea/image-20200226220459166.png" alt="image-20200226220459166"></p>
-<h5 id="配置Server"><a href="#配置Server" class="headerlink" title="配置Server"></a>配置Server</h5><p><img src="/images/idea/image-20200226220823555.png" alt="image-20200226220823555"></p>
-<h3 id="运行web项目"><a href="#运行web项目" class="headerlink" title="运行web项目"></a>运行web项目</h3><p>在webapp目录下面新建<code>index.html</code>文件，项目结构如下。</p>
-<p><img src="/images/idea/image-20200226221200309.png" alt="image-20200226221200309"></p>
-<p>接下来启动项目</p>
-<p><img src="/images/idea/image-20200226221359622.png" alt="image-20200226221359622"></p>
-<p>然后我们访问<a href="http://localhost:8080/%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%98%BE%E7%A4%BA%E4%BA%86%E6%88%91%E4%BB%AC%60index.html%60%E7%9A%84%E5%86%85%E5%AE%B9%E4%BA%86%E3%80%82">http://localhost:8080/，就可以看到显示了我们`index.html`的内容了。</a></p>
-<h3 id="新建Servlet"><a href="#新建Servlet" class="headerlink" title="新建Servlet"></a>新建Servlet</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>servlet<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>ServletException<span class="token punctuation">;</span>
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>WebServlet<span class="token punctuation">;</span>
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServlet<span class="token punctuation">;</span>
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletRequest<span class="token punctuation">;</span>
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletResponse<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>charset<span class="token punctuation">.</span>StandardCharsets<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * Created by xiaozhangge on 2020/2/26.
- */</span>
-<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span><span class="token string">"/index"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IndexServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token punctuation">{</span>
-        <span class="token function">doPost</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 解决乱码</span>
-        request<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">.</span><span class="token function">displayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String name <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>然后重启项目我们在地址栏输入<code>http://localhost:8080/index?name=哈哈哈</code>就可以看到页面输出了<code>哈哈哈</code></p>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
-<li><p>无法使用<code>servlet</code>包下面的类</p>
-<p>解决方案：在Modules加入Tomcat依赖</p>
-</li>
-</ul>
-<p><img src="/images/idea/image-20200226223033946.png" alt="image-20200226223033946"></p>
-<p><img src="/images/idea/image-20200226223106321.png" alt="image-20200226223106321"></p>
-<p><img src="/images/idea/image-20200226223154510.png" alt="image-20200226223154510"></p>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-      <tags>
-        <tag>Maven</tag>
-        <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java拆分shell命令成数组</title>
     <url>/2019/01/29/java-spilt-command/</url>
     <content><![CDATA[<h1 id="命令行拆分成string数组"><a href="#命令行拆分成string数组" class="headerlink" title="命令行拆分成string数组"></a>命令行拆分成string数组</h1><ul>
@@ -1620,79 +1532,91 @@ Array[6] = args</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Java中使用元组</title>
-    <url>/2020/01/09/java-tuple/</url>
-    <content><![CDATA[<p>元组（Tuple）是固定数量的不同类型的元素的组合。元组与集合的不同之处在于，元组中的元素类型可以是不同的，而且数量固定。元组的好处在于可以把多个元素作为一个单元传递。如果一个方法需要返回多个值，可以把这多个值作为元组返回，而不需要创建额外的类来表示。根据元素数量的不同，Vavr 总共提供了 Tuple0、Tuple1 到 Tuple8 等 9 个类。每个元组类都需要声明其元素类型。如 Tuple2&lt;String, Integer&gt;表示的是两个元素的元组，第一个元素的类型为 String，第二个元素的类型为 Integer。对于元组对象，可以使用 _1、_2 到 _8 来访问其中的元素。所有元组对象都是不可变的，在创建之后不能更改。</p>
-<p>元组通过接口 Tuple 的静态方法 of 来创建。元组类也提供了一些方法对它们进行操作。由于元组是不可变的，所有相关的操作都返回一个新的元组对象。在 清单 1 中，使用 Tuple.of 创建了一个 Tuple2 对象。Tuple2 的 map 方法用来转换元组中的每个元素，返回新的元组对象。而 apply 方法则把元组转换成单个值。其他元组类也有类似的方法。除了 map 方法之外，还有 map1、map2、map3 等方法来转换第 N 个元素；update1、update2 和 update3 等方法用来更新单个元素。</p>
-<br>
+    <title>IntelliJ IDEA 2019 创建maven web项目</title>
+    <url>/2020/02/26/idea-web-project/</url>
+    <content><![CDATA[<h2 id="IntelliJ-IDEA-2019-创建maven-web项目"><a href="#IntelliJ-IDEA-2019-创建maven-web项目" class="headerlink" title="IntelliJ IDEA 2019 创建maven web项目"></a>IntelliJ IDEA 2019 创建maven web项目</h2><p>本文介绍使用IDEA创建不使用模板的web项目。</p>
+<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p><img src="/images/idea/image-20200226210315550.png" alt="image-20200226210315550"></p>
+<p><img src="/images/idea/image-20200226210458711.png" alt="image-20200226210458711"></p>
+<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><h4 id="修改项目结构设置"><a href="#修改项目结构设置" class="headerlink" title="修改项目结构设置"></a>修改项目结构设置</h4><p><img src="/images/idea/image-20200226212549419.png" alt="image-20200226212549419"></p>
+<h4 id="添加web-module"><a href="#添加web-module" class="headerlink" title="添加web module"></a>添加web module</h4><p><code>Project</code>那边没有什么需要修改配置的地方，不过需要的话可以修改<code>Project compiler output</code>，这里我们使用默认就可以了。</p>
+<p>此项目无任何适配服务组件（因为是手工创建Maven，没有选择任何Maven模板），因此需要我们进行添加。</p>
+<p>这里选择一个<code>Web</code>组件就表示这是一个<code>web project</code>了</p>
+<p><img src="/images/idea/image-20200226212710033.png" alt="image-20200226212710033"></p>
+<h4 id="配置Web-Resource-Directories"><a href="#配置Web-Resource-Directories" class="headerlink" title="配置Web Resource Directories"></a>配置Web Resource Directories</h4><p>这里要选择<code>scr/main</code>目录，并且在后面手动添加一个<code>webapp</code>目录。</p>
+<p>点OK，Web的资源目录便设置好了。</p>
+<p><img src="/images/idea/image-20200226213027305.png" alt="image-20200226213027305"></p>
+<h4 id="配置Deployment-Description"><a href="#配置Deployment-Description" class="headerlink" title="配置Deployment Description"></a>配置Deployment Description</h4><p>这一步是配置<code>web.xml</code>文件的位置，我们需要放在上一步<code>webapp</code>下面去。</p>
+<p><img src="/images/idea/image-20200226213229541.png" alt="image-20200226213229541"></p>
+<h4 id="修改完成的结果"><a href="#修改完成的结果" class="headerlink" title="修改完成的结果"></a>修改完成的结果</h4><p><img src="/images/idea/image-20200226213254439.png" alt="image-20200226213254439"></p>
+<p>到这里我们可以看到底部有一个警告，是我们还没有引入<code>aftifact</code>，接下来配置<code>Aftifacts</code>。</p>
+<h3 id="Aftifacts配置"><a href="#Aftifacts配置" class="headerlink" title="Aftifacts配置"></a>Aftifacts配置</h3><p>这个Aftifacts描述了当前项目发布的信息。现在进行添加，从Modeles中选择。</p>
+<h4 id="选择Modules"><a href="#选择Modules" class="headerlink" title="选择Modules"></a>选择Modules</h4><p><img src="/images/idea/image-20200226214750810.png" alt="image-20200226214750810"></p>
+<p>弹出窗直接选择我们的这个module，然后点击ok就可以了</p>
+<p><img src="/images/idea/image-20200226214919063.png" alt="image-20200226214919063"></p>
+<h4 id="配置完成以后的结果"><a href="#配置完成以后的结果" class="headerlink" title="配置完成以后的结果"></a>配置完成以后的结果</h4><p><img src="/images/idea/image-20200226215113669.png" alt="image-20200226215113669"></p>
+<p>再回过头去看<code>Modules</code>菜单下的警告也没有了。</p>
+<h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>这里我们就可以看到我们<code>web</code>项目必须要有的<code>web.xml</code>文件，并且我们在里面添加了一个<code>welcome-file</code>，当项目启动时打开我我们的<code>index.html</code>文件。</p>
+<p><img src="/images/idea/image-20200226215406335.png" alt="image-20200226215406335"></p>
+<h3 id="配置Tomcat"><a href="#配置Tomcat" class="headerlink" title="配置Tomcat"></a>配置Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a>下载Tomcat</h4><p>首先进入<a href="http://tomcat.apache.org/">Tomcat</a>官网，这里我们选择了一个<a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz">Tomcat-9.0.3</a>的版本进行下载。</p>
+<h4 id="配置Tomcat-Server"><a href="#配置Tomcat-Server" class="headerlink" title="配置Tomcat Server"></a>配置Tomcat Server</h4><p><img src="/images/idea/image-20200226215940914.png" alt="image-20200226215940914"></p>
+<p><img src="/images/idea/image-20200226220025940.png" alt="image-20200226220025940"></p>
+<h5 id="配置Deployment"><a href="#配置Deployment" class="headerlink" title="配置Deployment"></a>配置Deployment</h5><p><img src="/images/idea/image-20200226220205638.png" alt="image-20200226220205638"></p>
+<p><img src="/images/idea/image-20200226220459166.png" alt="image-20200226220459166"></p>
+<h5 id="配置Server"><a href="#配置Server" class="headerlink" title="配置Server"></a>配置Server</h5><p><img src="/images/idea/image-20200226220823555.png" alt="image-20200226220823555"></p>
+<h3 id="运行web项目"><a href="#运行web项目" class="headerlink" title="运行web项目"></a>运行web项目</h3><p>在webapp目录下面新建<code>index.html</code>文件，项目结构如下。</p>
+<p><img src="/images/idea/image-20200226221200309.png" alt="image-20200226221200309"></p>
+<p>接下来启动项目</p>
+<p><img src="/images/idea/image-20200226221359622.png" alt="image-20200226221359622"></p>
+<p>然后我们访问<a href="http://localhost:8080/%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%98%BE%E7%A4%BA%E4%BA%86%E6%88%91%E4%BB%AC%60index.html%60%E7%9A%84%E5%86%85%E5%AE%B9%E4%BA%86%E3%80%82">http://localhost:8080/，就可以看到显示了我们`index.html`的内容了。</a></p>
+<h3 id="新建Servlet"><a href="#新建Servlet" class="headerlink" title="新建Servlet"></a>新建Servlet</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>servlet<span class="token punctuation">;</span>
 
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>ServletException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>WebServlet<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServlet<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletResponse<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>charset<span class="token punctuation">.</span>StandardCharsets<span class="token punctuation">;</span>
 
+<span class="token comment" spellcheck="true">/**
+ * Created by xiaozhangge on 2020/2/26.
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span><span class="token string">"/index"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IndexServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
 
-<p>Python和Scala语言中有自带元组，Jdk中是没有这个数据类型的，虽然使用数组或者map也能达到想要的效果，但总归是没有元组方便。</p>
-<p>比如说一个方法有多个返回值时，虽然可以用<code>Object[]</code>或者<code>Map</code>进行封装，但是在拆箱的时候类型会缺失，所以还是不太方便。Java中有很多元组库，这里推荐一个我经常使用的<a href="https://www.vavr.io/">vavr</a>，当然<code>Tuple</code>只是这个库中的一小部分，该库提供了强大的函数式编程的能力，可以像写Scala一样写Java</p>
-<h2 id="引入pom依赖"><a href="#引入pom依赖" class="headerlink" title="引入pom依赖"></a>引入pom依赖</h2><p>目前最新的稳定版是<code>0.10.2</code></p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- https://mvnrepository.com/artifact/io.vavr/vavr --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.10.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 解决乱码</span>
+        request<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">.</span><span class="token function">displayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String name <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<h2 id="常用方法使用"><a href="#常用方法使用" class="headerlink" title="常用方法使用"></a>常用方法使用</h2><h3 id="创建元组对象"><a href="#创建元组对象" class="headerlink" title="创建元组对象"></a>创建元组对象</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>可以看到我们通过<code>Tuple.of</code>创建了一个有三个元素的元组对象，输出结果</p>
-<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">40</span><span class="token punctuation">:</span><span class="token number">26.137</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
-<h3 id="更新元组内容"><a href="#更新元组内容" class="headerlink" title="更新元组内容"></a>更新元组内容</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  tuple3 <span class="token operator">=</span> tuple3<span class="token punctuation">.</span><span class="token function">update1</span><span class="token punctuation">(</span><span class="token string">"哈哈哈哈"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>通过<code>update1-n</code>方法，可以实现元组内容的更新，更新结果</p>
-<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span>
-<span class="token punctuation">(</span>哈哈哈哈<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
-<h3 id="方法多个返回值使用元组接收"><a href="#方法多个返回值使用元组接收" class="headerlink" title="方法多个返回值使用元组接收"></a>方法多个返回值使用元组接收</h3><p>这个需求其实之前在<a href="https://xiaomozhang.github.io/2020/01/04/java8-date-cycle/">Java8 处理常见的日期周期</a>这篇文章已经用过了，比如我们需要获取一个周期数据，有开始和结束，那么元组无疑是最好的选择。比如我们需要封装一个方法获取今天的最小时间和最大时间，那么这里就需要两个返回值，虽然我们可以用<code>Object[]</code>或者<code>Map</code>之类的容器达到我们的效果，但是如果我返回值得类型都不尽想同，那么在获取的时候就要进行类型转换，加到了转换出错的概率，但是使用元组就不会有这个问题。</p>
-<ul>
-<li><p>获取一天的开始和结束时间</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  LocalDate now <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 一天中从零时开始</span>
-  LocalDateTime startTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MIN<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 一天到23:59:59秒结束</span>
-  LocalDateTime endTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>startTime<span class="token punctuation">,</span> endTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>获取返回值</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> tuple2 <span class="token operator">=</span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">// 这里通过 _n 或者 _n() 获取每一个元组中的一列数据</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span><span class="token function">_1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"结束时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>我们可以看到<code>getNowRange</code>同时有两个放回值，通过<code>Tuple2</code>进行保存，过 _n 或者 _n() 获取每一个元组中的一列数据。最后获取的结果为</p>
-<pre><code>开始时间:2020-01-09T00:00
-结束时间:2020-01-09T23:59:59.999999999</code></pre>
+<p>然后重启项目我们在地址栏输入<code>http://localhost:8080/index?name=哈哈哈</code>就可以看到页面输出了<code>哈哈哈</code></p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li><p>无法使用<code>servlet</code>包下面的类</p>
+<p>解决方案：在Modules加入Tomcat依赖</p>
 </li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是元组最常用的一些方法，其实我理解的元组就是一种列式存储的数据容器，和我们平时用的<code>Collection</code>接口下的一些<code>List</code>，<code>Set</code>不同，他们都是以行的形式存储，有了<code>Tuple</code>以后，在日常开发中也多了一种数据在内存中存储的选择。</p>
-<p>当然元组只是<code>vavr</code>库中的一小部分，更多使用方法还是要看官方文档</p>
-<p>参考文章：<a href="https://www.ibm.com/developerworks/cn/java/j-understanding-functional-programming-4/index.html">使用 Vavr 进行函数式编程</a></p>
+<p><img src="/images/idea/image-20200226223033946.png" alt="image-20200226223033946"></p>
+<p><img src="/images/idea/image-20200226223106321.png" alt="image-20200226223106321"></p>
+<p><img src="/images/idea/image-20200226223154510.png" alt="image-20200226223154510"></p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>工具使用</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>Maven</tag>
+        <tag>IDEA</tag>
       </tags>
   </entry>
   <entry>
@@ -2172,6 +2096,82 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
       </categories>
       <tags>
         <tag>Java8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java中使用元组</title>
+    <url>/2020/01/09/java-tuple/</url>
+    <content><![CDATA[<p>元组（Tuple）是固定数量的不同类型的元素的组合。元组与集合的不同之处在于，元组中的元素类型可以是不同的，而且数量固定。元组的好处在于可以把多个元素作为一个单元传递。如果一个方法需要返回多个值，可以把这多个值作为元组返回，而不需要创建额外的类来表示。根据元素数量的不同，Vavr 总共提供了 Tuple0、Tuple1 到 Tuple8 等 9 个类。每个元组类都需要声明其元素类型。如 Tuple2&lt;String, Integer&gt;表示的是两个元素的元组，第一个元素的类型为 String，第二个元素的类型为 Integer。对于元组对象，可以使用 _1、_2 到 _8 来访问其中的元素。所有元组对象都是不可变的，在创建之后不能更改。</p>
+<p>元组通过接口 Tuple 的静态方法 of 来创建。元组类也提供了一些方法对它们进行操作。由于元组是不可变的，所有相关的操作都返回一个新的元组对象。在 清单 1 中，使用 Tuple.of 创建了一个 Tuple2 对象。Tuple2 的 map 方法用来转换元组中的每个元素，返回新的元组对象。而 apply 方法则把元组转换成单个值。其他元组类也有类似的方法。除了 map 方法之外，还有 map1、map2、map3 等方法来转换第 N 个元素；update1、update2 和 update3 等方法用来更新单个元素。</p>
+<br>
+
+
+
+<p>Python和Scala语言中有自带元组，Jdk中是没有这个数据类型的，虽然使用数组或者map也能达到想要的效果，但总归是没有元组方便。</p>
+<p>比如说一个方法有多个返回值时，虽然可以用<code>Object[]</code>或者<code>Map</code>进行封装，但是在拆箱的时候类型会缺失，所以还是不太方便。Java中有很多元组库，这里推荐一个我经常使用的<a href="https://www.vavr.io/">vavr</a>，当然<code>Tuple</code>只是这个库中的一小部分，该库提供了强大的函数式编程的能力，可以像写Scala一样写Java</p>
+<h2 id="引入pom依赖"><a href="#引入pom依赖" class="headerlink" title="引入pom依赖"></a>引入pom依赖</h2><p>目前最新的稳定版是<code>0.10.2</code></p>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- https://mvnrepository.com/artifact/io.vavr/vavr --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>vavr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.10.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="常用方法使用"><a href="#常用方法使用" class="headerlink" title="常用方法使用"></a>常用方法使用</h2><h3 id="创建元组对象"><a href="#创建元组对象" class="headerlink" title="创建元组对象"></a>创建元组对象</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>可以看到我们通过<code>Tuple.of</code>创建了一个有三个元素的元组对象，输出结果</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">40</span><span class="token punctuation">:</span><span class="token number">26.137</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
+<h3 id="更新元组内容"><a href="#更新元组内容" class="headerlink" title="更新元组内容"></a>更新元组内容</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple3<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">,</span> Long<span class="token operator">></span> tuple3 <span class="token operator">=</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"TupleTests"</span><span class="token punctuation">,</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Long<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  tuple3 <span class="token operator">=</span> tuple3<span class="token punctuation">.</span><span class="token function">update1</span><span class="token punctuation">(</span><span class="token string">"哈哈哈哈"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tuple3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>通过<code>update1-n</code>方法，可以实现元组内容的更新，更新结果</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token punctuation">(</span>TupleTests<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span>哈哈哈哈<span class="token punctuation">,</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">09</span>T20<span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">27.623</span><span class="token punctuation">,</span> <span class="token number">9223372036854775807</span><span class="token punctuation">)</span></code></pre>
+<h3 id="方法多个返回值使用元组接收"><a href="#方法多个返回值使用元组接收" class="headerlink" title="方法多个返回值使用元组接收"></a>方法多个返回值使用元组接收</h3><p>这个需求其实之前在<a href="https://xiaomozhang.github.io/2020/01/04/java8-date-cycle/">Java8 处理常见的日期周期</a>这篇文章已经用过了，比如我们需要获取一个周期数据，有开始和结束，那么元组无疑是最好的选择。比如我们需要封装一个方法获取今天的最小时间和最大时间，那么这里就需要两个返回值，虽然我们可以用<code>Object[]</code>或者<code>Map</code>之类的容器达到我们的效果，但是如果我返回值得类型都不尽想同，那么在获取的时候就要进行类型转换，加到了转换出错的概率，但是使用元组就不会有这个问题。</p>
+<ul>
+<li><p>获取一天的开始和结束时间</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  LocalDate now <span class="token operator">=</span> LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 一天中从零时开始</span>
+  LocalDateTime startTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MIN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 一天到23:59:59秒结束</span>
+  LocalDateTime endTime <span class="token operator">=</span> now<span class="token punctuation">.</span><span class="token function">atTime</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Tuple<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>startTime<span class="token punctuation">,</span> endTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>获取返回值</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Tuple2<span class="token operator">&lt;</span>LocalDateTime<span class="token punctuation">,</span> LocalDateTime<span class="token operator">></span> tuple2 <span class="token operator">=</span> <span class="token function">getNowRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// 这里通过 _n 或者 _n() 获取每一个元组中的一列数据</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span><span class="token function">_1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"结束时间:"</span> <span class="token operator">+</span> tuple2<span class="token punctuation">.</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>我们可以看到<code>getNowRange</code>同时有两个放回值，通过<code>Tuple2</code>进行保存，过 _n 或者 _n() 获取每一个元组中的一列数据。最后获取的结果为</p>
+<pre><code>开始时间:2020-01-09T00:00
+结束时间:2020-01-09T23:59:59.999999999</code></pre>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是元组最常用的一些方法，其实我理解的元组就是一种列式存储的数据容器，和我们平时用的<code>Collection</code>接口下的一些<code>List</code>，<code>Set</code>不同，他们都是以行的形式存储，有了<code>Tuple</code>以后，在日常开发中也多了一种数据在内存中存储的选择。</p>
+<p>当然元组只是<code>vavr</code>库中的一小部分，更多使用方法还是要看官方文档</p>
+<p>参考文章：<a href="https://www.ibm.com/developerworks/cn/java/j-understanding-functional-programming-4/index.html">使用 Vavr 进行函数式编程</a></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3459,6 +3459,52 @@ The stdin plugin is now waiting for input:
       </tags>
   </entry>
   <entry>
+    <title>Mac 修改MySQL编码集</title>
+    <url>/2019/03/09/mac-change-character-set/</url>
+    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
+<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    latin1 ## 这里是默认编码
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    latin1  ## 这里是默认编码
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
+[mysql]
+default-character-set=utf8</code></pre>
+<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
+<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
+<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    utf8 ## 这里是修改以后的
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    utf8 ## 这里是修改以后的
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+]]></content>
+      <categories>
+        <category>MacBook</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>logstash 启动脚本</title>
     <url>/2020/12/09/lsboot/</url>
     <content><![CDATA[<ul>
@@ -3531,52 +3577,6 @@ ruby <span class="token punctuation">{</span> code <span class="token operator">
 ]]></content>
       <tags>
         <tag>Logstash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 修改MySQL编码集</title>
-    <url>/2019/03/09/mac-change-character-set/</url>
-    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
-<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    latin1 ## 这里是默认编码
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    latin1  ## 这里是默认编码
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
-default-character-set=utf8
-
-[mysqld]
-collation-server = utf8_unicode_ci
-init-connect='SET NAMES utf8'
-character-set-server = utf8
-
-[mysql]
-default-character-set=utf8</code></pre>
-<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
-<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
-<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    utf8 ## 这里是修改以后的
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    utf8 ## 这里是修改以后的
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-]]></content>
-      <categories>
-        <category>MacBook</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4269,23 +4269,6 @@ AND TABLE_NAME = '</span>health_exp'<span class="token punctuation">;</span> </c
       </tags>
   </entry>
   <entry>
-    <title>MySQL 导出表结构和表数据 mysqldump用法</title>
-    <url>/2019/03/22/mysql-note-mysqldump/</url>
-    <content><![CDATA[<p>命令行下具体用法如下：</p>
-<p>mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;</p>
-<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database > dump.sql</code></pre>
-<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table > dump.sql</code></pre>
-<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database > dump.sql</code></pre>
-<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table > dump.sql</code></pre>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
     <url>/2020/07/19/mybatis-one-collection-basic-type/</url>
     <content><![CDATA[<p>在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个<code>Collection&lt;String&gt;</code>或者<code>Collection&lt;Integer&gt;</code>  类型，那么我们的<code>ResultMap</code>该如何定义？</p>
@@ -4310,6 +4293,23 @@ AND TABLE_NAME = '</span>health_exp'<span class="token punctuation">;</span> </c
       </categories>
       <tags>
         <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 导出表结构和表数据 mysqldump用法</title>
+    <url>/2019/03/22/mysql-note-mysqldump/</url>
+    <content><![CDATA[<p>命令行下具体用法如下：</p>
+<p>mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;</p>
+<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table > dump.sql</code></pre>
+<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table > dump.sql</code></pre>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -4749,85 +4749,6 @@ source /etc/profile</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Spring Aop AspectJ 摘录笔记</title>
-    <url>/2020/02/16/spring-aop/</url>
-    <content><![CDATA[<p>原文链接：<a href="https://juejin.im/post/5a55af9e518825734d14813f">https://juejin.im/post/5a55af9e518825734d14813f</a></p>
-<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="@AspectJ"></a>@AspectJ</h2><p><strong>AspectJ是一个AOP框架，它能够对java代码进行AOP编译（一般在编译期进行），让java代码具有AspectJ的AOP功能（当然需要特殊的编译器），可以这样说AspectJ是目前实现AOP框架中最成熟，功能最丰富的语言，更幸运的是，AspectJ与java程序完全兼容，几乎是无缝关联，因此对于有java编程基础的工程师，上手和使用都非常容易.</strong> </p>
-<p>其实<strong>AspectJ单独就是一门语言</strong>，它需要专门的编译器(ajc编译器). Spring AOP 与ApectJ的目的一致，都是为了统一处理横切业务，但与AspectJ不同的是，Spring AOP并不尝试提供完整的AOP功能(即使它完全可以实现)，Spring AOP 更注重的是与Spring IOC容器的结合，并结合该优势来解决横切业务的问题，因此在AOP的功能完善方面，相对来说AspectJ具有更大的优势，同时,Spring注意到AspectJ在AOP的实现方式上依赖于特殊编译器(ajc编译器)，因此Spring很机智回避了这点，<strong>转向采用动态代理技术的实现原理来构建Spring AOP的内部机制（动态织入），这是与AspectJ（静态织入）最根本的区别</strong>。在AspectJ 1.5后，引入@Aspect形式的注解风格的开发，Spring也非常快地跟进了这种方式，因此Spring 2.0后便使用了与AspectJ一样的注解。请注意，<strong>Spring 只是使用了与 AspectJ 5 一样的注解，但仍然没有使用 AspectJ 的编译器，底层依是动态代理技术的实现，因此并不依赖于 AspectJ 的编译器</strong>。</p>
-<p>所以，Spring AOP虽然是使用了那一套注解，其实实现AOP的底层是使用了动态代理(JDK或者CGLib)来动态植入。</p>
-<blockquote>
-<ul>
-<li>切点:定位到具体方法的一个表达式</li>
-<li>切面: 切点+建言</li>
-<li>建言(增强):定位到方法后干什么事</li>
-</ul>
-</blockquote>
-<h2 id="前置通知-Before"><a href="#前置通知-Before" class="headerlink" title="前置通知 @Before"></a>前置通知 @Before</h2><p>前置通知通过@Before注解进行标注，并可直接传入切点表达式的值，该通知在目标函数执行前执行，注意JoinPoint，是Spring提供的静态变量，通过joinPoint 参数，可以获取目标对象的信息,如类名称,方法参数,方法名称等，该参数是可选的。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"前置通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"前置通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="后置通知-AfterReturning"><a href="#后置通知-AfterReturning" class="headerlink" title="后置通知 @AfterReturning"></a>后置通知 @AfterReturning</h2><p>通过@AfterReturning注解进行标注，该函数在目标函数执行完成后执行，并可以获取到目标函数最终的返回值returnVal，当目标函数没有返回值时，returnVal将返回null，必须通过returning = “returnVal”注明参数的名称而且必须与通知函数的参数名称相同。请注意，在任何通知中这些参数都是可选的，需要使用时直接填写即可，不需要使用时，可以完成不用声明出来。<strong>当出现异常则不执行。</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">,</span> returning <span class="token operator">=</span> <span class="token string">"returnVal"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">AfterReturning</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">,</span> Object returnVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 returnVal {} "</span><span class="token punctuation">,</span> returnVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="异常通知-AfterThrowing"><a href="#异常通知-AfterThrowing" class="headerlink" title="异常通知 @AfterThrowing"></a>异常通知 @AfterThrowing</h2><p>该通知只有在异常时才会被触发，并由throwing来声明一个接收异常信息的变量，同样异常通知也用于Joinpoint参数，需要时加上即可。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">,</span> throwing <span class="token operator">=</span> <span class="token string">"e"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterThrowable</span><span class="token punctuation">(</span>Throwable e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"异常: "</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="最终通知-After"><a href="#最终通知-After" class="headerlink" title="最终通知 @After"></a>最终通知 @After</h2><p>该通知有点类似于finally代码块，只要应用了无论什么情况下都会执行。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@After</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">after</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"最终通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"最终通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="环绕通知-Around"><a href="#环绕通知-Around" class="headerlink" title="环绕通知 @Around"></a>环绕通知 @Around</h2><p>环绕通知既可以在目标方法前执行也可在目标方法之后执行，更重要的是环绕通知可以控制目标方法是否指向执行，但即使如此，我们应该尽量以最简单的方式满足需求，在仅需在目标方法前执行时，应该采用前置通知而非环绕通知。第一个参数必须是ProceedingJoinPoint，通过该对象的proceed()方法来执行目标函数，proceed()的返回值就是环绕通知的返回值。同样的，ProceedingJoinPoint对象也是可以获取目标对象的信息、如类名称、方法参数、方法名称等等。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> Object <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint joinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"环绕通知前...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 执行目标函数</span>
-  Object obj <span class="token operator">=</span> joinPoint<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"环绕通知后....{}"</span><span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="execution-语法"><a href="#execution-语法" class="headerlink" title="execution 语法"></a>execution 语法</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// scope ：方法作用域，如public,private,protect</span>
-<span class="token comment" spellcheck="true">// returnt-type：方法返回值类型</span>
-<span class="token comment" spellcheck="true">// fully-qualified-class-name：方法所在类的完全限定名称</span>
-<span class="token comment" spellcheck="true">// parameters 方法参数</span>
-<span class="token function">execution</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>scope<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token keyword">return</span><span class="token operator">-</span>type<span class="token operator">></span> <span class="token operator">&lt;</span>fully<span class="token operator">-</span>qualified<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">-</span>name<span class="token operator">></span><span class="token punctuation">.</span>*<span class="token punctuation">(</span>parameters<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<ul>
-<li><code>execution(* com.xiaozhangge.*.*(..))</code> com.xiaozhangge包下所有类的所有方法</li>
-<li><code>execution(* com.xiaozhangge.Dog.*(..))</code> Dog类下的所有方</li>
-<li><code>execution(* com.xiaozhangge.Dog*.*(..))</code> Dog开头的类下的所有方法</li>
-</ul>
-<h2 id="切点-Pointcut"><a href="#切点-Pointcut" class="headerlink" title="切点 @Pointcut"></a>切点 @Pointcut</h2><p>在使用切入点时，还可以抽出来一个<code>@Pointcut</code>来供使用，可以避免重复的execution在不同的注解里写很多遍。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"execution(public * com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pointcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
-<p>使用</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointcut()"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"使用@Pointcut 的前置通知"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="AOP切面的优先级"><a href="#AOP切面的优先级" class="headerlink" title="AOP切面的优先级"></a>AOP切面的优先级</h2><p>有时候，我们对一个方法会有多个切面的问题，这个时候还会涉及到切面的执行顺序的问题。</p>
-<p>我们可以定义每个切面的优先级， Spring 中提供注解 <code>@Order(i)</code> ，当 <code>i</code> 的值越小，优先级越高。</p>
-<h2 id="环绕和前后置通知的区别"><a href="#环绕和前后置通知的区别" class="headerlink" title="环绕和前后置通知的区别"></a>环绕和前后置通知的区别</h2><p>对于有变量缓存需求，线程安全的应用场景，前后置通知实现比较困难，而环绕通知实现就非常容易；</p>
-<p><a href="https://www.cnblogs.com/yaphetsfang/articles/11378821.html">https://www.cnblogs.com/yaphetsfang/articles/11378821.html</a></p>
-]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>AspectJ</tag>
-        <tag>Aop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS7 安装 MySQL5.7.X</title>
     <url>/2020/01/08/software-install-mysql5-7-x-centos7/</url>
     <content><![CDATA[<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a><strong>安装前准备</strong></h2><p>MySQL安装需要准备root账户</p>
@@ -5062,6 +4983,85 @@ chown mysql.mysql /var/run/mysqld/
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Aop AspectJ 摘录笔记</title>
+    <url>/2020/02/16/spring-aop/</url>
+    <content><![CDATA[<p>原文链接：<a href="https://juejin.im/post/5a55af9e518825734d14813f">https://juejin.im/post/5a55af9e518825734d14813f</a></p>
+<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="@AspectJ"></a>@AspectJ</h2><p><strong>AspectJ是一个AOP框架，它能够对java代码进行AOP编译（一般在编译期进行），让java代码具有AspectJ的AOP功能（当然需要特殊的编译器），可以这样说AspectJ是目前实现AOP框架中最成熟，功能最丰富的语言，更幸运的是，AspectJ与java程序完全兼容，几乎是无缝关联，因此对于有java编程基础的工程师，上手和使用都非常容易.</strong> </p>
+<p>其实<strong>AspectJ单独就是一门语言</strong>，它需要专门的编译器(ajc编译器). Spring AOP 与ApectJ的目的一致，都是为了统一处理横切业务，但与AspectJ不同的是，Spring AOP并不尝试提供完整的AOP功能(即使它完全可以实现)，Spring AOP 更注重的是与Spring IOC容器的结合，并结合该优势来解决横切业务的问题，因此在AOP的功能完善方面，相对来说AspectJ具有更大的优势，同时,Spring注意到AspectJ在AOP的实现方式上依赖于特殊编译器(ajc编译器)，因此Spring很机智回避了这点，<strong>转向采用动态代理技术的实现原理来构建Spring AOP的内部机制（动态织入），这是与AspectJ（静态织入）最根本的区别</strong>。在AspectJ 1.5后，引入@Aspect形式的注解风格的开发，Spring也非常快地跟进了这种方式，因此Spring 2.0后便使用了与AspectJ一样的注解。请注意，<strong>Spring 只是使用了与 AspectJ 5 一样的注解，但仍然没有使用 AspectJ 的编译器，底层依是动态代理技术的实现，因此并不依赖于 AspectJ 的编译器</strong>。</p>
+<p>所以，Spring AOP虽然是使用了那一套注解，其实实现AOP的底层是使用了动态代理(JDK或者CGLib)来动态植入。</p>
+<blockquote>
+<ul>
+<li>切点:定位到具体方法的一个表达式</li>
+<li>切面: 切点+建言</li>
+<li>建言(增强):定位到方法后干什么事</li>
+</ul>
+</blockquote>
+<h2 id="前置通知-Before"><a href="#前置通知-Before" class="headerlink" title="前置通知 @Before"></a>前置通知 @Before</h2><p>前置通知通过@Before注解进行标注，并可直接传入切点表达式的值，该通知在目标函数执行前执行，注意JoinPoint，是Spring提供的静态变量，通过joinPoint 参数，可以获取目标对象的信息,如类名称,方法参数,方法名称等，该参数是可选的。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"前置通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"前置通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="后置通知-AfterReturning"><a href="#后置通知-AfterReturning" class="headerlink" title="后置通知 @AfterReturning"></a>后置通知 @AfterReturning</h2><p>通过@AfterReturning注解进行标注，该函数在目标函数执行完成后执行，并可以获取到目标函数最终的返回值returnVal，当目标函数没有返回值时，returnVal将返回null，必须通过returning = “returnVal”注明参数的名称而且必须与通知函数的参数名称相同。请注意，在任何通知中这些参数都是可选的，需要使用时直接填写即可，不需要使用时，可以完成不用声明出来。<strong>当出现异常则不执行。</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">,</span> returning <span class="token operator">=</span> <span class="token string">"returnVal"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">AfterReturning</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">,</span> Object returnVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"后置通知 returnVal {} "</span><span class="token punctuation">,</span> returnVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="异常通知-AfterThrowing"><a href="#异常通知-AfterThrowing" class="headerlink" title="异常通知 @AfterThrowing"></a>异常通知 @AfterThrowing</h2><p>该通知只有在异常时才会被触发，并由throwing来声明一个接收异常信息的变量，同样异常通知也用于Joinpoint参数，需要时加上即可。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">,</span> throwing <span class="token operator">=</span> <span class="token string">"e"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterThrowable</span><span class="token punctuation">(</span>Throwable e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"异常: "</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="最终通知-After"><a href="#最终通知-After" class="headerlink" title="最终通知 @After"></a>最终通知 @After</h2><p>该通知有点类似于finally代码块，只要应用了无论什么情况下都会执行。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@After</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">after</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"最终通知 CLASS_METHOD : {}"</span><span class="token punctuation">,</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"最终通知 ARGS : {}"</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="环绕通知-Around"><a href="#环绕通知-Around" class="headerlink" title="环绕通知 @Around"></a>环绕通知 @Around</h2><p>环绕通知既可以在目标方法前执行也可在目标方法之后执行，更重要的是环绕通知可以控制目标方法是否指向执行，但即使如此，我们应该尽量以最简单的方式满足需求，在仅需在目标方法前执行时，应该采用前置通知而非环绕通知。第一个参数必须是ProceedingJoinPoint，通过该对象的proceed()方法来执行目标函数，proceed()的返回值就是环绕通知的返回值。同样的，ProceedingJoinPoint对象也是可以获取目标对象的信息、如类名称、方法参数、方法名称等等。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"execution(* com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> Object <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint joinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"环绕通知前...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 执行目标函数</span>
+  Object obj <span class="token operator">=</span> joinPoint<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"环绕通知后....{}"</span><span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="execution-语法"><a href="#execution-语法" class="headerlink" title="execution 语法"></a>execution 语法</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// scope ：方法作用域，如public,private,protect</span>
+<span class="token comment" spellcheck="true">// returnt-type：方法返回值类型</span>
+<span class="token comment" spellcheck="true">// fully-qualified-class-name：方法所在类的完全限定名称</span>
+<span class="token comment" spellcheck="true">// parameters 方法参数</span>
+<span class="token function">execution</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>scope<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token keyword">return</span><span class="token operator">-</span>type<span class="token operator">></span> <span class="token operator">&lt;</span>fully<span class="token operator">-</span>qualified<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">-</span>name<span class="token operator">></span><span class="token punctuation">.</span>*<span class="token punctuation">(</span>parameters<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li><code>execution(* com.xiaozhangge.*.*(..))</code> com.xiaozhangge包下所有类的所有方法</li>
+<li><code>execution(* com.xiaozhangge.Dog.*(..))</code> Dog类下的所有方</li>
+<li><code>execution(* com.xiaozhangge.Dog*.*(..))</code> Dog开头的类下的所有方法</li>
+</ul>
+<h2 id="切点-Pointcut"><a href="#切点-Pointcut" class="headerlink" title="切点 @Pointcut"></a>切点 @Pointcut</h2><p>在使用切入点时，还可以抽出来一个<code>@Pointcut</code>来供使用，可以避免重复的execution在不同的注解里写很多遍。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"execution(public * com.xiaozhangge.aop.service.*.*(..))"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pointcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
+<p>使用</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointcut()"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"使用@Pointcut 的前置通知"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="AOP切面的优先级"><a href="#AOP切面的优先级" class="headerlink" title="AOP切面的优先级"></a>AOP切面的优先级</h2><p>有时候，我们对一个方法会有多个切面的问题，这个时候还会涉及到切面的执行顺序的问题。</p>
+<p>我们可以定义每个切面的优先级， Spring 中提供注解 <code>@Order(i)</code> ，当 <code>i</code> 的值越小，优先级越高。</p>
+<h2 id="环绕和前后置通知的区别"><a href="#环绕和前后置通知的区别" class="headerlink" title="环绕和前后置通知的区别"></a>环绕和前后置通知的区别</h2><p>对于有变量缓存需求，线程安全的应用场景，前后置通知实现比较困难，而环绕通知实现就非常容易；</p>
+<p><a href="https://www.cnblogs.com/yaphetsfang/articles/11378821.html">https://www.cnblogs.com/yaphetsfang/articles/11378821.html</a></p>
+]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>AspectJ</tag>
+        <tag>Aop</tag>
       </tags>
   </entry>
   <entry>
@@ -5721,12 +5721,12 @@ Processed a total of 195 messages</code></pre>
       <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>具体默认的配置大家可以参考开篇讲解的上一篇文章,我这里仅仅介绍了自定义额外的连接信息。</p>
-<p>首先是第一个连接配置信息,这个名称是第一，代表第一组Redis连接池配置信息，功能名称会影响到后续在使用上的操作，如果想要另外取名的话可以将bean加上名称@Bean(name=”您的名字””）<br>在这个函数中接收到框架原型建立的RedisConnectionFactory为参数，将该该工厂传到最底下的createRedisTemplate()来建立StringRedisTemplate，所以如果希望建立的是其他RedisTemplate连接模板的话就可以修改createRedisTemplate()<br>Redis连接池,如此一来要我们开发过程中操作时忘了标注要使用Redis的话，便会采用这默认的连接池,<br>接着来看第二个功能，在这个功能中可以看到约会了设定档中第二条连接池的参数，前面提到我只需要修改连接池的地址信息，所以关于pool等相关设定还是抓第一条连接池的，这边就看大家有没有需要自行修改〜<br>抓到第二条连接池的设置后，进行的事情实际上就是自己建立连接工厂，先设置好Config相关对象，然后创建LettuceConnectionFactory对象，最后和第一个功能相同，将工厂引入createRedisTemplate()来生成RedisTemplate连接池<br>所以实际上全部要做的事情就是，预定的连线就用预定的factory建立RedisTemplate物件来操作，额外的连线就进入设定档后，自己添加factory来生成RedisTemplate物件，就是这么简单〜<br>连接池建立好后就是实际的操作啦，操作方式也很简单，就用@Autowired就好，只是要带名称让Spring Boot知道你要使用的是其中RedisTemplate哪个连接池</p>
+<p>首先是第一个连接配置信息,这个名称是first，代表第一组Redis连接池配置信息，功能名称会影响到后续在使用上的操作，如果想要另外取名的话可以将bean加上名称@Bean(name=”您的名字””）<br>在这个函数中接收到框架原型建立的RedisConnectionFactory为参数，将该该工厂传到最底下的createRedisTemplate()来建立StringRedisTemplate，所以如果希望建立的是其他RedisTemplate连接模板的话就可以修改createRedisTemplate()<br>Redis连接池,如此一来要我们开发过程中操作时忘了标注要使用Redis的话，便会采用这默认的连接池,<br>接着来看第二个功能，在这个功能中可以看到设定档中第二条连接池的参数，前面提到我们只需要修改连接池的地址信息，所以关于pool等相关设定还是抓第一条连接池的，这边就看大家有没有需要自行修改〜<br>设置完毕第二条连接池的设置后，进行的事情实际上就是自己建立连接工厂，先设置好Config相关对象，然后创建LettuceConnectionFactory对象，最后和第一个功能相同，将工厂引入createRedisTemplate()来生成RedisTemplate连接池<br>所以实际上我们要做的事情就是，设置定义的连接池就自定义的factory建立RedisTemplate物件来操作，额外的连线就进入设定档后，自己添加factory来生成RedisTemplate连接模板，就是这么简单〜<br>连接池建立好后就是实际的操作啦，操作方式也很简单，就用@Autowired就好，只是要带名称让Spring Boot知道你要使用的是其中RedisTemplate哪个连接池即可</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
 <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"first"</span><span class="token punctuation">)</span>
 StringRedisTemplate firstRedisTemplate<span class="token punctuation">;</span>
 <span class="token annotation punctuation">@Autowired</span>
-<span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"second"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"stringRedisTemplate"</span><span class="token punctuation">)</span>
 StringRedisTemplate secondRedisTemplate<span class="token punctuation">;</span></code></pre>
 <p>示例代码：<a href="https://github.com/xiaomozhang/personal-life-example/tree/master/example-redis">https://github.com/xiaomozhang/personal-life-example/tree/master/example-redis</a></p>
 ]]></content>
@@ -7840,87 +7840,6 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       </tags>
   </entry>
   <entry>
-    <title>正则表达式</title>
-    <url>/2020/03/18/tools-regex/</url>
-    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">.</td>
-<td align="center">匹配除了换行符以外的任意字符</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
-</tr>
-<tr>
-<td align="center">.*</td>
-<td align="center">任意数量的不包含换行的字符</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td align="center">单词的开头或结尾，也就是单词的分界处</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td align="center">匹配字母、数字、下划线、汉字</td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td align="center">匹配任意空白字符</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td align="center">匹配数字</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">匹配字符串开始</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td align="center">匹配字符串结束</td>
-</tr>
-</tbody></table>
-<p>反义</p>
-<table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">\W</td>
-<td align="center">匹配非字母、下划线、数字、汉字</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td align="center">匹配不是空白字符串</td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td align="center">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td align="center">匹配不是单词开始或者结束的位置</td>
-</tr>
-<tr>
-<td align="center">[^x]</td>
-<td align="center">匹配除了<code>x</code>以外的任意字符</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>正则表达式</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Swagger2 常用注解</title>
     <url>/2020/01/03/swagger-annotation/</url>
     <content><![CDATA[<p>Spring Boot 开发restful接口时，往往会有很多RESTful API，一般会选择swagger对接口进行管理</p>
@@ -8141,6 +8060,87 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       <tags>
         <tag>Swagger</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>正则表达式</title>
+    <url>/2020/03/18/tools-regex/</url>
+    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">匹配除了换行符以外的任意字符</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
+</tr>
+<tr>
+<td align="center">.*</td>
+<td align="center">任意数量的不包含换行的字符</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">单词的开头或结尾，也就是单词的分界处</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">匹配字母、数字、下划线、汉字</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">匹配任意空白字符</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">匹配数字</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">匹配字符串开始</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配字符串结束</td>
+</tr>
+</tbody></table>
+<p>反义</p>
+<table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\W</td>
+<td align="center">匹配非字母、下划线、数字、汉字</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="center">匹配不是空白字符串</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">匹配不是单词开始或者结束的位置</td>
+</tr>
+<tr>
+<td align="center">[^x]</td>
+<td align="center">匹配除了<code>x</code>以外的任意字符</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>正则表达式</category>
+      </categories>
   </entry>
   <entry>
     <title>Vertica 简介</title>
