@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-09T13:48:30.144Z</updated>
+  <updated>2021-10-09T14:42:17.245Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go服务跨平台交叉编译打包与设置版本号</title>
+    <link href="http://xiaomozhang.github.io/2021/10/11/golang-goarch-goos-mutiple-platform-build/"/>
+    <id>http://xiaomozhang.github.io/2021/10/11/golang-goarch-goos-mutiple-platform-build/</id>
+    <published>2021-10-11T02:35:03.000Z</published>
+    <updated>2021-10-09T14:42:17.245Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt; </summary>
+        
+      
+    
+    
+    
+    <category term="golang跨平台交叉编译" scheme="http://xiaomozhang.github.io/categories/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/"/>
+    
+    
+    <category term="Goarch、Goos、Cgo" scheme="http://xiaomozhang.github.io/tags/Goarch%E3%80%81Goos%E3%80%81Cgo/"/>
+    
+  </entry>
   
   <entry>
     <title>java8新特性原理以及实战应用-lambda函数式编程与日期篇</title>
@@ -513,33 +538,6 @@
     
     
     <category term="Gson" scheme="http://xiaomozhang.github.io/tags/Gson/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>当Gson遇上Java8中的日期API</title>
-    <link href="http://xiaomozhang.github.io/2020/06/23/gson-java8-datetime/"/>
-    <id>http://xiaomozhang.github.io/2020/06/23/gson-java8-datetime/</id>
-    <published>2020-06-23T13:45:00.000Z</published>
-    <updated>2021-02-01T13:35:34.978Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt; Java8开始，JDK中提供了一组新的日期&lt;code&gt;API&lt;/code&gt;，当我们需要序列化数据成json时，经常会用到&lt;code&gt;Gson&lt;/code&gt;。当&lt;code&gt;Java8&lt;/code&gt;中的日期&lt;code&gt;API&lt;/code&gt;遇上&lt;code&gt;Gson&lt;/code&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="Gson" scheme="http://xiaomozhang.github.io/categories/Gson/"/>
-    
-    
-    <category term="Gson" scheme="http://xiaomozhang.github.io/tags/Gson/"/>
-    
-    <category term="Java8" scheme="http://xiaomozhang.github.io/tags/Java8/"/>
     
   </entry>
   
