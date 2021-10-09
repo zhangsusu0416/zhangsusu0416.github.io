@@ -445,14 +445,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    5.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    23 分
                 </div>
                 
 
@@ -769,7 +769,191 @@ jsonBeanProperty<span class="token operator">=</span><span class="token punctuat
 
 <span class="token punctuation">}</span></code></pre>
 <h2 id="6-带缓存与不带缓存Http接口从Apollo读取配置"><a href="#6-带缓存与不带缓存Http接口从Apollo读取配置" class="headerlink" title="6:带缓存与不带缓存Http接口从Apollo读取配置"></a>6:带缓存与不带缓存Http接口从Apollo读取配置</h2><p>6.1 通过带缓存的Http接口从Apollo读取配置<br>该接口会从缓存中获取配置，适合频率较高的配置拉取请求，如简单的每30秒轮询一次配置。</p>
-<p>由于缓存最多会有一秒的延时，所以如果需要配合配置推送通知实现实时更新配置的话，请参考<a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#13-%E9%80%9A%E8%BF%87%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%AD%98%E7%9A%84http%E6%8E%A5%E5%8F%A3%E4%BB%8Eapollo%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE">通过不带缓存的Http接口从Apollo读取配置</a>。<br>6.1.1 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#121-http%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E">Http接口说明</a><br>URL: {config_server_url}/configfiles/json/{appId}/{clusterName}/{namespaceName}?ip={clientIp}<br>Method: GET<br>参数说明：<br>|参数名|是否必须|参数值|备注|<br>|-|-|-|-|<br>| config_server_url |是|Apollo配置服务的地址||<br>| appId |是|应用的appId||<br>| namespaceName |是|如果没有新建过Namespace的话，传入application即可。 如果创建了Namespace，并且需要使用该Namespace的配置，则传入对应的Namespace名字。需要注意的是对于properties类型的namespace，只需要传入namespace的名字即可，如application。对于其它类型的namespace，需要传入namespace的名字加上后缀名，如datasources.json<br>||<br>| ip |否|应用部署的机器ip|这个参数是可选的，用来实现灰度发布。 如果不想传这个参数，请注意URL中从?号开始的query parameters整个都不要出现。<br>|</p>
+<p>由于缓存最多会有一秒的延时，所以如果需要配合配置推送通知实现实时更新配置的话，请参考<a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#13-%E9%80%9A%E8%BF%87%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%AD%98%E7%9A%84http%E6%8E%A5%E5%8F%A3%E4%BB%8Eapollo%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE">通过不带缓存的Http接口从Apollo读取配置</a>。<br>6.1.1 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#121-http%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E">Http接口说明</a><br>URL: {config_server_url}/configfiles/json/{appId}/{clusterName}/{namespaceName}?ip={clientIp}<br>Method: GET<br>参数说明:</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>是否必须</th>
+<th>参数值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>config_server_url</td>
+<td>是</td>
+<td>Apollo配置服务的地址</td>
+<td></td>
+</tr>
+<tr>
+<td>appId</td>
+<td>是</td>
+<td>应用的appId</td>
+<td></td>
+</tr>
+<tr>
+<td>namespaceName</td>
+<td>是</td>
+<td>如果没有新建过Namespace的话，传入application即可。 如果创建了Namespace，并且需要使用该Namespace的配置，则传入对应的Namespace名字。需要注意的是对于properties类型的namespace，只需要传入namespace的名字即可，如application。对于其它类型的namespace，需要传入namespace的名字加上后缀名，如datasources.json</td>
+<td></td>
+</tr>
+<tr>
+<td>ip</td>
+<td>否</td>
+<td>应用部署的机器ip</td>
+<td>这个参数是可选的，用来实现灰度发布。 如果不想传这个参数，请注意URL中从?号开始的query parameters整个都不要出现。</td>
+</tr>
+</tbody></table>
+<p>6.2 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#122-http%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E6%A0%BC%E5%BC%8F">Http接口返回格式</a><br>该Http接口返回的是JSON格式、UTF-8编码，包含了对应namespace中所有的配置项。<br>返回内容Sample如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">{</span>
+    <span class="token string">"portal.elastic.document.type"</span><span class="token operator">:</span><span class="token string">"biz"</span><span class="token punctuation">,</span>
+    <span class="token string">"portal.elastic.cluster.name"</span><span class="token operator">:</span><span class="token string">"hermes-es-fws"</span>
+<span class="token punctuation">}</span>
+通过
+<span class="token punctuation">{</span>config_server_url<span class="token punctuation">}</span><span class="token operator">/</span>configfiles<span class="token operator">/</span><span class="token punctuation">{</span>appId<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">{</span>clusterName<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">{</span>namespaceName<span class="token punctuation">}</span><span class="token operator">?</span>ip<span class="token operator">=</span><span class="token punctuation">{</span>clientIp<span class="token punctuation">}</span>可以获取到properties形式的配置</code></pre>
+<p>6.3 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#123-%E6%B5%8B%E8%AF%95"> 测试</a><br>由于是Http接口，所以在URL组装OK之后，直接通过浏览器、或者相关的http接口测试工具访问即可。<br>6.4 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#13-%E9%80%9A%E8%BF%87%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%AD%98%E7%9A%84http%E6%8E%A5%E5%8F%A3%E4%BB%8Eapollo%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE">通过不带缓存的Http接口从Apollo读取配置</a><br>该接口会直接从数据库中获取配置，可以配合配置推送通知实现实时更新配置。<br>6.5 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#131-http%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E">Http接口说明</a><br>URL: {config_server_url}/configs/{appId}/{clusterName}/{namespaceName}?releaseKey={releaseKey}&amp;ip={clientIp}<br>Method: GET<br>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>是否必须</th>
+<th>参数值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>config_server_url</td>
+<td>是</td>
+<td>Apollo配置服务的地址</td>
+<td></td>
+</tr>
+<tr>
+<td>appId</td>
+<td>是</td>
+<td>应用的appId</td>
+<td></td>
+</tr>
+<tr>
+<td>clusterName</td>
+<td>是</td>
+<td>集群名</td>
+<td>一般情况下传入 default 即可。 如果希望配置按集群划分，可以参考<a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%BA%94%E7%94%A8%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#%E4%B8%89%E9%9B%86%E7%BE%A4%E7%8B%AC%E7%AB%8B%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E">集群独立配置说明</a>做相关配置，然后在这里填入对应的集群名。</td>
+</tr>
+<tr>
+<td>namespaceName</td>
+<td>是</td>
+<td>Namespace的名字</td>
+<td>如果没有新建过Namespace的话，传入application即可。 如果创建了Namespace，并且需要使用该Namespace的配置，则传入对应的Namespace名字。需要注意的是对于properties类型的namespace，只需要传入namespace的名字即可，如application。对于其它类型的namespace，需要传入namespace的名字加上后缀名，如datasources.json</td>
+</tr>
+<tr>
+<td>releaseKey</td>
+<td>否</td>
+<td>上一次的releaseKey</td>
+<td>将上一次返回对象中的releaseKey传入即可，用来给服务端比较版本，如果版本比下来没有变化，则服务端直接返回304以节省流量和运算</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>否</td>
+<td>应用部署的机器ip</td>
+<td>这个参数是可选的，用来实现灰度发布。</td>
+</tr>
+</tbody></table>
+<p>6.5 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#132-http%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E6%A0%BC%E5%BC%8F">Http接口返回格式</a><br>该Http接口返回的是JSON格式、UTF-8编码。</p>
+<p>如果配置没有变化（传入的releaseKey和服务端的相等），则返回HttpStatus 304，response body为空。<br>如果配置有变化，则会返回HttpStatus 200，response body为对应namespace的meta信息以及其中所有的配置项。<br>返回内容Sample如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">{</span>
+  <span class="token string">"appId"</span><span class="token operator">:</span> <span class="token string">"100004458"</span><span class="token punctuation">,</span>
+  <span class="token string">"cluster"</span><span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">,</span>
+  <span class="token string">"namespaceName"</span><span class="token operator">:</span> <span class="token string">"application"</span><span class="token punctuation">,</span>
+  <span class="token string">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"portal.elastic.document.type"</span><span class="token operator">:</span><span class="token string">"biz"</span><span class="token punctuation">,</span>
+    <span class="token string">"portal.elastic.cluster.name"</span><span class="token operator">:</span><span class="token string">"hermes-es-fws"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"releaseKey"</span><span class="token operator">:</span> <span class="token string">"20170430092936-dee2d58e74515ff3"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>6.6 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#133-%E6%B5%8B%E8%AF%95">测试</a><br>由于是Http接口，所以在URL组装OK之后，直接通过浏览器、或者相关的http接口测试工具访问即可。<br>6.7 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#14-%E5%BA%94%E7%94%A8%E6%84%9F%E7%9F%A5%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%96%B0">应用感知配置更新</a><br>Apollo提供了基于Http long polling的配置更新推送通知，第三方客户端可以看自己实际的需求决定是否需要使用这个功能。<br>如果对配置更新时间不是那么敏感的话，可以通过定时刷新来感知配置更新，刷新频率可以视应用自身情况来定，建议在30秒以上。<br>如果需要做到实时感知配置更新（1秒）的话，可以参考下面的文档实现配置更新推送的功能。<br>6.8 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#141-%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%96%B0%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"> 配置更新推送实现思路</a><br>这里建议大家可以参考Apollo的Java实现：<a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/blob/master/apollo-client/src/main/java/com/ctrip/framework/apollo/internals/RemoteConfigLongPollService.java">RemoteConfigLongPollService.java</a>，代码量200多行，总体上还是比较简单的。<br>6.8.1 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#1411-%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a><br>首先需要确定哪些namespace需要配置更新推送，Apollo的实现方式是程序第一次获取某个namespace的配置时就会来注册一下，我们就知道有哪些namespace需要配置更新推送了。<br>初始化后的结果就是得到一个notifications的Map，内容是namespaceName -&gt; notificationId（初始值为-1）。<br>运行过程中如果发现有新的namespace需要配置更新推送，直接塞到notifications这个Map里面即可。<br>6.8.2 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#1412-%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1">请求服务</a><br>有了notifications这个Map之后，就可以请求服务了。这里先描述一下请求服务的逻辑，具体的URL参数和说明请参见后面的接口说明。</p>
+<ol>
+<li>请求远端服务，带上自己的应用信息以及notifications信息</li>
+<li>服务端针对传过来的每一个namespace和对应的notificationId，检查notificationId是否是最新的</li>
+<li>如果都是最新的，则保持住请求60秒，如果60秒内没有配置变化，则返回HttpStatus 304。如果60秒内有配置变化，则返回对应namespace的最新notificationId, HttpStatus 200。</li>
+<li>如果传过来的notifications信息中发现有notificationId比服务端老，则直接返回对应namespace的最新notificationId, HttpStatus 200。</li>
+<li>客户端拿到服务端返回后，判断返回的HttpStatus</li>
+<li>如果返回的HttpStatus是304，说明配置没有变化，重新执行第1步</li>
+<li>如果返回的HttpStauts是200，说明配置有变化，针对变化的namespace重新去服务端拉取配置，参见1.3 通过不带缓存的Http接口从Apollo读取配置。同时更新notifications map中的notificationId。重新执行第1步。</li>
+</ol>
+<p>6.9 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#142-http%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E">Http接口说明</a><br>URL: {config_server_url}/notifications/v2?appId={appId}&amp;cluster={clusterName}&amp;notifications={notifications}<br>Method: GET<br>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>是否必须</th>
+<th>参数值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>notifications</td>
+<td>是</td>
+<td>notifications信息</td>
+<td>传入本地的notifications信息，注意这里需要以array形式转为json传入，如：[{“namespaceName”: “application”, “notificationId”: 100}, {“namespaceName”: “FX.apollo”, “notificationId”: 200}]。需要注意的是对于properties类型的namespace，只需要传入namespace的名字即可，如application。对于其它类型的namespace，需要传入namespace的名字加上后缀名，如datasources.json</td>
+</tr>
+<tr>
+<td>config_server_url</td>
+<td>是</td>
+<td>Apollo配置服务的地址</td>
+<td></td>
+</tr>
+<tr>
+<td>clusterName</td>
+<td>是</td>
+<td>集群名</td>
+<td>一般情况下传入 default 即可。 如果希望配置按集群划分，可以参考<a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%BA%94%E7%94%A8%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#%E4%B8%89%E9%9B%86%E7%BE%A4%E7%8B%AC%E7%AB%8B%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E">集群独立配置说明</a>做相关配置，然后在这里填入对应的集群名。</td>
+</tr>
+<tr>
+<td>appId</td>
+<td>是</td>
+<td>应用的appId</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>注1：由于服务端会hold住请求60秒，所以请确保客户端访问服务端的超时时间要大于60秒。<br>注2：别忘了对参数进行<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Percent-encoding">url encode</a><br>6.9.1 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#143-http%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E6%A0%BC%E5%BC%8F">Http接口返回格式</a><br>该Http接口返回的是JSON格式、UTF-8编码，包含了有变化的namespace和最新的notificationId。<br>返回内容Sample如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token string">"namespaceName"</span><span class="token operator">:</span> <span class="token string">"application"</span><span class="token punctuation">,</span>
+    <span class="token string">"notificationId"</span><span class="token operator">:</span> <span class="token number">101</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<p>6.9.2 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#144-%E6%B5%8B%E8%AF%95">测试</a><br>6.9.3 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#15-%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E">错误码说明</a><br>正常情况下，接口返回的Http状态码是200，下面列举了Apollo会返回的非200错误码说明。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>错误状态码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>400 - Bad Request</td>
+<td>客户端传入参数的错误，如必选参数没有传入等，客户端需要根据提示信息检查对应的参数是否正确。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>404 - Not Found</td>
+<td>接口要访问的资源不存在，一般是URL或URL的参数错误，或者是对应的namespace还没有发布过配置。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>405 - Method Not Allowed</td>
+<td>接口访问的Method不正确，比如应该使用GET的接口使用了POST访问等，客户端需要检查接口访问方式是否正确。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>500 - Internal Server Error</td>
+<td>其它类型的错误默认都会返回500，对这类错误如果应用无法根据提示信息找到原因的话，可以尝试查看服务端日志来排查问题。</td>
+</tr>
+</tbody></table>
+<p>7.1 什么是yml占位符？举个例子如下:<br>我有2分配置文件,一份application.yml,为私有配置文件<br>该配置有个属性:<br>server:<br>  port: ${server.apollo-test-port}<br>另外有个公有配置文件<br>apollo-test.yml,该配置有个属性,<br>server:<br>  apollo-test-port: 10065</p>
+<p>其中私有配置文件,使用到了占位符, 请问下,这种在阿波罗有实现吗?如果有,需要怎么做? 详见参考我之前在github中提交的issues,得到了作者的答复 <a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/issues/1596">github issues</a><br>目前非properties格式是通过api方式获取的，ConfigService.getConfigFile,具体使用示例参照<br><a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo/blob/master/apollo-demo/src/main/java/com/ctrip/framework/apollo/demo/api/ApolloConfigDemo.java#L52">github非properties配置文件读取样例</a><br>好了,到此就先总结这么多,后续还有更新的工作中躺过的坑或使用的问题我会实时更新到这里来,当然最主要的还是希望后续Apollo注册中心服务发挥出更出色的能力为我们的产品发挥出更大的可利用价值。</p>
 
             </div>
             <hr/>
@@ -1275,7 +1459,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">93k</span>&nbsp;字
+                class="white-color">95k</span>&nbsp;字
             
             
             
