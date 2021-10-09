@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-09T07:47:55.129Z</updated>
+  <updated>2021-10-09T13:36:39.744Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java8新特性原理以及实战应用-lambda函数式编程与日期篇</title>
+    <link href="http://xiaomozhang.github.io/2021/10/10/java8-lambda-with-date-process/"/>
+    <id>http://xiaomozhang.github.io/2021/10/10/java8-lambda-with-date-process/</id>
+    <published>2021-10-10T01:14:49.000Z</published>
+    <updated>2021-10-09T13:36:39.744Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot Nacos" scheme="http://xiaomozhang.github.io/categories/SpringBoot-Nacos/"/>
+    
+    
+    <category term="Java8 lambda" scheme="http://xiaomozhang.github.io/tags/Java8-lambda/"/>
+    
+    <category term="Stream Programming" scheme="http://xiaomozhang.github.io/tags/Stream-Programming/"/>
+    
+    <category term="LocalDate、LocalTime、Instant、Duration" scheme="http://xiaomozhang.github.io/tags/LocalDate%E3%80%81LocalTime%E3%80%81Instant%E3%80%81Duration/"/>
+    
+  </entry>
   
   <entry>
     <title>零基础深入学习携程Apollo配置中心</title>
@@ -511,30 +540,6 @@
     <category term="Gson" scheme="http://xiaomozhang.github.io/tags/Gson/"/>
     
     <category term="Java8" scheme="http://xiaomozhang.github.io/tags/Java8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx开启gzip压缩</title>
-    <link href="http://xiaomozhang.github.io/2020/06/18/nginx-enable-gzip/"/>
-    <id>http://xiaomozhang.github.io/2020/06/18/nginx-enable-gzip/</id>
-    <published>2020-06-18T11:54:43.000Z</published>
-    <updated>2021-01-12T03:00:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在server节点下新增如下内容，开启gzip压缩。注意后端需要保证返回的 &lt;strong&gt;Content-Type: application/json;charset=UTF-8&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class=&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Nginx" scheme="http://xiaomozhang.github.io/tags/Nginx/"/>
     
   </entry>
   
