@@ -122,6 +122,20 @@ at org<span class="token punctuation">.</span>apache<span class="token punctuati
       </tags>
   </entry>
   <entry>
+    <title>使用wget或者curl下载github release文件</title>
+    <url>/2020/02/14/cmd-download-file/</url>
+    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Comparable和Comparator的区别</title>
     <url>/2019/02/17/chinese-sort/</url>
     <content><![CDATA[<h2 id="Comparable"><a href="#Comparable" class="headerlink" title="Comparable"></a><strong>Comparable</strong></h2><p>Comparable可以认为是一个<strong>内比较器</strong>，实现了Comparable接口的类有一个特点，就是这些类是可以和自己比较的，至于具体和另一个实现了Comparable接口的类如何比较，则依赖compareTo方法的实现，compareTo方法也被称为<strong>自然比较方法</strong>。如果开发者add进入一个Collection的对象想要Collections的sort方法帮你自动进行排序的话，那么这个对象必须实现Comparable接口。compareTo方法的返回值是int，有三种情况：</p>
@@ -319,17 +333,109 @@ docker-compose stop</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>使用wget或者curl下载github release文件</title>
-    <url>/2020/02/14/cmd-download-file/</url>
-    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+    <title>eclipse 使用 maven 构建web项目</title>
+    <url>/2017/09/28/eclipse-mvn-build-web-project/</url>
+    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ul>
+<li><a href="http://maven.apache.org/download.cgi">apache-maven-3.3.9</a></li>
+<li><a href="http://tomcat.apache.org/download-80.cgi">apache-tomcat-8.5.20</a></li>
+<li><a href="https://www.eclipse.org/downloads/eclipse-packages/">eclipse-jee-neon-3</a></li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html">jdk1.8.0_131</a></li>
+</ul>
+<h1 id="Maven基本配置-修改-setting-xml-文件"><a href="#Maven基本配置-修改-setting-xml-文件" class="headerlink" title="Maven基本配置 修改 setting.xml 文件"></a>Maven基本配置 修改 setting.xml 文件</h1><p>apache-tomcat-8.5.20/conf/settings.xml</p>
+<blockquote>
+<p>1.仓库本地存储位置 </p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-c8fb765b2c991b72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本地仓库位置"></p>
+<blockquote>
+<p>2.配置阿里云国内的中央仓库，提升下载速度  mirrors 节点内</p>
+</blockquote>
+<pre><code>&lt;mirror&gt;
+        &lt;!-- 配置 阿里云 maven 镜像仓库，提升国内下载速度 --&gt;
+        &lt;id&gt;alimaven&lt;/id&gt;
+            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+            &lt;name&gt;aliyun maven&lt;/name&gt;
+            &lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;
+        &lt;/mirror&gt;
+
+        &lt;mirror&gt;
+            &lt;id&gt;repo1&lt;/id&gt;
+            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+            &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
+            &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt;
+        &lt;/mirror&gt;
+
+        &lt;mirror&gt;
+            &lt;id&gt;repo2&lt;/id&gt;
+            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+            &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
+            &lt;url&gt;http://repo2.maven.org/maven2/&lt;/url&gt;
+        &lt;/mirror&gt;
+  &lt;/mirrors&gt;</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-fdbaf1e3853ed100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="阿里云maven镜像"></p>
+<blockquote>
+<p>3.配置编译时的jdk版本，可以在这里配置全局，也可以根据项目配置  profiles 节点内</p>
+</blockquote>
+<pre><code>&lt;profile&gt;
+    &lt;!-- 配置全局的jdk --&gt;
+        &lt;id&gt;jdk1.8&lt;/id&gt;    
+        &lt;activation&gt;   
+            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;    
+            &lt;jdk&gt;1.8&lt;/jdk&gt;   
+        &lt;/activation&gt;    
+        &lt;properties&gt;   
+            &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;    
+            &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;    
+            &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;   
+        &lt;/properties&gt; 
+    &lt;/profile&gt;</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-e1f345185ced9580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="全局的jdk版本配置"></p>
+<h1 id="eclipse-集成maven插件"><a href="#eclipse-集成maven插件" class="headerlink" title="eclipse 集成maven插件"></a>eclipse 集成maven插件</h1><p><img src="http://upload-images.jianshu.io/upload_images/7779890-28a74e4a3f382413.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="eclipse配置maven"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-88b11320dd52174c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置全局参数"></p>
+<h1 id="新建maven项目"><a href="#新建maven项目" class="headerlink" title="新建maven项目"></a>新建maven项目</h1><p><img src="http://upload-images.jianshu.io/upload_images/7779890-6604d11226479dcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-997fc5ccae6f10b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-99ce19045b39d6e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-9909613ef55aadd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构"></p>
+<h1 id="将项目转换成maven-web-项目"><a href="#将项目转换成maven-web-项目" class="headerlink" title="将项目转换成maven web 项目"></a>将项目转换成maven web 项目</h1><p>右键打开项目设置</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ee1c890c8ecfe527.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改项目结构"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-a498a41384ef79f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生成web.xml"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-20c12ea65ea902f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改以后的项目结构"></p>
+<ul>
+<li>但是现在这个不是一个标准的web项目，继续修改项目结构，将WebContent目录下的文件拷贝到main/webapp目录下面，删除WebContent目录，结构如下</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-bc62b88cce18515e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="删除WebContent目录以后"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6cd7c408aea55e6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="删除WebContent"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-0589e69ddc98be2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="指定 webapp 目录"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-0c5d4e9d5aeecea0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 webapp "></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-7d291661d94d9456.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 webapp"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6731709025e9acdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改完成以后的目录结构"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-b47340bc89895406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="更新项目maven配置"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-1ec60f2529acf211.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="提示更新"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6a9678cfb6fa765a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="错误解决以后成为一个标准的web项目"></p>
+<h1 id="配置运行该项目"><a href="#配置运行该项目" class="headerlink" title="配置运行该项目"></a>配置运行该项目</h1><blockquote>
+<ol>
+<li>在webapp右键新建一个html 文件</li>
+</ol>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-081eca38dc3869be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建 html 文件，编写内容"></p>
+<blockquote>
+<p>2.配置 tomcat</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ebc8d197b81f8a55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置运行项目"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-628a5eaeca05c239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择tomcat对应的版本"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-97c2fb6d82f0dd12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 tomcat 安装路径"></p>
+<blockquote>
+<p>3.运行</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ef7e7c1fcba3897b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行项目"></p>
+<h1 id="eclipse-集成-maven-构建-web-项目完成"><a href="#eclipse-集成-maven-构建-web-项目完成" class="headerlink" title="eclipse 集成 maven 构建 web 项目完成"></a>eclipse 集成 maven 构建 web 项目完成</h1><ul>
+<li>最后推荐一篇文章：在 idea 中如何使用 maven 构建项目<br><a href="https://yq.aliyun.com/articles/111053">https://yq.aliyun.com/articles/111053</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>tools</category>
+        <category>工具使用</category>
       </categories>
       <tags>
-        <tag>linux</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -479,230 +585,6 @@ sudo rm -rf /var/lib/docker
       </tags>
   </entry>
   <entry>
-    <title>eclipse 使用 maven 构建web项目</title>
-    <url>/2017/09/28/eclipse-mvn-build-web-project/</url>
-    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ul>
-<li><a href="http://maven.apache.org/download.cgi">apache-maven-3.3.9</a></li>
-<li><a href="http://tomcat.apache.org/download-80.cgi">apache-tomcat-8.5.20</a></li>
-<li><a href="https://www.eclipse.org/downloads/eclipse-packages/">eclipse-jee-neon-3</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html">jdk1.8.0_131</a></li>
-</ul>
-<h1 id="Maven基本配置-修改-setting-xml-文件"><a href="#Maven基本配置-修改-setting-xml-文件" class="headerlink" title="Maven基本配置 修改 setting.xml 文件"></a>Maven基本配置 修改 setting.xml 文件</h1><p>apache-tomcat-8.5.20/conf/settings.xml</p>
-<blockquote>
-<p>1.仓库本地存储位置 </p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-c8fb765b2c991b72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本地仓库位置"></p>
-<blockquote>
-<p>2.配置阿里云国内的中央仓库，提升下载速度  mirrors 节点内</p>
-</blockquote>
-<pre><code>&lt;mirror&gt;
-        &lt;!-- 配置 阿里云 maven 镜像仓库，提升国内下载速度 --&gt;
-        &lt;id&gt;alimaven&lt;/id&gt;
-            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-            &lt;name&gt;aliyun maven&lt;/name&gt;
-            &lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;
-        &lt;/mirror&gt;
-
-        &lt;mirror&gt;
-            &lt;id&gt;repo1&lt;/id&gt;
-            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-            &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
-            &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt;
-        &lt;/mirror&gt;
-
-        &lt;mirror&gt;
-            &lt;id&gt;repo2&lt;/id&gt;
-            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-            &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
-            &lt;url&gt;http://repo2.maven.org/maven2/&lt;/url&gt;
-        &lt;/mirror&gt;
-  &lt;/mirrors&gt;</code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-fdbaf1e3853ed100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="阿里云maven镜像"></p>
-<blockquote>
-<p>3.配置编译时的jdk版本，可以在这里配置全局，也可以根据项目配置  profiles 节点内</p>
-</blockquote>
-<pre><code>&lt;profile&gt;
-    &lt;!-- 配置全局的jdk --&gt;
-        &lt;id&gt;jdk1.8&lt;/id&gt;    
-        &lt;activation&gt;   
-            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;    
-            &lt;jdk&gt;1.8&lt;/jdk&gt;   
-        &lt;/activation&gt;    
-        &lt;properties&gt;   
-            &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;    
-            &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;    
-            &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;   
-        &lt;/properties&gt; 
-    &lt;/profile&gt;</code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-e1f345185ced9580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="全局的jdk版本配置"></p>
-<h1 id="eclipse-集成maven插件"><a href="#eclipse-集成maven插件" class="headerlink" title="eclipse 集成maven插件"></a>eclipse 集成maven插件</h1><p><img src="http://upload-images.jianshu.io/upload_images/7779890-28a74e4a3f382413.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="eclipse配置maven"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-88b11320dd52174c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置全局参数"></p>
-<h1 id="新建maven项目"><a href="#新建maven项目" class="headerlink" title="新建maven项目"></a>新建maven项目</h1><p><img src="http://upload-images.jianshu.io/upload_images/7779890-6604d11226479dcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-997fc5ccae6f10b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-99ce19045b39d6e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建maven项目"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-9909613ef55aadd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构"></p>
-<h1 id="将项目转换成maven-web-项目"><a href="#将项目转换成maven-web-项目" class="headerlink" title="将项目转换成maven web 项目"></a>将项目转换成maven web 项目</h1><p>右键打开项目设置</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ee1c890c8ecfe527.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改项目结构"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-a498a41384ef79f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生成web.xml"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-20c12ea65ea902f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改以后的项目结构"></p>
-<ul>
-<li>但是现在这个不是一个标准的web项目，继续修改项目结构，将WebContent目录下的文件拷贝到main/webapp目录下面，删除WebContent目录，结构如下</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-bc62b88cce18515e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="删除WebContent目录以后"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6cd7c408aea55e6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="删除WebContent"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-0589e69ddc98be2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="指定 webapp 目录"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-0c5d4e9d5aeecea0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 webapp "></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-7d291661d94d9456.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 webapp"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6731709025e9acdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改完成以后的目录结构"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-b47340bc89895406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="更新项目maven配置"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-1ec60f2529acf211.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="提示更新"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-6a9678cfb6fa765a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="错误解决以后成为一个标准的web项目"></p>
-<h1 id="配置运行该项目"><a href="#配置运行该项目" class="headerlink" title="配置运行该项目"></a>配置运行该项目</h1><blockquote>
-<ol>
-<li>在webapp右键新建一个html 文件</li>
-</ol>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-081eca38dc3869be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建 html 文件，编写内容"></p>
-<blockquote>
-<p>2.配置 tomcat</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ebc8d197b81f8a55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置运行项目"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-628a5eaeca05c239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择tomcat对应的版本"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-97c2fb6d82f0dd12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择 tomcat 安装路径"></p>
-<blockquote>
-<p>3.运行</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7779890-ef7e7c1fcba3897b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行项目"></p>
-<h1 id="eclipse-集成-maven-构建-web-项目完成"><a href="#eclipse-集成-maven-构建-web-项目完成" class="headerlink" title="eclipse 集成 maven 构建 web 项目完成"></a>eclipse 集成 maven 构建 web 项目完成</h1><ul>
-<li>最后推荐一篇文章：在 idea 中如何使用 maven 构建项目<br><a href="https://yq.aliyun.com/articles/111053">https://yq.aliyun.com/articles/111053</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FTP 常用命令</title>
-    <url>/2019/12/12/ftp-command/</url>
-    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
-<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>pwd</td>
-<td>显示远程计算机上的当前目录</td>
-</tr>
-<tr>
-<td>ls/dir</td>
-<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>移动到cd 后的目录</td>
-</tr>
-<tr>
-<td>cdup/cd ..</td>
-<td>返回上一级目录</td>
-</tr>
-<tr>
-<td>lcd</td>
-<td>列出当前本地目录路径</td>
-</tr>
-</tbody></table>
-<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mkdir</td>
-<td>在远程系统中创建目录</td>
-</tr>
-<tr>
-<td>rname</td>
-<td>重命名一个文件或目录</td>
-</tr>
-<tr>
-<td>redir</td>
-<td>删除远程目录</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>删除远程文件</td>
-</tr>
-<tr>
-<td>mdelete</td>
-<td>删除多个远程文件</td>
-</tr>
-</tbody></table>
-<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>binary/bin</td>
-<td>用于二进制文件传送（图像文件等）</td>
-</tr>
-<tr>
-<td>ascii</td>
-<td>用于文本文件传送</td>
-</tr>
-<tr>
-<td>get/mget</td>
-<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
-</tr>
-<tr>
-<td>put/mput</td>
-<td>从当前目录把文件复制到当前远程目录</td>
-</tr>
-<tr>
-<td>prompt</td>
-<td>关闭二次确认时的提示</td>
-</tr>
-</tbody></table>
-<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>!</td>
-<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
-</tr>
-<tr>
-<td>close</td>
-<td>关闭当前连接</td>
-</tr>
-<tr>
-<td>bye</td>
-<td>关闭连接并退出ftp命令模式</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-      <tags>
-        <tag>FTP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git常用命令</title>
     <url>/2019/01/29/git-command/</url>
     <content><![CDATA[<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><h3 id="使用Git生成ssh密钥"><a href="#使用Git生成ssh密钥" class="headerlink" title="使用Git生成ssh密钥:"></a>使用Git生成ssh密钥:</h3><pre class=" language-shell"><code class="language-shell">ssh-keygen -t rsa -C "email@example.com"</code></pre>
@@ -831,6 +713,124 @@ git push 远程仓库名 标签名    #将标签推送到远程仓库（Git默�
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FTP 常用命令</title>
+    <url>/2019/12/12/ftp-command/</url>
+    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
+<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pwd</td>
+<td>显示远程计算机上的当前目录</td>
+</tr>
+<tr>
+<td>ls/dir</td>
+<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>移动到cd 后的目录</td>
+</tr>
+<tr>
+<td>cdup/cd ..</td>
+<td>返回上一级目录</td>
+</tr>
+<tr>
+<td>lcd</td>
+<td>列出当前本地目录路径</td>
+</tr>
+</tbody></table>
+<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mkdir</td>
+<td>在远程系统中创建目录</td>
+</tr>
+<tr>
+<td>rname</td>
+<td>重命名一个文件或目录</td>
+</tr>
+<tr>
+<td>redir</td>
+<td>删除远程目录</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除远程文件</td>
+</tr>
+<tr>
+<td>mdelete</td>
+<td>删除多个远程文件</td>
+</tr>
+</tbody></table>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>binary/bin</td>
+<td>用于二进制文件传送（图像文件等）</td>
+</tr>
+<tr>
+<td>ascii</td>
+<td>用于文本文件传送</td>
+</tr>
+<tr>
+<td>get/mget</td>
+<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
+</tr>
+<tr>
+<td>put/mput</td>
+<td>从当前目录把文件复制到当前远程目录</td>
+</tr>
+<tr>
+<td>prompt</td>
+<td>关闭二次确认时的提示</td>
+</tr>
+</tbody></table>
+<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>!</td>
+<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭当前连接</td>
+</tr>
+<tr>
+<td>bye</td>
+<td>关闭连接并退出ftp命令模式</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>FTP</tag>
       </tags>
   </entry>
   <entry>
@@ -1388,35 +1388,6 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </tags>
   </entry>
   <entry>
-    <title>Hexo Matery 常见问题及解决</title>
-    <url>/2021/02/07/hexo-matery-problems/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="1blog检索不生效"><a href="#1blog检索不生效" class="headerlink" title="1blog检索不生效"></a>1blog检索不生效</h4><p>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
-<h4 id="step1-运行下面命令安装-searchdb"><a href="#step1-运行下面命令安装-searchdb" class="headerlink" title="step1:运行下面命令安装 searchdb"></a>step1:运行下面命令安装 <code>searchdb</code></h4><pre class=" language-shell"><code class="language-shell">cnpm install hexo-generator-search –-save
-cnpm install hexo-generator-searchdb --save</code></pre>
-<p>这两个都需要安装,只安装第一个不能全文搜索。<br>但是我在 <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>Mastery github源码教程</code></a> 只看到了安装<code>hexo-generator-search</code>即可,<br>但实际的情况是这样install并配置完成之后只对主页的搜索检索是生效的,进入具体的blog中是不生效的。看来实践还是检验真理的唯一标准啊<br><img src="/images/hexo-matery-problems/hexo-generator-search.jpg" alt="hexo-generator-search"></p>
-<h4 id="step2-在themes-hexo-theme-matery-config-yml中添加下面配置"><a href="#step2-在themes-hexo-theme-matery-config-yml中添加下面配置" class="headerlink" title="step2: 在themes/hexo-theme-matery/_config.yml中添加下面配置"></a>step2: 在<code>themes/hexo-theme-matery/_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Local search</span>
-<span class="token key atrule">local_search</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">trigger</span><span class="token punctuation">:</span> auto
-  <span class="token key atrule">top_n_per_article</span><span class="token punctuation">:</span> <span class="token number">1</span>
-  <span class="token key atrule">unescape</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
-<h4 id="step3-在项目的根目录-config-yml中添加下面配置"><a href="#step3-在项目的根目录-config-yml中添加下面配置" class="headerlink" title="step3: 在项目的根目录_config.yml中添加下面配置"></a>step3: 在项目的根目录<code>_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#搜索插件</span>
-<span class="token key atrule">search</span><span class="token punctuation">:</span>
-  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
-  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
-  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
-<p><img src="/images/hexo-matery-problems/hexo-search-config.png" alt="hexo-search-config"></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Matery</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hadoop常用运维命令</title>
     <url>/2020/08/03/hadoop-ops-command/</url>
     <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
@@ -1460,6 +1431,35 @@ cnpm install hexo-generator-searchdb --save</code></pre>
       </categories>
       <tags>
         <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Matery 常见问题及解决</title>
+    <url>/2021/02/07/hexo-matery-problems/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="1blog检索不生效"><a href="#1blog检索不生效" class="headerlink" title="1blog检索不生效"></a>1blog检索不生效</h4><p>我本地的情况是这样的,在主页面通过检索输入框搜索文章检索是好用的,但是点击进入自己搜索的指定文章之后,在此点击搜索框进行检索,发现搜索到的文章路劲后面多加了一层路径信息,比如<br>我的这篇文章 <a href="https://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"><code>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</code></a>, 点击检索连接跳转到<br>新的tab地址栏发现在地址栏后面多拼接了一层连接信息 <code>/2021/02/07/spring-boot-lettuce-multi-instance/</code> 出现这样的情况我的解决办法是这样的</p>
+<h4 id="step1-运行下面命令安装-searchdb"><a href="#step1-运行下面命令安装-searchdb" class="headerlink" title="step1:运行下面命令安装 searchdb"></a>step1:运行下面命令安装 <code>searchdb</code></h4><pre class=" language-shell"><code class="language-shell">cnpm install hexo-generator-search –-save
+cnpm install hexo-generator-searchdb --save</code></pre>
+<p>这两个都需要安装,只安装第一个不能全文搜索。<br>但是我在 <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>Mastery github源码教程</code></a> 只看到了安装<code>hexo-generator-search</code>即可,<br>但实际的情况是这样install并配置完成之后只对主页的搜索检索是生效的,进入具体的blog中是不生效的。看来实践还是检验真理的唯一标准啊<br><img src="/images/hexo-matery-problems/hexo-generator-search.jpg" alt="hexo-generator-search"></p>
+<h4 id="step2-在themes-hexo-theme-matery-config-yml中添加下面配置"><a href="#step2-在themes-hexo-theme-matery-config-yml中添加下面配置" class="headerlink" title="step2: 在themes/hexo-theme-matery/_config.yml中添加下面配置"></a>step2: 在<code>themes/hexo-theme-matery/_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Local search</span>
+<span class="token key atrule">local_search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">trigger</span><span class="token punctuation">:</span> auto
+  <span class="token key atrule">top_n_per_article</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">unescape</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+<h4 id="step3-在项目的根目录-config-yml中添加下面配置"><a href="#step3-在项目的根目录-config-yml中添加下面配置" class="headerlink" title="step3: 在项目的根目录_config.yml中添加下面配置"></a>step3: 在项目的根目录<code>_config.yml</code>中添加下面配置</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#搜索插件</span>
+<span class="token key atrule">search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
+  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p><img src="/images/hexo-matery-problems/hexo-search-config.png" alt="hexo-search-config"></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Matery</tag>
       </tags>
   </entry>
   <entry>
@@ -3102,78 +3102,49 @@ total 5416
       </tags>
   </entry>
   <entry>
-    <title>logstash 启动脚本</title>
-    <url>/2020/12/09/lsboot/</url>
-    <content><![CDATA[<ul>
-<li>logstash 通用启动脚本</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token comment" spellcheck="true"># FileName: lsboot</span>
-<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
-<span class="token comment" spellcheck="true"># Dispatcher:</span>
-<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
-<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
+    <title>kafka常用操作笔记</title>
+    <url>/2018/07/30/kafka-note/</url>
+    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
+<p>解压下载文件到指定目录，比如 /usr/local</p>
+<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
+</blockquote>
+<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-stop.sh
+./bin/kafka-server-stop.sh</code></pre>
+<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
+<blockquote>
+<p>-daemon 表示后台运行</p>
+</blockquote>
+<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
+<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
+netstat -ntpul | grep 9092</code></pre>
+<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
+<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
+<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
+<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
+<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
+<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
+<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
+<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
+<p>org.apache.kafka.common.errors.TimeoutException</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
+<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
 
-<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
-    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
-    <span class="token keyword">exit</span> 1
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#config file OR path</span>
-conFile<span class="token operator">=</span><span class="token variable">$1</span>
-conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
-currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-
-LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
-<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-
-check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
-  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
-<span class="token punctuation">}</span>
-
-<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
-
-<span class="token comment" spellcheck="true">#./stop.sh</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-check_pid
-cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
-  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
-  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
-  <span class="token keyword">exit</span> 0
-<span class="token keyword">else</span>
-  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
-  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-    <span class="token variable">$cmd</span>
-  <span class="token keyword">else</span>
-    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
-    <span class="token function">sleep</span> 1
-    check_pid
-    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
-  <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
-
-<span class="token keyword">exit</span> 0
-</code></pre>
-<ul>
-<li>logstash将时间转换成unix时间戳</li>
-</ul>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
-ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
+加入以下配置然后重启zookeeper与kafka
+advertised.host.name=192.168.1.200
+advertised.port=9092</code></pre>
 ]]></content>
+      <categories>
+        <category>Kafka</category>
+      </categories>
       <tags>
-        <tag>Logstash</tag>
+        <tag>kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -3517,49 +3488,78 @@ The stdin plugin is now waiting for input:
       </tags>
   </entry>
   <entry>
-    <title>kafka常用操作笔记</title>
-    <url>/2018/07/30/kafka-note/</url>
-    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
-<p>解压下载文件到指定目录，比如 /usr/local</p>
-<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
-</blockquote>
-<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-stop.sh
-./bin/kafka-server-stop.sh</code></pre>
-<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
-<blockquote>
-<p>-daemon 表示后台运行</p>
-</blockquote>
-<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
-<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
-netstat -ntpul | grep 9092</code></pre>
-<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
-<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
-<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
-<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
-<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
-<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
-<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
-<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
-<p>org.apache.kafka.common.errors.TimeoutException</p>
-</blockquote>
-<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
+    <title>logstash 启动脚本</title>
+    <url>/2020/12/09/lsboot/</url>
+    <content><![CDATA[<ul>
+<li>logstash 通用启动脚本</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment" spellcheck="true"># FileName: lsboot</span>
+<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
+<span class="token comment" spellcheck="true"># Dispatcher:</span>
+<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
+<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
 
-加入以下配置然后重启zookeeper与kafka
-advertised.host.name=192.168.1.200
-advertised.port=9092</code></pre>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
+    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
+    <span class="token keyword">exit</span> 1
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#config file OR path</span>
+conFile<span class="token operator">=</span><span class="token variable">$1</span>
+conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
+currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+
+LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
+<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+
+check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
+  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
+
+<span class="token comment" spellcheck="true">#./stop.sh</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+check_pid
+cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
+  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
+  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
+  <span class="token keyword">exit</span> 0
+<span class="token keyword">else</span>
+  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token variable">$cmd</span>
+  <span class="token keyword">else</span>
+    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
+    <span class="token function">sleep</span> 1
+    check_pid
+    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
+  <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
+
+<span class="token keyword">exit</span> 0
+</code></pre>
+<ul>
+<li>logstash将时间转换成unix时间戳</li>
+</ul>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
+ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
 ]]></content>
-      <categories>
-        <category>Kafka</category>
-      </categories>
       <tags>
-        <tag>kafka</tag>
+        <tag>Logstash</tag>
       </tags>
   </entry>
   <entry>
@@ -4130,6 +4130,33 @@ systemctl status firewalld</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
+    <url>/2020/07/19/mybatis-one-collection-basic-type/</url>
+    <content><![CDATA[<p>在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个<code>Collection&lt;String&gt;</code>或者<code>Collection&lt;Integer&gt;</code>  类型，那么我们的<code>ResultMap</code>该如何定义？</p>
+<p>方法很简单，这时候我们就需要使用到构造函数注入了，通过Integer和String的构造函数注入，具体的字段名称自己对好入座即可。</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>User<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>user_map<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authorities<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.lang.String<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>permission<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>MyBatis</category>
+      </categories>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>maven.test.skip和skipTests的区别</title>
     <url>/2020/08/20/maven-skip-test/</url>
     <content><![CDATA[<h2 id="DskipTests"><a href="#DskipTests" class="headerlink" title="-DskipTests"></a>-DskipTests</h2><p>不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。</p>
@@ -4170,33 +4197,6 @@ systemctl status firewalld</code></pre>
       </categories>
       <tags>
         <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
-    <url>/2020/07/19/mybatis-one-collection-basic-type/</url>
-    <content><![CDATA[<p>在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个<code>Collection&lt;String&gt;</code>或者<code>Collection&lt;Integer&gt;</code>  类型，那么我们的<code>ResultMap</code>该如何定义？</p>
-<p>方法很简单，这时候我们就需要使用到构造函数注入了，通过Integer和String的构造函数注入，具体的字段名称自己对好入座即可。</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>User<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>user_map<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authorities<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.lang.String<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>permission<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>MyBatis</category>
-      </categories>
-      <tags>
-        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -8751,6 +8751,319 @@ v10.16.3
       </tags>
   </entry>
   <entry>
+    <title>零基础深入学习携程Apollo配置中心</title>
+    <url>/2021/10/09/apollo-config-trip/</url>
+    <content><![CDATA[<h2 id="1-Apollo配置中心简介"><a href="#1-Apollo配置中心简介" class="headerlink" title="1:Apollo配置中心简介"></a>1:Apollo配置中心简介</h2><p>Apollo（阿波罗）是携程框架部门研发的配置管理平台，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。<br>为什么我们用了百度的disconf、spring-cloud-config携程还要另辟蹊径,研究出一套独有的Apollo呢？下面让我们通过开源配置中心对比矩阵一张图来进行解释这个问题:<br>![开源配置中心对比矩阵.jpg] (/images/apollo-config-trip/open-source-configuration-performance-comparison-matrix.jpg)<br>从性能对比图中我们不难看出,从功能特性、技术路线、可用性、易用性来说比其它开源配置中心是非常出色的(尤其是里面的灰度规则、namespace空间管理非常不错)。好,废话不多说,我们先从搭建开始讲起。</p>
+<h2 id="2-注册中心阿波罗Apollo搭建"><a href="#2-注册中心阿波罗Apollo搭建" class="headerlink" title="2:注册中心阿波罗Apollo搭建"></a>2:注册中心阿波罗Apollo搭建</h2><p><a href="https://github.com/ctripcorp/apollo">Apollo开源官网</a><br><a href="https://github.com/ctripcorp/apollo/wiki">Wiki</a> ☞ 一切的集成方式和使用方法都在这里<br><a href="https://github.com/ctripcorp/apollo/issues">Issues</a> ☞ 如果期间有任何问题，请通过这里查找大部分解决方法<br>说明：我这里搭建的是1.3的服务版本,1.3.1在是目前最新的版本,相对于之前的版本增加了yml、yaml等多种配置文件的支持。<br><a href="https://github.com/ctripcorp/apollo/releases">下载Releases版本</a><br>下载三个已经打好的安装包:<br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-adminservice-1.3.0-github.zip">apollo-adminservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-configservice-1.3.0-github.zip">apollo-configservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-portal-1.3.0-github.zip">apollo-portal-1.3.0-github.zip</a><br>2.1、基础环境：<br>JDK：1.8.0_161<br>Maven：3.5.2<br><a href="https://cloud.tencent.com/product/cdb">MySQL</a>：5.7.18<br>apollo：1.3.1<br>2.2 导入数据库文件 登录MySQL命令行，然后执行以下两个sql文件<br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloportaldb.sql">界面管理</a><br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloconfigdb.sql">配置中心</a><br>2.3、打包<br>分别将三个安装包进行解压</p>
+<pre><code>unzip apollo-adminservice-1.3.0-github.zip -d ~/apollo/apollo-adminservice
+unzip apollo-configservice-1.3.0-github.zip -d ~/apollo/apollo-configservice
+unzip apollo-portal-1.3.0-github.zip -d ~/apollo/apollo-portal</code></pre>
+<p>2.4、修改配置<br>分别进入apollo-adminservice、apollo-configservice的config进行配置application-github.properties 数据库配置,指向ApolloPortalDB库<br>进入apollo-portal的config目录编辑application-github.properties,将数据库指向ApolloPortalDB,并且编辑apollo-env.properties 将config meta server进行配置在里面<br>分别进行adminservice、configservice、apollo-portal等安装包的scripts目录,进行修改startup.sh脚本文件。<br>主要修改LOG_DIR(服务日志存储路径)、SERVER_PORT(服务启动端口,如果需要的话)以及jvm启动参数,<br>2.5、启动Apollo<br>apollo-configservice：进入scripts文件夹<br>执行脚本启动服务<br>./startup.sh<br>apollo-adminservice：进入scripts文件夹<br>切换到目录 apollo-adminservice/scripts<br>执行脚本启动服务<br>./startup.sh<br>apollo-portal：进入scripts文件夹<br>执行脚本启动服务<br>./startup.sh<br>2.6、访问Apollo配置中心页面<br>++<a href="http://localhost:8070++">http://localhost:8070++</a> ，默认用户名/密码参考☞ <a href="https://github.com/ctripcorp/apollo/wiki/Portal-%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD">Portal 实现用户登录功能</a> 。<br><img src="/images/apollo-config-trip/apollo-admin-console-page.png" alt="apollo-admin-console-page.png"></p>
+<h2 id="3-Apollo多环境搭建"><a href="#3-Apollo多环境搭建" class="headerlink" title="3:Apollo多环境搭建"></a>3:Apollo多环境搭建</h2><p>在搭建完成Apollo之后我们发现,默认就存在一个环境(默认为DEV),那么我们在实际项目使用过程中会同时存在多环境情况.(即:local/dev/test/prod…..)<br>阿波罗多注册环境配置搭建<br>3.1、多环境命名注意点<br> apollo目前支持的环境列表名称有哪些(<font color="red">切记环境名字不能瞎写,否则会找不到的,小张就在这里栽跟头了,随意写了TEST,结果portal启动报错</font>)？<br>详见apollo源码得知在:com.ctrip.framework.apollo.core.enums.Env枚举类<br>public enum Env{<br>LOCAL, DEV, BETA, FWS, FAT, UAT, LPT, PRO, TOOLS, UNKNOWN;<br>…<br>}<br>LOCAL - Local Development environment<br>DEV - Development environment<br>FWS - Feature Web Service Test environment<br>FAT - Feature Acceptance Test environment<br>LPT - Load and Performance Test environment<br>UAT - User Acceptance Test environment<br>PRO - Production environment<br><img src="/images/apollo-config-trip/apollo-multi-environment-naming.png" alt="apollo-Multi-environment-naming.png"><br>比如我需要增加一个FAT环境,那么需要新增一个config server、admin server、以及新的ApolloConfigDB库,其中config server、admin server的config下对应的数据库配置都指向新的ApolloConfigDB。<br>3.2、需要修改的表字段信息如下:<br>3.2.1、ApolloPortalDB库的ServerConfig表:<br><img src="/images/apollo-config-trip/apolloPortalDB-serviceConfig.png" alt="apolloPortalDB-serviceConfig.png"><br>针对不同环境的配置文件,在Apollo中创建不同的namespace时可以指定不同角色的用户来进行管理,方便不同角色的用户进行维护不同环境的配置。</p>
+<h2 id="4-Apollo配置中心架构设计"><a href="#4-Apollo配置中心架构设计" class="headerlink" title="4:Apollo配置中心架构设计"></a>4:Apollo配置中心架构设计</h2><p>搭建完成之后我们一起来熟悉下Apollo配置中心的一个架构设计。<br>4.1、基础模型<br>如下即是Apollo的基础模型：<br>用户在配置中心对配置进行修改并发布<br>配置中心通知Apollo客户端有配置更新<br>Apollo客户端从配置中心拉取最新的配置、更新本地配置并通知到应用<br><img src="/images/apollo-config-trip/apollo-basic-architecture.png" alt="apollo-basic-architecture.png"><br>4.2、架构模块<br><img src="/images/apollo-config-trip/apollo-overall-architecture.png" alt="apollo-overall-architecture.png"><br>上图简要描述了Apollo的总体设计，我们可以从下往上看：</p>
+<ul>
+<li>Config Service提供配置的读取、推送等功能，服务对象是Apollo客户端</li>
+<li>Admin Service提供配置的修改、发布等功能，服务对象是Apollo Portal（管理界面）</li>
+<li>Config Service和Admin Service都是多实例、无状态部署，所以需要将自己注册到Eureka中并保持心跳</li>
+<li>在Eureka之上我们架了一层Meta Server用于封装Eureka的服务发现接口</li>
+<li>Client通过域名访问Meta Server获取Config Service服务列表（IP+Port），而后直接通过IP+Port访问服务，同时在Client侧会做load balance、错误重试</li>
+<li>Portal通过域名访问Meta Server获取Admin Service服务列表（IP+Port），而后直接通过IP+Port访问服务，同时在Portal侧会做load balance、错误重试</li>
+<li>为了简化部署，我们实际上会把Config Service、Eureka和Meta Server三个逻辑角色部署在同一个JVM进程中</li>
+</ul>
+<hr>
+<p>4.3、Why Eureka<br>为什么我们采用Eureka作为服务注册中心，而不是使用传统的zk、etcd呢？大致总结了一下，有以下几方面的原因：</p>
+<ul>
+<li>它提供了完整的Service Registry和Service Discovery实现<br> 首先是提供了完整的实现，并且也经受住了Netflix自己的生产环境考验，相对使用起来会比较省心。</li>
+<li>和Spring Cloud无缝集成<br>我们的项目本身就使用了Spring Cloud和Spring Boot，同时Spring Cloud还有一套非常完善的开源代码来整合Eureka，所以使用起来非常方便。<br>另外，Eureka还支持在我们应用自身的容器中启动，也就是说我们的应用启动完之后，既充当了Eureka的角色，同时也是服务的提供者。这样就极大的提高了服务的可用性。<br>这一点是我们选择Eureka而不是zk、etcd等的主要原因，为了提高配置中心的可用性和降低部署复杂度，我们需要尽可能地减少外部依赖。</li>
+<li>Open Source<br>最后一点是开源，由于代码是开源的，所以非常便于我们了解它的实现原理和排查问题。</li>
+</ul>
+<p>4.4 各模块概要介绍<br>4.4.1 Config Service</p>
+<ul>
+<li>提供配置获取接口</li>
+<li>提供配置更新推送接口（基于Http long polling）<br>服务端使用<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/request/async/DeferredResult.html">Spring DeferredResult</a>实现异步化，从而大大增加长连接数量<br>目前使用的tomcat embed默认配置是最多10000个连接（可以调整），使用了4C8G的虚拟机实测可以支撑10000个连接，所以满足需求（一个应用实例只会发起一个长连接）。</li>
+<li>接口服务对象为Apollo客户端</li>
+</ul>
+<p>4.4.2 Admin Service</p>
+<ul>
+<li>提供配置管理接口</li>
+<li>提供配置修改、发布等接口</li>
+<li>接口服务对象为Portal</li>
+</ul>
+<p>4.4.3 Meta Server</p>
+<ul>
+<li>Portal通过域名访问Meta Server获取Admin Service服务列表（IP+Port）</li>
+<li>Client通过域名访问Meta Server获取Config Service服务列表（IP+Port）</li>
+<li>Meta Server从Eureka获取Config Service和Admin Service的服务信息，相当于是一个Eureka Client</li>
+<li>增设一个Meta Server的角色主要是为了封装服务发现的细节，对Portal和Client而言，永远通过一个Http接口获取Admin Service和Config Service的服务信息，而不需要关心背后实际的服务注册和发现组件</li>
+<li>Meta Server只是一个逻辑角色，在部署时和Config Service是在一个JVM进程中的，所以IP、端口和Config Service一致</li>
+</ul>
+<p>4.4.4 Eureka</p>
+<ul>
+<li>基于<a href="https://github.com/Netflix/eureka">Eureka</a>和<a href="https://cloud.spring.io/spring-cloud-netflix/">Spring Cloud Netflix</a>提供服务注册和发现</li>
+<li>Config Service和Admin Service会向Eureka注册服务，并保持心跳</li>
+<li>为了简单起见，目前Eureka在部署时和Config Service是在一个JVM进程中的（通过Spring Cloud Netflix）</li>
+</ul>
+<p>4.4.5 Portal</p>
+<ul>
+<li>提供Web界面供用户管理配置</li>
+<li>通过Meta Server获取Admin Service服务列表（IP+Port），通过IP+Port访问服务</li>
+<li>在Portal侧做load balance、错误重试</li>
+</ul>
+<p>4.4.6 Client</p>
+<ul>
+<li>Apollo提供的客户端程序，为应用提供配置获取、实时更新等功能</li>
+<li>通过Meta Server获取Config Service服务列表（IP+Port），通过IP+Port访问服务</li>
+<li>在Client侧做load balance、错误重试</li>
+</ul>
+<p>4.5 服务端设计<br>  4.5.1 发送ReleaseMessage的实现方式<br>Config Service有一个线程会每秒扫描一次ReleaseMessage表,看看是否有新的消息记录，参见<br><a href="https://github.com/ctripcorp/apollo/blob/master/apollo-biz/src/main/java/com/ctrip/framework/apollo/biz/message/ReleaseMessageScanner.java">ReleaseMessageScanner</a><br>简要描述了NotificationControllerV2是如何得知有配置发布的，那NotificationControllerV2在得知有配置发布后是如何通知到客户端的呢？<br>实现方式如下：</p>
+<ul>
+<li>客户端会发起一个Http请求到Config Service的notifications/v2接口，也就是<a href="https://github.com/ctripcorp/apollo/blob/master/apollo-configservice/src/main/java/com/ctrip/framework/apollo/configservice/controller/NotificationControllerV2.java">NotificationControllerV2</a>，参见<a href="https://github.com/ctripcorp/apollo/blob/master/apollo-client/src/main/java/com/ctrip/framework/apollo/internals/RemoteConfigLongPollService.java">RemoteConfigLongPollService</a></li>
+<li>NotificationControllerV2不会立即返回结果，而是通过<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/request/async/DeferredResult.html">Spring DeferredResult</a>把请求挂起</li>
+<li>如果在60秒内没有该客户端关心的配置发布，那么会返回Http状态码304给客户端</li>
+<li>如果有该客户端关心的配置发布，NotificationControllerV2会调用DeferredResult的<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/request/async/DeferredResult.html#setResult-T-">setResult</a>方法，传入有配置变化的namespace信息，同时该请求会立即返回。客户端从返回的结果中获取到配置变化的namespace后，会立即请求Config Service获取该namespace的最新配置。<br><img src="/images/apollo-config-trip/apollo-client-architecture.png" alt="apollo-client-architecture.png"><br>上图简要描述了Apollo客户端的实现原理：</li>
+</ul>
+<ol>
+<li>客户端和服务端保持了一个长连接，从而能第一时间获得配置更新的推送。（通过Http Long Polling实现）</li>
+<li>客户端还会定时从Apollo配置中心服务端拉取应用的最新配置。</li>
+</ol>
+<ul>
+<li>这是一个fallback机制，为了防止推送机制失效导致配置不更新</li>
+<li>客户端定时拉取会上报本地版本，所以一般情况下，对于定时拉取的操作，服务端都会返回304 - Not Modified</li>
+<li>定时频率默认为每5分钟拉取一次，客户端也可以通过在运行时指定System Property: apollo.refreshInterval来覆盖，单位为分钟。</li>
+</ul>
+<ol start="3">
+<li>客户端从Apollo配置中心服务端获取到应用的最新配置后，会保存在内存中</li>
+<li>客户端会把从服务端获取到的配置在本地文件系统缓存一份</li>
+</ol>
+<ul>
+<li>在遇到服务不可用或网络不通的时候，依然能从本地恢复配置</li>
+</ul>
+<ol start="5">
+<li>应用程序可以从Apollo客户端获取最新的配置、订阅配置更新通知<br><a href="https://github.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E8%AE%BE%E8%AE%A1">更详细资料详见</a><h2 id="5-微服务中Apollo-java客户端的搭建使用"><a href="#5-微服务中Apollo-java客户端的搭建使用" class="headerlink" title="5:微服务中Apollo java客户端的搭建使用"></a>5:微服务中Apollo java客户端的搭建使用</h2></li>
+<li>1、首先在微服务maven的pom项目中增加apollo的client 依赖<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+ <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+ <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>apollo<span class="token operator">-</span>client<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+ <span class="token operator">&lt;</span>version<span class="token operator">></span><span class="token number">1.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span></code></pre>
+</li>
+<li>2、在application启动类中指定@EnableApolloConfig配置项</li>
+<li>3、启动应用中需要指定-Denv=dev参数</li>
+<li>4、在yml中需要增加config server的服务地址配置以及serviceid配置项<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">app</span><span class="token punctuation">:</span>
+<span class="token key atrule">id</span><span class="token punctuation">:</span> SampleApp
+<span class="token key atrule">apollo</span><span class="token punctuation">:</span>
+<span class="token key atrule">meta</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//34.85.49.138<span class="token punctuation">:</span><span class="token number">8080</span>
+<span class="token key atrule">bootstrap</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+</li>
+<li>5、注意事项<br>在多网卡机器的环境中,需要指定要注册到configServer的ip,避免内网ip或者受限制的网络ip注册到meta server中去,导致客户端获取不到元数据信息<br>可以在apollo-configservice 或者apollo-adminservice 的startup.sh中指定eureka 实例化注册的ip地址。参数信息如: -Deureka.instance.ip-address=${指定的IP} <a href="https://github.com/ctripcorp/apollo/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97">详见官网资料</a></li>
+<li>6、使用<font color="red">@ApolloConfigChangeListener</font>监听类进行监听配置项的改变<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ApolloConfigChangeListener</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">someOnChange</span><span class="token punctuation">(</span>ConfigChangeEvent changeEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//update injected value of batch if it is changed in Apollo</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>changeEvent<span class="token punctuation">.</span><span class="token function">isChanged</span><span class="token punctuation">(</span><span class="token string">"timeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getIntProperty</span><span class="token punctuation">(</span><span class="token string">"timeout"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li>7、使用简单样例<br>Java Config使用方式</li>
+<li>7.1、新建配置类JavaConfigBean如下：</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Java Config方式
+ *
+ * @author zyf
+ * @create 2020-05-12 15:00
+ **/</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaConfigBean</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${timeout:20}"</span><span class="token punctuation">)</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> timeout<span class="token punctuation">;</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> timeout<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>5.7.2、新增访问端点</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//1.Java Config方式</span>
+ <span class="token annotation punctuation">@Autowired</span>
+ JavaConfigBean javaConfigBean<span class="token punctuation">;</span>
+
+
+ <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/index1"</span><span class="token punctuation">)</span>
+ <span class="token keyword">public</span> String <span class="token function">hello1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">return</span> javaConfigBean<span class="token punctuation">.</span><span class="token function">getTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span></code></pre>
+<p>Spring Boot提供了@ConfigurationProperties把配置注入到bean对象中。Apollo也支持这种方式，下面的例子会把redis.cache.expireSeconds和redis.cache.commandTimeout分别注入 到SampleRedisConfig的expireSeconds和commandTimeout字段中。<br>5.8.1、新增配置类SampleRedisConfig如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * ConfigurationProperties使用方式
+ *
+ * @author zyf
+ * @create 2020-05-12 15:00
+ **/</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"redis.cache"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SampleRedisConfig</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> expireSeconds<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> commandTimeout<span class="token punctuation">;</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setExpireSeconds</span><span class="token punctuation">(</span><span class="token keyword">int</span> expireSeconds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>expireSeconds <span class="token operator">=</span> expireSeconds<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCommandTimeout</span><span class="token punctuation">(</span><span class="token keyword">int</span> commandTimeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>commandTimeout <span class="token operator">=</span> commandTimeout<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getExpireSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> expireSeconds<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getCommandTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> commandTimeout<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java">新增访问端点
+<span class="token comment" spellcheck="true">//2. ConfigurationProperties使用方式</span>
+  <span class="token annotation punctuation">@Autowired</span>
+  SampleRedisConfig sampleRedisConfig<span class="token punctuation">;</span>
+
+
+  <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/index2"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> String <span class="token function">hello2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> sampleRedisConfig<span class="token punctuation">.</span><span class="token function">getCommandTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"--"</span><span class="token operator">+</span>sampleRedisConfig<span class="token punctuation">.</span><span class="token function">getExpireSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java">新增以下代码
+<span class="token annotation punctuation">@ApolloConfigChangeListener</span>
+  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">someOnChange</span><span class="token punctuation">(</span>ConfigChangeEvent changeEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//update injected value of batch if it is changed in Apollo</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>changeEvent<span class="token punctuation">.</span><span class="token function">isChanged</span><span class="token punctuation">(</span><span class="token string">"timeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getIntProperty</span><span class="token punctuation">(</span><span class="token string">"timeout"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ApolloJsonValue</span>的使用
+新增User如下：
+<span class="token comment" spellcheck="true">/**
+ * 用户
+ *
+ * @author zyf
+ * @create 2020-05-12 15:00
+ **/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> String username<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> String password<span class="token punctuation">;</span>
+
+
+  <span class="token keyword">public</span> String <span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> username<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUsername</span><span class="token punctuation">(</span>String username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>username <span class="token operator">=</span> username<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> String <span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> password<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPassword</span><span class="token punctuation">(</span>String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>password <span class="token operator">=</span> password<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+服务端新增配置
+jsonBeanProperty<span class="token operator">=</span><span class="token punctuation">[</span> <span class="token punctuation">{</span> <span class="token string">"username"</span><span class="token operator">:</span> <span class="token string">"john"</span><span class="token punctuation">,</span> <span class="token string">"password"</span><span class="token operator">:</span> <span class="token string">"1234"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token string">"username"</span><span class="token operator">:</span> <span class="token string">"simon"</span><span class="token punctuation">,</span> <span class="token string">"password"</span><span class="token operator">:</span> <span class="token string">"222132"</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>
+客户端获取配置
+<span class="token comment" spellcheck="true">//4. @ApolloJsonValue使用</span>
+<span class="token annotation punctuation">@ApolloJsonValue</span><span class="token punctuation">(</span><span class="token string">"${jsonBeanProperty:[]}"</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> List<span class="token operator">&lt;</span>User<span class="token operator">></span> anotherJsonBeans<span class="token punctuation">;</span>
+
+
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/index4"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hello4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  anotherJsonBeans<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>err<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"--"</span><span class="token operator">+</span>item<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>5.8.2、多配置文件</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xes<span class="token punctuation">.</span>chn<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>service<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>impl<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>Config<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>model<span class="token punctuation">.</span>ConfigChangeEvent<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>ApolloConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>ApolloConfigChangeListener<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ctrip<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>apollo<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>EnableApolloConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Value<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>scheduling<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Scheduled<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Service<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>PostConstruct<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Set<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token annotation punctuation">@EnableApolloConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"chn.application.properties"</span><span class="token punctuation">,</span> <span class="token string">"beibo.yml"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//@EnableApolloConfig("application.properties")</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoggerConfigurationImpl</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>LoggerConfigurationImpl<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token annotation punctuation">@ApolloConfig</span><span class="token punctuation">(</span><span class="token string">"chn.application.properties"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> Config commonProperties<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@ApolloConfig</span><span class="token punctuation">(</span><span class="token string">"beibo.yml"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> Config beiboYml<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${invokingServerPath.beibo.stuChangeUrl}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> String stuChangeUrl<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//</span>
+    <span class="token annotation punctuation">@PostConstruct</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">//        System.out.println(gateway);</span>
+<span class="token comment" spellcheck="true">//        System.out.println(config.getPropertyNames());</span>
+<span class="token comment" spellcheck="true">//        Config config = ConfigService.getConfig("chn-beibo.yml"); //config instance is singleton for each namespace and is never null</span>
+<span class="token comment" spellcheck="true">//        String someKey = "chn-beibo";</span>
+<span class="token comment" spellcheck="true">//        String someDefaultValue = "1234567a";</span>
+<span class="token comment" spellcheck="true">//        String value = config.getProperty(someKey, someDefaultValue);</span>
+<span class="token comment" spellcheck="true">//        System.out.println(gateway);</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@ApolloConfigChangeListener</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"chn.application.properties"</span><span class="token punctuation">,</span> <span class="token string">"beibo.yml"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">someOnChange</span><span class="token punctuation">(</span>ConfigChangeEvent changeEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//update injected value of batch if it is changed in Apollo</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>changeEvent<span class="token punctuation">.</span><span class="token function">isChanged</span><span class="token punctuation">(</span><span class="token string">"timeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">//            System.out.println(config.getIntProperty("timeout", 0));</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//    @Scheduled(fixedRate = 1000)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reportCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stuChangeUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Set<span class="token operator">&lt;</span>String<span class="token operator">></span> propertyNames<span class="token operator">=</span>commonProperties<span class="token punctuation">.</span><span class="token function">getPropertyNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String stuChangeUrL<span class="token operator">=</span>beiboYml<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"invokingServerPath.beibo.stuChangeUrl"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>String propertyName <span class="token operator">:</span> propertyNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stuChangeUrL<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>propertyName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"stuChangeUrL:{}"</span><span class="token punctuation">,</span> stuChangeUrL<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"${"</span> <span class="token operator">+</span> propertyName <span class="token operator">+</span> <span class="token string">"}"</span><span class="token punctuation">,</span>commonProperties<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span>propertyName<span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<h2 id="6-带缓存与不带缓存Http接口从Apollo读取配置"><a href="#6-带缓存与不带缓存Http接口从Apollo读取配置" class="headerlink" title="6:带缓存与不带缓存Http接口从Apollo读取配置"></a>6:带缓存与不带缓存Http接口从Apollo读取配置</h2><p>6.1 通过带缓存的Http接口从Apollo读取配置<br>该接口会从缓存中获取配置，适合频率较高的配置拉取请求，如简单的每30秒轮询一次配置。</p>
+<p>由于缓存最多会有一秒的延时，所以如果需要配合配置推送通知实现实时更新配置的话，请参考<a href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#13-%E9%80%9A%E8%BF%87%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%AD%98%E7%9A%84http%E6%8E%A5%E5%8F%A3%E4%BB%8Eapollo%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE">通过不带缓存的Http接口从Apollo读取配置</a>。<br>6.1.1 <a href="https://github.com/ctripcorp/apollo/wiki/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97#121-http%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E">Http接口说明</a><br>URL: {config_server_url}/configfiles/json/{appId}/{clusterName}/{namespaceName}?ip={clientIp}<br>Method: GET<br>参数说明：<br>|参数名|是否必须|参数值|备注|<br>|-|-|-|-|<br>| config_server_url |是|Apollo配置服务的地址||<br>| appId |是|应用的appId||<br>| namespaceName |是|如果没有新建过Namespace的话，传入application即可。 如果创建了Namespace，并且需要使用该Namespace的配置，则传入对应的Namespace名字。需要注意的是对于properties类型的namespace，只需要传入namespace的名字即可，如application。对于其它类型的namespace，需要传入namespace的名字加上后缀名，如datasources.json<br>||<br>| ip |否|应用部署的机器ip|这个参数是可选的，用来实现灰度发布。 如果不想传这个参数，请注意URL中从?号开始的query parameters整个都不要出现。<br>|</p>
+]]></content>
+      <categories>
+        <category>Java Apollo config</category>
+      </categories>
+      <tags>
+        <tag>distributed config</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用docker-compose构建kafka集群</title>
     <url>/2018/07/28/docker-compose-zk-kafka/</url>
     <content><![CDATA[<p>  上篇说到了docker-compose的一些基本命令，这次使用docker-compose构建kafka集群。在说kafka之前，先简单了解一下kafka是什么东西。</p>
@@ -10849,6 +11162,395 @@ Parallel Ranged Sum<span class="token operator">:</span> <span class="token numb
       </categories>
       <tags>
         <tag>Java8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自定义nacos ribbon负载均衡</title>
+    <url>/2021/06/04/nacos-ribbon-custom-loadbalancer-rule/</url>
+    <content><![CDATA[<h2 id="一、ribbon入门"><a href="#一、ribbon入门" class="headerlink" title="一、ribbon入门"></a>一、ribbon入门</h2><h3 id="1、ribbon在微服务中是什么-起到了什么作用"><a href="#1、ribbon在微服务中是什么-起到了什么作用" class="headerlink" title="1、ribbon在微服务中是什么?起到了什么作用?"></a>1、ribbon在微服务中是什么?起到了什么作用?</h3><p>   ribbon是一个客户端负载均衡,原来我们的http请求是 <code>http://ip:port/****</code> 使用ribbon: <code>productName</code>那么也就是根据项目名,寻找一台服务, 然后将项目名定位到一台服务的过程.<br>   <img src="/images/nacos-ribbon-custom-loadbalancer-rule/ribbon-principle.png" alt="ribbon-principle"></p>
+<h3 id="2、重新定义ribbon负载均衡策略"><a href="#2、重新定义ribbon负载均衡策略" class="headerlink" title="2、重新定义ribbon负载均衡策略"></a>2、重新定义ribbon负载均衡策略</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TheSameClusterPriorityRule</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractLoadBalancerRule</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initWithNiwsConfig</span><span class="token punctuation">(</span>IClientConfig iClientConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 主要实现choose方法
+     *
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Server <span class="token function">choose</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="3、feign也是客户端负载均衡与ribbon的区别-Ribbon-VS-Feign"><a href="#3、feign也是客户端负载均衡与ribbon的区别-Ribbon-VS-Feign" class="headerlink" title="3、feign也是客户端负载均衡与ribbon的区别(Ribbon VS Feign)"></a>3、feign也是客户端负载均衡与ribbon的区别(Ribbon VS Feign)</h3><p>feign和ribbon是Spring Cloud的Netflix中提供的两个实现软负载均衡的组件，Ribbon和Feign都是用于<br>调用其他服务的，方式不同。Feign则是在Ribbon的基础上进行了一次改进，采用接口的方式。<br>将需要调用的其他服务的方法定义成抽象方法即可，不需要自己构建 http 请求.<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/ribbon-with-feign-difference.png" alt="ribbon-with-feign-difference"></p>
+<h3 id="4、如何自定义feign拦截器"><a href="#4、如何自定义feign拦截器" class="headerlink" title="4、如何自定义feign拦截器"></a>4、如何自定义feign拦截器</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/custom-feign-interceptor-.png" alt="custom-feign-interceptor"></p>
+<h2 id="二、ribbon按照权重实现负载均衡"><a href="#二、ribbon按照权重实现负载均衡" class="headerlink" title="二、ribbon按照权重实现负载均衡"></a>二、ribbon按照权重实现负载均衡</h2><p><code>ribbon</code>本身是没有权重的概念的, 那么如何才能实现代用权重的负载均衡呢?<br>我们在<code>nacos</code>中,服务集群有一个权重的概念,当给服务器设置了权重,那么流量就可以根据权重比例分配到服务器上.</p>
+<h3 id="1、先来看看如何自定义一个负载均衡策略"><a href="#1、先来看看如何自定义一个负载均衡策略" class="headerlink" title="1、先来看看如何自定义一个负载均衡策略."></a>1、先来看看如何自定义一个负载均衡策略.</h3><p>首先是继承自<code>AbstractLoadBalancerRule</code>. 从下面这张图可以看出,<code>ribbon</code>自定义的策略,最终都继承自这个类,这个类封装了负载均衡策略的公共方法.<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/ribbon-abstractLoadBalancerRule-implement.png" alt="ribbon-abstractLoadBalancerRule-implement"><br>在nacos中可以配置服务器的权重<br>在nacos中,有两个重要的类,一个是NameService,一个是ConfigService  </p>
+<ul>
+<li>NameService: 注册中心</li>
+<li>ConfigService: 配置中心</li>
+</ul>
+<h2 id="三、实现带有权重的负载均衡器"><a href="#三、实现带有权重的负载均衡器" class="headerlink" title="三、实现带有权重的负载均衡器"></a>三、实现带有权重的负载均衡器</h2><h3 id="第一步-自定义一个带有权重的负载均衡器MyWeightRule"><a href="#第一步-自定义一个带有权重的负载均衡器MyWeightRule" class="headerlink" title="第一步:自定义一个带有权重的负载均衡器MyWeightRule"></a>第一步:自定义一个带有权重的负载均衡器MyWeightRule</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-myWeightRule.png" alt="nacos-myWeightRule"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>myrule<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>NacosDiscoveryProperties<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>ribbon<span class="token punctuation">.</span>NacosServer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>exception<span class="token punctuation">.</span>NacosException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>NamingService<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Instance<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span>IClientConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>AbstractLoadBalancerRule<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>BaseLoadBalancer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>ILoadBalancer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>Server<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Autowired<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 自定义一个权重负载均衡策略
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyWeightRule</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractLoadBalancerRule</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> NacosDiscoveryProperties discoveryProperties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initWithNiwsConfig</span><span class="token punctuation">(</span>IClientConfig iClientConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 读取配置文件, 并且初始化, ribbon内部基本上用不上</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 这个方法是实现负载均衡策略的方法
+     *
+     * @param
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Server <span class="token function">choose</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"key:{}"</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 调用父类方法, 获取当前使用的负载均衡器</span>
+            BaseLoadBalancer baseLoadBalancer <span class="token operator">=</span> <span class="token punctuation">(</span>BaseLoadBalancer<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoadBalancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 获取当前服务的名称</span>
+            String serviceName <span class="token operator">=</span> baseLoadBalancer<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">/**
+             * namingService: 获取nacos的服务发现API
+             */</span>
+            NamingService namingService <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">namingServiceInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">/**
+             * 根据名称获取服务发现实例
+             * 在selectOneHealthyInstance中, nacos实现了权重的负载均衡算法
+             */</span>
+            Instance instance <span class="token operator">=</span> namingService<span class="token punctuation">.</span><span class="token function">selectOneHealthyInstance</span><span class="token punctuation">(</span>serviceName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">NacosServer</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NacosException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第二步-启用自定义的负载均衡器应用"><a href="#第二步-启用自定义的负载均衡器应用" class="headerlink" title="第二步: 启用自定义的负载均衡器应用"></a>第二步: 启用自定义的负载均衡器应用</h3><p>修改自定义的ribbon config.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>config<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>lxl<span class="token punctuation">.</span>www<span class="token punctuation">.</span>ribbonconfig<span class="token punctuation">.</span>GlobalRibbonConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>ribbon<span class="token punctuation">.</span>RibbonClients<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token comment" spellcheck="true">/*@RibbonClients(value = {
+        @RibbonClient(name="product", configuration = ProductConfiguration.class),
+        @RibbonClient(name = "customer", configuration = CustomerConfiguration.class)
+})*/</span>
+<span class="token comment" spellcheck="true">// 使用全局的配置</span>
+<span class="token annotation punctuation">@RibbonClients</span><span class="token punctuation">(</span>defaultConfiguration <span class="token operator">=</span> GlobalRibbonConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomeRibbonConfig</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>设置为全局配置<code>GlobalRibbonConfig.class</code><br>然后在全局配置中,我们执行当前使用的负载均衡策略是自定义的权重负载均衡策略 </p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>ribbonconfig<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>myrule<span class="token punctuation">.</span>MyWeightRule<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>IRule<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalRibbonConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> IRule <span class="token function">getRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 实现带有权重的负载均衡策略</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">MyWeightRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第三步-启动服务-并设置nacos权重"><a href="#第三步-启动服务-并设置nacos权重" class="headerlink" title="第三步:启动服务,并设置nacos权重"></a>第三步:启动服务,并设置nacos权重</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-console-server-instance-list.png" alt="nacos-console-server-instance-list"><br>我们看到启动了两台<code>product</code>,一台<code>order</code>. 接下来设置<code>product</code>两台实例的权重<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-console-server-instance-detail.png" alt="nacos-console-server-instance-detail"><br>我们看到一个设置为<code>0.1</code>,另一个是<code>0.9</code>, 也就是说如果有<code>10</code>次请求, 基本上都是会打到<code>8083</code>端口上的. </p>
+<h3 id="第四步-浏览器访问连接-测试结果"><a href="#第四步-浏览器访问连接-测试结果" class="headerlink" title="第四步: 浏览器访问连接,测试结果"></a>第四步: 浏览器访问连接,测试结果</h3><pre class=" language-text"><code class="language-text">http://localhost:8080/get/product</code></pre>
+<p>触发了10次请求,基本上都打到了8083服务器上.</p>
+<h2 id="四、实现同集群优先调用原则的负载均衡器"><a href="#四、实现同集群优先调用原则的负载均衡器" class="headerlink" title="四、实现同集群优先调用原则的负载均衡器"></a>四、实现同集群优先调用原则的负载均衡器</h2><p>尽量避免跨集群调用<br>比如,南京集群的<code>product</code>优先调用南京集群的<code>order</code>.北京集群的<code>product</code>优先调用北京集群的<code>order</code>.<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-area-cluster-ribbon-rule.png" alt="nacos-area-cluster-ribbon-rule"><br>实现如上图所示的功能<br>我们有<code>product</code>服务和<code>order</code>服务, 假设各有10台. <code>product</code>和<code>order</code>有5台部署在北京集群上, 另外5台部署在南京集群上.<br>那么当有请求打到南京的<code>product</code>的时候, 那么他调用<code>order</code>要优先调用南京集群的,南京集群没有了,在调用北京集群的.<br>当有请求打到北京的<code>product</code>的是偶,优先调用北京集群的<code>order</code>,北京没有找到,再去调用南京的<code>order</code>.</p>
+<h3 id="第一步-自定义一个同集群优先策略的负载均衡器"><a href="#第一步-自定义一个同集群优先策略的负载均衡器" class="headerlink" title="第一步: 自定义一个同集群优先策略的负载均衡器"></a>第一步: 自定义一个同集群优先策略的负载均衡器</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/the-same-cluster-priority-rule.png" alt="the-same-cluster-priority-rule"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>myrule<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>NacosDiscoveryProperties<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>ribbon<span class="token punctuation">.</span>NacosServer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>exception<span class="token punctuation">.</span>NacosException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>NamingService<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Instance<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span>IClientConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>AbstractLoadBalancerRule<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>BaseLoadBalancer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>Server<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>StringUtils<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>omg<span class="token punctuation">.</span>PortableInterceptor<span class="token punctuation">.</span>INACTIVE<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Autowired<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Component<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 同集群优先调用--负载均衡策略
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TheSameClusterPriorityRule</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractLoadBalancerRule</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> NacosDiscoveryProperties discoveryProperties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initWithNiwsConfig</span><span class="token punctuation">(</span>IClientConfig iClientConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 主要实现choose方法
+     *
+     * @param o
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Server <span class="token function">choose</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 第一步: 获取服务所在的集群名称</span>
+            String clusterName <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">getClusterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第二步: 获取当前负载均衡器</span>
+            BaseLoadBalancer loadBalancer <span class="token operator">=</span> <span class="token punctuation">(</span>BaseLoadBalancer<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoadBalancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第三步: 获取当前服务的实例名称</span>
+            String serviceName <span class="token operator">=</span> loadBalancer<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第四步: 获取nacos client服务注册发现api</span>
+            NamingService namingService <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">namingServiceInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第五步: 通过namingService获取当前注册的所有服务实例</span>
+            List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> allInstances <span class="token operator">=</span> namingService<span class="token punctuation">.</span><span class="token function">getAllInstances</span><span class="token punctuation">(</span>serviceName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> instanceList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第六步: 过滤筛选同集群下的服务实例</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Instance instance<span class="token operator">:</span> allInstances<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">endsWithIgnoreCase</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getClusterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> clusterName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    instanceList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            Instance toBeChooseInstance<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第七步: 选择合适的服务实例</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>instanceList <span class="token operator">==</span> null <span class="token operator">||</span> instanceList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 从其他集群中随机选择一个服务实例</span>
+                toBeChooseInstance <span class="token operator">=</span> WeightedBalancer<span class="token punctuation">.</span><span class="token function">chooseInstanceByRandomWeight</span><span class="token punctuation">(</span>allInstances<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"跨集群调用---{}"</span><span class="token punctuation">,</span> toBeChooseInstance<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 从本集群中随机选择一个服务实例</span>
+                toBeChooseInstance <span class="token operator">=</span> WeightedBalancer<span class="token punctuation">.</span><span class="token function">chooseInstanceByRandomWeight</span><span class="token punctuation">(</span>instanceList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"同集群调用---{}"</span><span class="token punctuation">,</span> toBeChooseInstance<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">NacosServer</span><span class="token punctuation">(</span>toBeChooseInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NacosException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-weightedBalancer.png" alt="nacos-weightedBalancer"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>lxl<span class="token punctuation">.</span>www<span class="token punctuation">.</span>ribbon<span class="token punctuation">.</span>myrule<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Instance<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>client<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Balancer<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 根据权重随机选择一个实例
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WeightedBalancer</span> <span class="token keyword">extends</span> <span class="token class-name">Balancer</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * 根据随机权重策略, 从一群服务器中选择一个
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Instance <span class="token function">chooseInstanceByRandomWeight</span> <span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> instanceList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 这是父类Balancer自带的根据随机权重获取服务的方法.</span>
+        <span class="token keyword">return</span> <span class="token function">getHostByRandomWeight</span><span class="token punctuation">(</span>instanceList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第二步-设置当前的负载均衡策略为同集群优先策略"><a href="#第二步-设置当前的负载均衡策略为同集群优先策略" class="headerlink" title="第二步: 设置当前的负载均衡策略为同集群优先策略"></a>第二步: 设置当前的负载均衡策略为同集群优先策略</h3><pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Configuration</span>
+ <span class="token comment" spellcheck="true">/*@RibbonClients(value = {
+         @RibbonClient(name="product", configuration = ProductConfiguration.class),
+         @RibbonClient(name = "customer", configuration = CustomerConfiguration.class)
+ })*/</span>
+ <span class="token comment" spellcheck="true">// 使用全局的配置</span>
+ <span class="token annotation punctuation">@RibbonClients</span><span class="token punctuation">(</span>defaultConfiguration <span class="token operator">=</span> GlobalRibbonConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+ <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomeRibbonConfig</span> <span class="token punctuation">{</span>
+
+ <span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalRibbonConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> IRule <span class="token function">getRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 实现带有权重的负载均衡策略</span>
+        <span class="token comment" spellcheck="true">//return new MyWeightRule();</span>
+        <span class="token comment" spellcheck="true">// 实现同集群优先的服务实例</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">TheSameClusterPriorityRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第三步-启动服务"><a href="#第三步-启动服务" class="headerlink" title="第三步: 启动服务"></a>第三步: 启动服务</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/the-same-cluster-priority-rule-instance-console.png" alt="the-same-cluster-priority-rule-instance-console"><br>可以看到<code>order</code>服务实例有<code>1</code>台, 所属集群是<code>BJ-CLUSTER</code>, <code>product</code>服务有<code>4</code>台. <code>BJ-CLUSTER</code>和<code>NJ-CLUSTER</code>各两台<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-bj-nj-cluster-detail.png" alt="nacos-bj-nj-cluster-detail"></p>
+<h3 id="第四步-访问请求"><a href="#第四步-访问请求" class="headerlink" title="第四步: 访问请求"></a>第四步: 访问请求</h3><pre class=" language-text"><code class="language-text">http://localhost:8080/get/product</code></pre>
+<p>由于order服务是<code>BJ-CLUSTER</code>,所以,我们看到流量是随机打到了<code>ORDER</code>的<code>BJ-CLUSTER</code>集群上.<br>停止<code>BJ-CLUSTER</code>集群的两台实例, 现在<code>BJ-CLUSTER</code>集群上没有<code>product</code>的服务实例了,这时在请求,流量就会达到<code>NJ-CLUSTER</code>上.</p>
+<h2 id="五、金丝雀发布–实现同版本同集群优先负载均衡策略"><a href="#五、金丝雀发布–实现同版本同集群优先负载均衡策略" class="headerlink" title="五、金丝雀发布–实现同版本同集群优先负载均衡策略"></a>五、金丝雀发布–实现同版本同集群优先负载均衡策略</h2><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/canary-example-show.png" alt="canary-example-show"></p>
+<blockquote>
+<p>金丝雀发布一般先发1台，或者一个小比例，例如 2% 的服务器，主要做流量验证用，也称为金丝雀 (Canary) 测试（国内常称灰度测试）。以前旷工开矿下矿洞前，先会放一只金丝雀进去探是否有有毒气体，看金丝雀能否活下来，<br>金丝雀发布由此得名。简单的金丝雀测试一般通过手工测试验证，复杂的金丝雀测试需要比较完善的监控基础设施配合，通过监控指标反馈，观察金丝雀的健康状况，作为后续发布或回退的依据。如果金丝测试通过，<br>则把剩余的 V1 版本全部升级为 V2 版本。如果金丝雀测试失败，则直接回退金丝雀，发布失败。</p>
+<p>优势和适用场合</p>
+<p>优势：<br>用户体验影响小，金丝雀发布过程出现问题只影响少量用户<br>适用场合：</p>
+<ul>
+<li>对新版本功能或性能缺乏足够信心</li>
+<li>用户体验要求较高的网站业务场景</li>
+<li>缺乏足够的自动化发布工具研发能力</li>
+</ul>
+</blockquote>
+<p>金丝雀发布, 也称为灰度发布, 是什么意思呢?<br>首先, 我们的product服务实例有100台, order服务实例有100台. 现在都是在v1 版本上<br>然后新开发了一个变化很大的功能, 为了保证效果, 要进行灰度测试<br>在<code>product-center</code>上发布了5台, 在<code>order-center</code>上发布了<code>5</code>台<br>那么现在用户的流量过来了, 我们要设定一部分用户, 请求的是v1版本的流量, 而且全部都走<code>v1</code>版本, <code>product-center</code>, <code>order-center</code>都是<code>v1</code>版本<br>如果过来的用户, 请求的v2版本的流量, 那么<code>product</code>和<code>order</code>都走<code>v2</code>版本.</p>
+<p>下面我们要实现的功能描述如下:<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/canary-example-process.png" alt="canary-example-process"></p>
+<ol>
+<li>同集群,同版本优先调用, </li>
+<li>没有同集群的服务提供者, 进行跨集群,同版本调用</li>
+<li>不可以进行不同版本间的调用<br>也就是说: 南京集群V1版本的<code>product</code>优先调用南京集群<code>V1</code>版本的<code>order</code>, 如果没有南京集群<code>V1</code>版本的<code>order</code>, 那么就调用北京集群<code>V1</code>版本的<code>order</code>, 那么能调用<code>v2</code>版本的么? <code>当然不行</code>.<br>下面来具体实现一下</li>
+</ol>
+<h3 id="第一步-实现带有版本的集群优先策略的负载均衡算法"><a href="#第一步-实现带有版本的集群优先策略的负载均衡算法" class="headerlink" title="第一步: 实现带有版本的集群优先策略的负载均衡算法"></a>第一步: 实现带有版本的集群优先策略的负载均衡算法</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/nacos-custom-ribbon-rule-canary-cluster-version.png" alt="nacos-custom-ribbon-rule-canary-cluster-version"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>personal<span class="token punctuation">.</span>www<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>myrule<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>NacosDiscoveryProperties<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>ribbon<span class="token punctuation">.</span>NacosServer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>exception<span class="token punctuation">.</span>NacosException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>NamingService<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>nacos<span class="token punctuation">.</span>api<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Instance<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span>IClientConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>AbstractLoadBalancerRule<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>BaseLoadBalancer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>Server<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Autowired<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 同集群优先带版本的负载均衡策略
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TheSameClusterPriorityWithVersionRule</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractLoadBalancerRule</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> NacosDiscoveryProperties discoveryProperties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initWithNiwsConfig</span><span class="token punctuation">(</span>IClientConfig iClientConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Server <span class="token function">choose</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 第一步: 获取当前服务的集群名称 和 服务的版本号</span>
+            String clusterName <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">getClusterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String version <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">getMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"version"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// 第二步: 获取当前服务的负载均衡器</span>
+            BaseLoadBalancer loadBalancer <span class="token operator">=</span> <span class="token punctuation">(</span>BaseLoadBalancer<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoadBalancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第三步: 获取目标服务的服务名</span>
+            String serviceName <span class="token operator">=</span> loadBalancer<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// 第四步: 获取nacos提供的服务注册api</span>
+            NamingService namingService <span class="token operator">=</span> discoveryProperties<span class="token punctuation">.</span><span class="token function">namingServiceInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 第五步: 获取所有服务名为serviceName的服务实例</span>
+            List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> allInstances <span class="token operator">=</span> namingService<span class="token punctuation">.</span><span class="token function">getAllInstances</span><span class="token punctuation">(</span>serviceName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// 第六步: 过滤相同版本的服务实例</span>
+            List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> sameVersionInstance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Instance instance <span class="token operator">:</span> allInstances<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"version"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    sameVersionInstance<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment" spellcheck="true">// 第七步: 过滤有相同集群的服务实例</span>
+            List<span class="token operator">&lt;</span>Instance<span class="token operator">></span> sameClusterInstance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Instance instance<span class="token operator">:</span> sameVersionInstance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getClusterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>clusterName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    sameClusterInstance<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 第八步: 选择合适的服务实例</span>
+            Instance toBeChooseInstanc<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sameClusterInstance <span class="token operator">==</span> null <span class="token operator">||</span> sameClusterInstance<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                toBeChooseInstanc <span class="token operator">=</span> WeightedBalancer<span class="token punctuation">.</span><span class="token function">chooseInstanceByRandomWeight</span><span class="token punctuation">(</span>sameVersionInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"同版本不同集群的服务实例--{}"</span><span class="token punctuation">,</span> toBeChooseInstanc<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                toBeChooseInstanc <span class="token operator">=</span> WeightedBalancer<span class="token punctuation">.</span><span class="token function">chooseInstanceByRandomWeight</span><span class="token punctuation">(</span>sameClusterInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"同版本同集群服务实例--{}"</span><span class="token punctuation">,</span> toBeChooseInstanc<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">NacosServer</span><span class="token punctuation">(</span>toBeChooseInstanc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NacosException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第二步-启用自定义负载均衡策略"><a href="#第二步-启用自定义负载均衡策略" class="headerlink" title="第二步: 启用自定义负载均衡策略"></a>第二步: 启用自定义负载均衡策略</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-with-version-ribbon-config.png" alt="same-cluster-priority-with-version-ribbon-config"><br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-with-version-ribbon-globalconfig.png" alt="same-cluster-priority-with-version-ribbon-globalconfig"></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token comment" spellcheck="true">/*@RibbonClients(value = {
+        @RibbonClient(name="product", configuration = ProductConfiguration.class),
+        @RibbonClient(name = "customer", configuration = CustomerConfiguration.class)
+})*/</span>
+<span class="token comment" spellcheck="true">// 使用全局的配置</span>
+<span class="token annotation punctuation">@RibbonClients</span><span class="token punctuation">(</span>defaultConfiguration <span class="token operator">=</span> GlobalRibbonConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomeRibbonConfig</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalRibbonConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> IRule <span class="token function">getRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 实现带有权重的负载均衡策略</span>
+        <span class="token comment" spellcheck="true">//return new MyWeightRule();</span>
+        <span class="token comment" spellcheck="true">// 实现同集群优先的负载均衡策略</span>
+        <span class="token comment" spellcheck="true">// return new TheSameClusterPriorityRule();</span>
+        <span class="token comment" spellcheck="true">// 实现同版本集群优先的服务负载均衡策略</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">TheSameClusterPriorityWithVersionRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="第三步-启动服务-1"><a href="#第三步-启动服务-1" class="headerlink" title="第三步:启动服务"></a>第三步:启动服务</h3><p><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-with-version-rule-console.png" alt="same-cluster-priority-with-version-rule-console"><br>如图,我们启动了两个服务, 一个<code>order</code>, 一个<code>product</code>, 其中<code>order</code>启动了<code>1</code>个实例, <code>product</code>启动了<code>4</code>个实例.</p>
+<p>下面来看看order实例的详情<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-with-version-rule-bjcluster.png" alt="same-cluster-priority-with-version-rule-bjcluster"><br>属于北京集群,版本号是<code>v1</code>版本</p>
+<p>再来看看<code>product</code>集群的详情<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-version-rule-productserver-cluster.png" alt="same-cluster-priority-version-rule-productserver-cluster"><br>北京集群有两台实例, 一个版本号是<code>v1</code>,另一个是<code>v2</code><br>南京集群有两台实例, 一个是<code>v1</code>, 另一个也是<code>v2</code></p>
+<h3 id="第四步-现在发起请求"><a href="#第四步-现在发起请求" class="headerlink" title="第四步: 现在发起请求"></a>第四步: 现在发起请求</h3><pre class=" language-text"><code class="language-text">http://localhost:8080/get/product</code></pre>
+<p>order集群是北京, 版本是<code>version1</code>. 那么服务应该达到哪台服务器呢? 应该打到北京集群的<code>v1</code>版本服务,端口号是<code>8081</code>的服务器.<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-version-bj-server-process.png" alt="same-cluster-priority-version-bj-server-process"><br>果然,请求达到了8081服务上, 加入这时候, 北京集群的<code>8081</code>宕机了, 流量应该达到南京集群的v1版本的集群上, 端口号是<code>8083</code><br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-version-nj-server-process.png" alt="same-cluster-priority-version-nj-server-process"><br> 果然是<code>8083</code>. 那么如果<code>8083</code>也宕机了, 流量会打到<code>v2</code>服务器上么? 没错,不会的, 报错了, 没有服务<br><img src="/images/nacos-ribbon-custom-loadbalancer-rule/same-cluster-priority-version-error-page.png" alt="same-cluster-priority-version-error-page"></p>
+]]></content>
+      <categories>
+        <category>SpringBoot Nacos</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>nacos</tag>
+        <tag>custom nacos ribbon rule</tag>
       </tags>
   </entry>
   <entry>

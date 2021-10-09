@@ -373,6 +373,104 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/07/29/redis-cluster-info/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Redis查看集群信息以及key分布非slot">
+                            
+                            <span class="card-title">Redis查看集群信息以及key分布非slot</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                进入redis集群redis-cli -h ip -p port -c
+查看集群节点cluster nodes
+查看key对应的slotcluster keyslot key
+查看slot和节点的对应关系cluster slots
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-29
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Redis/">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/25/guava-case-format/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Guava中的CaseFormat">
+                            
+                            <span class="card-title">Guava中的CaseFormat</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照_进行单词之间的分割，但是我们Java中的命名风格又是按照驼峰方式，一般返回给前端的DTO对象也按照驼峰方式，前端同学在对所有列进行排序时，会按照我们返回给他的props发
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Guava/" class="post-category">
+                                    Guava
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Guava/">
+                            <span class="chip bg-color">Guava</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/07/25/map-sort/">
                         <div class="card-image">
                             
@@ -885,117 +983,6 @@ mv
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/02/16/spring-transaction/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Spring事务管理">
-                            
-                            <span class="card-title">Spring事务管理</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                什么是事务事务是逻辑上的一组操作，要么都执行，要么都不执行。
-原子性
-事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
-
-一致性
-执行事务前后，数据保持一致；
-
-持久性
-一个事务被提交之后。它对数据库中
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Spring/" class="post-category">
-                                    Spring
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/spring/">
-                            <span class="chip bg-color">spring</span>
-                        </a>
-                        
-                        <a href="/tags/transaction/">
-                            <span class="chip bg-color">transaction</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/02/16/spring-aop/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spring Aop AspectJ 摘录笔记">
-                            
-                            <span class="card-title">Spring Aop AspectJ 摘录笔记</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                原文链接：https://juejin.im/post/5a55af9e518825734d14813f
-@AspectJAspectJ是一个AOP框架，它能够对java代码进行AOP编译（一般在编译期进行），让java代码具有Aspect
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Spring/" class="post-category">
-                                    Spring
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/AspectJ/">
-                            <span class="chip bg-color">AspectJ</span>
-                        </a>
-                        
-                        <a href="/tags/Aop/">
-                            <span class="chip bg-color">Aop</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1013,7 +1000,7 @@ mv
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 6</div>
+            <div class="center-align b-text-gray">2 / 7</div>
         </div>
         <div class="col s6 m4 l4">
             
@@ -1040,7 +1027,7 @@ mv
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">85.8k</span>&nbsp;字
+                class="white-color">93k</span>&nbsp;字
             
             
             
