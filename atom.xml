@@ -122,6 +122,31 @@
   </entry>
   
   <entry>
+    <title>深入理解Golang UDP编程</title>
+    <link href="http://xiaomozhang.github.io/2021/10/07/golang-udp-protocol-study/"/>
+    <id>http://xiaomozhang.github.io/2021/10/07/golang-udp-protocol-study/</id>
+    <published>2021-10-07T02:34:08.000Z</published>
+    <updated>2021-10-11T08:52:00.356Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本周在排查golang守护进程服务通过udp server服务接收教师端服务日志时,需要学生端本机发送udp数据信息样例测试我们守护进程消费日志信息相关的问题。故对我们Go</summary>
+        
+      
+    
+    
+    
+    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/categories/Golang-Udp/"/>
+    
+    
+    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/tags/Golang-Udp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>自定义nacos ribbon负载均衡</title>
     <link href="http://xiaomozhang.github.io/2021/06/04/nacos-ribbon-custom-loadbalancer-rule/"/>
     <id>http://xiaomozhang.github.io/2021/06/04/nacos-ribbon-custom-loadbalancer-rule/</id>
@@ -512,32 +537,6 @@
     
     
     <category term="MyBatis" scheme="http://xiaomozhang.github.io/tags/MyBatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL查看所有连接的客户端ip</title>
-    <link href="http://xiaomozhang.github.io/2020/06/29/mysql-show-client-connection/"/>
-    <id>http://xiaomozhang.github.io/2020/06/29/mysql-show-client-connection/</id>
-    <published>2020-06-29T05:54:14.000Z</published>
-    <updated>2021-01-12T03:00:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;有时候我们需要查看当前的mysql数据库中， 有哪些客户端保持了连接， 每个客户端分别保持了多少连接，可以使用下面的语句查询结果，可以直观的看到连接数。&lt;/p&gt;
-&lt;pre class=&quot; language-sql&quot;&gt;&lt;code</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="http://xiaomozhang.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="http://xiaomozhang.github.io/tags/MySQL/"/>
     
   </entry>
   
