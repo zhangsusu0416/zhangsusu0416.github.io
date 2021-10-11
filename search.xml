@@ -585,124 +585,6 @@ sudo rm -rf /var/lib/docker
       </tags>
   </entry>
   <entry>
-    <title>FTP 常用命令</title>
-    <url>/2019/12/12/ftp-command/</url>
-    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
-<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>pwd</td>
-<td>显示远程计算机上的当前目录</td>
-</tr>
-<tr>
-<td>ls/dir</td>
-<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>移动到cd 后的目录</td>
-</tr>
-<tr>
-<td>cdup/cd ..</td>
-<td>返回上一级目录</td>
-</tr>
-<tr>
-<td>lcd</td>
-<td>列出当前本地目录路径</td>
-</tr>
-</tbody></table>
-<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mkdir</td>
-<td>在远程系统中创建目录</td>
-</tr>
-<tr>
-<td>rname</td>
-<td>重命名一个文件或目录</td>
-</tr>
-<tr>
-<td>redir</td>
-<td>删除远程目录</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>删除远程文件</td>
-</tr>
-<tr>
-<td>mdelete</td>
-<td>删除多个远程文件</td>
-</tr>
-</tbody></table>
-<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>binary/bin</td>
-<td>用于二进制文件传送（图像文件等）</td>
-</tr>
-<tr>
-<td>ascii</td>
-<td>用于文本文件传送</td>
-</tr>
-<tr>
-<td>get/mget</td>
-<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
-</tr>
-<tr>
-<td>put/mput</td>
-<td>从当前目录把文件复制到当前远程目录</td>
-</tr>
-<tr>
-<td>prompt</td>
-<td>关闭二次确认时的提示</td>
-</tr>
-</tbody></table>
-<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>!</td>
-<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
-</tr>
-<tr>
-<td>close</td>
-<td>关闭当前连接</td>
-</tr>
-<tr>
-<td>bye</td>
-<td>关闭连接并退出ftp命令模式</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-      <tags>
-        <tag>FTP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git常用命令</title>
     <url>/2019/01/29/git-command/</url>
     <content><![CDATA[<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><h3 id="使用Git生成ssh密钥"><a href="#使用Git生成ssh密钥" class="headerlink" title="使用Git生成ssh密钥:"></a>使用Git生成ssh密钥:</h3><pre class=" language-shell"><code class="language-shell">ssh-keygen -t rsa -C "email@example.com"</code></pre>
@@ -831,6 +713,231 @@ git push 远程仓库名 标签名    #将标签推送到远程仓库（Git默�
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FTP 常用命令</title>
+    <url>/2019/12/12/ftp-command/</url>
+    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
+<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pwd</td>
+<td>显示远程计算机上的当前目录</td>
+</tr>
+<tr>
+<td>ls/dir</td>
+<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>移动到cd 后的目录</td>
+</tr>
+<tr>
+<td>cdup/cd ..</td>
+<td>返回上一级目录</td>
+</tr>
+<tr>
+<td>lcd</td>
+<td>列出当前本地目录路径</td>
+</tr>
+</tbody></table>
+<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mkdir</td>
+<td>在远程系统中创建目录</td>
+</tr>
+<tr>
+<td>rname</td>
+<td>重命名一个文件或目录</td>
+</tr>
+<tr>
+<td>redir</td>
+<td>删除远程目录</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除远程文件</td>
+</tr>
+<tr>
+<td>mdelete</td>
+<td>删除多个远程文件</td>
+</tr>
+</tbody></table>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>binary/bin</td>
+<td>用于二进制文件传送（图像文件等）</td>
+</tr>
+<tr>
+<td>ascii</td>
+<td>用于文本文件传送</td>
+</tr>
+<tr>
+<td>get/mget</td>
+<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
+</tr>
+<tr>
+<td>put/mput</td>
+<td>从当前目录把文件复制到当前远程目录</td>
+</tr>
+<tr>
+<td>prompt</td>
+<td>关闭二次确认时的提示</td>
+</tr>
+</tbody></table>
+<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>!</td>
+<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭当前连接</td>
+</tr>
+<tr>
+<td>bye</td>
+<td>关闭连接并退出ftp命令模式</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>FTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go服务跨平台交叉编译打包与设置版本号</title>
+    <url>/2021/10/11/golang-goarch-goos-mutiple-platform-build/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  最近在负责维护和开发守护进程、运营平台监控、连接池等相关Go服务，首先守护进程服务是部署在客户的windows平台下运行,其它大部分服务都是部署在linux环境下,首先现在面临的一个问题就是如果在一台机器上进行跨平台交叉编译后可以在主流的Mac OS, Linux, Windows上运行。如何让每次发布的时候，自动带上版本号软件包呢？这下就轮到Makefile上场了……<br> 这里主要介绍一下如何用Makefile以及Go本身所支持的编译特性，实现编译时自动生成版本号的功能。<br> 在开始之前，假设我们程序发布的流程是这样：</p>
+<blockquote>
+<p>1、编码完成，提交测试工程师测试<br>   2、测试工程师测试出的bug都已解决，并重新测试和验证通过<br>   3、工程师把修复好bug的代码合并到release分支，并建立git tag：2020-03011-release，准备用于最终程序的构建，发布和部署</p>
+</blockquote>
+<p> 在编译生成最终要发布的程序时，我们希望程序可以通过 -v 参数，提供如下的版本信息：</p>
+<blockquote>
+<p>BTIME: 显示程序编译和构建时的日期<br>  GITHEAD: 显示程序当前代码的git tag，用以在程序出现问题时，查找和定位对应版本的源代码</p>
+</blockquote>
+<p> 首先，我们需要实现一个demo程序，用于接收 -v 参数，在运行的时候，显示当前程序的编译构建时间，以及代码编译时所使用的git tag名称：   </p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+   <span class="token string">"flag"</span>
+   <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+   GITHEAD    <span class="token operator">=</span> <span class="token string">"2020-03-11-release"</span>
+ BTIME <span class="token operator">=</span> <span class="token string">"2020-03-11 16:01:00:080"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   version <span class="token operator">:=</span> flag<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"v"</span><span class="token punctuation">,</span> <span class="token string">"2020-03-12-release"</span><span class="token punctuation">,</span> <span class="token string">"version"</span><span class="token punctuation">)</span>
+   flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+   <span class="token keyword">if</span> version <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"GITHEAD: "</span> <span class="token operator">+</span> GITHEAD<span class="token punctuation">)</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"BTIME: "</span> <span class="token operator">+</span> BTIME<span class="token punctuation">)</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"version: "</span><span class="token punctuation">,</span> <span class="token operator">*</span>version<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在程序中，我们为GITHEAD和BTIME定义了默认值。运行起来，是这样的：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-version.jpg" alt="交叉编译设置版本号"><br>我们已经有了一个程序，接收 -v 参数，并且能输出程序对应的GITHEAD和构建时间。不过不足的地方在于，每一次发布程序的时候，我们需要手动修改这两个值，再进行编译，非常不人性化，而且在发布程序的时候，总会忘掉这一步。于是，得用上Go的build -ldflags所提供的一个功能：-X 参数,使用-X参数，允许我们在编译构建Go程序的时候，传入自定义的值，覆盖对应的import path下的指定变量。于是，我们可以在编译程序的时候这么干: </p>
+<p>go build -ldflags “-X main.GITHEAD=2020.03.13.release -X main.BTIME=2020-03-13 16:01:00:080” main.go</p>
+<p>编译成功后，运行 ./main -v 程序输出：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-time.jpg" alt="交叉编译外部设置编译时间"><br>到目前为止，我们已经成功的实现了”Compile time variables”，这意味着在编译时，动态传入参数和值，让程序在编译的时候，动态生成我们所指定的版本号。不过，这个GITHEAD和BITIME是在我们编译的时候指定的，而且编译的命令很长，作为一个懒惰的程序员，每次编译的时候敲这么长的命令是很磨人的。得用一种更灵活的方法来实现编译时传入参数，可选的方式大概有两种：</p>
+<blockquote>
+<p>1、写一个shell脚本来实现编译的自动化<br> 2、写一个Makefile文件，用make命令来编译</p>
+</blockquote>
+<p>shell脚本是一种比较常用的方式，这次我们来体验一下用Makefile实现Go程序的编译。于是，我又折腾出来了一个Makefile文件:</p>
+<pre class=" language-shell"><code class="language-shell">NAME=project_nameBINDIR=GITV=BVERSION=BUILDTIME=GOBUILD=  PLATFORM_LIST =                WINDOWS_ARCH_LIST =   all: darwin-amd64:
+ GOARCH=amd64 GOOS=darwin $ -o $/$-$@
+
+linux-386:
+ GOARCH=386 GOOS=linux $ -o $/$-$@
+
+linux-amd64:
+ GOARCH=amd64 GOOS=linux $ -o $/$linux-armv5:
+ GOARCH=arm GOOS=linux GOARM=5 $ -o $/$-$@
+
+linux-armv6:
+ GOARCH=arm GOOS=linux GOARM=6 $ -o $/$-$@
+
+linux-armv7:
+ GOARCH=arm GOOS=linux GOARM=7 $ -o $/$-$@
+
+linux-armv8:
+ GOARCH=arm64 GOOS=linux $ -o $/$-$@
+
+linux-mips-softfloat:
+ GOARCH=mips GOMIPS=softfloat GOOS=linux $ -o $/$-$@
+
+linux-mips-hardfloat:
+ GOARCH=mips GOMIPS=hardfloat GOOS=linux $ -o $/$-$@
+
+linux-mipsle-softfloat:
+ GOARCH=mipsle GOMIPS=softfloat GOOS=linux $ -o $/$-$@
+
+linux-mipsle-hardfloat:
+ GOARCH=mipsle GOMIPS=hardfloat GOOS=linux $ -o $/$-$@
+
+linux-mips64:
+ GOARCH=mips64 GOOS=linux $ -o $/$-$@
+
+linux-mips64le:
+ GOARCH=mips64le GOOS=linux $ -o $/$-$@
+
+freebsd-386:
+ GOARCH=386 GOOS=freebsd $ -o $/$-$@
+
+freebsd-amd64:
+ GOARCH=amd64 GOOS=freebsd $ -o $/$-$@
+
+windows-386:
+ GOARCH=386 GOOS=windows $ -o $/$-$@.exe
+
+windows-amd64:
+ GOARCH=amd64 GOOS=windows $ -o $/$-$@.exe
+
+gz_releases=zip_releases=$(gz_releases): %.gz :   +x $/$-$ $@  -f -S -$.gz $/$-$ $@$(zip_releases): %.zip :   -m -j $/$-$ $@-$.zip $/$-$ $@.exe
+
+all-arch: releases: clean:
+  $/*</code></pre>
+<p>最后，我们直接用make命令传递参数，来编译我们的程序：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-makefile-run-example.jpg" alt="golang makeFile运行示例"><br>其中:</p>
+<blockquote>
+<p>GOOS：目标平台的操作系统（darwin、freebsd、linux、windows）<br> GOARCH：目标平台的体系架构（386、amd64、arm）交叉编译不支持 CGO 所以要禁用它</p>
+</blockquote>
+<p>当我们编译运行完成之后会发现在build目录下会生成我们所需要的不同平台下的可执行文件。最后我们需要注意,<code>如果不想在生成完毕的文件名称中带上平台名称的后缀,那么需要在执行不同平台命令的后面去掉 "-$@"</code> 相关配置信息。<br>后续还会继续在分享出来更多关于Go相关的文章内容,希望能与大家共同成长,一起进步。</p>
+]]></content>
+      <categories>
+        <category>golang跨平台交叉编译</category>
+      </categories>
+      <tags>
+        <tag>Goarch、Goos、Cgo</tag>
       </tags>
   </entry>
   <entry>
@@ -1036,200 +1143,13 @@ log<span class="token punctuation">.</span><span class="token function">SetFlags
     <span class="token keyword">return</span> <span class="token operator">&amp;</span>Logger<span class="token punctuation">{</span>out<span class="token punctuation">:</span> out<span class="token punctuation">,</span> prefix<span class="token punctuation">:</span> prefix<span class="token punctuation">,</span> flag<span class="token punctuation">:</span> flag<span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p><img src="/images/golang-log-with-fmt-different/golang-log-writer-file-show-code.png" alt="log-writer-file-show-code.png"><br>然后直接调用log中的Println的方法输出日志即可,就会将日志内容追加到日志文件中。</p>
-<h2 id="4-结论"><a href="#4-结论" class="headerlink" title="4:结论"></a>4:结论</h2><p>最后,打印信息的话 一般也不用fmt,fmt一般用来格式化. 所以特殊需求也就不要用fmt了.希望大家有其它方面的个人简介随时私聊我,我们公共成长,一起进步。</p>
+<h2 id="4-结论"><a href="#4-结论" class="headerlink" title="4:结论"></a>4:结论</h2><p>最后,打印信息的话 一般也不用fmt,fmt一般用来格式化. 所以特殊需求也就不要用fmt了.希望大家有其它方面的个人见解随时私聊我,我们公共成长,一起进步。</p>
 ]]></content>
       <categories>
         <category>Golang日志输出</category>
       </categories>
       <tags>
         <tag>Golang log Golang fmt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Guava中的CaseFormat</title>
-    <url>/2020/07/25/guava-case-format/</url>
-    <content><![CDATA[<p>在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照<code>_</code>进行单词之间的分割，但是我们<code>Java</code>中的命名风格又是按照驼峰方式，一般返回给前端的<code>DTO</code>对象也按照驼峰方式，前端同学在对所有列进行排序时，会按照我们返回给他的<code>props</code>发送给后端，这时候后端收到的就是驼峰方式的<code>props</code>，但是拿到数据库查询这肯定是一个不存在的字段，那么有什么好的方式去解决这个问题呢？</p>
-<p>这时候发现了<code>guava</code>中的<code>CaseFormat</code>工具类。</p>
-<p> com.google.common.base.CaseFormat是一种实用工具类，以提供不同的ASCII字符格式之间的转换。</p>
-<h2 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GwtCompatible</span>
-<span class="token keyword">public</span> <span class="token keyword">enum</span> CaseFormat
-   <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>CaseFormat<span class="token operator">></span></code></pre>
-<h2 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h2><table>
-<thead>
-<tr>
-<th>枚举常量</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LOWER_CAMEL</td>
-<td>Java变量的命名规则，如 <code>lowerCamel</code></td>
-</tr>
-<tr>
-<td>LOWER_HYPHEN</td>
-<td>连字符连接变量的命名规则，如 <code>lower-hyphen</code></td>
-</tr>
-<tr>
-<td>LOWER_UNDERSCORE</td>
-<td>C ++变量命名规则，如 <code>lower_underscore</code></td>
-</tr>
-<tr>
-<td>UPPER_CAMEL</td>
-<td>Java和C++类的命名规则，如 <code>UpperCamel</code></td>
-</tr>
-<tr>
-<td>UPPER_UNDERSCORE</td>
-<td>Java和C++常量的命名规则，如 <code>UPPER_UNDERSCORE</code></td>
-</tr>
-</tbody></table>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Converter&lt;String,String&gt; converterTo(CaseFormat targetFormat)</td>
-<td>返回一个转换，从这个格式转换targetFormat字符串。</td>
-</tr>
-<tr>
-<td>String to(CaseFormat format, String str)</td>
-<td>从这一格式指定格式的指定字符串 str 转换。</td>
-</tr>
-<tr>
-<td>static CaseFormat valueOf(String name)</td>
-<td>返回此类型具有指定名称的枚举常量。</td>
-</tr>
-<tr>
-<td>static CaseFormat[] values()</td>
-<td>返回一个包含该枚举类型的常量数组中的顺序被声明。</td>
-</tr>
-</tbody></table>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    String appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>只要我们自己定的<code>DTO</code>是标准的，那么排序是前端同学就按照我们返回给他的字段在传回来，我们只需要用<code>CaseFormat</code>进行转换即可，不然还得依次进行match匹配</p>
-]]></content>
-      <categories>
-        <category>Guava</category>
-      </categories>
-      <tags>
-        <tag>Guava</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go服务跨平台交叉编译打包与设置版本号</title>
-    <url>/2021/10/11/golang-goarch-goos-mutiple-platform-build/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  最近在负责维护和开发守护进程、运营平台监控、连接池等相关Go服务，首先守护进程服务是部署在客户的windows平台下运行,其它大部分服务都是部署在linux环境下,首先现在面临的一个问题就是如果在一台机器上进行跨平台交叉编译后可以在主流的Mac OS, Linux, Windows上运行。如何让每次发布的时候，自动带上版本号软件包呢？这下就轮到Makefile上场了……<br> 这里主要介绍一下如何用Makefile以及Go本身所支持的编译特性，实现编译时自动生成版本号的功能。<br> 在开始之前，假设我们程序发布的流程是这样：</p>
-<blockquote>
-<p>1、编码完成，提交测试工程师测试<br>   2、测试工程师测试出的bug都已解决，并重新测试和验证通过<br>   3、工程师把修复好bug的代码合并到release分支，并建立git tag：2020-03011-release，准备用于最终程序的构建，发布和部署</p>
-</blockquote>
-<p> 在编译生成最终要发布的程序时，我们希望程序可以通过 -v 参数，提供如下的版本信息：</p>
-<blockquote>
-<p>BTIME: 显示程序编译和构建时的日期<br>  GITHEAD: 显示程序当前代码的git tag，用以在程序出现问题时，查找和定位对应版本的源代码</p>
-</blockquote>
-<p> 首先，我们需要实现一个demo程序，用于接收 -v 参数，在运行的时候，显示当前程序的编译构建时间，以及代码编译时所使用的git tag名称：   </p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-   <span class="token string">"flag"</span>
-   <span class="token string">"fmt"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">var</span> <span class="token punctuation">(</span>
-   GITHEAD    <span class="token operator">=</span> <span class="token string">"2020-03-11-release"</span>
- BTIME <span class="token operator">=</span> <span class="token string">"2020-03-11 16:01:00:080"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   version <span class="token operator">:=</span> flag<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"v"</span><span class="token punctuation">,</span> <span class="token string">"2020-03-12-release"</span><span class="token punctuation">,</span> <span class="token string">"version"</span><span class="token punctuation">)</span>
-   flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-   <span class="token keyword">if</span> version <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"GITHEAD: "</span> <span class="token operator">+</span> GITHEAD<span class="token punctuation">)</span>
-      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"BTIME: "</span> <span class="token operator">+</span> BTIME<span class="token punctuation">)</span>
-      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"version: "</span><span class="token punctuation">,</span> <span class="token operator">*</span>version<span class="token punctuation">)</span>
-   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>在程序中，我们为GITHEAD和BTIME定义了默认值。运行起来，是这样的：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-version.jpg" alt="交叉编译设置版本号"><br>我们已经有了一个程序，接收 -v 参数，并且能输出程序对应的GITHEAD和构建时间。不过不足的地方在于，每一次发布程序的时候，我们需要手动修改这两个值，再进行编译，非常不人性化，而且在发布程序的时候，总会忘掉这一步。于是，得用上Go的build -ldflags所提供的一个功能：-X 参数,使用-X参数，允许我们在编译构建Go程序的时候，传入自定义的值，覆盖对应的import path下的指定变量。于是，我们可以在编译程序的时候这么干: </p>
-<p>go build -ldflags “-X main.GITHEAD=2020.03.13.release -X main.BTIME=2020-03-13 16:01:00:080” main.go</p>
-<p>编译成功后，运行 ./main -v 程序输出：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-time.jpg" alt="交叉编译外部设置编译时间"><br>到目前为止，我们已经成功的实现了”Compile time variables”，这意味着在编译时，动态传入参数和值，让程序在编译的时候，动态生成我们所指定的版本号。不过，这个GITHEAD和BITIME是在我们编译的时候指定的，而且编译的命令很长，作为一个懒惰的程序员，每次编译的时候敲这么长的命令是很磨人的。得用一种更灵活的方法来实现编译时传入参数，可选的方式大概有两种：</p>
-<blockquote>
-<p>1、写一个shell脚本来实现编译的自动化<br> 2、写一个Makefile文件，用make命令来编译</p>
-</blockquote>
-<p>shell脚本是一种比较常用的方式，这次我们来体验一下用Makefile实现Go程序的编译。于是，我又折腾出来了一个Makefile文件:</p>
-<pre class=" language-shell"><code class="language-shell">NAME=project_nameBINDIR=GITV=BVERSION=BUILDTIME=GOBUILD=  PLATFORM_LIST =                WINDOWS_ARCH_LIST =   all: darwin-amd64:
- GOARCH=amd64 GOOS=darwin $ -o $/$-$@
-
-linux-386:
- GOARCH=386 GOOS=linux $ -o $/$-$@
-
-linux-amd64:
- GOARCH=amd64 GOOS=linux $ -o $/$linux-armv5:
- GOARCH=arm GOOS=linux GOARM=5 $ -o $/$-$@
-
-linux-armv6:
- GOARCH=arm GOOS=linux GOARM=6 $ -o $/$-$@
-
-linux-armv7:
- GOARCH=arm GOOS=linux GOARM=7 $ -o $/$-$@
-
-linux-armv8:
- GOARCH=arm64 GOOS=linux $ -o $/$-$@
-
-linux-mips-softfloat:
- GOARCH=mips GOMIPS=softfloat GOOS=linux $ -o $/$-$@
-
-linux-mips-hardfloat:
- GOARCH=mips GOMIPS=hardfloat GOOS=linux $ -o $/$-$@
-
-linux-mipsle-softfloat:
- GOARCH=mipsle GOMIPS=softfloat GOOS=linux $ -o $/$-$@
-
-linux-mipsle-hardfloat:
- GOARCH=mipsle GOMIPS=hardfloat GOOS=linux $ -o $/$-$@
-
-linux-mips64:
- GOARCH=mips64 GOOS=linux $ -o $/$-$@
-
-linux-mips64le:
- GOARCH=mips64le GOOS=linux $ -o $/$-$@
-
-freebsd-386:
- GOARCH=386 GOOS=freebsd $ -o $/$-$@
-
-freebsd-amd64:
- GOARCH=amd64 GOOS=freebsd $ -o $/$-$@
-
-windows-386:
- GOARCH=386 GOOS=windows $ -o $/$-$@.exe
-
-windows-amd64:
- GOARCH=amd64 GOOS=windows $ -o $/$-$@.exe
-
-gz_releases=zip_releases=$(gz_releases): %.gz :   +x $/$-$ $@  -f -S -$.gz $/$-$ $@$(zip_releases): %.zip :   -m -j $/$-$ $@-$.zip $/$-$ $@.exe
-
-all-arch: releases: clean:
-  $/*</code></pre>
-<p>最后，我们直接用make命令传递参数，来编译我们的程序：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-makefile-run-example.jpg" alt="golang makeFile运行示例"><br>其中:</p>
-<blockquote>
-<p>GOOS：目标平台的操作系统（darwin、freebsd、linux、windows）<br> GOARCH：目标平台的体系架构（386、amd64、arm）交叉编译不支持 CGO 所以要禁用它</p>
-</blockquote>
-<p>当我们编译运行完成之后会发现在build目录下会生成我们所需要的不同平台下的可执行文件。最后我们需要注意,<code>如果不想在生成完毕的文件名称中带上平台名称的后缀,那么需要在执行不同平台命令的后面去掉 "-$@"</code> 相关配置信息。<br>后续还会继续在分享出来更多关于Go相关的文章内容,希望能与大家共同成长,一起进步。</p>
-]]></content>
-      <categories>
-        <category>golang跨平台交叉编译</category>
-      </categories>
-      <tags>
-        <tag>Goarch、Goos、Cgo</tag>
       </tags>
   </entry>
   <entry>
@@ -1607,6 +1527,132 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </tags>
   </entry>
   <entry>
+    <title>Guava中的CaseFormat</title>
+    <url>/2020/07/25/guava-case-format/</url>
+    <content><![CDATA[<p>在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照<code>_</code>进行单词之间的分割，但是我们<code>Java</code>中的命名风格又是按照驼峰方式，一般返回给前端的<code>DTO</code>对象也按照驼峰方式，前端同学在对所有列进行排序时，会按照我们返回给他的<code>props</code>发送给后端，这时候后端收到的就是驼峰方式的<code>props</code>，但是拿到数据库查询这肯定是一个不存在的字段，那么有什么好的方式去解决这个问题呢？</p>
+<p>这时候发现了<code>guava</code>中的<code>CaseFormat</code>工具类。</p>
+<p> com.google.common.base.CaseFormat是一种实用工具类，以提供不同的ASCII字符格式之间的转换。</p>
+<h2 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GwtCompatible</span>
+<span class="token keyword">public</span> <span class="token keyword">enum</span> CaseFormat
+   <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>CaseFormat<span class="token operator">></span></code></pre>
+<h2 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h2><table>
+<thead>
+<tr>
+<th>枚举常量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOWER_CAMEL</td>
+<td>Java变量的命名规则，如 <code>lowerCamel</code></td>
+</tr>
+<tr>
+<td>LOWER_HYPHEN</td>
+<td>连字符连接变量的命名规则，如 <code>lower-hyphen</code></td>
+</tr>
+<tr>
+<td>LOWER_UNDERSCORE</td>
+<td>C ++变量命名规则，如 <code>lower_underscore</code></td>
+</tr>
+<tr>
+<td>UPPER_CAMEL</td>
+<td>Java和C++类的命名规则，如 <code>UpperCamel</code></td>
+</tr>
+<tr>
+<td>UPPER_UNDERSCORE</td>
+<td>Java和C++常量的命名规则，如 <code>UPPER_UNDERSCORE</code></td>
+</tr>
+</tbody></table>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Converter&lt;String,String&gt; converterTo(CaseFormat targetFormat)</td>
+<td>返回一个转换，从这个格式转换targetFormat字符串。</td>
+</tr>
+<tr>
+<td>String to(CaseFormat format, String str)</td>
+<td>从这一格式指定格式的指定字符串 str 转换。</td>
+</tr>
+<tr>
+<td>static CaseFormat valueOf(String name)</td>
+<td>返回此类型具有指定名称的枚举常量。</td>
+</tr>
+<tr>
+<td>static CaseFormat[] values()</td>
+<td>返回一个包含该枚举类型的常量数组中的顺序被声明。</td>
+</tr>
+</tbody></table>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    String appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>只要我们自己定的<code>DTO</code>是标准的，那么排序是前端同学就按照我们返回给他的字段在传回来，我们只需要用<code>CaseFormat</code>进行转换即可，不然还得依次进行match匹配</p>
+]]></content>
+      <categories>
+        <category>Guava</category>
+      </categories>
+      <tags>
+        <tag>Guava</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop常用运维命令</title>
+    <url>/2020/08/03/hadoop-ops-command/</url>
+    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
+<pre><code>sh hdfs zkfc -formatZK</code></pre>
+<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
+<pre><code>hadoop-daemons.sh start journalnode</code></pre>
+<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
+<pre><code>hadoop namenode -format</code></pre>
+<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
+<pre><code>hdfs namenode -bootstrapStandby</code></pre>
+<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start datanode</code></pre>
+<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start zkfc</code></pre>
+<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
+<pre><code>start-yarn.sh</code></pre>
+<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
+<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
+<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
+<pre><code>yarn application -list</code></pre>
+<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
+<pre><code>yarn application -list -appStates RUNNING</code></pre>
+<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
+<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
+<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
+<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
+<p>5、-status <application id="">列出 某个application 的状态</application></p>
+<pre><code>yarn application -status application_1526100291229_206393</code></pre>
+<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
+<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
+<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
+<pre><code>yarn  node --list</code></pre>
+<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
+]]></content>
+      <categories>
+        <category>Hadoop</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Matery 常见问题及解决</title>
     <url>/2021/02/07/hexo-matery-problems/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
@@ -1721,52 +1767,6 @@ cnpm install hexo-generator-searchdb --save</code></pre>
       <tags>
         <tag>Maven</tag>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hadoop常用运维命令</title>
-    <url>/2020/08/03/hadoop-ops-command/</url>
-    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
-<pre><code>sh hdfs zkfc -formatZK</code></pre>
-<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
-<pre><code>hadoop-daemons.sh start journalnode</code></pre>
-<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
-<pre><code>hadoop namenode -format</code></pre>
-<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
-<pre><code>hdfs namenode -bootstrapStandby</code></pre>
-<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start datanode</code></pre>
-<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start zkfc</code></pre>
-<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
-<pre><code>start-yarn.sh</code></pre>
-<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
-<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
-<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
-<pre><code>yarn application -list</code></pre>
-<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
-<pre><code>yarn application -list -appStates RUNNING</code></pre>
-<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
-<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
-<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
-<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
-<p>5、-status <application id="">列出 某个application 的状态</application></p>
-<pre><code>yarn application -status application_1526100291229_206393</code></pre>
-<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
-<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
-<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
-<pre><code>yarn  node --list</code></pre>
-<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
-]]></content>
-      <categories>
-        <category>Hadoop</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -4392,33 +4392,6 @@ systemctl status firewalld</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
-    <url>/2020/07/19/mybatis-one-collection-basic-type/</url>
-    <content><![CDATA[<p>在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个<code>Collection&lt;String&gt;</code>或者<code>Collection&lt;Integer&gt;</code>  类型，那么我们的<code>ResultMap</code>该如何定义？</p>
-<p>方法很简单，这时候我们就需要使用到构造函数注入了，通过Integer和String的构造函数注入，具体的字段名称自己对好入座即可。</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>User<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>user_map<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authorities<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.lang.String<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>permission<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>MyBatis</category>
-      </categories>
-      <tags>
-        <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL 常用语句</title>
     <url>/2019/03/14/mysql-note-01/</url>
     <content><![CDATA[<h1 id="MySQL-常用语句"><a href="#MySQL-常用语句" class="headerlink" title="MySQL 常用语句"></a>MySQL 常用语句</h1><p><a href="http://www.powerxing.com/sql-join/">sql-join</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAwOTE3NDY5OA==&amp;mid=2647906520&amp;idx=2&amp;sn=e1da610a41a0692721d3756f9e1583bb&amp;chksm=8344d31db4335a0bf5164b6c57c7e49f6a89f0538d778b156450bbaceba55e6a47abcebf2dd1&amp;mpshare=1&amp;scene=1&amp;srcid=0128OHhJN5V4SPLdlN1uN4lb#rd">mysql常用sql语句总结</a></p>
@@ -4541,6 +4514,33 @@ AND TABLE_NAME = '</span>health_exp'<span class="token punctuation">;</span> </c
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
+    <url>/2020/07/19/mybatis-one-collection-basic-type/</url>
+    <content><![CDATA[<p>在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个<code>Collection&lt;String&gt;</code>或者<code>Collection&lt;Integer&gt;</code>  类型，那么我们的<code>ResultMap</code>该如何定义？</p>
+<p>方法很简单，这时候我们就需要使用到构造函数注入了，通过Integer和String的构造函数注入，具体的字段名称自己对好入座即可。</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>User<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>user_map<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authorities<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.lang.String<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arg</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>permission<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  <span class="token comment" spellcheck="true">&lt;!-- 对号入座数据库column名称即可 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>MyBatis</category>
+      </categories>
+      <tags>
+        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -4963,40 +4963,6 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
       </tags>
   </entry>
   <entry>
-    <title>CentOS 升级安装最新版git</title>
-    <url>/2020/09/01/soft-install-git/</url>
-    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
-yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
-<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
-<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
-<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
-<li>切换目录</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
-<ul>
-<li>git release版本地址</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
-<ul>
-<li>下载并解压</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
-tar -xvf git-2.9.5.tar.gz
-cd /usr/local/src/git-2.9.5</code></pre>
-<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
-make prefix=/usr/local/git install</code></pre>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
-source /etc/profile</code></pre>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS7 安装 MySQL5.7.X</title>
     <url>/2020/01/08/software-install-mysql5-7-x-centos7/</url>
     <content><![CDATA[<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a><strong>安装前准备</strong></h2><p>MySQL安装需要准备root账户</p>
@@ -5231,6 +5197,40 @@ chown mysql.mysql /var/run/mysqld/
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 升级安装最新版git</title>
+    <url>/2020/09/01/soft-install-git/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
+<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
+<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
+<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
+<li>切换目录</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
+<ul>
+<li>git release版本地址</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
+<ul>
+<li>下载并解压</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+tar -xvf git-2.9.5.tar.gz
+cd /usr/local/src/git-2.9.5</code></pre>
+<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
+make prefix=/usr/local/git install</code></pre>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
+source /etc/profile</code></pre>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -7474,96 +7474,6 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </tags>
   </entry>
   <entry>
-    <title>服务网关 Zuul</title>
-    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
-    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
-<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
-<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
-<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * &lt;p>
- * Created by xiaozhangge on 2019-03-16.
- */</span>
-<span class="token annotation punctuation">@EnableZuulProxy</span>
-<span class="token annotation punctuation">@EnableEurekaClient</span>
-<span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>依次启动cloud-eureka、cloud-zuul</p>
-<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
-<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
-
-<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
-<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
-<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
-<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
-
-java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
-
-java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
-<p>访问</p>
-<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
-<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
-<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
-]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring mvc文件上传下载</title>
     <url>/2019/01/29/spring-file-upload-download/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>文件上传是项目开发中最常见的功能。为了能上传文件，必须将表单的method设置为POST，并将enctype设置为multipart/form-data。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器。<br>一旦设置了enctype为multipart/form-data，浏览器即会采用二进制流的方式来处理表单数据，而对于文件上传的处理则涉及在服务器端解析原始的HTTP响应。在2003年，Apache Software Foundation发布了开源的Commons FileUpload组件，其很快成为Servlet/JSP程序员上传文件的最佳选择。<br>Servlet3.0规范已经提供方法来处理文件上传，但这种上传需要在Servlet中完成。而Spring MVC则提供了更简单的封装。<br>Spring MVC为文件上传提供了直接的支持，这种支持是用即插即用的MultipartResolver实现的。Spring MVC使用Apache Commons FileUpload技术实现了一个MultipartResolver实现类：CommonsMultipartResolver。因此，SpringMVC的文件上传还需要依赖Apache Commons FileUpload的组件。 </p>
@@ -7818,6 +7728,96 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </categories>
       <tags>
         <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务网关 Zuul</title>
+    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
+    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
+<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
+<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
+<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * &lt;p>
+ * Created by xiaozhangge on 2019-03-16.
+ */</span>
+<span class="token annotation punctuation">@EnableZuulProxy</span>
+<span class="token annotation punctuation">@EnableEurekaClient</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>依次启动cloud-eureka、cloud-zuul</p>
+<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
+<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
+
+<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
+<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
+<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
+<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
+
+java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
+
+java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
+<p>访问</p>
+<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
+<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
+<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
+]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Spring Cloud</tag>
       </tags>
   </entry>
   <entry>
