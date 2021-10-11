@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-09T14:42:17.245Z</updated>
+  <updated>2021-10-11T02:52:05.138Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://xiaomozhang.github.io/2021/10/11/golang-goarch-goos-mutiple-platform-build/"/>
     <id>http://xiaomozhang.github.io/2021/10/11/golang-goarch-goos-mutiple-platform-build/</id>
     <published>2021-10-11T02:35:03.000Z</published>
-    <updated>2021-10-09T14:42:17.245Z</updated>
+    <updated>2021-10-11T02:52:05.138Z</updated>
     
     
       
@@ -92,6 +92,32 @@
     
     
     <category term="distributed config" scheme="http://xiaomozhang.github.io/tags/distributed-config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang日志篇-log与fmt区别</title>
+    <link href="http://xiaomozhang.github.io/2021/10/08/golang-log-with-fmt-different/"/>
+    <id>http://xiaomozhang.github.io/2021/10/08/golang-log-with-fmt-different/</id>
+    <published>2021-10-08T02:35:03.000Z</published>
+    <updated>2021-10-11T03:42:07.864Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近在排查golang服务上报丢失日志的问题。发现服务中记录日志的操作大部分使用都是golang log包下的工具类进行操作的,那么log与fmt二者有什么区别？通过下面的样例来具体了解下二者的区别。&lt;/p&gt;
+&lt;h2 id=&quot;1-线程安全层面&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Golang日志输出" scheme="http://xiaomozhang.github.io/categories/Golang%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA/"/>
+    
+    
+    <category term="Golang log Golang fmt" scheme="http://xiaomozhang.github.io/tags/Golang-log-Golang-fmt/"/>
     
   </entry>
   
@@ -512,32 +538,6 @@
     
     
     <category term="MySQL" scheme="http://xiaomozhang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【转】How can I prevent gson from converting integers to doubles</title>
-    <link href="http://xiaomozhang.github.io/2020/06/28/gson-how-can-i-prevent-gson-from-converting-integers-to-doubles/"/>
-    <id>http://xiaomozhang.github.io/2020/06/28/gson-how-can-i-prevent-gson-from-converting-integers-to-doubles/</id>
-    <published>2020-06-28T02:17:53.000Z</published>
-    <updated>2021-01-12T03:00:34.372Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;处理Gson中，json转换map造成的int变double的问题。&lt;/p&gt;
-&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Gson" scheme="http://xiaomozhang.github.io/categories/Gson/"/>
-    
-    
-    <category term="Gson" scheme="http://xiaomozhang.github.io/tags/Gson/"/>
     
   </entry>
   

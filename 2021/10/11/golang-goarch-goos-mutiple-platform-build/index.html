@@ -438,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-09
+                    2021-10-11
                 </div>
                 
 
@@ -477,28 +477,28 @@
 <p>BTIME: 显示程序编译和构建时的日期<br>  GITHEAD: 显示程序当前代码的git tag，用以在程序出现问题时，查找和定位对应版本的源代码</p>
 </blockquote>
 <p> 首先，我们需要实现一个demo程序，用于接收 -v 参数，在运行的时候，显示当前程序的编译构建时间，以及代码编译时所使用的git tag名称：   </p>
-<pre class=" language-golang"><code class="language-golang">package main
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
-import (
-   "flag"
-   "fmt"
-)
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+   <span class="token string">"flag"</span>
+   <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
 
-var (
-   GITHEAD    = "2020-03-11-release"
- BTIME = "2020-03-11 16:01:00:080"
-)
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+   GITHEAD    <span class="token operator">=</span> <span class="token string">"2020-03-11-release"</span>
+ BTIME <span class="token operator">=</span> <span class="token string">"2020-03-11 16:01:00:080"</span>
+<span class="token punctuation">)</span>
 
-func main() {
-   version := flag.String("v", "2020-03-12-release", "version")
-   flag.Parse()
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   version <span class="token operator">:=</span> flag<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"v"</span><span class="token punctuation">,</span> <span class="token string">"2020-03-12-release"</span><span class="token punctuation">,</span> <span class="token string">"version"</span><span class="token punctuation">)</span>
+   flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-   if version != nil {
-      fmt.Println("GITHEAD: " + GITHEAD)
-      fmt.Println("BTIME: " + BTIME)
-      fmt.Println("version: ", *version)
-   }
-}</code></pre>
+   <span class="token keyword">if</span> version <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"GITHEAD: "</span> <span class="token operator">+</span> GITHEAD<span class="token punctuation">)</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"BTIME: "</span> <span class="token operator">+</span> BTIME<span class="token punctuation">)</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"version: "</span><span class="token punctuation">,</span> <span class="token operator">*</span>version<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>在程序中，我们为GITHEAD和BTIME定义了默认值。运行起来，是这样的：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-version.jpg" alt="交叉编译设置版本号"><br>我们已经有了一个程序，接收 -v 参数，并且能输出程序对应的GITHEAD和构建时间。不过不足的地方在于，每一次发布程序的时候，我们需要手动修改这两个值，再进行编译，非常不人性化，而且在发布程序的时候，总会忘掉这一步。于是，得用上Go的build -ldflags所提供的一个功能：-X 参数,使用-X参数，允许我们在编译构建Go程序的时候，传入自定义的值，覆盖对应的import path下的指定变量。于是，我们可以在编译程序的时候这么干: </p>
 <p>go build -ldflags “-X main.GITHEAD=2020.03.13.release -X main.BTIME=2020-03-13 16:01:00:080” main.go</p>
 <p>编译成功后，运行 ./main -v 程序输出：<br><img src="/images/golang-goarch-goos-mutiple-platform-build/golang-goos-build-mutiple-platform-build-set-time.jpg" alt="交叉编译外部设置编译时间"><br>到目前为止，我们已经成功的实现了”Compile time variables”，这意味着在编译时，动态传入参数和值，让程序在编译的时候，动态生成我们所指定的版本号。不过，这个GITHEAD和BITIME是在我们编译的时候指定的，而且编译的命令很长，作为一个懒惰的程序员，每次编译的时候敲这么长的命令是很磨人的。得用一种更灵活的方法来实现编译时传入参数，可选的方式大概有两种：</p>
@@ -1069,7 +1069,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">106.5k</span>&nbsp;字
+                class="white-color">108.2k</span>&nbsp;字
             
             
             
