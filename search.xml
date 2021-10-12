@@ -1607,52 +1607,6 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       </tags>
   </entry>
   <entry>
-    <title>Hadoop常用运维命令</title>
-    <url>/2020/08/03/hadoop-ops-command/</url>
-    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
-<pre><code>sh hdfs zkfc -formatZK</code></pre>
-<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
-<pre><code>hadoop-daemons.sh start journalnode</code></pre>
-<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
-<pre><code>hadoop namenode -format</code></pre>
-<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
-<pre><code>hdfs namenode -bootstrapStandby</code></pre>
-<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start datanode</code></pre>
-<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start zkfc</code></pre>
-<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
-<pre><code>start-yarn.sh</code></pre>
-<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
-<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
-<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
-<pre><code>yarn application -list</code></pre>
-<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
-<pre><code>yarn application -list -appStates RUNNING</code></pre>
-<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
-<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
-<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
-<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
-<p>5、-status <application id="">列出 某个application 的状态</application></p>
-<pre><code>yarn application -status application_1526100291229_206393</code></pre>
-<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
-<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
-<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
-<pre><code>yarn  node --list</code></pre>
-<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
-]]></content>
-      <categories>
-        <category>Hadoop</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo Matery 常见问题及解决</title>
     <url>/2021/02/07/hexo-matery-problems/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章非 Hexo + Matery Theme 教程，详细教程见<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md"><code>blinkfox hexo-theme-matery</code></a>，主要记录一些使用中的问题，希望能帮到进来的同学，避免踩坑。</p>
@@ -1767,6 +1721,52 @@ cnpm install hexo-generator-searchdb --save</code></pre>
       <tags>
         <tag>Maven</tag>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop常用运维命令</title>
+    <url>/2020/08/03/hadoop-ops-command/</url>
+    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
+<pre><code>sh hdfs zkfc -formatZK</code></pre>
+<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
+<pre><code>hadoop-daemons.sh start journalnode</code></pre>
+<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
+<pre><code>hadoop namenode -format</code></pre>
+<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
+<pre><code>hdfs namenode -bootstrapStandby</code></pre>
+<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start datanode</code></pre>
+<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start zkfc</code></pre>
+<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
+<pre><code>start-yarn.sh</code></pre>
+<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
+<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
+<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
+<pre><code>yarn application -list</code></pre>
+<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
+<pre><code>yarn application -list -appStates RUNNING</code></pre>
+<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
+<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
+<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
+<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
+<p>5、-status <application id="">列出 某个application 的状态</application></p>
+<pre><code>yarn application -status application_1526100291229_206393</code></pre>
+<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
+<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
+<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
+<pre><code>yarn  node --list</code></pre>
+<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
+]]></content>
+      <categories>
+        <category>Hadoop</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -3367,6 +3367,81 @@ advertised.port=9092</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>logstash 启动脚本</title>
+    <url>/2020/12/09/lsboot/</url>
+    <content><![CDATA[<ul>
+<li>logstash 通用启动脚本</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment" spellcheck="true"># FileName: lsboot</span>
+<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
+<span class="token comment" spellcheck="true"># Dispatcher:</span>
+<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
+<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
+    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
+    <span class="token keyword">exit</span> 1
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#config file OR path</span>
+conFile<span class="token operator">=</span><span class="token variable">$1</span>
+conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
+currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
+
+LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
+<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+
+check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
+  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
+
+<span class="token comment" spellcheck="true">#./stop.sh</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+check_pid
+cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
+  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
+  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
+  <span class="token keyword">exit</span> 0
+<span class="token keyword">else</span>
+  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
+  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token variable">$cmd</span>
+  <span class="token keyword">else</span>
+    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
+    <span class="token function">sleep</span> 1
+    check_pid
+    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
+  <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment" spellcheck="true">#sleep 1</span>
+
+<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
+
+<span class="token keyword">exit</span> 0
+</code></pre>
+<ul>
+<li>logstash将时间转换成unix时间戳</li>
+</ul>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
+ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
+]]></content>
+      <tags>
+        <tag>Logstash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>logstash日期插件支持纳秒</title>
     <url>/2020/12/18/logstash-filter-date-compile/</url>
     <content><![CDATA[<p>最近项目上遇到时间为纳秒的情况，用到logstash解析时是不支持纳秒的，这里提供一个思路就是自己修改logstash的日期插件，让他支持纳秒，具体涉及的插件是<a href="https://github.com/logstash-plugins/logstash-filter-date">logstash-filter-date</a></p>
@@ -3704,81 +3779,6 @@ The stdin plugin is now waiting for input:
 ]]></content>
       <tags>
         <tag>logstash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>logstash 启动脚本</title>
-    <url>/2020/12/09/lsboot/</url>
-    <content><![CDATA[<ul>
-<li>logstash 通用启动脚本</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token comment" spellcheck="true"># FileName: lsboot</span>
-<span class="token comment" spellcheck="true"># Description: 启动logstash实例</span>
-<span class="token comment" spellcheck="true"># Dispatcher:</span>
-<span class="token comment" spellcheck="true"># Description: Usage: lsboot xxx.conf</span>
-<span class="token comment" spellcheck="true"># CreateDate: 2020-12-06</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">[</span> $<span class="token comment" spellcheck="true"># -lt 1 ];then</span>
-    <span class="token keyword">echo</span> -e <span class="token string">"  \e[033m Usage: <span class="token variable">$0</span> [FileName: e.g.: xxx.conf OR path/xxx.conf] \e[0m"</span>
-    <span class="token keyword">exit</span> 1
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#config file OR path</span>
-conFile<span class="token operator">=</span><span class="token variable">$1</span>
-conFilePath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $conFile`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-appName<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $<span class="token punctuation">{</span>conFile<span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token function">sed</span> s/.conf.*//<span class="token variable">)</span></span>
-currPath<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cd</span> `dirname $0`<span class="token punctuation">;</span><span class="token function">pwd</span><span class="token variable">)</span></span>
-
-LS_HOME<span class="token operator">=</span><span class="token variable">${LS_HOME:-$currPath}</span>
-<span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-
-check_pid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  pids<span class="token operator">=</span>`ps -ef <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">grep</span> -w <span class="token string">"\-f <span class="token variable">${conFile}</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`
-  <span class="token comment" spellcheck="true">#echo "PID : ${pids}"</span>
-<span class="token punctuation">}</span>
-
-<span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$2</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> appName<span class="token operator">=</span>test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf data/test <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf logs/test
-
-<span class="token comment" spellcheck="true">#./stop.sh</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-check_pid
-cmd<span class="token operator">=</span><span class="token string">"bin/logstash -f <span class="token variable">${conFile}</span> -l logs/<span class="token variable">${appName}</span> --path.data data/<span class="token variable">${appName}</span> -n <span class="token variable">${appName}</span>"</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$pids</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-  <span class="token keyword">echo</span> <span class="token string">" APP <span class="token variable">$appName</span> was running on :"</span>
-  <span class="token keyword">echo</span> -e <span class="token string">"    \e[032m 【 <span class="token variable"><span class="token variable">`</span>pwdx $pids<span class="token variable">`</span></span> 】\e[0m"</span>
-  <span class="token keyword">echo</span> <span class="token string">" If restart, kill <span class="token variable">$pids</span> first."</span>
-  <span class="token keyword">exit</span> 0
-<span class="token keyword">else</span>
-  <span class="token function">cd</span> <span class="token variable">$LS_HOME</span>
-  <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$cmd</span>"</span>
-  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">${appName}</span> <span class="token operator">==</span> <span class="token string">"test"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-    <span class="token variable">$cmd</span>
-  <span class="token keyword">else</span>
-    <span class="token function">eval</span> <span class="token variable">$cmd</span> <span class="token operator">&amp;</span>
-    <span class="token function">sleep</span> 1
-    check_pid
-    <span class="token punctuation">[</span><span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">${pids}</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">echo</span> -e <span class="token string">"\e[032m success \e[0m: <span class="token variable">$appName</span> boot on: <span class="token variable">$pids</span>"</span> <span class="token operator">||</span> <span class="token keyword">echo</span> -e <span class="token string">"  \e[31m [ <span class="token variable">$appName</span> : <span class="token variable">$conFile</span> ] Boot Failed. \e[0m "</span>
-  <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment" spellcheck="true">#sleep 1</span>
-
-<span class="token comment" spellcheck="true">#ps -ef | grep -v grep | grep -w "${conFile}" | awk '{print $2"\t"$NF}' </span>
-
-<span class="token keyword">exit</span> 0
-</code></pre>
-<ul>
-<li>logstash将时间转换成unix时间戳</li>
-</ul>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># https://zerlong.com/886.html</span>
-ruby <span class="token punctuation">{</span> code <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'event.set("unix_ts",(event.get("@timestamp").to_f.round(3)*1000).to_i)'</span> <span class="token punctuation">}</span></code></pre>
-]]></content>
-      <tags>
-        <tag>Logstash</tag>
       </tags>
   </entry>
   <entry>
@@ -4966,11 +4966,7 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
     <title>io模型的演进</title>
     <url>/2021/10/12/service-io-model-evolution/</url>
     <content><![CDATA[<blockquote>
-<p>学习三大要素 what、why、how，每天给自己强调一遍<br>###什么是IO<br>程序是由数据+指令构成的，运行程序的过程可以分成下面这几步：</p>
-</blockquote>
-<p>将代码加载到内存中，逐条运行内存中的代码<br>在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O</p>
-<blockquote>
-<p>1、将代码加载到内存中，逐条运行内存中的代码<br> 2、在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O</p>
+<p>学习三大要素 what、why、how，每天给自己强调一遍<br>###什么是IO<br>程序是由数据+指令构成的，运行程序的过程可以分成下面这几步：<br>将代码加载到内存中，逐条运行内存中的代码<br>在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O<br>1、将代码加载到内存中，逐条运行内存中的代码<br> 2、在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -4978,6 +4974,40 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
       </categories>
       <tags>
         <tag>io memory module</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 升级安装最新版git</title>
+    <url>/2020/09/01/soft-install-git/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
+<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
+<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
+<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
+<li>切换目录</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
+<ul>
+<li>git release版本地址</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
+<ul>
+<li>下载并解压</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+tar -xvf git-2.9.5.tar.gz
+cd /usr/local/src/git-2.9.5</code></pre>
+<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
+make prefix=/usr/local/git install</code></pre>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
+source /etc/profile</code></pre>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -5294,40 +5324,6 @@ chown mysql.mysql /var/run/mysqld/
       <tags>
         <tag>AspectJ</tag>
         <tag>Aop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 升级安装最新版git</title>
-    <url>/2020/09/01/soft-install-git/</url>
-    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
-yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
-<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
-<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
-<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
-<li>切换目录</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
-<ul>
-<li>git release版本地址</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
-<ul>
-<li>下载并解压</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
-tar -xvf git-2.9.5.tar.gz
-cd /usr/local/src/git-2.9.5</code></pre>
-<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
-make prefix=/usr/local/git install</code></pre>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
-source /etc/profile</code></pre>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -7839,6 +7835,28 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </tags>
   </entry>
   <entry>
+    <title>【转】Spring Kafka 笔记</title>
+    <url>/2020/08/17/spring-kafka-note/</url>
+    <content><![CDATA[<p><a href="http://blog.seasedge.cn/archives/8.html">Spring Kafka（一）Kafka，你好</a></p>
+<p><a href="http://blog.seasedge.cn/archives/9.html">Spring Kafka（二）快速入门，只需三秒</a></p>
+<p><a href="http://blog.seasedge.cn/archives/13.html">Spring Kafka（三）操作Topic以及Kafka Tool 2的使用</a></p>
+<p><a href="http://blog.seasedge.cn/archives/15.html">Spring Kafka（四）KafkaTemplate发送消息及结果回调</a></p>
+<p><a href="http://blog.seasedge.cn/archives/44.html">Spring Kafka（五）使用Kafka事务的两种方式</a></p>
+<p><a href="http://blog.seasedge.cn/archives/46.html">Spring Kafka（六）@KafkaListener的花式操作</a></p>
+<p><a href="http://blog.seasedge.cn/archives/47.html">Spring Kafka（七） 实现消息转发以及ReplyTemplate</a></p>
+<p><a href="http://blog.seasedge.cn/archives/49.html">Spring Kafka（八）KafkaListener定时启动（禁止自启动）</a></p>
+<p><a href="http://blog.seasedge.cn/archives/50.html">Spring Kafka（九）配置消息过滤器</a></p>
+<p><a href="http://blog.seasedge.cn/archives/51.html">Spring Kafka（十）ConsumerAwareErrorHandler异常处理器</a></p>
+]]></content>
+      <categories>
+        <category>Kafka</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Boot 结合 Quartz 设置定时任务</title>
     <url>/2019/01/29/spring-quartz-scheduled/</url>
     <content><![CDATA[<h2 id="Spring-Boot-原生-Scheduled"><a href="#Spring-Boot-原生-Scheduled" class="headerlink" title="Spring Boot 原生 @Scheduled"></a>Spring Boot 原生 @Scheduled</h2><h3 id="任务配置"><a href="#任务配置" class="headerlink" title="任务配置"></a>任务配置</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
@@ -8167,109 +8185,6 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       </tags>
   </entry>
   <entry>
-    <title>【转】Spring Kafka 笔记</title>
-    <url>/2020/08/17/spring-kafka-note/</url>
-    <content><![CDATA[<p><a href="http://blog.seasedge.cn/archives/8.html">Spring Kafka（一）Kafka，你好</a></p>
-<p><a href="http://blog.seasedge.cn/archives/9.html">Spring Kafka（二）快速入门，只需三秒</a></p>
-<p><a href="http://blog.seasedge.cn/archives/13.html">Spring Kafka（三）操作Topic以及Kafka Tool 2的使用</a></p>
-<p><a href="http://blog.seasedge.cn/archives/15.html">Spring Kafka（四）KafkaTemplate发送消息及结果回调</a></p>
-<p><a href="http://blog.seasedge.cn/archives/44.html">Spring Kafka（五）使用Kafka事务的两种方式</a></p>
-<p><a href="http://blog.seasedge.cn/archives/46.html">Spring Kafka（六）@KafkaListener的花式操作</a></p>
-<p><a href="http://blog.seasedge.cn/archives/47.html">Spring Kafka（七） 实现消息转发以及ReplyTemplate</a></p>
-<p><a href="http://blog.seasedge.cn/archives/49.html">Spring Kafka（八）KafkaListener定时启动（禁止自启动）</a></p>
-<p><a href="http://blog.seasedge.cn/archives/50.html">Spring Kafka（九）配置消息过滤器</a></p>
-<p><a href="http://blog.seasedge.cn/archives/51.html">Spring Kafka（十）ConsumerAwareErrorHandler异常处理器</a></p>
-]]></content>
-      <categories>
-        <category>Kafka</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Kafka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>正则表达式</title>
-    <url>/2020/03/18/tools-regex/</url>
-    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">.</td>
-<td align="center">匹配除了换行符以外的任意字符</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
-</tr>
-<tr>
-<td align="center">.*</td>
-<td align="center">任意数量的不包含换行的字符</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td align="center">单词的开头或结尾，也就是单词的分界处</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td align="center">匹配字母、数字、下划线、汉字</td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td align="center">匹配任意空白字符</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td align="center">匹配数字</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">匹配字符串开始</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td align="center">匹配字符串结束</td>
-</tr>
-</tbody></table>
-<p>反义</p>
-<table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">\W</td>
-<td align="center">匹配非字母、下划线、数字、汉字</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td align="center">匹配不是空白字符串</td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td align="center">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td align="center">匹配不是单词开始或者结束的位置</td>
-</tr>
-<tr>
-<td align="center">[^x]</td>
-<td align="center">匹配除了<code>x</code>以外的任意字符</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>正则表达式</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Swagger2 常用注解</title>
     <url>/2020/01/03/swagger-annotation/</url>
     <content><![CDATA[<p>Spring Boot 开发restful接口时，往往会有很多RESTful API，一般会选择swagger对接口进行管理</p>
@@ -8490,6 +8405,87 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       <tags>
         <tag>Swagger</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>正则表达式</title>
+    <url>/2020/03/18/tools-regex/</url>
+    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">匹配除了换行符以外的任意字符</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
+</tr>
+<tr>
+<td align="center">.*</td>
+<td align="center">任意数量的不包含换行的字符</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">单词的开头或结尾，也就是单词的分界处</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">匹配字母、数字、下划线、汉字</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">匹配任意空白字符</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">匹配数字</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">匹配字符串开始</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配字符串结束</td>
+</tr>
+</tbody></table>
+<p>反义</p>
+<table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\W</td>
+<td align="center">匹配非字母、下划线、数字、汉字</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="center">匹配不是空白字符串</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">匹配不是单词开始或者结束的位置</td>
+</tr>
+<tr>
+<td align="center">[^x]</td>
+<td align="center">匹配除了<code>x</code>以外的任意字符</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>正则表达式</category>
+      </categories>
   </entry>
   <entry>
     <title>Vertica 简介</title>
@@ -13320,7 +13316,7 @@ Caused by<span class="token punctuation">:</span> javax<span class="token punctu
   <entry>
     <title>零基础深入学习携程Apollo配置中心</title>
     <url>/2021/10/09/apollo-config-trip/</url>
-    <content><![CDATA[<h2 id="1-Apollo配置中心简介"><a href="#1-Apollo配置中心简介" class="headerlink" title="1:Apollo配置中心简介"></a>1:Apollo配置中心简介</h2><p>Apollo（阿波罗）是携程框架部门研发的配置管理平台，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。<br>为什么我们用了百度的disconf、spring-cloud-config携程还要另辟蹊径,研究出一套独有的Apollo呢？下面让我们通过开源配置中心对比矩阵一张图来进行解释这个问题:<br><img src="/images/apollo-config-trip/open-source-configuration-performance-comparison-matrix.jpg" alt="开源配置中心对比矩阵.jpg"><br>从性能对比图中我们不难看出,从功能特性、技术路线、可用性、易用性来说比其它开源配置中心是非常出色的(尤其是里面的灰度规则、namespace空间管理非常不错)。好,废话不多说,我们先从搭建开始讲起。</p>
+    <content><![CDATA[<h2 id="1-Apollo配置中心简介"><a href="#1-Apollo配置中心简介" class="headerlink" title="1:Apollo配置中心简介"></a>1:Apollo配置中心简介</h2><p>Apollo（阿波罗）是携程框架部门研发的配置管理平台，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。<br>为什么我们用了百度的disconf、spring-cloud-config携程还要另辟蹊径,研究出一套独有的Apollo呢？下面让我们通过开源配置中心对比矩阵一张图来进行解释这个问题:<br><img src="/images/apollo-config-trip/open-source-configuration-performance-comparison-matrix.jpg" alt="开源配置中心对比矩阵.jpg"><br>从性能对比图中我们不难看出,从功能特性、技术路线、可用性、易用性来说比其它开源配置中心是非常出色的(尤其是里面的灰度规则、namespace空间管理非常不错)。好,我们先从搭建开始讲起。</p>
 <h2 id="2-注册中心阿波罗Apollo搭建"><a href="#2-注册中心阿波罗Apollo搭建" class="headerlink" title="2:注册中心阿波罗Apollo搭建"></a>2:注册中心阿波罗Apollo搭建</h2><p><a href="https://github.com/ctripcorp/apollo">Apollo开源官网</a><br><a href="https://github.com/ctripcorp/apollo/wiki">Wiki</a> ☞ 一切的集成方式和使用方法都在这里<br><a href="https://github.com/ctripcorp/apollo/issues">Issues</a> ☞ 如果期间有任何问题，请通过这里查找大部分解决方法<br>说明：我这里搭建的是1.3的服务版本,1.3.1在是目前最新的版本,相对于之前的版本增加了yml、yaml等多种配置文件的支持。<br><a href="https://github.com/ctripcorp/apollo/releases">下载Releases版本</a><br>下载三个已经打好的安装包:<br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-adminservice-1.3.0-github.zip">apollo-adminservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-configservice-1.3.0-github.zip">apollo-configservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-portal-1.3.0-github.zip">apollo-portal-1.3.0-github.zip</a><br>2.1、基础环境：<br>JDK：1.8.0_161<br>Maven：3.5.2<br><a href="https://cloud.tencent.com/product/cdb">MySQL</a>：5.7.18<br>apollo：1.3.1<br>2.2 导入数据库文件 登录MySQL命令行，然后执行以下两个sql文件<br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloportaldb.sql">界面管理</a><br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloconfigdb.sql">配置中心</a><br>2.3、打包<br>分别将三个安装包进行解压</p>
 <pre><code>unzip apollo-adminservice-1.3.0-github.zip -d ~/apollo/apollo-adminservice
 unzip apollo-configservice-1.3.0-github.zip -d ~/apollo/apollo-configservice
