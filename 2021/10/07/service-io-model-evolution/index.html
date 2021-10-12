@@ -4,13 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vertica开启ROS, 小张哥blog">
-    <meta name="description" content="vertica默认批量插入是关闭的，需要手动设置DataSourceProperties开启，详细参考JDBC Connection Properties，文档中该参数介绍如下：
-
-DirectBatchInsert
-
-
-Determine">
+    <meta name="keywords" content="深入理解Golang UDP编程, 小张哥blog">
+    <meta name="description" content="深入理解Golang UDP编程 | 小张哥blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +13,7 @@ Determine">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>vertica开启ROS | 小张哥blog</title>
+    <title>深入理解Golang UDP编程 | 小张哥blog</title>
     <link rel="icon" type="image/png" href="/images/avatar.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -289,12 +284,12 @@ Determine">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vertica开启ROS</h1>
+                    <h1 class="description center-align post-title">深入理解Golang UDP编程</h1>
                 </div>
             </div>
         </div>
@@ -411,8 +406,8 @@ Determine">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Vertica/">
-                                <span class="chip bg-color">Vertica</span>
+                            <a href="/tags/Golang-Udp/">
+                                <span class="chip bg-color">Golang Udp</span>
                             </a>
                         
                     </div>
@@ -423,8 +418,8 @@ Determine">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Vertica/" class="post-category">
-                                Vertica
+                            <a href="/categories/Golang-Udp/" class="post-category">
+                                Golang Udp
                             </a>
                         
                     </div>
@@ -436,28 +431,28 @@ Determine">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-12
+                    2021-10-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-01-12
+                    2021-10-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    491
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -473,69 +468,7 @@ Determine">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>vertica默认批量插入是关闭的，需要手动设置<code>DataSourceProperties</code>开启，详细参考<code>JDBC Connection Properties</code>，文档中该参数介绍如下：</p>
-<ul>
-<li>DirectBatchInsert</li>
-</ul>
-<blockquote>
-<p>Determines whether a batch insert stored data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a> (true) or using <a href="javascript:void(0);">AUTO</a> mode (false).</p>
-<p>When you load data using AUTO mode, Vertica inserts the data first into the <a href="../../Glossary/WOSWriteOptimizedStore.htm">WOS</a>. If the WOS is full, Vertica inserts the data directly into <a href="../../Glossary/ROSReadOptimizedStore.htm">ROS</a>. For details about load options, see <a href="../../AdministratorsGuide/BulkLoadCOPY/ChoosingALoadMethod.htm">Choosing a Load Method</a>.</p>
-<p><strong>Set After Connection:</strong><code> VerticaConnection.setProperty()</code></p>
-<p><strong>Default Value:</strong> false</p>
-</blockquote>
-<p>在jdbc方式和spring中集成数据源方式略有不同，下面分开介绍</p>
-<h3 id="JDBC方式"><a href="#JDBC方式" class="headerlink" title="JDBC方式"></a><code>JDBC</code>方式</h3><p>jdbc方式配置比较灵活，可以在<code>DriverManager.getConnection</code>获取连接设置属性</p>
-<p>也可以获取到<code>connection</code>以后设置</p>
-<ul>
-<li>获取连接时</li>
-</ul>
-<pre class=" language-java"><code class="language-java">Properties myProp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"ExampleUser"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">,</span> <span class="token string">"password123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// Enable directBatchInsert for this connection</span>
-myProp<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Connection conn<span class="token punctuation">;</span>
-<span class="token keyword">try</span> <span class="token punctuation">{</span>
-    conn <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>
-         <span class="token string">"jdbc:vertica://VerticaHost:5433/ExampleDB"</span><span class="token punctuation">,</span> myProp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span></code></pre>
-<ul>
-<li>获取连接后</li>
-</ul>
-<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span><span class="token punctuation">(</span>VerticaConnection<span class="token punctuation">)</span>conn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h3 id="使用HikariDataSource连接池"><a href="#使用HikariDataSource连接池" class="headerlink" title="使用HikariDataSource连接池"></a>使用<code>HikariDataSource</code>连接池</h3><p>当我们使用spring框架开发时，一般会使用数据库连接池对象，spring boot中默认的连接池是<code>HikariCP</code>，下面介绍``HikariCP`如何配置该参数，思路可以参考使用jdbc时获取连接以后的方式。</p>
-<p>但是又因为spring中的bean是基于proxy进行创建的，所有我们获取到的连接对象不再是<code>VerticaConnection</code>，而是<code>HikariProxyConnection</code>，但是该对象并没有<code>setProperty()</code>方法，所以<strong>不能使用强制类型转换并且设置该属性</strong>。</p>
-<pre class=" language-java"><code class="language-java">Connection connection <span class="token operator">=</span> dataSource<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">boolean</span> flag1 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>vertica<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>VerticaConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
-<span class="token keyword">boolean</span> flag2 <span class="token operator">=</span> connection <span class="token keyword">instanceof</span> <span class="token class-name">com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>pool<span class="token punctuation">.</span>HikariProxyConnection</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span></code></pre>
-<p><strong>正确做法如下：</strong></p>
-<p>获取到当前连接的<code>HikariDataSource</code>对象，然后给该对象设置<code>DataSourceProperties</code>即可开启<code>ROS</code>，并且可以使用连接池管理<code>jdbc</code>连接</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> DataSource <span class="token function">config</span><span class="token punctuation">(</span>DataSource dataSource<span class="token punctuation">,</span> HikariConfig config<span class="token punctuation">,</span> <span class="token keyword">boolean</span> isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  HikariDataSource hikariDataSource <span class="token operator">=</span> null<span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token keyword">instanceof</span> <span class="token class-name">HikariDataSource</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 连接池配置</span>
-    hikariDataSource <span class="token operator">=</span> <span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">)</span> dataSource<span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>isVertica<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      Properties properties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// Loading Batches Directly into ROS Enable directBatchInsert for this connection</span>
-      properties<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"DirectBatchInsert"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      hikariDataSource<span class="token punctuation">.</span><span class="token function">setDataSourceProperties</span><span class="token punctuation">(</span>properties<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setPoolName</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getPoolName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">isAutoCommit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTestQuery</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTestQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setIdleTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getIdleTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setConnectionTimeout</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getConnectionTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaximumPoolSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMaxLifetime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hikariDataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">getMinimumIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> hikariDataSource <span class="token operator">==</span> null <span class="token operator">?</span> dataSource <span class="token operator">:</span> hikariDataSource<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-
+                
             </div>
             <hr/>
 
@@ -560,7 +493,7 @@ Connection conn<span class="token punctuation">;</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://xiaomozhang.github.io/2020/03/12/vertica-enable-ros/">http://xiaomozhang.github.io/2020/03/12/vertica-enable-ros/</a>
+                    <a href="http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/">http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,8 +531,8 @@ Connection conn<span class="token punctuation">;</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Vertica/">
-                                    <span class="chip bg-color">Vertica</span>
+                                <a href="/tags/Golang-Udp/">
+                                    <span class="chip bg-color">Golang Udp</span>
                                 </a>
                             
                         </div>
@@ -770,7 +703,7 @@ Connection conn<span class="token punctuation">;</span>
         repo: 'xiaomozhang.github.io',
         owner: 'xiaomozhang',
         admin: "xiaomozhang",
-        id: '2020-03-12T15-07-01',
+        id: '2021-10-07T10-34-08',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -795,60 +728,46 @@ Connection conn<span class="token punctuation">;</span>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/18/tools-regex/">
+                <a href="/2021/10/08/golang-log-with-fmt-different/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="正则表达式">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="golang日志篇-log与fmt区别">
                         
-                        <span class="card-title">正则表达式</span>
+                        <span class="card-title">golang日志篇-log与fmt区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            正则表达式元字符
+                            最近在排查golang服务上报丢失日志的问题。发现服务中记录日志的操作大部分使用都是golang log包下的工具类进行操作的,那么log与fmt二者有什么区别？通过下面的样例来具体了解下二者的区别。
+1:线程安全层面我们可以运行以下示例
 
-
-元字符
-说明
-
-
-
-.
-匹配除了换行符以外的任意字符
-
-
-*
-指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配
-
-
-.*
-任意数量的不包含换行的字符
-
-
-\b
-单词的开头或结尾，也就是单词的分界处
-
-
-\w
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-category">
-                                    正则表达式
+                            <a href="/categories/Golang%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA/" class="post-category">
+                                    Golang日志输出
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Golang-log-Golang-fmt/">
+                        <span class="chip bg-color">Golang log Golang fmt</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -860,32 +779,31 @@ Connection conn<span class="token punctuation">;</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/28/maven-install-local-jar/">
+                <a href="/2021/10/07/golang-udp-protocol-study/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Maven加载本地jar文件">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="深入理解Golang UDP编程">
                         
-                        <span class="card-title">Maven加载本地jar文件</span>
+                        <span class="card-title">深入理解Golang UDP编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            日常开发中都是maven加载在远程仓库的jar文件，如果远程仓库没有相应的jar文件，一般做法就是自己传到一个特定的nexus服务器上，但是本地开发测试的时候可能nexus服务器不太方便，那么我们可以使用maven加载本地的jar文件
-mv
+                            本周在排查golang守护进程服务通过udp server服务接收教师端服务日志时,需要学生端本机发送udp数据信息样例测试我们守护进程消费日志信息相关的问题。故对我们Go UDP这块相关的知识内容进行了深入了解和学习。通过以下文章,带我们
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/maven/" class="post-category">
-                                    maven
+                            <a href="/categories/Golang-Udp/" class="post-category">
+                                    Golang Udp
                                 </a>
                             
                             
@@ -895,8 +813,8 @@ mv
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/maven/">
-                        <span class="chip bg-color">maven</span>
+                    <a href="/tags/Golang-Udp/">
+                        <span class="chip bg-color">Golang Udp</span>
                     </a>
                     
                 </div>

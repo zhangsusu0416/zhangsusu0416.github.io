@@ -123,6 +123,23 @@
   
   <entry>
     <title>深入理解Golang UDP编程</title>
+    <link href="http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/"/>
+    <id>http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/</id>
+    <published>2021-10-07T02:34:08.000Z</published>
+    <updated>2021-10-12T02:29:25.361Z</updated>
+    
+    
+    
+    
+    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/categories/Golang-Udp/"/>
+    
+    
+    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/tags/Golang-Udp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Golang UDP编程</title>
     <link href="http://xiaomozhang.github.io/2021/10/07/golang-udp-protocol-study/"/>
     <id>http://xiaomozhang.github.io/2021/10/07/golang-udp-protocol-study/</id>
     <published>2021-10-07T02:34:08.000Z</published>
@@ -512,31 +529,6 @@
     
     
     <category term="map" scheme="http://xiaomozhang.github.io/tags/map/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis对象中属性 包含List&lt;String&gt;一对多映射处理方式</title>
-    <link href="http://xiaomozhang.github.io/2020/07/19/mybatis-one-collection-basic-type/"/>
-    <id>http://xiaomozhang.github.io/2020/07/19/mybatis-one-collection-basic-type/</id>
-    <published>2020-07-19T14:37:38.000Z</published>
-    <updated>2021-01-12T03:00:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在使用MyBatis查询数据库时，经常会有一对多的情况，那么在一对多的情况时，如果是一个&lt;code&gt;Collection&amp;lt;String&amp;gt;&lt;/code&gt;或者&lt;code&gt;Collection&amp;lt;Integer&amp;gt;&lt;/code&gt; </summary>
-        
-      
-    
-    
-    
-    <category term="MyBatis" scheme="http://xiaomozhang.github.io/categories/MyBatis/"/>
-    
-    
-    <category term="MyBatis" scheme="http://xiaomozhang.github.io/tags/MyBatis/"/>
     
   </entry>
   

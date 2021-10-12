@@ -241,6 +241,20 @@ at org<span class="token punctuation">.</span>apache<span class="token punctuati
       </tags>
   </entry>
   <entry>
+    <title>使用wget或者curl下载github release文件</title>
+    <url>/2020/02/14/cmd-download-file/</url>
+    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker-compose-基础</title>
     <url>/2018/07/11/docker-compose-start/</url>
     <content><![CDATA[<h3 id="docker-compose介绍"><a href="#docker-compose介绍" class="headerlink" title="docker-compose介绍"></a>docker-compose介绍</h3><p>Docker-Compose 是 Docker 的一种编排服务，是一个用于在 Docker 上定义并运行复杂应用的工具，可以让用户在集群中部署分布式应用。</p>
@@ -316,20 +330,6 @@ docker-compose stop</code></pre>
       </categories>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用wget或者curl下载github release文件</title>
-    <url>/2020/02/14/cmd-download-file/</url>
-    <content><![CDATA[<p>有时候需要在服务器下载GitHub上的release资源，这时候我们可以使用<code>wget</code>或者<code>curl</code>进行处理，这里拿携程开源的配置中心<a href="https://github.com/ctripcorp/apollo">Apollo</a>为例，下载他的release版本</p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget --no-check-certificate --content-disposition https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl -LJO https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip</code></p>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1153,132 +1153,6 @@ log<span class="token punctuation">.</span><span class="token function">SetFlags
       </tags>
   </entry>
   <entry>
-    <title>Hadoop常用运维命令</title>
-    <url>/2020/08/03/hadoop-ops-command/</url>
-    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
-<pre><code>sh hdfs zkfc -formatZK</code></pre>
-<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
-<pre><code>hadoop-daemons.sh start journalnode</code></pre>
-<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
-<pre><code>hadoop namenode -format</code></pre>
-<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
-<pre><code>hdfs namenode -bootstrapStandby</code></pre>
-<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
-<pre><code>hadoop-daemon.sh start namenode</code></pre>
-<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start datanode</code></pre>
-<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
-<pre><code>hadoop-daemon.sh start zkfc</code></pre>
-<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
-<pre><code>start-yarn.sh</code></pre>
-<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
-<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
-<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
-<pre><code>yarn application -list</code></pre>
-<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
-<pre><code>yarn application -list -appStates RUNNING</code></pre>
-<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
-<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
-<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
-<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
-<p>5、-status <application id="">列出 某个application 的状态</application></p>
-<pre><code>yarn application -status application_1526100291229_206393</code></pre>
-<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
-<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
-<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
-<pre><code>yarn  node --list</code></pre>
-<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
-]]></content>
-      <categories>
-        <category>Hadoop</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Guava中的CaseFormat</title>
-    <url>/2020/07/25/guava-case-format/</url>
-    <content><![CDATA[<p>在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照<code>_</code>进行单词之间的分割，但是我们<code>Java</code>中的命名风格又是按照驼峰方式，一般返回给前端的<code>DTO</code>对象也按照驼峰方式，前端同学在对所有列进行排序时，会按照我们返回给他的<code>props</code>发送给后端，这时候后端收到的就是驼峰方式的<code>props</code>，但是拿到数据库查询这肯定是一个不存在的字段，那么有什么好的方式去解决这个问题呢？</p>
-<p>这时候发现了<code>guava</code>中的<code>CaseFormat</code>工具类。</p>
-<p> com.google.common.base.CaseFormat是一种实用工具类，以提供不同的ASCII字符格式之间的转换。</p>
-<h2 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GwtCompatible</span>
-<span class="token keyword">public</span> <span class="token keyword">enum</span> CaseFormat
-   <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>CaseFormat<span class="token operator">></span></code></pre>
-<h2 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h2><table>
-<thead>
-<tr>
-<th>枚举常量</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LOWER_CAMEL</td>
-<td>Java变量的命名规则，如 <code>lowerCamel</code></td>
-</tr>
-<tr>
-<td>LOWER_HYPHEN</td>
-<td>连字符连接变量的命名规则，如 <code>lower-hyphen</code></td>
-</tr>
-<tr>
-<td>LOWER_UNDERSCORE</td>
-<td>C ++变量命名规则，如 <code>lower_underscore</code></td>
-</tr>
-<tr>
-<td>UPPER_CAMEL</td>
-<td>Java和C++类的命名规则，如 <code>UpperCamel</code></td>
-</tr>
-<tr>
-<td>UPPER_UNDERSCORE</td>
-<td>Java和C++常量的命名规则，如 <code>UPPER_UNDERSCORE</code></td>
-</tr>
-</tbody></table>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Converter&lt;String,String&gt; converterTo(CaseFormat targetFormat)</td>
-<td>返回一个转换，从这个格式转换targetFormat字符串。</td>
-</tr>
-<tr>
-<td>String to(CaseFormat format, String str)</td>
-<td>从这一格式指定格式的指定字符串 str 转换。</td>
-</tr>
-<tr>
-<td>static CaseFormat valueOf(String name)</td>
-<td>返回此类型具有指定名称的枚举常量。</td>
-</tr>
-<tr>
-<td>static CaseFormat[] values()</td>
-<td>返回一个包含该枚举类型的常量数组中的顺序被声明。</td>
-</tr>
-</tbody></table>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    String appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>只要我们自己定的<code>DTO</code>是标准的，那么排序是前端同学就按照我们返回给他的字段在传回来，我们只需要用<code>CaseFormat</code>进行转换即可，不然还得依次进行match匹配</p>
-]]></content>
-      <categories>
-        <category>Guava</category>
-      </categories>
-      <tags>
-        <tag>Guava</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>当Gson遇上Java8中的日期API</title>
     <url>/2020/06/23/gson-java8-datetime/</url>
     <content><![CDATA[<p> Java8开始，JDK中提供了一组新的日期<code>API</code>，当我们需要序列化数据成json时，经常会用到<code>Gson</code>。当<code>Java8</code>中的日期<code>API</code>遇上<code>Gson</code>时，能否按照预期的想法正常的处理我们的数据呢？</p>
@@ -1650,6 +1524,132 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       <tags>
         <tag>Gson</tag>
         <tag>Java8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Guava中的CaseFormat</title>
+    <url>/2020/07/25/guava-case-format/</url>
+    <content><![CDATA[<p>在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照<code>_</code>进行单词之间的分割，但是我们<code>Java</code>中的命名风格又是按照驼峰方式，一般返回给前端的<code>DTO</code>对象也按照驼峰方式，前端同学在对所有列进行排序时，会按照我们返回给他的<code>props</code>发送给后端，这时候后端收到的就是驼峰方式的<code>props</code>，但是拿到数据库查询这肯定是一个不存在的字段，那么有什么好的方式去解决这个问题呢？</p>
+<p>这时候发现了<code>guava</code>中的<code>CaseFormat</code>工具类。</p>
+<p> com.google.common.base.CaseFormat是一种实用工具类，以提供不同的ASCII字符格式之间的转换。</p>
+<h2 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GwtCompatible</span>
+<span class="token keyword">public</span> <span class="token keyword">enum</span> CaseFormat
+   <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>CaseFormat<span class="token operator">></span></code></pre>
+<h2 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h2><table>
+<thead>
+<tr>
+<th>枚举常量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOWER_CAMEL</td>
+<td>Java变量的命名规则，如 <code>lowerCamel</code></td>
+</tr>
+<tr>
+<td>LOWER_HYPHEN</td>
+<td>连字符连接变量的命名规则，如 <code>lower-hyphen</code></td>
+</tr>
+<tr>
+<td>LOWER_UNDERSCORE</td>
+<td>C ++变量命名规则，如 <code>lower_underscore</code></td>
+</tr>
+<tr>
+<td>UPPER_CAMEL</td>
+<td>Java和C++类的命名规则，如 <code>UpperCamel</code></td>
+</tr>
+<tr>
+<td>UPPER_UNDERSCORE</td>
+<td>Java和C++常量的命名规则，如 <code>UPPER_UNDERSCORE</code></td>
+</tr>
+</tbody></table>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Converter&lt;String,String&gt; converterTo(CaseFormat targetFormat)</td>
+<td>返回一个转换，从这个格式转换targetFormat字符串。</td>
+</tr>
+<tr>
+<td>String to(CaseFormat format, String str)</td>
+<td>从这一格式指定格式的指定字符串 str 转换。</td>
+</tr>
+<tr>
+<td>static CaseFormat valueOf(String name)</td>
+<td>返回此类型具有指定名称的枚举常量。</td>
+</tr>
+<tr>
+<td>static CaseFormat[] values()</td>
+<td>返回一个包含该枚举类型的常量数组中的顺序被声明。</td>
+</tr>
+</tbody></table>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    String appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    appCiNum <span class="token operator">=</span> CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"app_ci_num"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>appCiNum<span class="token punctuation">,</span> <span class="token string">"appCiNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>只要我们自己定的<code>DTO</code>是标准的，那么排序是前端同学就按照我们返回给他的字段在传回来，我们只需要用<code>CaseFormat</code>进行转换即可，不然还得依次进行match匹配</p>
+]]></content>
+      <categories>
+        <category>Guava</category>
+      </categories>
+      <tags>
+        <tag>Guava</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop常用运维命令</title>
+    <url>/2020/08/03/hadoop-ops-command/</url>
+    <content><![CDATA[<h2 id="一、HADOOP集群启动"><a href="#一、HADOOP集群启动" class="headerlink" title="一、HADOOP集群启动"></a>一、HADOOP集群启动</h2><h3 id="1-格式化zk"><a href="#1-格式化zk" class="headerlink" title="1. 格式化zk"></a>1. 格式化zk</h3><p>在zk的leader节点服务器上，Hadoop的bin目录中执行如下命令：<br>改为在 nn的active节点上</p>
+<pre><code>sh hdfs zkfc -formatZK</code></pre>
+<h3 id="2-启动journalnode集群"><a href="#2-启动journalnode集群" class="headerlink" title="2. 启动journalnode集群"></a>2. 启动journalnode集群</h3><p>hadoop任意节点服务器执行</p>
+<pre><code>hadoop-daemons.sh start journalnode</code></pre>
+<h3 id="3-格式化namenode"><a href="#3-格式化namenode" class="headerlink" title="3. 格式化namenode"></a>3. 格式化namenode</h3><p>在nn节点执行</p>
+<pre><code>hadoop namenode -format</code></pre>
+<h3 id="4-启动NameNode"><a href="#4-启动NameNode" class="headerlink" title="4. 启动NameNode"></a>4. 启动NameNode</h3><p>在hdaoop01节点上执行如下命令，启动NameNode节点：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<p>首先把hdaoop02服务器的 namenode节点变为standby namenode节点。<br>执行命令如下：</p>
+<pre><code>hdfs namenode -bootstrapStandby</code></pre>
+<p>启动hadoop02服务器的namenode节点，执行命令如下：</p>
+<pre><code>hadoop-daemon.sh start namenode</code></pre>
+<h3 id="5-启动DataNode"><a href="#5-启动DataNode" class="headerlink" title="5. 启动DataNode"></a>5. 启动DataNode</h3><p>在hadoop01,hadoop02,hadoop03服务器上分别启动datanode节点，在这三台服务器上分别执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start datanode</code></pre>
+<h3 id="6-启动zkfc"><a href="#6-启动zkfc" class="headerlink" title="6. 启动zkfc"></a>6. 启动zkfc</h3><p>FalioverControllerActive是失败恢复线程。这个线程需要在NameNode节点所在的服务器上启动，在hadoop01,hadoop02服务器上执行如下命令：</p>
+<pre><code>hadoop-daemon.sh start zkfc</code></pre>
+<h3 id="7-启动Resourcemanager"><a href="#7-启动Resourcemanager" class="headerlink" title="7. 启动Resourcemanager"></a>7. 启动Resourcemanager</h3><p>在<strong>hdaoop01</strong>服务器上启动主Resourcemanager节点，执行如下命令：<br>启动成功后，hadoop01,hadoop02,hadoop03服务器上的nodemanager 也会跟随启动</p>
+<pre><code>start-yarn.sh</code></pre>
+<p>在<strong>hadoop02</strong>服务器上启动副 Resoucemanager节点，执行如下命令：</p>
+<pre><code>yarn-daemon.sh start resourcemanager</code></pre>
+<h2 id="二、YARN运维命令"><a href="#二、YARN运维命令" class="headerlink" title="二、YARN运维命令"></a>二、YARN运维命令</h2><h3 id="1-yarn-application"><a href="#1-yarn-application" class="headerlink" title="1. yarn application"></a>1. yarn application</h3><p>1、-list 列出所有 application 信息</p>
+<pre><code>yarn application -list</code></pre>
+<p>2、-appStates <states>跟-list一起使用，用来筛选不同状态的application，多个用”,”分隔；所有状态ALL,NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING,FINISHED,FAILED,KILLED</states></p>
+<pre><code>yarn application -list -appStates RUNNING</code></pre>
+<p>3、-appTypes <types>跟-list一起使用，用来筛选不同类型的application，多个用”,”分隔；如 MAPREDUCE</types></p>
+<pre><code>yarn application -list -appTypes MAPREDUCE</code></pre>
+<p>4、-kill <application id="">杀死一个application，需要指定一个Application ID</application></p>
+<pre><code>yarn  application -kill application_1526100291229_206393</code></pre>
+<p>5、-status <application id="">列出 某个application 的状态</application></p>
+<pre><code>yarn application -status application_1526100291229_206393</code></pre>
+<p>6、-movetoqueue <applicationid>移动application到其他的queue，不能单独使用<br>7、-queue <queue name=""> 与 movetoqueue命令一起使用，指定移动到哪个queue</queue></applicationid></p>
+<pre><code>yarn application -movetoqueue application_1526100291229_206393 -queue other</code></pre>
+<h3 id="2-yarn-node"><a href="#2-yarn-node" class="headerlink" title="2. yarn node"></a>2. yarn node</h3><p>查看各个node上的任务数</p>
+<pre><code>yarn  node --list</code></pre>
+<h3 id="3-yarn-logs"><a href="#3-yarn-logs" class="headerlink" title="3. yarn logs"></a>3. yarn logs</h3><pre><code>yarn logs -applicationId application_1583405966138_0013</code></pre>
+]]></content>
+      <categories>
+        <category>Hadoop</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -2580,6 +2580,216 @@ Thread thread <span class="token operator">=</span> <span class="token keyword">
       </tags>
   </entry>
   <entry>
+    <title>Java8 中的日期类序列化问题</title>
+    <url>/2020/01/07/java8-date-gson/</url>
+    <content><![CDATA[<p>自从习惯了使用Java8 中的日期类以后，就已经完全抛弃了<code>java.sql</code>、<code>java.util</code>中的日期处理类，但是Java8中的日期类在序列化与反序列化时不是我们正常看到的标准格式，这里记录一下如何使用<code>Gson</code>进行序列化和反序列化时正常对Java8的日期类进行处理</p>
+<h2 id="默认序列化结果"><a href="#默认序列化结果" class="headerlink" title="默认序列化结果"></a>默认序列化结果</h2><p>这里写了一个很简单的test，对<code>LocalDate</code>、<code>LocalDateTime</code>进行序列化与反序列化</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>Gson<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>time<span class="token punctuation">.</span>LocalDate<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>time<span class="token punctuation">.</span>LocalDateTime<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created by xiaozhangge on 2020-01-07.
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Java8DateTests</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// serializer</span>
+        Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// deserializer</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Data</span>
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">DateMetric</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">private</span> LocalDate localDate<span class="token punctuation">;</span>
+
+        <span class="token keyword">private</span> LocalDateTime localDateTime<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>查看结果，可以看到反序列化的结果是我们自己想要的，但是序列化的结果并不是我们想要的<code>yyyy-MM-dd HH:mm:ss</code> 这种格式，那么这时候就需要用到<code>GsonBuilder</code>来注册<code>registerTypeAdapter</code></p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.345</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"localDate"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token operator">}</span><span class="token punctuation">,</span><span class="token string">"localDateTime"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"date"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token operator">}</span><span class="token punctuation">,</span><span class="token string">"time"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"hour"</span><span class="token punctuation">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token string">"minute"</span><span class="token punctuation">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token string">"second"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"nano"</span><span class="token punctuation">:</span><span class="token number">271000000</span><span class="token operator">}}}</span>
+
+<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.356</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.271</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="自定义序列化与反序列化的Adapter"><a href="#自定义序列化与反序列化的Adapter" class="headerlink" title="自定义序列化与反序列化的Adapter"></a>自定义序列化与反序列化的Adapter</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+     * 处理LocalDate的序列化与反序列化
+     */</span>
+<span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">></span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+    String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> LocalDate<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+     * 处理LocalDateTime序列化与反序列化
+     */</span>
+<span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+    String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="使用GsonBuilder创建gson对象"><a href="#使用GsonBuilder创建gson对象" class="headerlink" title="使用GsonBuilder创建gson对象"></a>使用GsonBuilder创建gson对象</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// serializer</span>
+  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// deserializer</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>结果</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.738</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"localDate"</span><span class="token punctuation">:</span><span class="token string">"2020-01-07"</span><span class="token punctuation">,</span><span class="token string">"localDateTime"</span><span class="token punctuation">:</span><span class="token string">"2020-01-07T22:16:15.662"</span><span class="token operator">}</span>
+
+<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.745</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.662</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="输出json进行格式化处理"><a href="#输出json进行格式化处理" class="headerlink" title="输出json进行格式化处理"></a>输出json进行格式化处理</h2><p>平时输出的json都是一行文本，如果需要对json的输出结果需要进行格式化处理的话，也可以使用<code>GsonBuilder</code>的<code>setPrettyPrinting()</code>方法</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// serializer</span>
+  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 设置输出格式格式化显示</span>
+    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:\n{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// deserializer</span>
+  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>输出结果</p>
+<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.307</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span>
+<span class="token operator">{</span>
+  <span class="token string">"localDate"</span><span class="token punctuation">:</span> <span class="token string">"2020-01-07"</span><span class="token punctuation">,</span>
+  <span class="token string">"localDateTime"</span><span class="token punctuation">:</span> <span class="token string">"2020-01-07T22:21:03.218"</span>
+<span class="token operator">}</span>
+
+<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.313</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.218</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="对已有的json进行格式化处理"><a href="#对已有的json进行格式化处理" class="headerlink" title="对已有的json进行格式化处理"></a>对已有的json进行格式化处理</h2><p>如果我们的json文本已经存在，那我我们想通过gson进行格式化展示该怎么做呢？</p>
+<p>这里做法也很简单，不过<code>JsonObject</code>和<code>JsonArray</code>略有区别，不过都是需要将json读取成<code>JsonObject</code>或者<code>JsonArray</code>对象</p>
+<h3 id="JsonObject-格式化"><a href="#JsonObject-格式化" class="headerlink" title="JsonObject 格式化"></a>JsonObject 格式化</h3><p>原始JsonObject数据</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"localDate"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"localDateTime"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"date"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"hour"</span><span class="token operator">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token property">"minute"</span><span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token property">"second"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"nano"</span><span class="token operator">:</span><span class="token number">271000000</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">jsonObjectFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  JsonObject jsonObject <span class="token operator">=</span> JsonParser<span class="token punctuation">.</span><span class="token function">parseString</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>jsonObject<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>输出结果：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"localDate"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
+    <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"localDateTime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"date"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
+      <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"time"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"hour"</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+      <span class="token property">"minute"</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+      <span class="token property">"second"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token property">"nano"</span><span class="token operator">:</span> <span class="token number">271000000</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="JsonArray-格式化"><a href="#JsonArray-格式化" class="headerlink" title="JsonArray 格式化"></a>JsonArray 格式化</h3><p>原始JsonArray数据</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token property">"localDate"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"localDateTime"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"date"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"hour"</span><span class="token operator">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token property">"minute"</span><span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token property">"second"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"nano"</span><span class="token operator">:</span><span class="token number">271000000</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">jsonArrayFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  JsonArray jsonArray <span class="token operator">=</span> JsonParser<span class="token punctuation">.</span><span class="token function">parseString</span><span class="token punctuation">(</span>JSON_STRING_ARRAY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>jsonArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>输出结果：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">"localDate"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
+      <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"localDateTime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"date"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
+        <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"time"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"hour"</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+        <span class="token property">"minute"</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+        <span class="token property">"second"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"nano"</span><span class="token operator">:</span> <span class="token number">271000000</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了使用Gson对Java8中的日志进行序列化与反序列化格式的处理，以及使用gson对json进行格式化的输出。</p>
+<p>参考地址：<a href="https://stackoverflow.com/questions/39192945/serialize-java-8-localdate-as-yyyy-mm-dd-with-gson">Serialize Java 8 LocalDate as yyyy-mm-dd with Gson</a></p>
+<p>完整代码：<a href="https://github.com/xiaomozhang/personal-life-example/blob/master/example-kafka/src/test/java/com/xiaozhangge/Java8DateTests.java">Java8DateTests</a></p>
+]]></content>
+      <categories>
+        <category>Java8</category>
+      </categories>
+      <tags>
+        <tag>Gson</tag>
+        <tag>Java8</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java8 新特性-Optional类</title>
     <url>/2019/02/13/java8-optional/</url>
     <content><![CDATA[<p>在Stream流式数据处理的文章中提到了<code>Optional</code>类，这是Java 8新增的一个类，用以解决程序中常见的<code>NullPointerException</code>异常问题。本篇文章将详细介绍<code>Optional</code>类，以及如何用它消除代码中的<code>null</code>检查。</p>
@@ -2877,216 +3087,6 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
       </tags>
   </entry>
   <entry>
-    <title>Java8 中的日期类序列化问题</title>
-    <url>/2020/01/07/java8-date-gson/</url>
-    <content><![CDATA[<p>自从习惯了使用Java8 中的日期类以后，就已经完全抛弃了<code>java.sql</code>、<code>java.util</code>中的日期处理类，但是Java8中的日期类在序列化与反序列化时不是我们正常看到的标准格式，这里记录一下如何使用<code>Gson</code>进行序列化和反序列化时正常对Java8的日期类进行处理</p>
-<h2 id="默认序列化结果"><a href="#默认序列化结果" class="headerlink" title="默认序列化结果"></a>默认序列化结果</h2><p>这里写了一个很简单的test，对<code>LocalDate</code>、<code>LocalDateTime</code>进行序列化与反序列化</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>Gson<span class="token punctuation">;</span>
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>time<span class="token punctuation">.</span>LocalDate<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>time<span class="token punctuation">.</span>LocalDateTime<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * Created by xiaozhangge on 2020-01-07.
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Java8DateTests</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">// serializer</span>
-        Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">// deserializer</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Data</span>
-    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">DateMetric</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">private</span> LocalDate localDate<span class="token punctuation">;</span>
-
-        <span class="token keyword">private</span> LocalDateTime localDateTime<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>查看结果，可以看到反序列化的结果是我们自己想要的，但是序列化的结果并不是我们想要的<code>yyyy-MM-dd HH:mm:ss</code> 这种格式，那么这时候就需要用到<code>GsonBuilder</code>来注册<code>registerTypeAdapter</code></p>
-<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.345</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"localDate"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token operator">}</span><span class="token punctuation">,</span><span class="token string">"localDateTime"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"date"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"year"</span><span class="token punctuation">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token string">"month"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"day"</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token operator">}</span><span class="token punctuation">,</span><span class="token string">"time"</span><span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"hour"</span><span class="token punctuation">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token string">"minute"</span><span class="token punctuation">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token string">"second"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"nano"</span><span class="token punctuation">:</span><span class="token number">271000000</span><span class="token operator">}}}</span>
-
-<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.356</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">09</span><span class="token punctuation">:</span><span class="token number">01.271</span><span class="token punctuation">)</span>
-</code></pre>
-<h2 id="自定义序列化与反序列化的Adapter"><a href="#自定义序列化与反序列化的Adapter" class="headerlink" title="自定义序列化与反序列化的Adapter"></a>自定义序列化与反序列化的Adapter</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
-     * 处理LocalDate的序列化与反序列化
-     */</span>
-<span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDate<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDate<span class="token operator">></span> <span class="token punctuation">{</span>
-
-  <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDate date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">public</span> LocalDate <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
-    String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> LocalDate<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">/**
-     * 处理LocalDateTime序列化与反序列化
-     */</span>
-<span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LocalDateTimeAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span><span class="token punctuation">,</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">{</span>
-
-  <span class="token keyword">public</span> JsonElement <span class="token function">serialize</span><span class="token punctuation">(</span>LocalDateTime date<span class="token punctuation">,</span> Type typeOfSrc<span class="token punctuation">,</span> JsonSerializationContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonPrimitive</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token annotation punctuation">@Override</span>
-  <span class="token keyword">public</span> LocalDateTime <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement element<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext context<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
-    String timestamp <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>timestamp<span class="token punctuation">,</span> DateTimeFormatter<span class="token punctuation">.</span>ISO_LOCAL_DATE_TIME<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="使用GsonBuilder创建gson对象"><a href="#使用GsonBuilder创建gson对象" class="headerlink" title="使用GsonBuilder创建gson对象"></a>使用GsonBuilder创建gson对象</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">// serializer</span>
-  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">// deserializer</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果</p>
-<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.738</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span><span class="token operator">{</span><span class="token string">"localDate"</span><span class="token punctuation">:</span><span class="token string">"2020-01-07"</span><span class="token punctuation">,</span><span class="token string">"localDateTime"</span><span class="token punctuation">:</span><span class="token string">"2020-01-07T22:16:15.662"</span><span class="token operator">}</span>
-
-<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.745</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">:</span><span class="token number">15.662</span><span class="token punctuation">)</span>
-</code></pre>
-<h2 id="输出json进行格式化处理"><a href="#输出json进行格式化处理" class="headerlink" title="输出json进行格式化处理"></a>输出json进行格式化处理</h2><p>平时输出的json都是一行文本，如果需要对json的输出结果需要进行格式化处理的话，也可以使用<code>GsonBuilder</code>的<code>setPrettyPrinting()</code>方法</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  DateMetric dateMetric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateMetric</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDate</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  dateMetric<span class="token punctuation">.</span><span class="token function">setLocalDateTime</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">// serializer</span>
-  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 设置输出格式格式化显示</span>
-    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  String json <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dateMetric<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"serializer:\n{}"</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">// deserializer</span>
-  log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"deserializer:{}"</span><span class="token punctuation">,</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> DateMetric<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>输出结果</p>
-<pre class=" language-verilog"><code class="language-verilog"><span class="token number">22</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.307</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> serializer<span class="token punctuation">:</span>
-<span class="token operator">{</span>
-  <span class="token string">"localDate"</span><span class="token punctuation">:</span> <span class="token string">"2020-01-07"</span><span class="token punctuation">,</span>
-  <span class="token string">"localDateTime"</span><span class="token punctuation">:</span> <span class="token string">"2020-01-07T22:21:03.218"</span>
-<span class="token operator">}</span>
-
-<span class="token number">22</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.313</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>Java8DateTests <span class="token operator">-</span> deserializer<span class="token punctuation">:</span>Java8DateTests<span class="token punctuation">.</span><span class="token function">DateMetric</span><span class="token punctuation">(</span>localDate<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span><span class="token punctuation">,</span> localDateTime<span class="token operator">=</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">07</span>T22<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">03.218</span><span class="token punctuation">)</span>
-</code></pre>
-<h2 id="对已有的json进行格式化处理"><a href="#对已有的json进行格式化处理" class="headerlink" title="对已有的json进行格式化处理"></a>对已有的json进行格式化处理</h2><p>如果我们的json文本已经存在，那我我们想通过gson进行格式化展示该怎么做呢？</p>
-<p>这里做法也很简单，不过<code>JsonObject</code>和<code>JsonArray</code>略有区别，不过都是需要将json读取成<code>JsonObject</code>或者<code>JsonArray</code>对象</p>
-<h3 id="JsonObject-格式化"><a href="#JsonObject-格式化" class="headerlink" title="JsonObject 格式化"></a>JsonObject 格式化</h3><p>原始JsonObject数据</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"localDate"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"localDateTime"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"date"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"hour"</span><span class="token operator">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token property">"minute"</span><span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token property">"second"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"nano"</span><span class="token operator">:</span><span class="token number">271000000</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">jsonObjectFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  JsonObject jsonObject <span class="token operator">=</span> JsonParser<span class="token punctuation">.</span><span class="token function">parseString</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>jsonObject<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>输出结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"localDate"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
-    <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-    <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token property">"localDateTime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"date"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
-      <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"time"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"hour"</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
-      <span class="token property">"minute"</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
-      <span class="token property">"second"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      <span class="token property">"nano"</span><span class="token operator">:</span> <span class="token number">271000000</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="JsonArray-格式化"><a href="#JsonArray-格式化" class="headerlink" title="JsonArray 格式化"></a>JsonArray 格式化</h3><p>原始JsonArray数据</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token property">"localDate"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"localDateTime"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"date"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"year"</span><span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token property">"month"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"day"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"hour"</span><span class="token operator">:</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token property">"minute"</span><span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token property">"second"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"nano"</span><span class="token operator">:</span><span class="token number">271000000</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">jsonArrayFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  JsonArray jsonArray <span class="token operator">=</span> JsonParser<span class="token punctuation">.</span><span class="token function">parseString</span><span class="token punctuation">(</span>JSON_STRING_ARRAY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPrettyPrinting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>jsonArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>输出结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
-  <span class="token punctuation">{</span>
-    <span class="token property">"localDate"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
-      <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"localDateTime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"date"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"year"</span><span class="token operator">:</span> <span class="token number">2020</span><span class="token punctuation">,</span>
-        <span class="token property">"month"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token property">"day"</span><span class="token operator">:</span> <span class="token number">7</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token property">"time"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"hour"</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
-        <span class="token property">"minute"</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
-        <span class="token property">"second"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token property">"nano"</span><span class="token operator">:</span> <span class="token number">271000000</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">]</span>
-</code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了使用Gson对Java8中的日志进行序列化与反序列化格式的处理，以及使用gson对json进行格式化的输出。</p>
-<p>参考地址：<a href="https://stackoverflow.com/questions/39192945/serialize-java-8-localdate-as-yyyy-mm-dd-with-gson">Serialize Java 8 LocalDate as yyyy-mm-dd with Gson</a></p>
-<p>完整代码：<a href="https://github.com/xiaomozhang/personal-life-example/blob/master/example-kafka/src/test/java/com/xiaozhangge/Java8DateTests.java">Java8DateTests</a></p>
-]]></content>
-      <categories>
-        <category>Java8</category>
-      </categories>
-      <tags>
-        <tag>Gson</tag>
-        <tag>Java8</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javac编译java文件</title>
     <url>/2019/11/05/javac-compiler/</url>
     <content><![CDATA[<h1 id="javac编译java文件"><a href="#javac编译java文件" class="headerlink" title="javac编译java文件"></a>javac编译java文件</h1><p>由于最近项目需求有这样一个需求，生产上新给了一个csv文件，程序需要读取内容进行清洗，但是拿不出来看，也不可能为了这一个小测试专门打审批给生产上传一个程序包，就想到了使用javac写个简单的测试看下数据。下面先来复习一下javac这个命令</p>
@@ -3318,52 +3318,6 @@ total 5416
       </categories>
       <tags>
         <tag>Jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kafka常用操作笔记</title>
-    <url>/2018/07/30/kafka-note/</url>
-    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
-<p>解压下载文件到指定目录，比如 /usr/local</p>
-<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
-</blockquote>
-<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-stop.sh
-./bin/kafka-server-stop.sh</code></pre>
-<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
-<blockquote>
-<p>-daemon 表示后台运行</p>
-</blockquote>
-<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
-<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
-netstat -ntpul | grep 9092</code></pre>
-<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
-<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
-<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
-<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
-<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
-<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
-<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
-<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
-<p>org.apache.kafka.common.errors.TimeoutException</p>
-</blockquote>
-<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
-
-加入以下配置然后重启zookeeper与kafka
-advertised.host.name=192.168.1.200
-advertised.port=9092</code></pre>
-]]></content>
-      <categories>
-        <category>Kafka</category>
-      </categories>
-      <tags>
-        <tag>kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -3707,6 +3661,52 @@ The stdin plugin is now waiting for input:
       </tags>
   </entry>
   <entry>
+    <title>kafka常用操作笔记</title>
+    <url>/2018/07/30/kafka-note/</url>
+    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
+<p>解压下载文件到指定目录，比如 /usr/local</p>
+<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
+</blockquote>
+<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-stop.sh
+./bin/kafka-server-stop.sh</code></pre>
+<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
+<blockquote>
+<p>-daemon 表示后台运行</p>
+</blockquote>
+<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
+<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
+netstat -ntpul | grep 9092</code></pre>
+<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
+<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
+<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
+<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
+<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
+<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
+<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
+<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
+<p>org.apache.kafka.common.errors.TimeoutException</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
+<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
+
+加入以下配置然后重启zookeeper与kafka
+advertised.host.name=192.168.1.200
+advertised.port=9092</code></pre>
+]]></content>
+      <categories>
+        <category>Kafka</category>
+      </categories>
+      <tags>
+        <tag>kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>logstash 启动脚本</title>
     <url>/2020/12/09/lsboot/</url>
     <content><![CDATA[<ul>
@@ -3779,52 +3779,6 @@ ruby <span class="token punctuation">{</span> code <span class="token operator">
 ]]></content>
       <tags>
         <tag>Logstash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 修改MySQL编码集</title>
-    <url>/2019/03/09/mac-change-character-set/</url>
-    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
-<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    latin1 ## 这里是默认编码
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    latin1  ## 这里是默认编码
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
-default-character-set=utf8
-
-[mysqld]
-collation-server = utf8_unicode_ci
-init-connect='SET NAMES utf8'
-character-set-server = utf8
-
-[mysql]
-default-character-set=utf8</code></pre>
-<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
-<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
-<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    utf8 ## 这里是修改以后的
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    utf8 ## 这里是修改以后的
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-]]></content>
-      <categories>
-        <category>MacBook</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4308,6 +4262,52 @@ systemctl status firewalld</code></pre>
       </categories>
       <tags>
         <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 修改MySQL编码集</title>
+    <url>/2019/03/09/mac-change-character-set/</url>
+    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
+<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    latin1 ## 这里是默认编码
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    latin1  ## 这里是默认编码
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
+[mysql]
+default-character-set=utf8</code></pre>
+<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
+<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
+<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    utf8 ## 这里是修改以后的
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    utf8 ## 这里是修改以后的
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+]]></content>
+      <categories>
+        <category>MacBook</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4948,18 +4948,14 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
       </tags>
   </entry>
   <entry>
-    <title>Redis查看集群信息以及key分布非slot</title>
-    <url>/2020/07/29/redis-cluster-info/</url>
-    <content><![CDATA[<h2 id="进入redis集群"><a href="#进入redis集群" class="headerlink" title="进入redis集群"></a>进入redis集群</h2><pre class=" language-shell"><code class="language-shell">redis-cli -h ip -p port -c</code></pre>
-<h2 id="查看集群节点"><a href="#查看集群节点" class="headerlink" title="查看集群节点"></a>查看集群节点</h2><pre class=" language-shell"><code class="language-shell">cluster nodes</code></pre>
-<h2 id="查看key对应的slot"><a href="#查看key对应的slot" class="headerlink" title="查看key对应的slot"></a>查看key对应的slot</h2><pre class=" language-shell"><code class="language-shell">cluster keyslot key</code></pre>
-<h2 id="查看slot和节点的对应关系"><a href="#查看slot和节点的对应关系" class="headerlink" title="查看slot和节点的对应关系"></a>查看slot和节点的对应关系</h2><pre class=" language-shell"><code class="language-shell">cluster slots</code></pre>
-]]></content>
+    <title>深入理解Golang UDP编程</title>
+    <url>/2021/10/07/service-io-model-evolution/</url>
+    <content><![CDATA[]]></content>
       <categories>
-        <category>Redis</category>
+        <category>Golang Udp</category>
       </categories>
       <tags>
-        <tag>Redis</tag>
+        <tag>Golang Udp</tag>
       </tags>
   </entry>
   <entry>
@@ -4994,6 +4990,21 @@ source /etc/profile</code></pre>
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis查看集群信息以及key分布非slot</title>
+    <url>/2020/07/29/redis-cluster-info/</url>
+    <content><![CDATA[<h2 id="进入redis集群"><a href="#进入redis集群" class="headerlink" title="进入redis集群"></a>进入redis集群</h2><pre class=" language-shell"><code class="language-shell">redis-cli -h ip -p port -c</code></pre>
+<h2 id="查看集群节点"><a href="#查看集群节点" class="headerlink" title="查看集群节点"></a>查看集群节点</h2><pre class=" language-shell"><code class="language-shell">cluster nodes</code></pre>
+<h2 id="查看key对应的slot"><a href="#查看key对应的slot" class="headerlink" title="查看key对应的slot"></a>查看key对应的slot</h2><pre class=" language-shell"><code class="language-shell">cluster keyslot key</code></pre>
+<h2 id="查看slot和节点的对应关系"><a href="#查看slot和节点的对应关系" class="headerlink" title="查看slot和节点的对应关系"></a>查看slot和节点的对应关系</h2><pre class=" language-shell"><code class="language-shell">cluster slots</code></pre>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7474,96 +7485,6 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </tags>
   </entry>
   <entry>
-    <title>服务网关 Zuul</title>
-    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
-    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
-<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
-<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
-<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * &lt;p>
- * Created by xiaozhangge on 2019-03-16.
- */</span>
-<span class="token annotation punctuation">@EnableZuulProxy</span>
-<span class="token annotation punctuation">@EnableEurekaClient</span>
-<span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>依次启动cloud-eureka、cloud-zuul</p>
-<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
-<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
-
-<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
-<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
-<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
-<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
-
-java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
-
-java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
-<p>访问</p>
-<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
-<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
-<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
-]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring mvc文件上传下载</title>
     <url>/2019/01/29/spring-file-upload-download/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>文件上传是项目开发中最常见的功能。为了能上传文件，必须将表单的method设置为POST，并将enctype设置为multipart/form-data。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器。<br>一旦设置了enctype为multipart/form-data，浏览器即会采用二进制流的方式来处理表单数据，而对于文件上传的处理则涉及在服务器端解析原始的HTTP响应。在2003年，Apache Software Foundation发布了开源的Commons FileUpload组件，其很快成为Servlet/JSP程序员上传文件的最佳选择。<br>Servlet3.0规范已经提供方法来处理文件上传，但这种上传需要在Servlet中完成。而Spring MVC则提供了更简单的封装。<br>Spring MVC为文件上传提供了直接的支持，这种支持是用即插即用的MultipartResolver实现的。Spring MVC使用Apache Commons FileUpload技术实现了一个MultipartResolver实现类：CommonsMultipartResolver。因此，SpringMVC的文件上传还需要依赖Apache Commons FileUpload的组件。 </p>
@@ -7818,6 +7739,96 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </categories>
       <tags>
         <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务网关 Zuul</title>
+    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
+    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
+<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
+<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
+<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * &lt;p>
+ * Created by xiaozhangge on 2019-03-16.
+ */</span>
+<span class="token annotation punctuation">@EnableZuulProxy</span>
+<span class="token annotation punctuation">@EnableEurekaClient</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>依次启动cloud-eureka、cloud-zuul</p>
+<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
+<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
+
+<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
+<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
+<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
+<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
+
+java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
+
+java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
+<p>访问</p>
+<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
+<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
+<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
+]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Spring Cloud</tag>
       </tags>
   </entry>
   <entry>
