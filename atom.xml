@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-11T02:52:05.138Z</updated>
+  <updated>2021-10-12T06:50:31.318Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>io模型的演进</title>
+    <link href="http://xiaomozhang.github.io/2021/10/12/service-io-model-evolution/"/>
+    <id>http://xiaomozhang.github.io/2021/10/12/service-io-model-evolution/</id>
+    <published>2021-10-12T02:34:08.000Z</published>
+    <updated>2021-10-12T06:50:31.318Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;学习三大要素</summary>
+        
+      
+    
+    
+    
+    <category term="io memory module" scheme="http://xiaomozhang.github.io/categories/io-memory-module/"/>
+    
+    
+    <category term="io memory module" scheme="http://xiaomozhang.github.io/tags/io-memory-module/"/>
+    
+  </entry>
   
   <entry>
     <title>Go服务跨平台交叉编译打包与设置版本号</title>
@@ -75,7 +101,7 @@
     <link href="http://xiaomozhang.github.io/2021/10/09/apollo-config-trip/"/>
     <id>http://xiaomozhang.github.io/2021/10/09/apollo-config-trip/</id>
     <published>2021-10-09T03:32:21.000Z</published>
-    <updated>2021-10-09T07:47:55.129Z</updated>
+    <updated>2021-10-12T06:31:37.737Z</updated>
     
     
       
@@ -118,23 +144,6 @@
     
     
     <category term="Golang log Golang fmt" scheme="http://xiaomozhang.github.io/tags/Golang-log-Golang-fmt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解Golang UDP编程</title>
-    <link href="http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/"/>
-    <id>http://xiaomozhang.github.io/2021/10/07/service-io-model-evolution/</id>
-    <published>2021-10-07T02:34:08.000Z</published>
-    <updated>2021-10-12T02:29:25.361Z</updated>
-    
-    
-    
-    
-    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/categories/Golang-Udp/"/>
-    
-    
-    <category term="Golang Udp" scheme="http://xiaomozhang.github.io/tags/Golang-Udp/"/>
     
   </entry>
   

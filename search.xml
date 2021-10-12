@@ -2423,163 +2423,6 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
       </tags>
   </entry>
   <entry>
-    <title>Java8 新特性-lambda表达式</title>
-    <url>/2019/02/13/java8-lambda-expression/</url>
-    <content><![CDATA[<p>2014年3月发布的Java 8，有可能是Java版本更新中变化最大的一次。新的Java 8为开发者带来了许多重量级的新特性，包括Lambda表达式，流式数据处理，新的<code>Optional</code>类，新的日期和时间API等。这些新特性给Java开发者带来了福音，特别是Lambda表达式的支持，使程序设计更加简化。本篇文章将讨论行为参数化，Lambda表达式，函数式接口等特性。</p>
-<h2 id="行为参数化"><a href="#行为参数化" class="headerlink" title="行为参数化"></a>行为参数化</h2><p>在软件开发的过程中，开发人员可能会遇到频繁的需求变更，使他们不断地修改程序以应对这些变化的需求，导致项目进度缓慢甚至项目延期。行为参数化就是一种可以帮助你应对频繁需求变更的开发模式，简单的说，就是预先定义一个代码块而不去执行它，把它当做参数传递给另一个方法，这样，这个方法的行为就被这段代码块参数化了。</p>
-<p>为了方便理解，我们通过一个例子来讲解行为参数化的使用。假设我们正在开发一个图书管理系统，需求是要对图书的作者进行过滤，筛选出指定作者的书籍。比较常见的做法就是编写一个方法，把作者当成方法的参数：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filterByAuthor</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> String author<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>author<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>现在客户需要变更需求，添加过滤条件，按照出版社过滤，于是我们不得不再次编写一个方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filterByPublisher</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> String publisher<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>publisher<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getPublisher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>两个方法除了名称之外，内部的实现逻辑几乎一模一样，唯一的区别就是<code>if</code>判断条件，前者判断的是作者，后者判断的是出版社。如果现在客户又要增加需求，需要按照图书的售价过滤，是不是需要再次将上面的方法复制一遍，将<code>if</code>判断条件改为售价？ No! 这种做法违背了DRY（Don’t Repeat Yourself，不要重复自己）原则，而且不利于后期维护，如果需要改变方法内部遍历方式来提高性能，意味着每个<code>filterByXxx()</code>方法都需要修改，工作量太大。</p>
-<p>一种可行的办法是对过滤的条件做更高层的抽象，过滤的条件无非就是图书的某些属性（比如价格、出版社、出版日期、作者等），可以声明一个接口用于对过滤条件建模：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BookPredicate</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p><code>BookPredicate</code>接口只有一个抽象方法<code>test()</code>，该方法接受一个<code>Book</code>类型参数，返回一个<code>boolean</code>值，可以用它来表示图书的不同过滤条件。</p>
-<p>接下来我们对之前的过滤方法进行重构，将<code>filterByXxx()</code>方法的第二个参数换成上面定义的接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filter</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> BookPredicate bookPredicate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>bookPredicate<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>将过滤的条件换成<code>BookPredicate</code>的实现类，这里采用了内部类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 根据作者过滤</span>
-<span class="token keyword">final</span> String author <span class="token operator">=</span> <span class="token string">"张三"</span><span class="token punctuation">;</span>
-List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BookPredicate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> author<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 根据图书价格过滤</span>
-<span class="token keyword">final</span> <span class="token keyword">double</span> price <span class="token operator">=</span> <span class="token number">100.00D</span><span class="token punctuation">;</span>
-List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BookPredicate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> price <span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>重构前后有什么区别？我们将方法中的<code>if</code>判断条件换成了<code>BookPredicate</code>接口定义的<code>test()</code>方法，用于判断是否满足过滤条件，将图书过滤的逻辑交给了<code>BookPredicate</code>接口的实现类，而不是在<code>filter()</code>方法内部实现过滤，而<code>BookPredicate</code>接口又是<code>filter()</code>方法的参数。以上的步骤，就是将行为参数化，也就是将图书过滤的行为（<code>BookPredicate</code>接口的实现类）当做<code>filter()</code>方法的参数。现在，可以删掉所有<code>filterByXxx()</code>的方法，只保留<code>filter()</code>方法，就算后期数据规模很庞大，需要改变集合的遍历方式来提高性能，只需要在<code>filter()</code>方法内部做出相应的修改，而不用去修改其他业务代码。</p>
-<p>不过，<code>BookPredicate</code>接口只是针对图书的过滤，如果需要对其他对象集合排序（如：用户），又得重新申明一个接口。有一个办法就是可以用Java的泛型对它做进一步的抽象：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Predicate</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>现在你可以把<code>filter()</code>方法用在任何对象的过滤中。</p>
-<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>虽然我们对<code>filter()</code>方法进行重构，并抽象了<code>Predicate</code>接口作为过滤的条件，但实际上还需要编写很多内部类来实现<code>Predicate</code>接口。使用内部类的方式实现<code>Predicate</code>接口有很多缺点：首先是代码显得臃肿不堪，可读性差；其次，如果某个局部变量被内部类使用，这个变量必须使用<code>final</code>关键字修饰。在Java 8中，使用Lambda表达式可以对内部类进一步简化：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 根据作者过滤</span>
-List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"张三"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 根据图书价格过滤</span>
-List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> <span class="token number">100</span> <span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>使用Lambda仅仅用一行代码就对内部类进行了转化，而且代码变得更加清晰可读。其中<code>book -&gt; "张三".equals(book.getAuthor())</code>和<code>book -&gt; 100 &gt; book.getPrice()</code>就是我们接下来要研究的Lambda表达式。</p>
-<h3 id="Lambda表达式是什么"><a href="#Lambda表达式是什么" class="headerlink" title="Lambda表达式是什么"></a>Lambda表达式是什么</h3><p>Lambda表达式（lambda expression）是一个匿名函数，由数学中的λ演算而得名。在Java 8中可以把Lambda表达式理解为匿名函数，它没有名称，但是有参数列表、函数主体、返回类型等。</p>
-<p>Lambda表达式的语法如下：</p>
-<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>parameters<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span> statements<span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
-<p>为什么要使用Lambda表达式？前面你也看到了，在Java中使用内部类显得十分冗长，要编写很多样板代码，Lambda表达式正是为了简化这些步骤出现的，它使代码变得清晰易懂。</p>
-<h3 id="如何使用Lambda表达式"><a href="#如何使用Lambda表达式" class="headerlink" title="如何使用Lambda表达式"></a>如何使用Lambda表达式</h3><p>Lambda表达式是为了简化内部类的，你可以把它当成是内部类的一种简写方式，只要是有内部类的代码块，都可以转化成Lambda表达式：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// Comparator排序</span>
-List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Comparator</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span>Integer o1<span class="token punctuation">,</span> Integer o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> o1<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 使用Lambda表达式简化</span>
-list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>o1<span class="token punctuation">,</span> o2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> o1<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// Runnable代码块</span>
-Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello Man!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 使用Lambda表达式简化</span>
-Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello Man!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>可以看出，只要是内部类的代码块，就可以使用Lambda表达式简化，并且简化后的代码清晰易懂。甚至，<code>Comparator</code>排序的Lambda表达式还可以进一步简化：</p>
-<pre class=" language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>compareTo<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>这种写法被称为 <strong>方法引用</strong>，方法引用是Lambda表达式的简便写法。如果你的Lambda表达式只是调用这个方法，最好使用名称调用，而不是描述如何调用，这样可以提高代码的可读性。</p>
-<p>方法引用使用<code>::</code>分隔符，分隔符的前半部分表示引用类型，后面半部分表示引用的方法名称。例如：<code>Integer::compareTo</code>表示引用类型为<code>Integer</code>，引用名称为<code>compareTo</code>的方法。</p>
-<p>类似使用方法引用的例子还有打印集合中的元素到控制台中：</p>
-<pre class=" language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>如果你的好奇心使你翻看<code>Runnable</code>接口源代码，你会发现该接口被一个<code>@FunctionalInterface</code>的注解修饰，这是Java 8中添加的新注解，用于表示 <strong>函数式接口</strong>。</p>
-<p>函数式接口又是什么鬼？在Java 8中，把那些仅有一个抽象方法的接口称为函数式接口。如果一个接口被<code>@FunctionalInterface</code>注解标注，表示这个接口被设计成函数式接口，只能有一个抽象方法，如果你添加多个抽象方法，编译时会提示“Multiple non-overriding abstract methods found in interface XXX”之类的错误。</p>
-<p>函数式方法又能做什么？Java8允许你以Lambda表达式的方式为函数式接口提供实现，通俗的说，你可以将整个Lambda表达式作为接口的实现类。</p>
-<p>除了<code>Runnable</code>之外，Java 8中内置了许多函数式接口供开发者使用，这些接口位于<code>java.util.function</code>包中，我们之前使用的<code>Predicate</code>接口，已经被包含在这个包内，他们分别为<code>Predicate</code>、<code>Consumer</code>和<code>Function</code>，由于我们已经在之前的图书过滤的例子中介绍了<code>Predicate</code>的用法，所以接下来主要介绍<code>Consumer</code>和<code>Function</code>的用法。</p>
-<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a><code>Consumer</code></h3><p><code>java.util.function.Consumer&lt;T&gt;</code>定义了一个名叫<code>accept()</code>的抽象方法，它接受泛型<code>T</code>的对象，没有返回（<code>void</code>）。如果你需要访问类型<code>T</code>的对象，并对其执行某些操作，就可以使用这个接口。比如，你可以用它来创建一个<code>forEach()</code>方法，接受一个集合，并对集合中每个元素执行操作：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Consumer</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">void</span> <span class="token function">accept</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">forEach</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>T<span class="token operator">></span> list<span class="token punctuation">,</span> Consumer<span class="token operator">&lt;</span>T<span class="token operator">></span> consumer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span>T t<span class="token operator">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        consumer<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"C"</span><span class="token punctuation">,</span> <span class="token string">"D"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">forEach</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> str <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 也可以写成</span>
-    <span class="token function">forEach</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a><code>Function</code></h3><p><code>java.util.function.Function&lt;T, R&gt;</code>接口定义了一个叫作<code>apply()</code>的方法，它接受一个泛型<code>T</code>的对象，并返回一个泛型<code>R</code>的对象。如果你需要定义一个Lambda，将输入对象的信息映射到输出，就可以使用这个接口。比如，我们需要计算一个图书集合中每本书的作者名称有几个汉字（假设这些书的作者都是中国人）：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Function</span><span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> <span class="token punctuation">{</span>
-    R <span class="token function">apply</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> List<span class="token operator">&lt;</span>R<span class="token operator">></span> <span class="token function">map</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>T<span class="token operator">></span> list<span class="token punctuation">,</span> Function<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>R<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span>T s<span class="token operator">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>
-        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token number">99.00D</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token number">59.00D</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"王老五"</span><span class="token punctuation">,</span> <span class="token number">59.00D</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> results <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>现在，应该对Lambda表达式有一个初步的了解了，并且，你可以使用Lambda表达式来重构你的代码，提高代码可读性；使用行为参数化来设计你的程序，让程序更灵活。</p>
-]]></content>
-      <categories>
-        <category>Java8</category>
-      </categories>
-      <tags>
-        <tag>Java8</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java8 中的日期类序列化问题</title>
     <url>/2020/01/07/java8-date-gson/</url>
     <content><![CDATA[<p>自从习惯了使用Java8 中的日期类以后，就已经完全抛弃了<code>java.sql</code>、<code>java.util</code>中的日期处理类，但是Java8中的日期类在序列化与反序列化时不是我们正常看到的标准格式，这里记录一下如何使用<code>Gson</code>进行序列化和反序列化时正常对Java8的日期类进行处理</p>
@@ -2786,6 +2629,163 @@ Thread thread <span class="token operator">=</span> <span class="token keyword">
       </categories>
       <tags>
         <tag>Gson</tag>
+        <tag>Java8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8 新特性-lambda表达式</title>
+    <url>/2019/02/13/java8-lambda-expression/</url>
+    <content><![CDATA[<p>2014年3月发布的Java 8，有可能是Java版本更新中变化最大的一次。新的Java 8为开发者带来了许多重量级的新特性，包括Lambda表达式，流式数据处理，新的<code>Optional</code>类，新的日期和时间API等。这些新特性给Java开发者带来了福音，特别是Lambda表达式的支持，使程序设计更加简化。本篇文章将讨论行为参数化，Lambda表达式，函数式接口等特性。</p>
+<h2 id="行为参数化"><a href="#行为参数化" class="headerlink" title="行为参数化"></a>行为参数化</h2><p>在软件开发的过程中，开发人员可能会遇到频繁的需求变更，使他们不断地修改程序以应对这些变化的需求，导致项目进度缓慢甚至项目延期。行为参数化就是一种可以帮助你应对频繁需求变更的开发模式，简单的说，就是预先定义一个代码块而不去执行它，把它当做参数传递给另一个方法，这样，这个方法的行为就被这段代码块参数化了。</p>
+<p>为了方便理解，我们通过一个例子来讲解行为参数化的使用。假设我们正在开发一个图书管理系统，需求是要对图书的作者进行过滤，筛选出指定作者的书籍。比较常见的做法就是编写一个方法，把作者当成方法的参数：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filterByAuthor</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> String author<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>author<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>现在客户需要变更需求，添加过滤条件，按照出版社过滤，于是我们不得不再次编写一个方法：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filterByPublisher</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> String publisher<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>publisher<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getPublisher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>两个方法除了名称之外，内部的实现逻辑几乎一模一样，唯一的区别就是<code>if</code>判断条件，前者判断的是作者，后者判断的是出版社。如果现在客户又要增加需求，需要按照图书的售价过滤，是不是需要再次将上面的方法复制一遍，将<code>if</code>判断条件改为售价？ No! 这种做法违背了DRY（Don’t Repeat Yourself，不要重复自己）原则，而且不利于后期维护，如果需要改变方法内部遍历方式来提高性能，意味着每个<code>filterByXxx()</code>方法都需要修改，工作量太大。</p>
+<p>一种可行的办法是对过滤的条件做更高层的抽象，过滤的条件无非就是图书的某些属性（比如价格、出版社、出版日期、作者等），可以声明一个接口用于对过滤条件建模：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BookPredicate</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><code>BookPredicate</code>接口只有一个抽象方法<code>test()</code>，该方法接受一个<code>Book</code>类型参数，返回一个<code>boolean</code>值，可以用它来表示图书的不同过滤条件。</p>
+<p>接下来我们对之前的过滤方法进行重构，将<code>filterByXxx()</code>方法的第二个参数换成上面定义的接口：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token function">filter</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books<span class="token punctuation">,</span> BookPredicate bookPredicate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Book book <span class="token operator">:</span> books<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>bookPredicate<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>将过滤的条件换成<code>BookPredicate</code>的实现类，这里采用了内部类：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 根据作者过滤</span>
+<span class="token keyword">final</span> String author <span class="token operator">=</span> <span class="token string">"张三"</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BookPredicate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> author<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 根据图书价格过滤</span>
+<span class="token keyword">final</span> <span class="token keyword">double</span> price <span class="token operator">=</span> <span class="token number">100.00D</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BookPredicate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>Book book<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> price <span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>重构前后有什么区别？我们将方法中的<code>if</code>判断条件换成了<code>BookPredicate</code>接口定义的<code>test()</code>方法，用于判断是否满足过滤条件，将图书过滤的逻辑交给了<code>BookPredicate</code>接口的实现类，而不是在<code>filter()</code>方法内部实现过滤，而<code>BookPredicate</code>接口又是<code>filter()</code>方法的参数。以上的步骤，就是将行为参数化，也就是将图书过滤的行为（<code>BookPredicate</code>接口的实现类）当做<code>filter()</code>方法的参数。现在，可以删掉所有<code>filterByXxx()</code>的方法，只保留<code>filter()</code>方法，就算后期数据规模很庞大，需要改变集合的遍历方式来提高性能，只需要在<code>filter()</code>方法内部做出相应的修改，而不用去修改其他业务代码。</p>
+<p>不过，<code>BookPredicate</code>接口只是针对图书的过滤，如果需要对其他对象集合排序（如：用户），又得重新申明一个接口。有一个办法就是可以用Java的泛型对它做进一步的抽象：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Predicate</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">test</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>现在你可以把<code>filter()</code>方法用在任何对象的过滤中。</p>
+<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>虽然我们对<code>filter()</code>方法进行重构，并抽象了<code>Predicate</code>接口作为过滤的条件，但实际上还需要编写很多内部类来实现<code>Predicate</code>接口。使用内部类的方式实现<code>Predicate</code>接口有很多缺点：首先是代码显得臃肿不堪，可读性差；其次，如果某个局部变量被内部类使用，这个变量必须使用<code>final</code>关键字修饰。在Java 8中，使用Lambda表达式可以对内部类进一步简化：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 根据作者过滤</span>
+List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"张三"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 根据图书价格过滤</span>
+List<span class="token operator">&lt;</span>Book<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> <span class="token number">100</span> <span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>使用Lambda仅仅用一行代码就对内部类进行了转化，而且代码变得更加清晰可读。其中<code>book -&gt; "张三".equals(book.getAuthor())</code>和<code>book -&gt; 100 &gt; book.getPrice()</code>就是我们接下来要研究的Lambda表达式。</p>
+<h3 id="Lambda表达式是什么"><a href="#Lambda表达式是什么" class="headerlink" title="Lambda表达式是什么"></a>Lambda表达式是什么</h3><p>Lambda表达式（lambda expression）是一个匿名函数，由数学中的λ演算而得名。在Java 8中可以把Lambda表达式理解为匿名函数，它没有名称，但是有参数列表、函数主体、返回类型等。</p>
+<p>Lambda表达式的语法如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>parameters<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span> statements<span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<p>为什么要使用Lambda表达式？前面你也看到了，在Java中使用内部类显得十分冗长，要编写很多样板代码，Lambda表达式正是为了简化这些步骤出现的，它使代码变得清晰易懂。</p>
+<h3 id="如何使用Lambda表达式"><a href="#如何使用Lambda表达式" class="headerlink" title="如何使用Lambda表达式"></a>如何使用Lambda表达式</h3><p>Lambda表达式是为了简化内部类的，你可以把它当成是内部类的一种简写方式，只要是有内部类的代码块，都可以转化成Lambda表达式：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// Comparator排序</span>
+List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Comparator</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span>Integer o1<span class="token punctuation">,</span> Integer o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> o1<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 使用Lambda表达式简化</span>
+list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>o1<span class="token punctuation">,</span> o2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> o1<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// Runnable代码块</span>
+Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello Man!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 使用Lambda表达式简化</span>
+Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello Man!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>可以看出，只要是内部类的代码块，就可以使用Lambda表达式简化，并且简化后的代码清晰易懂。甚至，<code>Comparator</code>排序的Lambda表达式还可以进一步简化：</p>
+<pre class=" language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>compareTo<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>这种写法被称为 <strong>方法引用</strong>，方法引用是Lambda表达式的简便写法。如果你的Lambda表达式只是调用这个方法，最好使用名称调用，而不是描述如何调用，这样可以提高代码的可读性。</p>
+<p>方法引用使用<code>::</code>分隔符，分隔符的前半部分表示引用类型，后面半部分表示引用的方法名称。例如：<code>Integer::compareTo</code>表示引用类型为<code>Integer</code>，引用名称为<code>compareTo</code>的方法。</p>
+<p>类似使用方法引用的例子还有打印集合中的元素到控制台中：</p>
+<pre class=" language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>如果你的好奇心使你翻看<code>Runnable</code>接口源代码，你会发现该接口被一个<code>@FunctionalInterface</code>的注解修饰，这是Java 8中添加的新注解，用于表示 <strong>函数式接口</strong>。</p>
+<p>函数式接口又是什么鬼？在Java 8中，把那些仅有一个抽象方法的接口称为函数式接口。如果一个接口被<code>@FunctionalInterface</code>注解标注，表示这个接口被设计成函数式接口，只能有一个抽象方法，如果你添加多个抽象方法，编译时会提示“Multiple non-overriding abstract methods found in interface XXX”之类的错误。</p>
+<p>函数式方法又能做什么？Java8允许你以Lambda表达式的方式为函数式接口提供实现，通俗的说，你可以将整个Lambda表达式作为接口的实现类。</p>
+<p>除了<code>Runnable</code>之外，Java 8中内置了许多函数式接口供开发者使用，这些接口位于<code>java.util.function</code>包中，我们之前使用的<code>Predicate</code>接口，已经被包含在这个包内，他们分别为<code>Predicate</code>、<code>Consumer</code>和<code>Function</code>，由于我们已经在之前的图书过滤的例子中介绍了<code>Predicate</code>的用法，所以接下来主要介绍<code>Consumer</code>和<code>Function</code>的用法。</p>
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a><code>Consumer</code></h3><p><code>java.util.function.Consumer&lt;T&gt;</code>定义了一个名叫<code>accept()</code>的抽象方法，它接受泛型<code>T</code>的对象，没有返回（<code>void</code>）。如果你需要访问类型<code>T</code>的对象，并对其执行某些操作，就可以使用这个接口。比如，你可以用它来创建一个<code>forEach()</code>方法，接受一个集合，并对集合中每个元素执行操作：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Consumer</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">accept</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">forEach</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>T<span class="token operator">></span> list<span class="token punctuation">,</span> Consumer<span class="token operator">&lt;</span>T<span class="token operator">></span> consumer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>T t<span class="token operator">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        consumer<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"C"</span><span class="token punctuation">,</span> <span class="token string">"D"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">forEach</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> str <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 也可以写成</span>
+    <span class="token function">forEach</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a><code>Function</code></h3><p><code>java.util.function.Function&lt;T, R&gt;</code>接口定义了一个叫作<code>apply()</code>的方法，它接受一个泛型<code>T</code>的对象，并返回一个泛型<code>R</code>的对象。如果你需要定义一个Lambda，将输入对象的信息映射到输出，就可以使用这个接口。比如，我们需要计算一个图书集合中每本书的作者名称有几个汉字（假设这些书的作者都是中国人）：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Function</span><span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> <span class="token punctuation">{</span>
+    R <span class="token function">apply</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> List<span class="token operator">&lt;</span>R<span class="token operator">></span> <span class="token function">map</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>T<span class="token operator">></span> list<span class="token punctuation">,</span> Function<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">></span> f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>R<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>T s<span class="token operator">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Book<span class="token operator">></span> books <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>
+        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token number">99.00D</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token number">59.00D</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token string">"王老五"</span><span class="token punctuation">,</span> <span class="token number">59.00D</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> results <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>books<span class="token punctuation">,</span> book <span class="token operator">-</span><span class="token operator">></span> book<span class="token punctuation">.</span><span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>现在，应该对Lambda表达式有一个初步的了解了，并且，你可以使用Lambda表达式来重构你的代码，提高代码可读性；使用行为参数化来设计你的程序，让程序更灵活。</p>
+]]></content>
+      <categories>
+        <category>Java8</category>
+      </categories>
+      <tags>
         <tag>Java8</tag>
       </tags>
   </entry>
@@ -3321,6 +3321,52 @@ total 5416
       </tags>
   </entry>
   <entry>
+    <title>kafka常用操作笔记</title>
+    <url>/2018/07/30/kafka-note/</url>
+    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
+<p>解压下载文件到指定目录，比如 /usr/local</p>
+<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
+</blockquote>
+<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-stop.sh
+./bin/kafka-server-stop.sh</code></pre>
+<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
+<blockquote>
+<p>-daemon 表示后台运行</p>
+</blockquote>
+<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
+./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
+<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
+netstat -ntpul | grep 9092</code></pre>
+<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
+<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
+<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
+<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
+<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
+<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
+<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
+<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
+<p>org.apache.kafka.common.errors.TimeoutException</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
+<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
+
+加入以下配置然后重启zookeeper与kafka
+advertised.host.name=192.168.1.200
+advertised.port=9092</code></pre>
+]]></content>
+      <categories>
+        <category>Kafka</category>
+      </categories>
+      <tags>
+        <tag>kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>logstash日期插件支持纳秒</title>
     <url>/2020/12/18/logstash-filter-date-compile/</url>
     <content><![CDATA[<p>最近项目上遇到时间为纳秒的情况，用到logstash解析时是不支持纳秒的，这里提供一个思路就是自己修改logstash的日期插件，让他支持纳秒，具体涉及的插件是<a href="https://github.com/logstash-plugins/logstash-filter-date">logstash-filter-date</a></p>
@@ -3661,52 +3707,6 @@ The stdin plugin is now waiting for input:
       </tags>
   </entry>
   <entry>
-    <title>kafka常用操作笔记</title>
-    <url>/2018/07/30/kafka-note/</url>
-    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><pre class=" language-http"><code class="language-http"><span class="token header-name keyword">http:</span>//kafka.apache.org/downloads</code></pre>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><blockquote>
-<p>解压下载文件到指定目录，比如 /usr/local</p>
-<p>tar -zxvf /usr/local/kafka_2.12-1.0.0.tgz</p>
-</blockquote>
-<h2 id="停止zookeeper与kafka"><a href="#停止zookeeper与kafka" class="headerlink" title="停止zookeeper与kafka"></a>停止zookeeper与kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-stop.sh
-./bin/kafka-server-stop.sh</code></pre>
-<h2 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/zookeeper-server-start.sh -daemon  ./config/zookeeper.properties</code></pre>
-<blockquote>
-<p>-daemon 表示后台运行</p>
-</blockquote>
-<h2 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h2><pre class=" language-shell"><code class="language-shell">cd /usr/local
-./bin/kafka-server-start.sh -daemon  ./config/server.properties</code></pre>
-<h2 id="查看kafka与zookeeper是否运行"><a href="#查看kafka与zookeeper是否运行" class="headerlink" title="查看kafka与zookeeper是否运行"></a>查看kafka与zookeeper是否运行</h2><pre><code>netstat -ntpul | grep 2181
-netstat -ntpul | grep 9092</code></pre>
-<h2 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --create --zookeeper 192.168.1.200:2181 --replication-factor 1 --partitions 1 --topic TOPIC_001</code></pre>
-<h2 id="删除topic"><a href="#删除topic" class="headerlink" title="删除topic"></a>删除topic</h2><blockquote>
-<p><a href="http://blog.csdn.net/fengzheku/article/details/50585972">http://blog.csdn.net/fengzheku/article/details/50585972</a></p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh  --delete --zookeeper 192.168.1.200:2181  --topic TOPIC_001</code></pre>
-<h2 id="查看已经存在的topic"><a href="#查看已经存在的topic" class="headerlink" title="查看已经存在的topic"></a>查看已经存在的topic</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --list --zookeeper localhost:2181</code></pre>
-<h2 id="查看topic的详细信息"><a href="#查看topic的详细信息" class="headerlink" title="查看topic的详细信息"></a>查看topic的详细信息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-topics.sh --describe --zookeeper 192.168.1.200:2181 --topic TOPIC_001</code></pre>
-<h2 id="生产消息"><a href="#生产消息" class="headerlink" title="生产消息"></a>生产消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-producer.sh --broker-list 192.168.1.200:9092 --topic TOPIC_001</code></pre>
-<h2 id="消费消息"><a href="#消费消息" class="headerlink" title="消费消息"></a>消费消息</h2><pre class=" language-shell"><code class="language-shell">./bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.200:9092 --topic TOPIC_001 --from-beginning</code></pre>
-<h2 id="解决kafka无法收发消息"><a href="#解决kafka无法收发消息" class="headerlink" title="解决kafka无法收发消息"></a>解决kafka无法收发消息</h2><blockquote>
-<p>org.apache.kafka.common.errors.TimeoutException</p>
-</blockquote>
-<p><a href="https://www.jianshu.com/p/2db7abddb9e6">https://www.jianshu.com/p/2db7abddb9e6</a></p>
-<pre class=" language-shell"><code class="language-shell">vim /usr/local/kafka/config/server.properties
-
-加入以下配置然后重启zookeeper与kafka
-advertised.host.name=192.168.1.200
-advertised.port=9092</code></pre>
-]]></content>
-      <categories>
-        <category>Kafka</category>
-      </categories>
-      <tags>
-        <tag>kafka</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>logstash 启动脚本</title>
     <url>/2020/12/09/lsboot/</url>
     <content><![CDATA[<ul>
@@ -3779,6 +3779,52 @@ ruby <span class="token punctuation">{</span> code <span class="token operator">
 ]]></content>
       <tags>
         <tag>Logstash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 修改MySQL编码集</title>
+    <url>/2019/03/09/mac-change-character-set/</url>
+    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
+<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    latin1 ## 这里是默认编码
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    latin1  ## 这里是默认编码
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
+[mysql]
+default-character-set=utf8</code></pre>
+<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
+<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
+<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
+
+# 结果
+character_set_client    utf8mb4
+character_set_connection    utf8mb4
+character_set_database    utf8 ## 这里是修改以后的
+character_set_filesystem    binary
+character_set_results    utf8mb4
+character_set_server    utf8 ## 这里是修改以后的
+character_set_system    utf8
+character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
+]]></content>
+      <categories>
+        <category>MacBook</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4262,52 +4308,6 @@ systemctl status firewalld</code></pre>
       </categories>
       <tags>
         <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 修改MySQL编码集</title>
-    <url>/2019/03/09/mac-change-character-set/</url>
-    <content><![CDATA[<p>前两天因为Cisco的VPN坏了，一直用不了，所以重新还原了Mac，重新安装了所有的软件，其中就有MySQL-5.7.25。之前安装以后也是第一时间设置了MySQL的编码为utf8，这次新安装也再次记录一下修改步骤</p>
-<h2 id="查看Mac-安装MySQL以后的默认编码"><a href="#查看Mac-安装MySQL以后的默认编码" class="headerlink" title="查看Mac 安装MySQL以后的默认编码"></a>查看Mac 安装MySQL以后的默认编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    latin1 ## 这里是默认编码
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    latin1  ## 这里是默认编码
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-<h2 id="新建my-cnf文件"><a href="#新建my-cnf文件" class="headerlink" title="新建my.cnf文件"></a>新建my.cnf文件</h2><pre class=" language-shell"><code class="language-shell">[client]
-default-character-set=utf8
-
-[mysqld]
-collation-server = utf8_unicode_ci
-init-connect='SET NAMES utf8'
-character-set-server = utf8
-
-[mysql]
-default-character-set=utf8</code></pre>
-<h2 id="移动到-etc-目录"><a href="#移动到-etc-目录" class="headerlink" title="移动到 /etc 目录"></a>移动到 /etc 目录</h2><p>移动my.cnf文件到/etc目录，需要root权限</p>
-<pre class=" language-shell"><code class="language-shell">sudo mv my.cnf /etc/</code></pre>
-<h2 id="重启MySQL，再次查看编码"><a href="#重启MySQL，再次查看编码" class="headerlink" title="重启MySQL，再次查看编码"></a>重启MySQL，再次查看编码</h2><pre class=" language-shell"><code class="language-shell">SHOW VARIABLES LIKE 'character_set_%';
-
-# 结果
-character_set_client    utf8mb4
-character_set_connection    utf8mb4
-character_set_database    utf8 ## 这里是修改以后的
-character_set_filesystem    binary
-character_set_results    utf8mb4
-character_set_server    utf8 ## 这里是修改以后的
-character_set_system    utf8
-character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/</code></pre>
-]]></content>
-      <categories>
-        <category>MacBook</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4948,51 +4948,6 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
       </tags>
   </entry>
   <entry>
-    <title>深入理解Golang UDP编程</title>
-    <url>/2021/10/07/service-io-model-evolution/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Golang Udp</category>
-      </categories>
-      <tags>
-        <tag>Golang Udp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 升级安装最新版git</title>
-    <url>/2020/09/01/soft-install-git/</url>
-    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
-yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
-<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
-<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
-<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
-<li>切换目录</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
-<ul>
-<li>git release版本地址</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
-<ul>
-<li>下载并解压</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
-tar -xvf git-2.9.5.tar.gz
-cd /usr/local/src/git-2.9.5</code></pre>
-<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
-make prefix=/usr/local/git install</code></pre>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
-source /etc/profile</code></pre>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis查看集群信息以及key分布非slot</title>
     <url>/2020/07/29/redis-cluster-info/</url>
     <content><![CDATA[<h2 id="进入redis集群"><a href="#进入redis集群" class="headerlink" title="进入redis集群"></a>进入redis集群</h2><pre class=" language-shell"><code class="language-shell">redis-cli -h ip -p port -c</code></pre>
@@ -5005,6 +4960,24 @@ source /etc/profile</code></pre>
       </categories>
       <tags>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>io模型的演进</title>
+    <url>/2021/10/12/service-io-model-evolution/</url>
+    <content><![CDATA[<blockquote>
+<p>学习三大要素 what、why、how，每天给自己强调一遍<br>###什么是IO<br>程序是由数据+指令构成的，运行程序的过程可以分成下面这几步：</p>
+</blockquote>
+<p>将代码加载到内存中，逐条运行内存中的代码<br>在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O</p>
+<blockquote>
+<p>1、将代码加载到内存中，逐条运行内存中的代码<br> 2、在运行代码的过程中，可能需要对文件的读写，即将文件输入（Input）到内存和将代码执行结果产生的文件输出（Output）到外设（网络、磁盘）的过程。那么这个数据交换的过程就是I/O</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>io memory module</category>
+      </categories>
+      <tags>
+        <tag>io memory module</tag>
       </tags>
   </entry>
   <entry>
@@ -5321,6 +5294,40 @@ chown mysql.mysql /var/run/mysqld/
       <tags>
         <tag>AspectJ</tag>
         <tag>Aop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 升级安装最新版git</title>
+    <url>/2020/09/01/soft-install-git/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
+<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
+<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
+<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
+<li>切换目录</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
+<ul>
+<li>git release版本地址</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
+<ul>
+<li>下载并解压</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+tar -xvf git-2.9.5.tar.gz
+cd /usr/local/src/git-2.9.5</code></pre>
+<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
+make prefix=/usr/local/git install</code></pre>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
+source /etc/profile</code></pre>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -7485,6 +7492,96 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </tags>
   </entry>
   <entry>
+    <title>服务网关 Zuul</title>
+    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
+    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
+<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
+<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
+<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * &lt;p>
+ * Created by xiaozhangge on 2019-03-16.
+ */</span>
+<span class="token annotation punctuation">@EnableZuulProxy</span>
+<span class="token annotation punctuation">@EnableEurekaClient</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>依次启动cloud-eureka、cloud-zuul</p>
+<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
+<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
+<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
+
+<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
+<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
+
+<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
+<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
+<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
+<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
+
+java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
+
+java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
+<p>访问</p>
+<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
+<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
+<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
+]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring mvc文件上传下载</title>
     <url>/2019/01/29/spring-file-upload-download/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>文件上传是项目开发中最常见的功能。为了能上传文件，必须将表单的method设置为POST，并将enctype设置为multipart/form-data。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器。<br>一旦设置了enctype为multipart/form-data，浏览器即会采用二进制流的方式来处理表单数据，而对于文件上传的处理则涉及在服务器端解析原始的HTTP响应。在2003年，Apache Software Foundation发布了开源的Commons FileUpload组件，其很快成为Servlet/JSP程序员上传文件的最佳选择。<br>Servlet3.0规范已经提供方法来处理文件上传，但这种上传需要在Servlet中完成。而Spring MVC则提供了更简单的封装。<br>Spring MVC为文件上传提供了直接的支持，这种支持是用即插即用的MultipartResolver实现的。Spring MVC使用Apache Commons FileUpload技术实现了一个MultipartResolver实现类：CommonsMultipartResolver。因此，SpringMVC的文件上传还需要依赖Apache Commons FileUpload的组件。 </p>
@@ -7739,118 +7836,6 @@ java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=
       </categories>
       <tags>
         <tag>Spring Boot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务网关 Zuul</title>
-    <url>/2019/04/04/spring-cloud-gateway-zuul/</url>
-    <content><![CDATA[<h1 id="服务网关-Zuul"><a href="#服务网关-Zuul" class="headerlink" title="服务网关 Zuul"></a>服务网关 Zuul</h1><p>Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散。</p>
-<p>但是外部的应用如何来访问内部各种各样的微服务呢？在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
-<h2 id="Spring-Cloud-Zuul"><a href="#Spring-Cloud-Zuul" class="headerlink" title="Spring Cloud Zuul"></a>Spring Cloud Zuul</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
-         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>life-cloud-example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.xiaozhangge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cloud-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-zuul<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/*</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span></code></pre>
-<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>xiaozhangge<span class="token punctuation">.</span>zuul<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>eureka<span class="token punctuation">.</span>EnableEurekaClient<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulProxy<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>zuul<span class="token punctuation">.</span>EnableZuulServer<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * &lt;p>
- * Created by xiaozhangge on 2019-03-16.
- */</span>
-<span class="token annotation punctuation">@EnableZuulProxy</span>
-<span class="token annotation punctuation">@EnableEurekaClient</span>
-<span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZuulApplication</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>ZuulApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>依次启动cloud-eureka、cloud-zuul</p>
-<h3 id="微服务整合"><a href="#微服务整合" class="headerlink" title="微服务整合"></a>微服务整合</h3><p>通过url映射的方式来实现zuul的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
-<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">life-cloud-zuul</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8888</span>
-<span class="token attr-name">eureka.instance.prefer-ip-address</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">eureka.client.service-url.defaultZone</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8761/eureka/</span>
-
-<span class="token comment" spellcheck="true"># 表示访问xiaozhangge 都会跳转到 https://xiaomozhang.github.io/</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.path</span><span class="token punctuation">=</span><span class="token attr-value">/xiaozhangge/**</span>
-<span class="token attr-name">zuul.routes.xiaozhangge.url</span><span class="token punctuation">=</span><span class="token attr-value">https://xiaomozhang.github.io/</span>
-
-<span class="token comment" spellcheck="true"># 添加微服务路由地址</span>
-<span class="token attr-name">zuul.routes.producer.path</span><span class="token punctuation">=</span><span class="token attr-value">/producer/**</span>
-<span class="token attr-name">zuul.routes.producer.service-id</span><span class="token punctuation">=</span><span class="token attr-value">life-example-producer</span></code></pre>
-<h4 id="启动服务提供者"><a href="#启动服务提供者" class="headerlink" title="启动服务提供者"></a>启动服务提供者</h4><pre class=" language-shell"><code class="language-shell">java -jar service-producer-0.0.1.jar --server.port=8080 --service.instance.name=这是服务器1
-
-java -jar service-producer-0.0.1.jar --server.port=8081 --service.instance.name=这是服务器2
-
-java -jar service-producer-0.0.1.jar --server.port=8082 --service.instance.name=这是服务器3</code></pre>
-<p>访问</p>
-<pre class=" language-html"><code class="language-html">http://localhost:8888/producer/api/index?name=维尼熊</code></pre>
-<p>会发现自动负载均衡，将每个请求分发到不同的服务，至此，整个zuul和微服务整合也就完成了。</p>
-<h2 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h2><p><a href="http://cxytiandi.com/article">猿天地spring cloud gateway系列教程</a></p>
-]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【转】Spring Kafka 笔记</title>
-    <url>/2020/08/17/spring-kafka-note/</url>
-    <content><![CDATA[<p><a href="http://blog.seasedge.cn/archives/8.html">Spring Kafka（一）Kafka，你好</a></p>
-<p><a href="http://blog.seasedge.cn/archives/9.html">Spring Kafka（二）快速入门，只需三秒</a></p>
-<p><a href="http://blog.seasedge.cn/archives/13.html">Spring Kafka（三）操作Topic以及Kafka Tool 2的使用</a></p>
-<p><a href="http://blog.seasedge.cn/archives/15.html">Spring Kafka（四）KafkaTemplate发送消息及结果回调</a></p>
-<p><a href="http://blog.seasedge.cn/archives/44.html">Spring Kafka（五）使用Kafka事务的两种方式</a></p>
-<p><a href="http://blog.seasedge.cn/archives/46.html">Spring Kafka（六）@KafkaListener的花式操作</a></p>
-<p><a href="http://blog.seasedge.cn/archives/47.html">Spring Kafka（七） 实现消息转发以及ReplyTemplate</a></p>
-<p><a href="http://blog.seasedge.cn/archives/49.html">Spring Kafka（八）KafkaListener定时启动（禁止自启动）</a></p>
-<p><a href="http://blog.seasedge.cn/archives/50.html">Spring Kafka（九）配置消息过滤器</a></p>
-<p><a href="http://blog.seasedge.cn/archives/51.html">Spring Kafka（十）ConsumerAwareErrorHandler异常处理器</a></p>
-]]></content>
-      <categories>
-        <category>Kafka</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -8182,6 +8167,109 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       </tags>
   </entry>
   <entry>
+    <title>【转】Spring Kafka 笔记</title>
+    <url>/2020/08/17/spring-kafka-note/</url>
+    <content><![CDATA[<p><a href="http://blog.seasedge.cn/archives/8.html">Spring Kafka（一）Kafka，你好</a></p>
+<p><a href="http://blog.seasedge.cn/archives/9.html">Spring Kafka（二）快速入门，只需三秒</a></p>
+<p><a href="http://blog.seasedge.cn/archives/13.html">Spring Kafka（三）操作Topic以及Kafka Tool 2的使用</a></p>
+<p><a href="http://blog.seasedge.cn/archives/15.html">Spring Kafka（四）KafkaTemplate发送消息及结果回调</a></p>
+<p><a href="http://blog.seasedge.cn/archives/44.html">Spring Kafka（五）使用Kafka事务的两种方式</a></p>
+<p><a href="http://blog.seasedge.cn/archives/46.html">Spring Kafka（六）@KafkaListener的花式操作</a></p>
+<p><a href="http://blog.seasedge.cn/archives/47.html">Spring Kafka（七） 实现消息转发以及ReplyTemplate</a></p>
+<p><a href="http://blog.seasedge.cn/archives/49.html">Spring Kafka（八）KafkaListener定时启动（禁止自启动）</a></p>
+<p><a href="http://blog.seasedge.cn/archives/50.html">Spring Kafka（九）配置消息过滤器</a></p>
+<p><a href="http://blog.seasedge.cn/archives/51.html">Spring Kafka（十）ConsumerAwareErrorHandler异常处理器</a></p>
+]]></content>
+      <categories>
+        <category>Kafka</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式</title>
+    <url>/2020/03/18/tools-regex/</url>
+    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">匹配除了换行符以外的任意字符</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
+</tr>
+<tr>
+<td align="center">.*</td>
+<td align="center">任意数量的不包含换行的字符</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">单词的开头或结尾，也就是单词的分界处</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">匹配字母、数字、下划线、汉字</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">匹配任意空白字符</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">匹配数字</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">匹配字符串开始</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配字符串结束</td>
+</tr>
+</tbody></table>
+<p>反义</p>
+<table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\W</td>
+<td align="center">匹配非字母、下划线、数字、汉字</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="center">匹配不是空白字符串</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">匹配不是单词开始或者结束的位置</td>
+</tr>
+<tr>
+<td align="center">[^x]</td>
+<td align="center">匹配除了<code>x</code>以外的任意字符</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>正则表达式</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Swagger2 常用注解</title>
     <url>/2020/01/03/swagger-annotation/</url>
     <content><![CDATA[<p>Spring Boot 开发restful接口时，往往会有很多RESTful API，一般会选择swagger对接口进行管理</p>
@@ -8402,87 +8490,6 @@ implementation <span class="token string">'org.springframework.boot:spring-boot-
       <tags>
         <tag>Swagger</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>正则表达式</title>
-    <url>/2020/03/18/tools-regex/</url>
-    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">.</td>
-<td align="center">匹配除了换行符以外的任意字符</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td align="center">指定*前边的内容可以连续重复使用任意次以使整个表达式得到匹配</td>
-</tr>
-<tr>
-<td align="center">.*</td>
-<td align="center">任意数量的不包含换行的字符</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td align="center">单词的开头或结尾，也就是单词的分界处</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td align="center">匹配字母、数字、下划线、汉字</td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td align="center">匹配任意空白字符</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td align="center">匹配数字</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">匹配字符串开始</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td align="center">匹配字符串结束</td>
-</tr>
-</tbody></table>
-<p>反义</p>
-<table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">\W</td>
-<td align="center">匹配非字母、下划线、数字、汉字</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td align="center">匹配不是空白字符串</td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td align="center">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td align="center">匹配不是单词开始或者结束的位置</td>
-</tr>
-<tr>
-<td align="center">[^x]</td>
-<td align="center">匹配除了<code>x</code>以外的任意字符</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>正则表达式</category>
-      </categories>
   </entry>
   <entry>
     <title>Vertica 简介</title>
@@ -13313,7 +13320,7 @@ Caused by<span class="token punctuation">:</span> javax<span class="token punctu
   <entry>
     <title>零基础深入学习携程Apollo配置中心</title>
     <url>/2021/10/09/apollo-config-trip/</url>
-    <content><![CDATA[<h2 id="1-Apollo配置中心简介"><a href="#1-Apollo配置中心简介" class="headerlink" title="1:Apollo配置中心简介"></a>1:Apollo配置中心简介</h2><p>Apollo（阿波罗）是携程框架部门研发的配置管理平台，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。<br>为什么我们用了百度的disconf、spring-cloud-config携程还要另辟蹊径,研究出一套独有的Apollo呢？下面让我们通过开源配置中心对比矩阵一张图来进行解释这个问题:<br>![开源配置中心对比矩阵.jpg] (/images/apollo-config-trip/open-source-configuration-performance-comparison-matrix.jpg)<br>从性能对比图中我们不难看出,从功能特性、技术路线、可用性、易用性来说比其它开源配置中心是非常出色的(尤其是里面的灰度规则、namespace空间管理非常不错)。好,废话不多说,我们先从搭建开始讲起。</p>
+    <content><![CDATA[<h2 id="1-Apollo配置中心简介"><a href="#1-Apollo配置中心简介" class="headerlink" title="1:Apollo配置中心简介"></a>1:Apollo配置中心简介</h2><p>Apollo（阿波罗）是携程框架部门研发的配置管理平台，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。<br>为什么我们用了百度的disconf、spring-cloud-config携程还要另辟蹊径,研究出一套独有的Apollo呢？下面让我们通过开源配置中心对比矩阵一张图来进行解释这个问题:<br><img src="/images/apollo-config-trip/open-source-configuration-performance-comparison-matrix.jpg" alt="开源配置中心对比矩阵.jpg"><br>从性能对比图中我们不难看出,从功能特性、技术路线、可用性、易用性来说比其它开源配置中心是非常出色的(尤其是里面的灰度规则、namespace空间管理非常不错)。好,废话不多说,我们先从搭建开始讲起。</p>
 <h2 id="2-注册中心阿波罗Apollo搭建"><a href="#2-注册中心阿波罗Apollo搭建" class="headerlink" title="2:注册中心阿波罗Apollo搭建"></a>2:注册中心阿波罗Apollo搭建</h2><p><a href="https://github.com/ctripcorp/apollo">Apollo开源官网</a><br><a href="https://github.com/ctripcorp/apollo/wiki">Wiki</a> ☞ 一切的集成方式和使用方法都在这里<br><a href="https://github.com/ctripcorp/apollo/issues">Issues</a> ☞ 如果期间有任何问题，请通过这里查找大部分解决方法<br>说明：我这里搭建的是1.3的服务版本,1.3.1在是目前最新的版本,相对于之前的版本增加了yml、yaml等多种配置文件的支持。<br><a href="https://github.com/ctripcorp/apollo/releases">下载Releases版本</a><br>下载三个已经打好的安装包:<br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-adminservice-1.3.0-github.zip">apollo-adminservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-configservice-1.3.0-github.zip">apollo-configservice-1.3.0-github.zip</a><br><a href="https://github.com/ctripcorp/apollo/releases/download/v1.3.0/apollo-portal-1.3.0-github.zip">apollo-portal-1.3.0-github.zip</a><br>2.1、基础环境：<br>JDK：1.8.0_161<br>Maven：3.5.2<br><a href="https://cloud.tencent.com/product/cdb">MySQL</a>：5.7.18<br>apollo：1.3.1<br>2.2 导入数据库文件 登录MySQL命令行，然后执行以下两个sql文件<br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloportaldb.sql">界面管理</a><br><a href="https://github.com/nobodyiam/apollo-build-scripts/blob/master/sql/apolloconfigdb.sql">配置中心</a><br>2.3、打包<br>分别将三个安装包进行解压</p>
 <pre><code>unzip apollo-adminservice-1.3.0-github.zip -d ~/apollo/apollo-adminservice
 unzip apollo-configservice-1.3.0-github.zip -d ~/apollo/apollo-configservice

@@ -820,48 +820,49 @@ all-arch: releases: clean:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/11/golang-goarch-goos-mutiple-platform-build/">
+                <a href="/2021/10/12/service-io-model-evolution/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Go服务跨平台交叉编译打包与设置版本号">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="io模型的演进">
                         
-                        <span class="card-title">Go服务跨平台交叉编译打包与设置版本号</span>
+                        <span class="card-title">io模型的演进</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言  最近在负责维护和开发守护进程、运营平台监控、连接池等相关Go服务，首先守护进程服务是部署在客户的windows平台下运行,其它大部分服务都是部署在linux环境下,首先现在面临的一个问题就是如果在一台机器上进行跨平台交叉编译后可以在
+                            
+学习三大要素 what、why、how，每天给自己强调一遍###什么是IO程序是由数据+指令构成的，运行程序的过程可以分成下面这几步：
+
+将代码加载到内存中，逐条运行内存中的代码在运行代码的过程中，可能需要对文件的读写，即将文件输入（In
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-11
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="post-category">
-                                    golang跨平台交叉编译
+                            <a href="/categories/io-memory-module/" class="post-category">
+                                    io memory module
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Goarch%E3%80%81Goos%E3%80%81Cgo/">
-                        <span class="chip bg-color">Goarch、Goos、Cgo</span>
+                    <a href="/tags/io-memory-module/">
+                        <span class="chip bg-color">io memory module</span>
                     </a>
                     
                 </div>
@@ -1069,7 +1070,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">112.8k</span>&nbsp;字
+                class="white-color">113k</span>&nbsp;字
             
             
             
