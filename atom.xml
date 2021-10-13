@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-12T08:20:46.909Z</updated>
+  <updated>2021-10-13T08:52:56.862Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,82 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微服务网关zuul限流、熔断、路由规则详解</title>
+    <link href="http://xiaomozhang.github.io/2021/10/13/spring-cloud-zuul-rule-limiting-fallback-analyze/"/>
+    <id>http://xiaomozhang.github.io/2021/10/13/spring-cloud-zuul-rule-limiting-fallback-analyze/</id>
+    <published>2021-10-13T02:01:45.000Z</published>
+    <updated>2021-10-13T08:52:56.862Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;最近在研究灰度方案。 灰度主要涉及两个方面，一个是网关，一个是配置。 这次主要研究了网关及其原理，我们现在使用项目每天都有很多流量进入。</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="http://xiaomozhang.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="SpringCloud zuul nacos" scheme="http://xiaomozhang.github.io/tags/SpringCloud-zuul-nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang从内核到epoll</title>
+    <link href="http://xiaomozhang.github.io/2021/10/12/golang-from-kernel-to-epoll/"/>
+    <id>http://xiaomozhang.github.io/2021/10/12/golang-from-kernel-to-epoll/</id>
+    <published>2021-10-12T06:21:03.000Z</published>
+    <updated>2021-10-13T02:15:26.864Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;引子：在之前的文章里 &lt;a href=&quot;https://xiaomozhang.github.io/2021/10/12/golang-netpoll-realization-analysis/&quot;&gt;&lt;code&gt;golang</summary>
+        
+      
+    
+    
+    
+    <category term="Golang Kernel epoll" scheme="http://xiaomozhang.github.io/categories/Golang-Kernel-epoll/"/>
+    
+    
+    <category term="Golang Kernel epoll" scheme="http://xiaomozhang.github.io/tags/Golang-Kernel-epoll/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang netpoll的实现与分析</title>
+    <link href="http://xiaomozhang.github.io/2021/10/12/golang-netpoll-realization-analysis/"/>
+    <id>http://xiaomozhang.github.io/2021/10/12/golang-netpoll-realization-analysis/</id>
+    <published>2021-10-12T03:35:03.000Z</published>
+    <updated>2021-10-13T02:15:26.864Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-io模型&quot;&gt;&lt;a href=&quot;#1-io模型&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Golang netpoll" scheme="http://xiaomozhang.github.io/categories/Golang-netpoll/"/>
+    
+    
+    <category term="Golang netpoll" scheme="http://xiaomozhang.github.io/tags/Golang-netpoll/"/>
+    
+  </entry>
   
   <entry>
     <title>io模型的演进</title>
@@ -464,82 +540,6 @@
     
     
     <category term="Hadoop" scheme="http://xiaomozhang.github.io/tags/Hadoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis查看集群信息以及key分布非slot</title>
-    <link href="http://xiaomozhang.github.io/2020/07/29/redis-cluster-info/"/>
-    <id>http://xiaomozhang.github.io/2020/07/29/redis-cluster-info/</id>
-    <published>2020-07-29T08:08:34.000Z</published>
-    <updated>2021-01-12T03:00:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;进入redis集群&quot;&gt;&lt;a href=&quot;#进入redis集群&quot; class=&quot;headerlink&quot; title=&quot;进入redis集群&quot;&gt;&lt;/a&gt;进入redis集群&lt;/h2&gt;&lt;pre class=&quot; language-shell&quot;&gt;&lt;code</summary>
-        
-      
-    
-    
-    
-    <category term="Redis" scheme="http://xiaomozhang.github.io/categories/Redis/"/>
-    
-    
-    <category term="Redis" scheme="http://xiaomozhang.github.io/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Guava中的CaseFormat</title>
-    <link href="http://xiaomozhang.github.io/2020/07/25/guava-case-format/"/>
-    <id>http://xiaomozhang.github.io/2020/07/25/guava-case-format/</id>
-    <published>2020-07-25T05:47:19.000Z</published>
-    <updated>2021-01-12T03:00:34.372Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在数据库中，按照阿里巴巴java开发手册，数据库字段全部小写并且按照&lt;code&gt;_&lt;/code&gt;进行单词之间的分割，但是我们&lt;code&gt;Java&lt;/code&gt;中的命名风格又是按照驼峰方式，一般返回给前端的&lt;code&gt;DTO&lt;/code&gt;对象也按照驼峰方式，前端同学在对所有列</summary>
-        
-      
-    
-    
-    
-    <category term="Guava" scheme="http://xiaomozhang.github.io/categories/Guava/"/>
-    
-    
-    <category term="Guava" scheme="http://xiaomozhang.github.io/tags/Guava/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Map对key或者value进行排序</title>
-    <link href="http://xiaomozhang.github.io/2020/07/25/map-sort/"/>
-    <id>http://xiaomozhang.github.io/2020/07/25/map-sort/</id>
-    <published>2020-07-25T04:21:58.000Z</published>
-    <updated>2021-02-01T13:35:34.981Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;开发中偶尔会遇到一些比较特殊的需求，比如对一个map进行排序，并且是对key或者value进行排序，那么我们可以用Java8中提供的&lt;code&gt;stream&lt;/code&gt;来进行实现&lt;/p&gt;
-&lt;h2 id=&quot;排序工具类&quot;&gt;&lt;a href=&quot;#排序工具类&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="http://xiaomozhang.github.io/categories/Java/"/>
-    
-    
-    <category term="map" scheme="http://xiaomozhang.github.io/tags/map/"/>
     
   </entry>
   
