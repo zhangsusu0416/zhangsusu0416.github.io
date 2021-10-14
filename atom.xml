@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-13T09:07:43.200Z</updated>
+  <updated>2021-10-14T10:18:23.276Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -17,11 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>springcloud结合nacos实现灰度发版方案</title>
+    <link href="http://xiaomozhang.github.io/2021/10/14/springcloud-nacos-gray-plan-demo/"/>
+    <id>http://xiaomozhang.github.io/2021/10/14/springcloud-nacos-gray-plan-demo/</id>
+    <published>2021-10-14T02:54:08.000Z</published>
+    <updated>2021-10-14T10:18:23.276Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近和组内伙伴一起分享讨论了灰度方案,先将内容整理出来, 具体如下:&lt;/p&gt;
+&lt;p&gt;灰度方案设计及demo实现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构设计&lt;/li&gt;
+&lt;li&gt;组件设计及原理&lt;/li&gt;
+&lt;li&gt;关键代码实现&lt;/li&gt;
+&lt;li&gt;项目资料&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="springcloud gray plan" scheme="http://xiaomozhang.github.io/categories/springcloud-gray-plan/"/>
+    
+    
+    <category term="springcloud" scheme="http://xiaomozhang.github.io/tags/springcloud/"/>
+    
+    <category term="nacos" scheme="http://xiaomozhang.github.io/tags/nacos/"/>
+    
+    <category term="ribbon" scheme="http://xiaomozhang.github.io/tags/ribbon/"/>
+    
+    <category term="feign" scheme="http://xiaomozhang.github.io/tags/feign/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微服务网关zuul限流、熔断、路由规则详解</title>
     <link href="http://xiaomozhang.github.io/2021/10/13/spring-cloud-zuul-rule-limiting-fallback-analyze/"/>
     <id>http://xiaomozhang.github.io/2021/10/13/spring-cloud-zuul-rule-limiting-fallback-analyze/</id>
     <published>2021-10-13T02:01:45.000Z</published>
-    <updated>2021-10-13T09:07:43.200Z</updated>
+    <updated>2021-10-13T09:11:01.200Z</updated>
     
     
       
@@ -515,31 +552,6 @@
     
     
     <category term="Kafka" scheme="http://xiaomozhang.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hadoop常用运维命令</title>
-    <link href="http://xiaomozhang.github.io/2020/08/03/hadoop-ops-command/"/>
-    <id>http://xiaomozhang.github.io/2020/08/03/hadoop-ops-command/</id>
-    <published>2020-08-03T09:44:57.000Z</published>
-    <updated>2021-01-12T03:00:34.372Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、HADOOP集群启动&quot;&gt;&lt;a href=&quot;#一、HADOOP集群启动&quot; class=&quot;headerlink&quot; title=&quot;一、HADOOP集群启动&quot;&gt;&lt;/a&gt;一、HADOOP集群启动&lt;/h2&gt;&lt;h3 id=&quot;1-格式化zk&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Hadoop" scheme="http://xiaomozhang.github.io/categories/Hadoop/"/>
-    
-    
-    <category term="Hadoop" scheme="http://xiaomozhang.github.io/tags/Hadoop/"/>
     
   </entry>
   

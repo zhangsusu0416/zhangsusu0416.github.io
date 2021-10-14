@@ -26,9 +26,9 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7226904841878107" crossorigin="anonymous"></script>
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="小张哥blog" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -589,7 +589,7 @@
       <span class="token key atrule">service-id</span><span class="token punctuation">:</span> user <span class="token comment" spellcheck="true"># 该路由机制针对的是哪个微服务</span>
       <span class="token key atrule">path</span><span class="token punctuation">:</span> /user1/**</code></pre>
 <p>这表示, 所有连接 <code>http://localhost:8080/user1/**</code> 的连接都会分发到服务名为user的服务上</p>
-<p>比如:我们请求路径写成 <code>http://localhost:8080/user1/config</code>, 那么也会正确的请求的user服</p>
+<p>比如:我们请求路径写成 <code>http://localhost:8080/user1/config</code>, 那么也会正确的请求的user服务</p>
 <h4 id="5-3-zuul的全局拦截"><a href="#5-3-zuul的全局拦截" class="headerlink" title="5.3. zuul的全局拦截"></a>5.3. zuul的全局拦截</h4><p>zuul是前端访问的唯一入口, 我们可以在zuul实现一个token的拦截验证</p>
 <blockquote>
 <p>1.定义一个TokenFilter过滤器,这个过滤器extends ZuulFilter</p>
@@ -1010,48 +1010,67 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/13/spring-cloud-zuul-rule-limiting-fallback-analyze/">
+                <a href="/2021/10/14/springcloud-nacos-gray-plan-demo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="微服务网关zuul限流、熔断、路由规则详解">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="springcloud结合nacos实现灰度发版方案">
                         
-                        <span class="card-title">微服务网关zuul限流、熔断、路由规则详解</span>
+                        <span class="card-title">springcloud结合nacos实现灰度发版方案</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简介最近在研究灰度方案。 灰度主要涉及两个方面，一个是网关，一个是配置。 这次主要研究了网关及其原理，我们现在使用项目每天都有很多流量进入。 每一个流量基本都要经过网关。所以弄清楚网关也可以帮我们更好的理解微服务请求的转发，对于后面研究灰度
+                            最近和组内伙伴一起分享讨论了灰度方案,先将内容整理出来, 具体如下:
+灰度方案设计及demo实现
+
+架构设计
+组件设计及原理
+关键代码实现
+项目资料一. 架构设计原理
+
+
+1:微服务系统在启动时将自己注册到服务注册中心，同时对外发布 Htt
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Cloud/" class="post-category">
-                                    Spring Cloud
+                            <a href="/categories/springcloud-gray-plan/" class="post-category">
+                                    springcloud gray plan
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SpringCloud-zuul-nacos/">
-                        <span class="chip bg-color">SpringCloud zuul nacos</span>
+                    <a href="/tags/springcloud/">
+                        <span class="chip bg-color">springcloud</span>
+                    </a>
+                    
+                    <a href="/tags/nacos/">
+                        <span class="chip bg-color">nacos</span>
+                    </a>
+                    
+                    <a href="/tags/ribbon/">
+                        <span class="chip bg-color">ribbon</span>
+                    </a>
+                    
+                    <a href="/tags/feign/">
+                        <span class="chip bg-color">feign</span>
                     </a>
                     
                 </div>
@@ -1254,7 +1273,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">127.9k</span>&nbsp;字
+                class="white-color">130.5k</span>&nbsp;字
             
             
             
