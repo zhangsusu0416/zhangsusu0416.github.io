@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-14T13:24:44.082Z</updated>
+  <updated>2021-10-14T14:44:44.031Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring5源码 - ioc加载整体流程详解</title>
+    <link href="http://xiaomozhang.github.io/2021/10/14/spring5-source-code-ioc-process-description/"/>
+    <id>http://xiaomozhang.github.io/2021/10/14/spring5-source-code-ioc-process-description/</id>
+    <published>2021-10-14T04:54:08.000Z</published>
+    <updated>2021-10-14T14:44:44.031Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;通过上篇文章&lt;a href=&quot;https://xiaomozhang.github.io/2021/10/14/spring5-source-code-bean-life-cycle/&quot;&gt;&lt;code&gt;spring5源码 - IOC加载过程</summary>
+        
+      
+    
+    
+    
+    <category term="spring5 ioc process" scheme="http://xiaomozhang.github.io/categories/spring5-ioc-process/"/>
+    
+    
+    <category term="spring5" scheme="http://xiaomozhang.github.io/tags/spring5/"/>
+    
+    <category term="IOC process" scheme="http://xiaomozhang.github.io/tags/IOC-process/"/>
+    
+  </entry>
   
   <entry>
     <title>spring5源码 - IOC加载过程 Bean的生命周期</title>
@@ -530,31 +557,6 @@
     
     
     <category term="Git" scheme="http://xiaomozhang.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven.test.skip和skipTests的区别</title>
-    <link href="http://xiaomozhang.github.io/2020/08/20/maven-skip-test/"/>
-    <id>http://xiaomozhang.github.io/2020/08/20/maven-skip-test/</id>
-    <published>2020-08-20T14:15:07.000Z</published>
-    <updated>2021-01-12T03:00:34.377Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;DskipTests&quot;&gt;&lt;a href=&quot;#DskipTests&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Maven" scheme="http://xiaomozhang.github.io/categories/Maven/"/>
-    
-    
-    <category term="Maven" scheme="http://xiaomozhang.github.io/tags/Maven/"/>
     
   </entry>
   
