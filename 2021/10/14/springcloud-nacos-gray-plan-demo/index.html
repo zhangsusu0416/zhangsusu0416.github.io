@@ -502,7 +502,7 @@
 </blockquote>
 <h4 id="基于微服务架构的原理-来设计灰度方案"><a href="#基于微服务架构的原理-来设计灰度方案" class="headerlink" title="基于微服务架构的原理,来设计灰度方案"></a>基于微服务架构的原理,来设计灰度方案</h4><p><img src="/images/springcloud-nacos-gray-plan-demo/springcloud-nacos-gray-plan-demo-freame-process.png" alt="基于微服务架构的原理,来设计灰度方案.png"></p>
 <h4 id="概要流程："><a href="#概要流程：" class="headerlink" title="概要流程："></a>概要流程：</h4><blockquote>
-<p>1.全局配置灰度是否启用–在nacos中配置， 动态更新<br>2.配置灰度规则， version=2.0， class=“1234567” maxClassId=“010-1234567”<br>3.设置灰度服务器， 哪些服务器是灰度服务器。 为其打标签<br>4.启动所有服务， 服务在nacos上进行注册<br>5.客户端发起请求， 带着header参数<br>6.zuul进行过滤，判断是否符合灰度条件， 如果符合，打上灰度标签<br>7.通过feign将灰度标签进行透传<br>8.通过ribbon选择跳转的服务器， 可以指定负载均衡策略<br>9.下一个服务器继续跳转，带上feign的灰度标签，继续请求。</p>
+<p>1.全局配置灰度是否启用–在nacos中配置， 动态更新<br>2.配置灰度规则， version=2.0 userId=”1234567” productId=”010-1234567”<br>3.设置灰度服务器， 哪些服务器是灰度服务器。 为其打标签<br>4.启动所有服务， 服务在nacos上进行注册<br>5.客户端发起请求， 带着header参数<br>6.zuul进行过滤，判断是否符合灰度条件， 如果符合，打上灰度标签<br>7.通过feign将灰度标签进行透传<br>8.通过ribbon选择跳转的服务器， 可以指定负载均衡策略<br>9.下一个服务器继续跳转，带上feign的灰度标签，继续请求。</p>
 </blockquote>
 <p>以上是这个灰度方案实现的整体逻辑和思路</p>
 <h3 id="二-组件设计及原理"><a href="#二-组件设计及原理" class="headerlink" title="二. 组件设计及原理"></a>二. 组件设计及原理</h3><h4 id="2-1-灰度的目标"><a href="#2-1-灰度的目标" class="headerlink" title="2.1 灰度的目标"></a>2.1 灰度的目标</h4><p>不同的流量过来, 根据元数据匹配, 走不同的微服务<br><img src="/images/springcloud-nacos-gray-plan-demo/springcloud-nacos-gray-plan-demo-gray-module.png" alt="灰度模型.png"><br>当流量请求过来以后, 根据其匹配的灰度规则的不同, 走的服务有所不同, 可以将其分为三种类型.</p>
