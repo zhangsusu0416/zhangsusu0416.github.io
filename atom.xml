@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-14T12:28:45.767Z</updated>
+  <updated>2021-10-14T13:24:44.082Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring5源码 - IOC加载过程 Bean的生命周期</title>
+    <link href="http://xiaomozhang.github.io/2021/10/14/spring5-source-code-bean-life-cycle/"/>
+    <id>http://xiaomozhang.github.io/2021/10/14/spring5-source-code-bean-life-cycle/</id>
+    <published>2021-10-14T03:54:08.000Z</published>
+    <updated>2021-10-14T13:24:44.082Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一-spring源码整体脉络介绍&quot;&gt;&lt;a href=&quot;#一-spring源码整体脉络介绍&quot; class=&quot;headerlink&quot; title=&quot;一. spring源码整体脉络介绍&quot;&gt;&lt;/a&gt;一. spring源码整体脉络介绍&lt;/h3&gt;&lt;h4</summary>
+        
+      
+    
+    
+    
+    <category term="spring5源码IOC加载过程" scheme="http://xiaomozhang.github.io/categories/spring5%E6%BA%90%E7%A0%81IOC%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/"/>
+    
+    
+    <category term="spring5" scheme="http://xiaomozhang.github.io/tags/spring5/"/>
+    
+    <category term="IOC" scheme="http://xiaomozhang.github.io/tags/IOC/"/>
+    
+    <category term="spring源码" scheme="http://xiaomozhang.github.io/tags/spring%E6%BA%90%E7%A0%81/"/>
+    
+    <category term="bean life cycle" scheme="http://xiaomozhang.github.io/tags/bean-life-cycle/"/>
+    
+  </entry>
   
   <entry>
     <title>springcloud结合nacos实现灰度发版方案</title>
@@ -524,34 +555,6 @@
     
     
     <category term="Maven" scheme="http://xiaomozhang.github.io/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【转】Spring Kafka 笔记</title>
-    <link href="http://xiaomozhang.github.io/2020/08/17/spring-kafka-note/"/>
-    <id>http://xiaomozhang.github.io/2020/08/17/spring-kafka-note/</id>
-    <published>2020-08-17T14:41:29.000Z</published>
-    <updated>2021-01-12T03:00:34.381Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://blog.seasedge.cn/archives/8.html&quot;&gt;Spring Kafka（一）Kafka，你好&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Kafka" scheme="http://xiaomozhang.github.io/categories/Kafka/"/>
-    
-    <category term="Spring" scheme="http://xiaomozhang.github.io/categories/Kafka/Spring/"/>
-    
-    
-    <category term="Kafka" scheme="http://xiaomozhang.github.io/tags/Kafka/"/>
     
   </entry>
   

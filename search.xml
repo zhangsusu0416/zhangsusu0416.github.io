@@ -585,6 +585,124 @@ sudo rm -rf /var/lib/docker
       </tags>
   </entry>
   <entry>
+    <title>FTP 常用命令</title>
+    <url>/2019/12/12/ftp-command/</url>
+    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
+<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pwd</td>
+<td>显示远程计算机上的当前目录</td>
+</tr>
+<tr>
+<td>ls/dir</td>
+<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>移动到cd 后的目录</td>
+</tr>
+<tr>
+<td>cdup/cd ..</td>
+<td>返回上一级目录</td>
+</tr>
+<tr>
+<td>lcd</td>
+<td>列出当前本地目录路径</td>
+</tr>
+</tbody></table>
+<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mkdir</td>
+<td>在远程系统中创建目录</td>
+</tr>
+<tr>
+<td>rname</td>
+<td>重命名一个文件或目录</td>
+</tr>
+<tr>
+<td>redir</td>
+<td>删除远程目录</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除远程文件</td>
+</tr>
+<tr>
+<td>mdelete</td>
+<td>删除多个远程文件</td>
+</tr>
+</tbody></table>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>binary/bin</td>
+<td>用于二进制文件传送（图像文件等）</td>
+</tr>
+<tr>
+<td>ascii</td>
+<td>用于文本文件传送</td>
+</tr>
+<tr>
+<td>get/mget</td>
+<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
+</tr>
+<tr>
+<td>put/mput</td>
+<td>从当前目录把文件复制到当前远程目录</td>
+</tr>
+<tr>
+<td>prompt</td>
+<td>关闭二次确认时的提示</td>
+</tr>
+</tbody></table>
+<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>!</td>
+<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭当前连接</td>
+</tr>
+<tr>
+<td>bye</td>
+<td>关闭连接并退出ftp命令模式</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>FTP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git常用命令</title>
     <url>/2019/01/29/git-command/</url>
     <content><![CDATA[<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><h3 id="使用Git生成ssh密钥"><a href="#使用Git生成ssh密钥" class="headerlink" title="使用Git生成ssh密钥:"></a>使用Git生成ssh密钥:</h3><pre class=" language-shell"><code class="language-shell">ssh-keygen -t rsa -C "email@example.com"</code></pre>
@@ -713,124 +831,6 @@ git push 远程仓库名 标签名    #将标签推送到远程仓库（Git默�
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FTP 常用命令</title>
-    <url>/2019/12/12/ftp-command/</url>
-    <content><![CDATA[<p>FTP是可用于许多不同操作系统上的协议。如果 FTP 服务器端允许 PASV 被动模式，可以用浏览器访问 FTP ，也可以使用FTP命令，直接与远程计算机连接。</p>
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>Linux 终端直接敲入 ftp 回车，或者按照下面模式，直接连入 FTP 服务器：</p>
-<p>   *~&gt;ftp 服务器地址（IP或URL）<br>      …<br>      Name …:用户名<br>      …<br>      Password:密码<br>      …<br>      ftp&gt;<br>     连接成功<br>如果希望匿名登录，使用用户名密码全部是ftp，或者用户 Anonymous 密码为空。</p>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="目录命令"><a href="#目录命令" class="headerlink" title="目录命令"></a>目录命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>pwd</td>
-<td>显示远程计算机上的当前目录</td>
-</tr>
-<tr>
-<td>ls/dir</td>
-<td>列出当前远程目录的内容，可以使用该命令在Linux下的任何合法的ls选项</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>移动到cd 后的目录</td>
-</tr>
-<tr>
-<td>cdup/cd ..</td>
-<td>返回上一级目录</td>
-</tr>
-<tr>
-<td>lcd</td>
-<td>列出当前本地目录路径</td>
-</tr>
-</tbody></table>
-<h2 id="需要权限的命令"><a href="#需要权限的命令" class="headerlink" title="需要权限的命令"></a>需要权限的命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mkdir</td>
-<td>在远程系统中创建目录</td>
-</tr>
-<tr>
-<td>rname</td>
-<td>重命名一个文件或目录</td>
-</tr>
-<tr>
-<td>redir</td>
-<td>删除远程目录</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>删除远程文件</td>
-</tr>
-<tr>
-<td>mdelete</td>
-<td>删除多个远程文件</td>
-</tr>
-</tbody></table>
-<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>binary/bin</td>
-<td>用于二进制文件传送（图像文件等）</td>
-</tr>
-<tr>
-<td>ascii</td>
-<td>用于文本文件传送</td>
-</tr>
-<tr>
-<td>get/mget</td>
-<td>在当前远程目录下复制（一个/多个）文件到本地文件系统当前目录</td>
-</tr>
-<tr>
-<td>put/mput</td>
-<td>从当前目录把文件复制到当前远程目录</td>
-</tr>
-<tr>
-<td>prompt</td>
-<td>关闭二次确认时的提示</td>
-</tr>
-</tbody></table>
-<h2 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>!</td>
-<td>临时退出ftp模式，返回本地Linux Shell模式，键入exit返回</td>
-</tr>
-<tr>
-<td>close</td>
-<td>关闭当前连接</td>
-</tr>
-<tr>
-<td>bye</td>
-<td>关闭连接并退出ftp命令模式</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-      <tags>
-        <tag>FTP</tag>
       </tags>
   </entry>
   <entry>
@@ -1050,6 +1050,106 @@ log<span class="token punctuation">.</span><span class="token function">SetFlags
       </categories>
       <tags>
         <tag>Golang log Golang fmt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【转】How can I prevent gson from converting integers to doubles</title>
+    <url>/2020/06/28/gson-how-can-i-prevent-gson-from-converting-integers-to-doubles/</url>
+    <content><![CDATA[<p>处理Gson中，json转换map造成的int变double的问题。</p>
+<p><a href="https://stackoverflow.com/questions/36508323/how-can-i-prevent-gson-from-converting-integers-to-doubles">原文链接</a></p>
+<p>MapDeserializerDoubleAsIntFix.java</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+*最近在研究网络请求数据解析的问题，发现json数据被强制转换为map结构的时候，会出现int变成double的问题
+*在stackoverflow上看到了一个这个How can I prevent gson from converting integers to doubles 的问题，采用了这个答案
+*https://stackoverflow.com/a/36529534/5279354答案
+*/</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonArray<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonDeserializationContext<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonDeserializer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonElement<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonObject<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonParseException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonPrimitive<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>LinkedTreeMap<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Type<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Set<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span> <span class="token keyword">implements</span> <span class="token class-name">JsonDeserializer</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token punctuation">{</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement jsonElement<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext jsonDeserializationContext<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">)</span> <span class="token function">read</span><span class="token punctuation">(</span>jsonElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Object <span class="token function">read</span><span class="token punctuation">(</span>JsonElement in<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            JsonArray arr <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>JsonElement anArr <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">read</span><span class="token punctuation">(</span>anArr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedTreeMap</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            JsonObject obj <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Set<span class="token operator">&lt;</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">>></span> entitySet <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">></span> entry<span class="token operator">:</span> entitySet<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">read</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> map<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> in<span class="token punctuation">.</span><span class="token function">isJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            JsonPrimitive prim <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                Number num <span class="token operator">=</span> prim<span class="token punctuation">.</span><span class="token function">getAsNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// here you can handle double int/long values</span>
+                <span class="token comment" spellcheck="true">// and return any type you want</span>
+                <span class="token comment" spellcheck="true">// this solution will transform 3.0 float to long values</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token operator">==</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">else</span><span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        String json <span class="token operator">=</span> <span class="token string">"{\"data\":[{\"id\":1,\"quantity\":2,\"name\":\"apple\"}, {\"id\":3,\"quantity\":4,\"name\":\"orange\"}]}"</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"json == "</span> <span class="token operator">+</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        Map&lt;String, Object> map = new LinkedTreeMap&lt;>();</span>
+<span class="token comment" spellcheck="true">//        map = new Gson().fromJson(json, map.getClass());</span>
+<span class="token comment" spellcheck="true">//        System.out.println(map);</span>
+
+        GsonBuilder gsonBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        gsonBuilder<span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map <span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword">new</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Gson gson <span class="token operator">=</span> gsonBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>参考文章</p>
+<p><a href="https://gist.github.com/xingstarx/5ddc14ff6ca68ba4097815c90d1c47cc">https://gist.github.com/xingstarx/5ddc14ff6ca68ba4097815c90d1c47cc</a></p>
+<p><a href="https://blog.csdn.net/ligeforrent/article/details/93759524">https://blog.csdn.net/ligeforrent/article/details/93759524</a></p>
+]]></content>
+      <categories>
+        <category>Gson</category>
+      </categories>
+      <tags>
+        <tag>Gson</tag>
       </tags>
   </entry>
   <entry>
@@ -1424,106 +1524,6 @@ date Deserialization<span class="token punctuation">:</span><span class="token n
       <tags>
         <tag>Gson</tag>
         <tag>Java8</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【转】How can I prevent gson from converting integers to doubles</title>
-    <url>/2020/06/28/gson-how-can-i-prevent-gson-from-converting-integers-to-doubles/</url>
-    <content><![CDATA[<p>处理Gson中，json转换map造成的int变double的问题。</p>
-<p><a href="https://stackoverflow.com/questions/36508323/how-can-i-prevent-gson-from-converting-integers-to-doubles">原文链接</a></p>
-<p>MapDeserializerDoubleAsIntFix.java</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
-*最近在研究网络请求数据解析的问题，发现json数据被强制转换为map结构的时候，会出现int变成double的问题
-*在stackoverflow上看到了一个这个How can I prevent gson from converting integers to doubles 的问题，采用了这个答案
-*https://stackoverflow.com/a/36529534/5279354答案
-*/</span>
-
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonArray<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonDeserializationContext<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonDeserializer<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonElement<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonObject<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonParseException<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>JsonPrimitive<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>LinkedTreeMap<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Type<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Set<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span> <span class="token keyword">implements</span> <span class="token class-name">JsonDeserializer</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token punctuation">{</span>
-
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonElement jsonElement<span class="token punctuation">,</span> Type type<span class="token punctuation">,</span> JsonDeserializationContext jsonDeserializationContext<span class="token punctuation">)</span> <span class="token keyword">throws</span> JsonParseException <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">)</span> <span class="token function">read</span><span class="token punctuation">(</span>jsonElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> Object <span class="token function">read</span><span class="token punctuation">(</span>JsonElement in<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            JsonArray arr <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span>JsonElement anArr <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">read</span><span class="token punctuation">(</span>anArr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>in<span class="token punctuation">.</span><span class="token function">isJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedTreeMap</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            JsonObject obj <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Set<span class="token operator">&lt;</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">>></span> entitySet <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> JsonElement<span class="token operator">></span> entry<span class="token operator">:</span> entitySet<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">read</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">return</span> map<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> in<span class="token punctuation">.</span><span class="token function">isJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            JsonPrimitive prim <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">getAsJsonPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsBoolean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">return</span> prim<span class="token punctuation">.</span><span class="token function">getAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>prim<span class="token punctuation">.</span><span class="token function">isNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                Number num <span class="token operator">=</span> prim<span class="token punctuation">.</span><span class="token function">getAsNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">// here you can handle double int/long values</span>
-                <span class="token comment" spellcheck="true">// and return any type you want</span>
-                <span class="token comment" spellcheck="true">// this solution will transform 3.0 float to long values</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token operator">==</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">else</span><span class="token punctuation">{</span>
-                    <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String json <span class="token operator">=</span> <span class="token string">"{\"data\":[{\"id\":1,\"quantity\":2,\"name\":\"apple\"}, {\"id\":3,\"quantity\":4,\"name\":\"orange\"}]}"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"json == "</span> <span class="token operator">+</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//        Map&lt;String, Object> map = new LinkedTreeMap&lt;>();</span>
-<span class="token comment" spellcheck="true">//        map = new Gson().fromJson(json, map.getClass());</span>
-<span class="token comment" spellcheck="true">//        System.out.println(map);</span>
-
-        GsonBuilder gsonBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        gsonBuilder<span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map <span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword">new</span> <span class="token class-name">MapDeserializerDoubleAsIntFix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Gson gson <span class="token operator">=</span> gsonBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>参考文章</p>
-<p><a href="https://gist.github.com/xingstarx/5ddc14ff6ca68ba4097815c90d1c47cc">https://gist.github.com/xingstarx/5ddc14ff6ca68ba4097815c90d1c47cc</a></p>
-<p><a href="https://blog.csdn.net/ligeforrent/article/details/93759524">https://blog.csdn.net/ligeforrent/article/details/93759524</a></p>
-]]></content>
-      <categories>
-        <category>Gson</category>
-      </categories>
-      <tags>
-        <tag>Gson</tag>
       </tags>
   </entry>
   <entry>
@@ -2929,164 +2929,6 @@ Optional<span class="token operator">&lt;</span>User<span class="token operator"
       </tags>
   </entry>
   <entry>
-    <title>Java8 stream-实战</title>
-    <url>/2019/03/06/java8-stream-drill/</url>
-    <content><![CDATA[<p>Java8在日常编码中感触最深的无非就是steam和lambda表达式以及新的时间api，在此之前，集合处理一直是不太方便且性能较低，第二个是时间api不好用，一般配合joda-time这个库配合使用，下面介绍一些在Java8中常用的stream处理</p>
-<h2 id="List转换成Map"><a href="#List转换成Map" class="headerlink" title="List转换成Map"></a>List转换成Map</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
-  * toMap 如果集合中重复的key 可能会抛出异常 Duplicate key...
-  * apply1、apply2的ID都为1 既m1,m2的ID都为1
-  * 可以用(m1,m2)->m1 来设置 如果有重复的key 保留m1 舍弃m2
-  */</span>
-Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Model<span class="token operator">></span> modelMap <span class="token operator">=</span> modelList
-                <span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>Model<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> x <span class="token operator">-</span><span class="token operator">></span> x<span class="token punctuation">,</span> <span class="token punctuation">(</span>m1<span class="token punctuation">,</span> m2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> m1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="groupBy以后求最大值或者最小值"><a href="#groupBy以后求最大值或者最小值" class="headerlink" title="groupBy以后求最大值或者最小值"></a>groupBy以后求最大值或者最小值</h2><p><a href="http://www.java2s.com/Tutorials/Java_Streams/Example/Group/Get_max_value_in_each_group.htm">http://www.java2s.com/Tutorials/Java_Streams/Example/Group/Get_max_value_in_each_group.htm</a></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token annotation punctuation">@NoArgsConstructor</span>
-<span class="token annotation punctuation">@AllArgsConstructor</span>
-<span class="token keyword">class</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
-    String hostname<span class="token punctuation">;</span>
-
-    String ip<span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> num<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    List<span class="token operator">&lt;</span>Model<span class="token operator">></span> models <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.0"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.1"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.6"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.7"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.8"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.9"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.10"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.12"</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.15"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.16"</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.17"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.18"</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.19"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.20"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.21"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.22"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-
-    Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Model<span class="token operator">></span> map <span class="token operator">=</span> models
-    <span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>model <span class="token operator">-</span><span class="token operator">></span> model<span class="token punctuation">.</span><span class="token function">getHostname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> model<span class="token punctuation">.</span><span class="token function">getIp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    Function<span class="token punctuation">.</span><span class="token function">identity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">(</span>Model d1<span class="token punctuation">,</span> Model d2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> d1<span class="token punctuation">.</span><span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> d2<span class="token punctuation">.</span><span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> d1 <span class="token operator">:</span> d2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"map:{}"</span><span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="Scala中使用group求出最大值或者最小值"><a href="#Scala中使用group求出最大值或者最小值" class="headerlink" title="Scala中使用group求出最大值或者最小值"></a>Scala中使用group求出最大值或者最小值</h2><pre class=" language-scala"><code class="language-scala"><span class="token keyword">object</span> CollectionApp <span class="token punctuation">{</span>
-
-  <span class="token keyword">def</span> main<span class="token punctuation">(</span>args<span class="token operator">:</span> Array<span class="token punctuation">[</span><span class="token builtin">String</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Unit</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token keyword">val</span> log <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span>getClass<span class="token punctuation">)</span>
-
-    <span class="token keyword">import</span> scala<span class="token punctuation">.</span>collection<span class="token punctuation">.</span>JavaConverters<span class="token punctuation">.</span>_
-
-    <span class="token keyword">val</span> models<span class="token operator">:</span> util<span class="token punctuation">.</span>List<span class="token punctuation">[</span>Model<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">[</span>Model<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.0"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.1"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.6"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.7"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.8"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.9"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.10"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.12"</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.15"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.16"</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.17"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.18"</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.19"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.20"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.21"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.22"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">val</span> list <span class="token operator">=</span> models<span class="token punctuation">.</span>asScala
-
-    <span class="token keyword">val</span> res <span class="token operator">=</span> list<span class="token punctuation">.</span>groupBy<span class="token punctuation">(</span>x <span class="token keyword">=></span> x<span class="token punctuation">.</span>hostname <span class="token operator">+</span> x<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">.</span>map <span class="token punctuation">{</span>
-      <span class="token keyword">case</span> <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token keyword">=></span>
-        <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">.</span>map<span class="token punctuation">(</span>_<span class="token punctuation">.</span>order<span class="token punctuation">)</span><span class="token punctuation">.</span>min<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-
-    log<span class="token punctuation">.</span>info<span class="token punctuation">(</span>s<span class="token string">"$res"</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">case</span> <span class="token keyword">class</span> Model<span class="token punctuation">(</span>hostname<span class="token operator">:</span> <span class="token builtin">String</span><span class="token punctuation">,</span> ip<span class="token operator">:</span> <span class="token builtin">String</span><span class="token punctuation">,</span> order<span class="token operator">:</span> <span class="token builtin">Int</span><span class="token punctuation">)</span></code></pre>
-<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>iogogog<span class="token punctuation">.</span>util<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>collections4<span class="token punctuation">.</span>CollectionUtils<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Collection<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Iterator<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * Created by xiaozhangge on 2019-03-09.
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BatchProcess</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> totalList<span class="token punctuation">,</span> <span class="token keyword">int</span> batchSize<span class="token punctuation">,</span> BatchProcessListener batchProcessListener<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>CollectionUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>totalList<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>batchProcessListener <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"没有批处理监听器!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        Iterator<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> iterator <span class="token operator">=</span> totalList<span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Object next <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> batchSize <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> i <span class="token operator">==</span> <span class="token punctuation">(</span>totalList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">// process</span>
-                batchProcessListener<span class="token punctuation">.</span><span class="token function">onProcess</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"batchSize:{} processSize:{} "</span><span class="token punctuation">,</span> batchSize<span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                list<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BatchProcessListener</span> <span class="token punctuation">{</span>
-        <span class="token keyword">void</span> <span class="token function">onProcess</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> list<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-]]></content>
-      <categories>
-        <category>Java8</category>
-      </categories>
-      <tags>
-        <tag>Java8</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javac编译java文件</title>
     <url>/2019/11/05/javac-compiler/</url>
     <content><![CDATA[<h1 id="javac编译java文件"><a href="#javac编译java文件" class="headerlink" title="javac编译java文件"></a>javac编译java文件</h1><p>由于最近项目需求有这样一个需求，生产上新给了一个csv文件，程序需要读取内容进行清洗，但是拿不出来看，也不可能为了这一个小测试专门打审批给生产上传一个程序包，就想到了使用javac写个简单的测试看下数据。下面先来复习一下javac这个命令</p>
@@ -3286,6 +3128,164 @@ total 5416
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8 stream-实战</title>
+    <url>/2019/03/06/java8-stream-drill/</url>
+    <content><![CDATA[<p>Java8在日常编码中感触最深的无非就是steam和lambda表达式以及新的时间api，在此之前，集合处理一直是不太方便且性能较低，第二个是时间api不好用，一般配合joda-time这个库配合使用，下面介绍一些在Java8中常用的stream处理</p>
+<h2 id="List转换成Map"><a href="#List转换成Map" class="headerlink" title="List转换成Map"></a>List转换成Map</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+  * toMap 如果集合中重复的key 可能会抛出异常 Duplicate key...
+  * apply1、apply2的ID都为1 既m1,m2的ID都为1
+  * 可以用(m1,m2)->m1 来设置 如果有重复的key 保留m1 舍弃m2
+  */</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Model<span class="token operator">></span> modelMap <span class="token operator">=</span> modelList
+                <span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>Model<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> x <span class="token operator">-</span><span class="token operator">></span> x<span class="token punctuation">,</span> <span class="token punctuation">(</span>m1<span class="token punctuation">,</span> m2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> m1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="groupBy以后求最大值或者最小值"><a href="#groupBy以后求最大值或者最小值" class="headerlink" title="groupBy以后求最大值或者最小值"></a>groupBy以后求最大值或者最小值</h2><p><a href="http://www.java2s.com/Tutorials/Java_Streams/Example/Group/Get_max_value_in_each_group.htm">http://www.java2s.com/Tutorials/Java_Streams/Example/Group/Get_max_value_in_each_group.htm</a></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword">class</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+    String hostname<span class="token punctuation">;</span>
+
+    String ip<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Model<span class="token operator">></span> models <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.0"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.1"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.6"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.7"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.8"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.9"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.10"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.12"</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.15"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.16"</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.17"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.18"</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.19"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.20"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.21"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    models<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Model</span><span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.22"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Model<span class="token operator">></span> map <span class="token operator">=</span> models
+    <span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>model <span class="token operator">-</span><span class="token operator">></span> model<span class="token punctuation">.</span><span class="token function">getHostname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> model<span class="token punctuation">.</span><span class="token function">getIp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Function<span class="token punctuation">.</span><span class="token function">identity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>Model d1<span class="token punctuation">,</span> Model d2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> d1<span class="token punctuation">.</span><span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> d2<span class="token punctuation">.</span><span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> d1 <span class="token operator">:</span> d2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"map:{}"</span><span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="Scala中使用group求出最大值或者最小值"><a href="#Scala中使用group求出最大值或者最小值" class="headerlink" title="Scala中使用group求出最大值或者最小值"></a>Scala中使用group求出最大值或者最小值</h2><pre class=" language-scala"><code class="language-scala"><span class="token keyword">object</span> CollectionApp <span class="token punctuation">{</span>
+
+  <span class="token keyword">def</span> main<span class="token punctuation">(</span>args<span class="token operator">:</span> Array<span class="token punctuation">[</span><span class="token builtin">String</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Unit</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> log <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span>getClass<span class="token punctuation">)</span>
+
+    <span class="token keyword">import</span> scala<span class="token punctuation">.</span>collection<span class="token punctuation">.</span>JavaConverters<span class="token punctuation">.</span>_
+
+    <span class="token keyword">val</span> models<span class="token operator">:</span> util<span class="token punctuation">.</span>List<span class="token punctuation">[</span>Model<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">[</span>Model<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.0"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.1"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_11"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.2"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.3"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.6"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.7"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.8"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_12"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.9"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.10"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.12"</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.11"</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_13"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.15"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.16"</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.17"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.18"</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.19"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.20"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.21"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    models<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Model<span class="token punctuation">(</span><span class="token string">"vm_11_16"</span><span class="token punctuation">,</span> <span class="token string">"192.168.1.22"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">val</span> list <span class="token operator">=</span> models<span class="token punctuation">.</span>asScala
+
+    <span class="token keyword">val</span> res <span class="token operator">=</span> list<span class="token punctuation">.</span>groupBy<span class="token punctuation">(</span>x <span class="token keyword">=></span> x<span class="token punctuation">.</span>hostname <span class="token operator">+</span> x<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">.</span>map <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token keyword">=></span>
+        <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">.</span>map<span class="token punctuation">(</span>_<span class="token punctuation">.</span>order<span class="token punctuation">)</span><span class="token punctuation">.</span>min<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    log<span class="token punctuation">.</span>info<span class="token punctuation">(</span>s<span class="token string">"$res"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">case</span> <span class="token keyword">class</span> Model<span class="token punctuation">(</span>hostname<span class="token operator">:</span> <span class="token builtin">String</span><span class="token punctuation">,</span> ip<span class="token operator">:</span> <span class="token builtin">String</span><span class="token punctuation">,</span> order<span class="token operator">:</span> <span class="token builtin">Int</span><span class="token punctuation">)</span></code></pre>
+<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>iogogog<span class="token punctuation">.</span>util<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>collections4<span class="token punctuation">.</span>CollectionUtils<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Collection<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Iterator<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created by xiaozhangge on 2019-03-09.
+ */</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BatchProcess</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> totalList<span class="token punctuation">,</span> <span class="token keyword">int</span> batchSize<span class="token punctuation">,</span> BatchProcessListener batchProcessListener<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>CollectionUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>totalList<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>batchProcessListener <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"没有批处理监听器!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        Iterator<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> iterator <span class="token operator">=</span> totalList<span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Object next <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> batchSize <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> i <span class="token operator">==</span> <span class="token punctuation">(</span>totalList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// process</span>
+                batchProcessListener<span class="token punctuation">.</span><span class="token function">onProcess</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"batchSize:{} processSize:{} "</span><span class="token punctuation">,</span> batchSize<span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                list<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BatchProcessListener</span> <span class="token punctuation">{</span>
+        <span class="token keyword">void</span> <span class="token function">onProcess</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> list<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+]]></content>
+      <categories>
+        <category>Java8</category>
+      </categories>
+      <tags>
+        <tag>Java8</tag>
       </tags>
   </entry>
   <entry>
@@ -3828,66 +3828,6 @@ character_sets_dir    /usr/local/mysql-5.7.25-macos10.14-x86_64/share/charsets/<
       </tags>
   </entry>
   <entry>
-    <title>mac使用parallels安装配置centos7</title>
-    <url>/2018/08/10/mac-install-parallel-centos7/</url>
-    <content><![CDATA[<h3 id="安装parallels"><a href="#安装parallels" class="headerlink" title="安装parallels"></a>安装parallels</h3><p><a href="https://www.jianshu.com/p/76f38e6c0792">https://www.jianshu.com/p/76f38e6c0792</a></p>
-<h3 id="配置-ssh-登录"><a href="#配置-ssh-登录" class="headerlink" title="配置 ssh 登录"></a>配置 ssh 登录</h3><blockquote>
-<ol>
-<li>查看宿主机ip和网关</li>
-<li>修改网卡配置文件</li>
-<li>配置外网dns</li>
-<li>保存重启网络</li>
-<li>ssh 连接 配置</li>
-</ol>
-</blockquote>
-<h3 id="查看宿主机IP和网关"><a href="#查看宿主机IP和网关" class="headerlink" title="查看宿主机IP和网关"></a>查看宿主机IP和网关</h3><p>ifconfig</p>
-<h3 id="修改网卡配置文件和NDS"><a href="#修改网卡配置文件和NDS" class="headerlink" title="修改网卡配置文件和NDS"></a>修改网卡配置文件和NDS</h3><blockquote>
-<p>vi /etc/sysconfig/network-scripts/ifcfg-eth0</p>
-</blockquote>
-<pre><code>BOOTPROTO=static # 网卡获取IP的方式(默认为dchp,设置为静态获取。
-IPADDR=192.168.1.254 # 除最后部分其他与宿主机的网关一致
-GATEWAY=192.168.1.1 # 与宿主机保持一致
-NETMASK=255.255.255.0
-ONBOOT=yes
-DNS1=192.168.1.1
-DNS2=8.8.8.8</code></pre>
-<h3 id="保存重启网络"><a href="#保存重启网络" class="headerlink" title="保存重启网络"></a>保存重启网络</h3><pre><code>service network restart</code></pre>
-<h3 id="ssh-连接-配置"><a href="#ssh-连接-配置" class="headerlink" title="ssh 连接 配置"></a>ssh 连接 配置</h3><pre><code>ssh root@192.168.1.254</code></pre>
-<h3 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h3><ul>
-<li>永久的开放需要的端口</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加开放端口</span>
-<span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span>3000/tcp --permanent
-<span class="token comment" spellcheck="true"># 关闭开放端口</span>
-<span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --remove-port<span class="token operator">=</span>80/tcp --permanent
-<span class="token comment" spellcheck="true"># 重新加载</span>
-<span class="token function">sudo</span> firewall-cmd --reload</code></pre>
-<ul>
-<li>之后检查新的防火墙规则</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash">firewall-cmd --list-all</code></pre>
-<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><pre class=" language-bash"><code class="language-bash">//临时关闭防火墙,重启后会重新自动打开
-systemctl restart firewalld
-//检查防火墙状态
-firewall-cmd --state
-firewall-cmd --list-all
-//Disable firewall
-systemctl disable firewalld
-systemctl stop firewalld
-systemctl status firewalld
-//Enable firewall
-systemctl <span class="token function">enable</span> firewalld
-systemctl start firewalld
-systemctl status firewalld</code></pre>
-]]></content>
-      <categories>
-        <category>MacBook</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Map对key或者value进行排序</title>
     <url>/2020/07/25/map-sort/</url>
     <content><![CDATA[<p>开发中偶尔会遇到一些比较特殊的需求，比如对一个map进行排序，并且是对key或者value进行排序，那么我们可以用Java8中提供的<code>stream</code>来进行实现</p>
@@ -4118,6 +4058,66 @@ systemctl status firewalld</code></pre>
       </categories>
       <tags>
         <tag>map</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac使用parallels安装配置centos7</title>
+    <url>/2018/08/10/mac-install-parallel-centos7/</url>
+    <content><![CDATA[<h3 id="安装parallels"><a href="#安装parallels" class="headerlink" title="安装parallels"></a>安装parallels</h3><p><a href="https://www.jianshu.com/p/76f38e6c0792">https://www.jianshu.com/p/76f38e6c0792</a></p>
+<h3 id="配置-ssh-登录"><a href="#配置-ssh-登录" class="headerlink" title="配置 ssh 登录"></a>配置 ssh 登录</h3><blockquote>
+<ol>
+<li>查看宿主机ip和网关</li>
+<li>修改网卡配置文件</li>
+<li>配置外网dns</li>
+<li>保存重启网络</li>
+<li>ssh 连接 配置</li>
+</ol>
+</blockquote>
+<h3 id="查看宿主机IP和网关"><a href="#查看宿主机IP和网关" class="headerlink" title="查看宿主机IP和网关"></a>查看宿主机IP和网关</h3><p>ifconfig</p>
+<h3 id="修改网卡配置文件和NDS"><a href="#修改网卡配置文件和NDS" class="headerlink" title="修改网卡配置文件和NDS"></a>修改网卡配置文件和NDS</h3><blockquote>
+<p>vi /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+</blockquote>
+<pre><code>BOOTPROTO=static # 网卡获取IP的方式(默认为dchp,设置为静态获取。
+IPADDR=192.168.1.254 # 除最后部分其他与宿主机的网关一致
+GATEWAY=192.168.1.1 # 与宿主机保持一致
+NETMASK=255.255.255.0
+ONBOOT=yes
+DNS1=192.168.1.1
+DNS2=8.8.8.8</code></pre>
+<h3 id="保存重启网络"><a href="#保存重启网络" class="headerlink" title="保存重启网络"></a>保存重启网络</h3><pre><code>service network restart</code></pre>
+<h3 id="ssh-连接-配置"><a href="#ssh-连接-配置" class="headerlink" title="ssh 连接 配置"></a>ssh 连接 配置</h3><pre><code>ssh root@192.168.1.254</code></pre>
+<h3 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h3><ul>
+<li>永久的开放需要的端口</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加开放端口</span>
+<span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span>3000/tcp --permanent
+<span class="token comment" spellcheck="true"># 关闭开放端口</span>
+<span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --remove-port<span class="token operator">=</span>80/tcp --permanent
+<span class="token comment" spellcheck="true"># 重新加载</span>
+<span class="token function">sudo</span> firewall-cmd --reload</code></pre>
+<ul>
+<li>之后检查新的防火墙规则</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">firewall-cmd --list-all</code></pre>
+<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><pre class=" language-bash"><code class="language-bash">//临时关闭防火墙,重启后会重新自动打开
+systemctl restart firewalld
+//检查防火墙状态
+firewall-cmd --state
+firewall-cmd --list-all
+//Disable firewall
+systemctl disable firewalld
+systemctl stop firewalld
+systemctl status firewalld
+//Enable firewall
+systemctl <span class="token function">enable</span> firewalld
+systemctl start firewalld
+systemctl status firewalld</code></pre>
+]]></content>
+      <categories>
+        <category>MacBook</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -4544,6 +4544,23 @@ AND TABLE_NAME = '</span>health_exp'<span class="token punctuation">;</span> </c
       </tags>
   </entry>
   <entry>
+    <title>MySQL 导出表结构和表数据 mysqldump用法</title>
+    <url>/2019/03/22/mysql-note-mysqldump/</url>
+    <content><![CDATA[<p>命令行下具体用法如下：</p>
+<p>mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;</p>
+<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table > dump.sql</code></pre>
+<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database > dump.sql</code></pre>
+<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table > dump.sql</code></pre>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL查看所有连接的客户端ip</title>
     <url>/2020/06/29/mysql-show-client-connection/</url>
     <content><![CDATA[<p>有时候我们需要查看当前的mysql数据库中， 有哪些客户端保持了连接， 每个客户端分别保持了多少连接，可以使用下面的语句查询结果，可以直观的看到连接数。</p>
@@ -4563,23 +4580,6 @@ AND TABLE_NAME = '</span>health_exp'<span class="token punctuation">;</span> </c
 
 mysql></code></pre>
 <p>会列出每个ip当前的状态，以及当前的连接数 。这个在处理类似碰到数据库 Too Many Connections 等的错误的时候比较有用。</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL 导出表结构和表数据 mysqldump用法</title>
-    <url>/2019/03/22/mysql-note-mysqldump/</url>
-    <content><![CDATA[<p>命令行下具体用法如下：</p>
-<p>mysqldump -u用戶名 -p密码 -d 数据库名 表名 &gt; 脚本名;</p>
-<h3 id="导出整个数据库结构和数据"><a href="#导出整个数据库结构和数据" class="headerlink" title="导出整个数据库结构和数据"></a>导出整个数据库结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456 database > dump.sql</code></pre>
-<h3 id="导出单个数据表结构和数据"><a href="#导出单个数据表结构和数据" class="headerlink" title="导出单个数据表结构和数据"></a>导出单个数据表结构和数据</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  database table > dump.sql</code></pre>
-<h3 id="导出整个数据库结构（不包含数据）"><a href="#导出整个数据库结构（不包含数据）" class="headerlink" title="导出整个数据库结构（不包含数据）"></a>导出整个数据库结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database > dump.sql</code></pre>
-<h3 id="导出单个数据表结构（不包含数据）"><a href="#导出单个数据表结构（不包含数据）" class="headerlink" title="导出单个数据表结构（不包含数据）"></a>导出单个数据表结构（不包含数据）</h3><pre class=" language-shell"><code class="language-shell">mysqldump -h localhost -uroot -p123456  -d database table > dump.sql</code></pre>
 ]]></content>
       <categories>
         <category>MySQL</category>
@@ -5003,40 +5003,6 @@ IRR <span class="token operator">=</span> <span class="token number">16.43</span
       </tags>
   </entry>
   <entry>
-    <title>CentOS 升级安装最新版git</title>
-    <url>/2020/09/01/soft-install-git/</url>
-    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
-<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
-yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
-<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
-<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
-<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
-<li>切换目录</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
-<ul>
-<li>git release版本地址</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
-<ul>
-<li>下载并解压</li>
-</ul>
-<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
-tar -xvf git-2.9.5.tar.gz
-cd /usr/local/src/git-2.9.5</code></pre>
-<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
-make prefix=/usr/local/git install</code></pre>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
-source /etc/profile</code></pre>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS7 安装 MySQL5.7.X</title>
     <url>/2020/01/08/software-install-mysql5-7-x-centos7/</url>
     <content><![CDATA[<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a><strong>安装前准备</strong></h2><p>MySQL安装需要准备root账户</p>
@@ -5271,6 +5237,40 @@ chown mysql.mysql /var/run/mysqld/
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 升级安装最新版git</title>
+    <url>/2020/09/01/soft-install-git/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装必要依赖</p>
+<pre class=" language-shell"><code class="language-shell">yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+yum install -y gcc perl-ExtUtils-MakeMaker</code></pre>
+<h2 id="卸载旧版本Git"><a href="#卸载旧版本Git" class="headerlink" title="卸载旧版本Git"></a>卸载旧版本Git</h2><p>如果旧版本不存在，此步可忽略</p>
+<pre class=" language-shell"><code class="language-shell">yum remove -y git</code></pre>
+<h2 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h2><ul>
+<li>切换目录</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">cd /usr/local/src</code></pre>
+<ul>
+<li>git release版本地址</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">https://mirrors.edge.kernel.org/pub/software/scm/git/</code></pre>
+<ul>
+<li>下载并解压</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+tar -xvf git-2.9.5.tar.gz
+cd /usr/local/src/git-2.9.5</code></pre>
+<h2 id="编译安装Git"><a href="#编译安装Git" class="headerlink" title="编译安装Git"></a>编译安装Git</h2><pre class=" language-shell"><code class="language-shell">make prefix=/usr/local/git all
+make prefix=/usr/local/git install</code></pre>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre class=" language-shell"><code class="language-shell">echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile 
+source /etc/profile</code></pre>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -14627,6 +14627,181 @@ Caused by<span class="token punctuation">:</span> javax<span class="token punctu
       <tags>
         <tag>spring</tag>
         <tag>transaction</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring5源码 - IOC加载过程 Bean的生命周期</title>
+    <url>/2021/10/14/spring5-source-code-bean-life-cycle/</url>
+    <content><![CDATA[<h3 id="一-spring源码整体脉络介绍"><a href="#一-spring源码整体脉络介绍" class="headerlink" title="一. spring源码整体脉络介绍"></a>一. spring源码整体脉络介绍</h3><h4 id="1-1-什么是IOC"><a href="#1-1-什么是IOC" class="headerlink" title="1.1. 什么是IOC"></a>1.1. 什么是IOC</h4><p>ioc是控制反转, 这是一种设计理念, 用来解决的是层和层之间, 类和类之间的耦合问题.</p>
+<p>比如,现在有A, B两个类, 在A类中引用了B类. 那么如果有一天, B类要被替换掉, 我们会怎么办呢?如果B类被引用了100次, 我们要替换100次?</p>
+<p>现在呢, A是直接调用B, 如果我们间接的调用B, 将B包装起来, 如果以后将B换成C, 只需要在包装类里面替换就可以了. 我们不需要修改A类. 这就是控制反转.</p>
+<p>Spring使用了ioc, Spring.ioc(A, B) 将A和B的引用都存在ioc中, spring会帮我们维护好, 完全不用担心.</p>
+<p>当我们在A中要使用B的时候, 使用B对应的接口, 然后使用@Autowired注解</p>
+<pre class=" language-java"><code class="language-java">A <span class="token punctuation">{</span>
+   <span class="token annotation punctuation">@Autowired</span>
+   <span class="token keyword">private</span> IB b<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span></code></pre>
+<p>什么时候把B换掉了, 不痛不痒的, 只需要把新的类放到IoC中就可以了.</p>
+<h4 id="1-2-Spring源码的整体脉络梳理"><a href="#1-2-Spring源码的整体脉络梳理" class="headerlink" title="1.2. Spring源码的整体脉络梳理"></a>1.2. Spring源码的整体脉络梳理</h4><p>Spring IoC是一个容器, 在Spring Ioc中维护了许多Bean</p>
+<p>那这些bean是如何被注册到IoC中的呢? 换句话说, 我们自定义的类, 是如何作为一个bean交给IoC容器去管理的呢?</p>
+<p>先来回忆,我们在开发spring的时候的步骤:</p>
+<blockquote>
+<p>第一步: 配置类. 配置类可以使用的方式通常由<br>      1) xml配置<br>      2) 注解配置<br>      3) javaconfig方式配置<br>第二步: 加载spring上下文<br>      1) 如果是xml, 则new ClassPathXmlApplicationContext(“xml”);<br>      2) 如果是注解配置: 则new AnnotationConfigApplicationContext(config.class)<br>第三步: getBean()<br>    我们会讲自定义的类, 通过xml或者注解的方式注入到ioc容器中.<br>在这一步, 会将xml或注解中指定的类注入到IoC容器中. </p>
+</blockquote>
+<h5 id="1-2-1-那么-到底是如何将一个类注入到ioc中的呢"><a href="#1-2-1-那么-到底是如何将一个类注入到ioc中的呢" class="headerlink" title="1.2.1 那么, 到底是如何将一个类注入到ioc中的呢?"></a>1.2.1 那么, 到底是如何将一个类注入到ioc中的呢?</h5><p>下面就来梳理一下整个过程.</p>
+<h6 id="第一问-一个类要生产成一个Bean-最重要最核心的类是什么"><a href="#第一问-一个类要生产成一个Bean-最重要最核心的类是什么" class="headerlink" title="第一问: 一个类要生产成一个Bean, 最重要最核心的类是什么?"></a>第一问: 一个类要生产成一个Bean, 最重要最核心的类是什么?</h6><p>是BeanFactory</p>
+<p>第二问: BeanFactory是什么呢?<br>BeanFactory是Spring顶层的核心接口–使用了简单工厂模式. 通常都是根据一个名字生产一个实例, 根据传入的唯一的标志来获得bean对象, 但具体是穿入参数后创建, 还是穿入参数前创建, 这个要根据 具体情况而定, 根据名字或类型生产不同的bean.</p>
+<h6 id="一句话总结-BeanFactory的责任就是生产Bean"><a href="#一句话总结-BeanFactory的责任就是生产Bean" class="headerlink" title="一句话总结: BeanFactory的责任就是生产Bean"></a>一句话总结: BeanFactory的责任就是生产Bean</h6><p>来看下面这段代码:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        AnnotationConfigApplicationContext context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"***"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>这段代码实现的功能是, 读取当前文件所在目录及其子目录中的文件, 然后获取指定名称的bean, 整个流程如下图所示:</p>
+<blockquote>
+<p>首先, 通过ClassPathXmlApplicationContext或者AnnotationConfigApplicationContext去读取配置,<br>然后, 将其交给BeanFactory.<br>第三. BeanFactory调用getBean()方法, 将Bean注入到IoC容器中<br>我们发现, 配置的读取, 可能是xml方式, 也可能是annotation的方式, 不同的方式读取应该使用的是不同的工具. 那么这些工具读取的结果应该是统一的, 然后才能交给BeanFactory去处理.</p>
+</blockquote>
+<p>因为在BeanFactory中是不会对这些异同点进行处理的. BeanFactory的作用只有一个, 就是个生产Bean.</p>
+<h5 id="1-2-2-那么-不同的工具读取配置是如何统一的呢"><a href="#1-2-2-那么-不同的工具读取配置是如何统一的呢" class="headerlink" title="1.2.2 那么, 不同的工具读取配置是如何统一的呢?"></a>1.2.2 那么, 不同的工具读取配置是如何统一的呢?</h5><p>我们知道,读取配置这一块, 应该会有一个不同的实现. 将xml和注解方式读取成统一的东西, 放入到beanFactory中. 这个东西是谁呢?就是BeanDefinition(Bean定义)</p>
+<p>通过不同的工具, 可能是xmlApplicationContext, 可能是annotationApplicationContext工具 读取的配置, 最后都会构造成BeanDefinition对象. 然后将BeanDefinition传递给BeanFactory,<br>BeanFactory统一处理BeanDefinition对象, 调用getBean()方法, 将其放入IoC容器中.</p>
+<h5 id="1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢"><a href="#1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢" class="headerlink" title="1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?"></a>1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?</h5><p>我们来举个例子, 现在有一个人, 比如说我刚买了一个房子, 我要装修. 需要一个衣柜, 这时候, 我会找到一个衣柜店. 然后告诉他我的需求, 柜子的颜色, 款式格式什么样. 然后衣柜店记录我的需求, 这个时候, 他不会自己生产, 他会通知工厂,<br> 让工厂来生产. 工厂按照什么生产呢, 衣柜店有一个设计师, 他们的设计师. 会按照我的需求设计出一张图纸. 然后将图纸交给工厂. 工厂按照图纸要求生产Bean.</p>
+<p>入口是”我”</p>
+<ul>
+<li>1.我有一个需求, 打一个柜子, 找到衣柜店</li>
+<li>2.我告诉衣柜店我的需求, 柜子的颜色, 款式, 然后衣柜店的设计师按照我的要求 ,设计出一张图纸</li>
+<li>3.衣柜店将图纸给到工厂, 工厂按照图纸生产柜子</li>
+</ul>
+<p>这是制造衣柜的过程. 其中在画图纸的时候, 画一张就给工厂给一张, 这样效率太低了. 我们可以画了n张, 一起给工厂. 所以, 在设计图纸这块是一个容器, 存放多张图纸</p>
+<p>后面,如果我还想定制一个橱柜店. 那么, 就告诉设计师我的橱柜的颜色,款式, 就可以了. 流程和上面都是一样的.</p>
+<h6 id="整个这个过程-就类似于我们的bean生产的过程"><a href="#整个这个过程-就类似于我们的bean生产的过程" class="headerlink" title="整个这个过程, 就类似于我们的bean生产的过程"></a>整个这个过程, 就类似于我们的bean生产的过程</h6><ul>
+<li>定义了一个带有@Component注解的类, 我找到衣柜店, 衣柜店就类似于ApplicationContext.</li>
+<li>我告诉ApplicationContext我的需求, 我要懒加载@Lazy, 设置单例模式还是多例模式@Scope. 对应的就是定制柜子的颜色,款式. 然后衣柜店里的设计师BeanDefinitionRegistry根据我的需求设计出图纸, 也就是构造成BeanDefinition. 不同的BeanDefinitionRegistry设计出不同的BeanDefinition, 然后将他们都放在容器中.</li>
+<li>衣柜店ApplicationContext统一将一摞图纸BeanDefinitionMap交给工厂, 然后工厂按照要求生产Bean, 然后将生成的bean放入到IoC容器中.</li>
+</ul>
+<p>**这是一个带有@Component的类被加载的过程. **</p>
+<p>衣柜店要要想生意好, 那么他要去拉活呀, 所以还需要好的销售. 销售要去扫楼盘, 去联系, 哪些人有装修的需求. 挨个询问.</p>
+<p>可是问了100个人, 可能只有10个人有装修的需求. 于是还要有一个接待, 这个接待要联系客户, 看看哪些是有意向的客户, 将其筛选出来. 然后定制家具.</p>
+<p>这里多了两类人: 销售和接待. 具体工作如下.</p>
+<p>销售就相当于我们的BeanDefinitionReader, 他的作用是去扫楼盘, 找到潜在客户. 对应的就是BeanDefinitionReader去读取xml配置或者Annotation注解.</p>
+<p>xml中的配置有很多, 注解也有很多, 并不都是我们的目标. 于是有了接待</p>
+<p>接待要去扫描所有潜在客户. 将有意向的客户扫描出来. 这就类似于我们的BeanDefinitionScanner, 去扫描潜在客户, 最后将带有@Component注解的类筛选出来</p>
+<p>这就是后面需要定制家具的客户了</p>
+<blockquote>
+<p>BeanDefinitionReader对应的就去读取配置类, 看看有哪些需求需要搞装修.<br>它本身也是一个抽象类, 可以看到他有AnnotationBeanDefinitionReader和XmlBeanDefinitionReader<br>我们配置了配置包, 去扫描这个包下所有的类, 然后将扫描到的所有的类交给BeanDefinitionScanner, 它会去过滤带有@Component的类.<br>在和上面的流程连接起来, 就是整个配置文件被加载到IoC的过程了. </p>
+</blockquote>
+<h4 id="1-3-ApplicationContext和FactoryBean的区别"><a href="#1-3-ApplicationContext和FactoryBean的区别" class="headerlink" title="1.3. ApplicationContext和FactoryBean的区别"></a>1.3. ApplicationContext和FactoryBean的区别</h4><ul>
+<li>FactoryBean的功能就是生产bean. 他生产bean是根据BeanDefinition来生产的. 所以, 一次只能生产一个</li>
+<li>ApplicationContext有两种. 一种是xmlApplicationContext, 另一种是annotationApplicationContext, 他传入的参数是一个配置文件. 也就是可以加载某个目录下所有带有@Component的类</li>
+</ul>
+<p>他们两个都各有使用场景. 使用ApplicationContext的居多.</p>
+<p>另一个区别: 就是后面会说到的, ApplicationContext有两个扩展接口, 可以用来和外部集成. 比如和MyBatis集成.</p>
+<h4 id="1-4-Bean的生命周期"><a href="#1-4-Bean的生命周期" class="headerlink" title="1.4. Bean的生命周期"></a>1.4. Bean的生命周期</h4><h6 id="如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么"><a href="#如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么" class="headerlink" title="如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?"></a>如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?</h6><p>不是的, 生产Bean是有一个流程的. 下面我们来看看Bean的生命周期</p>
+<blockquote>
+<p>第一步: 实例化. bean实例化的时候从BeanDefinition中得到Bean的名字, 然后通过反射机制, 将Bean实例化. 实例化以后, 这是还只是个壳子, 里面什么都没有.<br>第二步: 填充属性. 经过初始化以后, bean的壳子就有了, bean里面有哪些属性呢? 在这一步填充<br>第三步: 初始化. 初始化的时候, 会调用initMethod()初始化方法, destory()初始化结束方法<br>这个时候, 类就被构造好了.<br>第四步: 构造好了的类, 会被放到IoC的一个Map中. Map的key是beanName, value是bean实例. 这个Map是一个单例池, 也就是我们说的一级缓存<br>第五步: 我们就可以通过getBean(“user”), 从单例池中获取雷鸣是user的类了.</p>
+</blockquote>
+<h6 id="在构造bean的过程中-还会有很多细节的问题-比如循环依赖"><a href="#在构造bean的过程中-还会有很多细节的问题-比如循环依赖" class="headerlink" title="在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖."></a>在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖.</h6><p>A类里面调用了B类, 所以BeanFactory在构造A的时候, 会去构造B. 然后在构造B的时候, 发现, B还依赖了A. 这样, 就是循环依赖. 这是不可以的.</p>
+<p>Spring是如何解决循环依赖的问题的呢?</p>
+<p>设置出口. 比如A在构造的过程中, 那么设置一个标记, 正在构造中. 然后构造B, B在构造的过程中应用了A, 这时候, 有趣构造A, 然后发现A正在构造中, 那么, 就不会再次构造A了.</p>
+<p>后面还会详细讲解Spring是如何解决循环引用的. 这里我们需要知道的是: Spring使用的是三级缓存来解决循环引用的问题</p>
+<p>其实, bean是存在一级缓存里面, 循环引用使用的是三级缓存来解决的. 其实, 一、二、三级缓存就是Map。</p>
+<h4 id="1-5-Spring中的扩展接口"><a href="#1-5-Spring中的扩展接口" class="headerlink" title="1.5. Spring中的扩展接口"></a>1.5. Spring中的扩展接口</h4><p>有两个非常重要的扩展接口. BeanFactoryPostProcessor(Bean工厂的后置处理器) 和 BeanDefinitionRegistryPostProcessor</p>
+<p>这两个接口是干什么的呢?</p>
+<p>我们在这个图里面, 看到了设计师要设计出图纸, 然后把图纸交给工厂去生产. 那么设计师设计出来的图纸, 有没有可能被修改呢?</p>
+<p>当然是可以被修改的. 只要还没有交给工厂, 就可以修改.</p>
+<h6 id="BeanFactoryPostProcessor-Bean工厂的后置处理器-的作用就是修改BeanDefinition"><a href="#BeanFactoryPostProcessor-Bean工厂的后置处理器-的作用就是修改BeanDefinition" class="headerlink" title="BeanFactoryPostProcessor(Bean工厂的后置处理器)的作用就是修改BeanDefinition."></a>BeanFactoryPostProcessor(Bean工厂的后置处理器)的作用就是修改BeanDefinition.</h6><ul>
+<li>BeanFactoryPostProcessor: 修改BeanDefinition.<br>是一个接口, 我们的类可以实现这个接口, 然后重写里面的方法</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefinedPost</span> <span class="token keyword">implements</span> <span class="token class-name">BeanFactoryPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 重写Bean工厂的后置处理器
+     * @param beanFactory
+     * @throws BeansException
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postProcessBeanFactory</span><span class="token punctuation">(</span>ConfigurableListableBeanFactory beanFactory<span class="token punctuation">)</span> <span class="token keyword">throws</span> BeansException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// beanFactory 拿到工厂了, 就可以获取某一个Bean定义了</span>
+        GenericBeanDefinition car <span class="token operator">=</span> <span class="token punctuation">(</span>GenericBeanDefinition<span class="token punctuation">)</span> beanFactory<span class="token punctuation">.</span><span class="token function">getBeanDefinition</span><span class="token punctuation">(</span><span class="token string">"Car"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 拿到了car, 然后修改了Car的类名为com.example.tulingcourse.Tank. 那么后面在获取的Bean里面, 将其转换为Car, 就会报错了</span>
+        car<span class="token punctuation">.</span><span class="token function">setBeanClassName</span><span class="token punctuation">(</span><span class="token string">"com.example.tulingcourse.Tank"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>第一步: 实现了BeanFactoryPostProcessor接口, 然后需要重写里面的方法</p>
+<p>第二步: 我们发现重写方法直接给我们了beanFactory, bean工厂</p>
+<p>第三步: 拿到bean工厂, 我们就可以根据名称获取BeanDefinition, 也就是bean定义了.</p>
+<p>第四步: 我们修改了bean定义中的类名为Tank.</p>
+<p>这时候会发生什么呢? 从bean工厂中构建的car, 取出来以后转换成Car对象, 会报错,</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+
+        AnnotationConfigApplicationContext context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span>Application<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+　　　　
+        Car car <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"car"</span><span class="token punctuation">,</span> Car<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 这里会报错, 因为已经被修改</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>car<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>执行流程: 当spring启动的时候, 就会去执行AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TulingCourseApplication.class);</p>
+<p>然后ApplicationContext回去扫描所有实现了BeanFactoryPostProcessor对象的类, 然后执行postProcessBeanFactory方法.</p>
+<p>BeanFactoryPostProcessor被使用到的场景非常多, 在集成其他组件的时候, 比如集成mybatis</p>
+<h6 id="2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition"><a href="#2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition" class="headerlink" title="2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition"></a>2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition</h6><p>这是一个Bean定义注册的后置处理器.BeanDefinitionRegistryPostProcessor本事是实现了BeanFactoryPostProcessor 接口</p>
+<p>我们来看个demo</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefinedPost</span> <span class="token keyword">implements</span> <span class="token class-name">BeanDefinitionRegistryPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 重写Bean工厂的后置处理器
+     * @param beanFactory
+     * @throws BeansException
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postProcessBeanFactory</span><span class="token punctuation">(</span>ConfigurableListableBeanFactory beanFactory<span class="token punctuation">)</span> <span class="token keyword">throws</span> BeansException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// beanFactory 拿到工厂了, 就可以获取某一个Bean定义了</span>
+        GenericBeanDefinition car <span class="token operator">=</span> <span class="token punctuation">(</span>GenericBeanDefinition<span class="token punctuation">)</span> beanFactory<span class="token punctuation">.</span><span class="token function">getBeanDefinition</span><span class="token punctuation">(</span><span class="token string">"Car"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 拿到了car, 然后修改了Car的类名为com.example.tulingcourse.Tank. 那么后面在获取的Bean里面, 将其转换为Car, 就会报错了</span>
+        car<span class="token punctuation">.</span><span class="token function">setBeanClassName</span><span class="token punctuation">(</span><span class="token string">"com.example.tulingcourse.Tank"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postProcessBeanDefinitionRegistry</span><span class="token punctuation">(</span>BeanDefinitionRegistry beanDefinitionRegistry<span class="token punctuation">)</span> <span class="token keyword">throws</span> BeansException <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>一个类实现了BeanDefinitionRegistryPostProcessor, 需要重写postProcessBeanDefinitionRegistry方法, 这个方法直接将BeanDefinitionRegistry就给我们了.</p>
+<p>然后使用beanDefinitionRegistry.registerBeanDefinition(); 就可以添加图纸了</p>
+<p>在这里可以注册新的bean, 也可以删除注册的bean. 多注册一个, bean工厂就要多构建一个.</p>
+<p>**总结:</p>
+<blockquote>
+<p>BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor这两个扩展类是很重要的类, 这对于向外部扩展起到了很大的的作用, 比如: 集成mybatis**</p>
+</blockquote>
+<h6 id="BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口-这也是ApplicationContext和BeanFactory的区别之一-因为有了这两个扩展节点-就可以和外部做集成-比如Mybatis集成-比如-扫描配置类-就是通过-这两个扩展点的方式实现的"><a href="#BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口-这也是ApplicationContext和BeanFactory的区别之一-因为有了这两个扩展节点-就可以和外部做集成-比如Mybatis集成-比如-扫描配置类-就是通过-这两个扩展点的方式实现的" class="headerlink" title="BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口. 这也是ApplicationContext和BeanFactory的区别之一, 因为有了这两个扩展节点, 就可以和外部做集成. 比如Mybatis集成. 比如: 扫描配置类, 就是通过 这两个扩展点的方式实现的."></a>BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口. 这也是ApplicationContext和BeanFactory的区别之一, 因为有了这两个扩展节点, 就可以和外部做集成. 比如Mybatis集成. 比如: 扫描配置类, 就是通过 这两个扩展点的方式实现的.</h6><p>这个扩展点的作用:</p>
+<ul>
+<li>除了IoC, 其他的扩展,比如AOP, 和MyBatis集成, 都要用到这两个扩展点. 之所以Spring能够有序不乱的和很多外部组件整合, 都是这两个扩展点的功能</li>
+</ul>
+<h4 id="1-6-Bean的扩展点"><a href="#1-6-Bean的扩展点" class="headerlink" title="1.6 Bean的扩展点"></a>1.6 Bean的扩展点</h4><p>除了ApplicationContext有扩展点, 在Spring IoC中的bean也有扩展点. BeanPostProcessor(Bean的后置处理器). 如果使用在getBean()之前, 那么可以阻止构建Bean, 还可以自定义构建Bean.</p>
+<p>BeanPostProcessor使用的场景有很多. 在Bean实例化之前和之后会被调用. 在填充属性之前和之后也会被调用, 初始化之前和之后也会调用. 有些过程不只调用一次. 整个过程一共会调用9次. 在每一个过程都可以扩展Bean.</p>
+<p>思考: Spring加入AOP是如何实现呢?</p>
+<p>集成AOP肯定不会和IoC糅合在一块了. AOP就是通过BeanPostProcessor(Bean后置处理器)整合进来的.</p>
+<p>AOP的实现方式有两种: 一种是CGLIB, 另一种是JDK.</p>
+<p>假如说要进行集成, 会在那个步骤继承呢? 比如要加日志, 使用AOP的方式加. 我们通常是在初始化之后加AOP. 在这里将AOP集成进来.</p>
+<p>如上图: 当面试的时候面试官问你, Bean的生命周期, 我们不能只说实例化–&gt;填充属性–&gt;初始化. 还需要说初始化的时候, 还有一些列的aware.</p>
+<h4 id="1-7-Spring-IOC的加载过程"><a href="#1-7-Spring-IOC的加载过程" class="headerlink" title="1.7. Spring IOC的加载过程"></a>1.7. Spring IOC的加载过程</h4><p>对照上图, 我们来简述ioc的加载过程<br>我们将一个类加载成Bean, 不是一步到位的,需要经历一下的过程.</p>
+<ul>
+<li>使用BeanDefinitionReader加载配置类, 此时是扫描所有的xml文件或者项目中的注解. 这里面有些使我们的目标类, 有些不是</li>
+<li>使用BeanDefinitionScanner扫描出我们的目标类.</li>
+<li>使用BeanDefinitionRegistry注册bean到BeanDefinitionMap中.<ul>
+<li>然后, ApplicationContext可以调用BeanFactoryPostProcessor修改bean定义, 还可以调用BeanDefinitionRegistryPostProcessor注册bean定义</li>
+<li>将BeanDefinition交给BeanFactory处理, BeanFactory调用getBean()生成Bean或者调用Bean(getBean()有两个功能).</li>
+<li>成产bean的时候, 首先会实例化, 然后填充属性(主要是读取@Autowire, @Value等注解). 在初始化Bean, 这里会调用initMethod()方法和初始化销毁方法destroy(). 初始化的时候还会调用一堆的Aware, 而且在bean生成的过程中 会有很多扩展点, 供我们去扩展.</li>
+<li>将生产出的Bean放入到Map中, map是一个一级缓存池. 后面, 我们可以通过getBean(“user”)从缓存池中获取bean</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>spring5源码IOC加载过程</category>
+      </categories>
+      <tags>
+        <tag>spring5</tag>
+        <tag>IOC</tag>
+        <tag>spring源码</tag>
+        <tag>bean life cycle</tag>
       </tags>
   </entry>
   <entry>
