@@ -1336,43 +1336,42 @@ refresh();
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/14/spring5-source-code-ioc-process-description/">
+                <a href="/2021/10/15/spring5-postprocess-source-code-analysis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="spring5源码 - ioc加载整体流程详解">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="spring5源码-内置的后置处理器PostProcess加载源码解析">
                         
-                        <span class="card-title">spring5源码 - ioc加载整体流程详解</span>
+                        <span class="card-title">spring5源码-内置的后置处理器PostProcess加载源码解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            通过上篇文章spring5源码 - IOC加载过程 Bean的生命周期知道了spring ioc的加载过程,具体如下图. 下面我们就来对照下图, 看看ioc加载的源代码.下面在用装修类比, 看看个个组件都是怎么工作的.接下来是源码分析的整体
+                            一. 研究目标: 解析spring如何加载配置类我们经常会在一个类上打上@Configuration, @Component, @Bean等. 带有这些注解的类, 我们在spring启动的时候,是如何被加载的呢?
+下面就以此为目的,分析sp
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/spring5-ioc-process/" class="post-category">
-                                    spring5 ioc process
+                            <a href="/categories/spring5-postProcess/" class="post-category">
+                                    spring5 postProcess
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1380,8 +1379,8 @@ refresh();
                         <span class="chip bg-color">spring5</span>
                     </a>
                     
-                    <a href="/tags/IOC-process/">
-                        <span class="chip bg-color">IOC process</span>
+                    <a href="/tags/postProcess/">
+                        <span class="chip bg-color">postProcess</span>
                     </a>
                     
                 </div>
@@ -1594,7 +1593,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">138.8k</span>&nbsp;字
+                class="white-color">148.1k</span>&nbsp;字
             
             
             

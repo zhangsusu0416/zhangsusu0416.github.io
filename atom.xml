@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-14T14:44:44.031Z</updated>
+  <updated>2021-10-15T11:29:23.432Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring5源码-内置的后置处理器PostProcess加载源码解析</title>
+    <link href="http://xiaomozhang.github.io/2021/10/15/spring5-postprocess-source-code-analysis/"/>
+    <id>http://xiaomozhang.github.io/2021/10/15/spring5-postprocess-source-code-analysis/</id>
+    <published>2021-10-15T01:23:45.000Z</published>
+    <updated>2021-10-15T11:29:23.432Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一-研究目标-解析spring如何加载配置类&quot;&gt;&lt;a href=&quot;#一-研究目标-解析spring如何加载配置类&quot; class=&quot;headerlink&quot; title=&quot;一. 研究目标: 解析spring如何加载配置类&quot;&gt;&lt;/a&gt;一. 研究目标:</summary>
+        
+      
+    
+    
+    
+    <category term="spring5 postProcess" scheme="http://xiaomozhang.github.io/categories/spring5-postProcess/"/>
+    
+    
+    <category term="spring5" scheme="http://xiaomozhang.github.io/tags/spring5/"/>
+    
+    <category term="postProcess" scheme="http://xiaomozhang.github.io/tags/postProcess/"/>
+    
+  </entry>
   
   <entry>
     <title>spring5源码 - ioc加载整体流程详解</title>
@@ -531,32 +558,6 @@
     
     
     <category term="Logstash" scheme="http://xiaomozhang.github.io/tags/Logstash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS 升级安装最新版git</title>
-    <link href="http://xiaomozhang.github.io/2020/09/01/soft-install-git/"/>
-    <id>http://xiaomozhang.github.io/2020/09/01/soft-install-git/</id>
-    <published>2020-09-01T08:27:13.000Z</published>
-    <updated>2021-01-12T03:00:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h2&gt;&lt;p&gt;安装必要依赖&lt;/p&gt;
-&lt;pre class=&quot; language-shell&quot;&gt;&lt;code</summary>
-        
-      
-    
-    
-    
-    <category term="Git" scheme="http://xiaomozhang.github.io/categories/Git/"/>
-    
-    
-    <category term="Git" scheme="http://xiaomozhang.github.io/tags/Git/"/>
     
   </entry>
   
