@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-15T11:29:23.432Z</updated>
+  <updated>2021-10-18T03:10:18.966Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -18,10 +18,37 @@
   
   <entry>
     <title>spring5源码-内置的后置处理器PostProcess加载源码解析</title>
+    <link href="http://xiaomozhang.github.io/2021/10/16/spring5-build-soure-code/"/>
+    <id>http://xiaomozhang.github.io/2021/10/16/spring5-build-soure-code/</id>
+    <published>2021-10-16T01:23:45.000Z</published>
+    <updated>2021-10-18T03:10:18.966Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一-准备工作&quot;&gt;&lt;a href=&quot;#一-准备工作&quot; class=&quot;headerlink&quot; title=&quot;一. 准备工作&quot;&gt;&lt;/a&gt;一.</summary>
+        
+      
+    
+    
+    
+    <category term="build source code" scheme="http://xiaomozhang.github.io/categories/build-source-code/"/>
+    
+    
+    <category term="spring5" scheme="http://xiaomozhang.github.io/tags/spring5/"/>
+    
+    <category term="build source code" scheme="http://xiaomozhang.github.io/tags/build-source-code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring5源码-内置的后置处理器PostProcess加载源码解析</title>
     <link href="http://xiaomozhang.github.io/2021/10/15/spring5-postprocess-source-code-analysis/"/>
     <id>http://xiaomozhang.github.io/2021/10/15/spring5-postprocess-source-code-analysis/</id>
     <published>2021-10-15T01:23:45.000Z</published>
-    <updated>2021-10-15T11:29:23.432Z</updated>
+    <updated>2021-10-18T03:18:45.777Z</updated>
     
     
       
@@ -532,32 +559,6 @@
     
     
     <category term="logstash" scheme="http://xiaomozhang.github.io/tags/logstash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>logstash 启动脚本</title>
-    <link href="http://xiaomozhang.github.io/2020/12/09/lsboot/"/>
-    <id>http://xiaomozhang.github.io/2020/12/09/lsboot/</id>
-    <published>2020-12-09T06:42:09.000Z</published>
-    <updated>2021-01-12T03:00:34.376Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;logstash 通用启动脚本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Logstash" scheme="http://xiaomozhang.github.io/tags/Logstash/"/>
     
   </entry>
   

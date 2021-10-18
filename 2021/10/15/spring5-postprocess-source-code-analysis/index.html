@@ -443,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-15
+                    2021-10-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.3k
+                    9.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    41 分
+                    40 分
                 </div>
                 
 
@@ -516,7 +516,7 @@
 <p>new AnnotationConfigApplicationContext(MainConfig.class);</p>
 </blockquote>
 <p>下面进入AnnotationConfigApplicationContext的构造方法</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span>Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> componentClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> componentClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 进入构造函数, 首先调用自身的构造方法this();</span>
         <span class="token comment" spellcheck="true">// 调用自身的构造方法之前, 要先调用父类的构造方法</span>
         <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -556,7 +556,7 @@
      * @return a Set of BeanDefinitionHolders, containing all bean definitions
      * that have actually been registered by this call
      */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Set<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanDefinitionHolder<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> <span class="token function">registerAnnotationConfigProcessors</span><span class="token punctuation">(</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Set<span class="token operator">&lt;</span>BeanDefinitionHolder<span class="token operator">></span> <span class="token function">registerAnnotationConfigProcessors</span><span class="token punctuation">(</span>
             BeanDefinitionRegistry registry<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> Object source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token comment" spellcheck="true">// 获取到beanFactory</span>
@@ -575,7 +575,7 @@
         <span class="token punctuation">}</span>
 
         <span class="token comment" spellcheck="true">// BeanDefinitionHolder: 为BeanDefinition设置名字和别名</span>
-        Set<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanDefinitionHolder<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> beanDefs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Set<span class="token operator">&lt;</span>BeanDefinitionHolder<span class="token operator">></span> beanDefs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment" spellcheck="true">// 如果registry中没有ConfigurationClassPostProcessor配置类后置处理器, 就添加一个</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>registry<span class="token punctuation">.</span><span class="token function">containsBeanDefinition</span><span class="token punctuation">(</span>CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -677,7 +677,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isAllowBeanDefinitionOverriding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanDefinitionOverrideException</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> beanDefinition<span class="token punctuation">,</span> existingDefinition<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>existingDefinition<span class="token punctuation">.</span><span class="token function">getRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span> beanDefinition<span class="token punctuation">.</span><span class="token function">getRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>existingDefinition<span class="token punctuation">.</span><span class="token function">getRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> beanDefinition<span class="token punctuation">.</span><span class="token function">getRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token comment" spellcheck="true">// e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isInfoEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Overriding user-defined bean definition for bean '"</span> <span class="token operator">+</span> beanName <span class="token operator">+</span>
@@ -708,7 +708,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
                 <span class="token comment" spellcheck="true">// Cannot modify startup-time collection elements anymore (for stable iteration)</span>
                 <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionMap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     <span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> beanDefinition<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> updatedDefinitions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionNames<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    List<span class="token operator">&lt;</span>String<span class="token operator">></span> updatedDefinitions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionNames<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     updatedDefinitions<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionNames<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     updatedDefinitions<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionNames <span class="token operator">=</span> updatedDefinitions<span class="token punctuation">;</span>
@@ -753,7 +753,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
     <span class="token punctuation">}</span></code></pre>
 <p>到目前为止完成了后置处理器注册为BeanDefinition</p>
 <h3 id="四-读取自定义配置类MainConfig"><a href="#四-读取自定义配置类MainConfig" class="headerlink" title="四. 读取自定义配置类MainConfig"></a>四. 读取自定义配置类MainConfig</h3><p>注册配置类,入口自然是这里了</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span>Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> componentClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> componentClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 进入构造函数, 首先调用自身的构造方法this();</span>
         <span class="token comment" spellcheck="true">// 调用自身的构造方法之前, 要先调用父类的构造方法</span>
         <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -764,7 +764,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
     <span class="token punctuation">}</span></code></pre>
 <p>跟踪进去找到doRegisterBean(…)方法</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">doRegisterBean</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>T<span class="token operator">></span> beanClass<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> String name<span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@Nullable</span> Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Annotation</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token punctuation">]</span> qualifiers<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> Supplier<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>T<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> supplier<span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@Nullable</span> Class<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Annotation</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> qualifiers<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> Supplier<span class="token operator">&lt;</span>T<span class="token operator">></span> supplier<span class="token punctuation">,</span>
             <span class="token annotation punctuation">@Nullable</span> BeanDefinitionCustomizer<span class="token punctuation">[</span><span class="token punctuation">]</span> customizers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token comment" spellcheck="true">// 将入参的配置类beanClass构建成AnnotatedGenericBeanDefinition对象</span>
@@ -782,7 +782,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token comment" spellcheck="true">// 处理主类通用定义注解</span>
         AnnotationConfigUtils<span class="token punctuation">.</span><span class="token function">processCommonDefinitionAnnotations</span><span class="token punctuation">(</span>abd<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>qualifiers <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span>Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Annotation</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> qualifier <span class="token operator">:</span> qualifiers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Annotation</span><span class="token operator">></span> qualifier <span class="token operator">:</span> qualifiers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>Primary<span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token operator">==</span> qualifier<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     abd<span class="token punctuation">.</span><span class="token function">setPrimary</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
@@ -933,7 +933,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
 </blockquote>
 <h4 id="第一步-调用所有实现了-BeanDefinitionRegistryPostProcessor-接口的bean定义"><a href="#第一步-调用所有实现了-BeanDefinitionRegistryPostProcessor-接口的bean定义" class="headerlink" title="第一步: 调用所有实现了 BeanDefinitionRegistryPostProcessor 接口的bean定义."></a>第一步: 调用所有实现了 BeanDefinitionRegistryPostProcessor 接口的bean定义.</h4><p>来看看源码是如何定义的. 重点看代码的注释, 每一部分的功能都有明确标出, 注释写的很详细</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">invokeBeanFactoryPostProcessors</span><span class="token punctuation">(</span>
-            ConfigurableListableBeanFactory beanFactory<span class="token punctuation">,</span> List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanFactoryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> beanFactoryPostProcessors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ConfigurableListableBeanFactory beanFactory<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> beanFactoryPostProcessors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token comment" spellcheck="true">/**
          * 首先,调用BeanDefinitionRegistryPostProcessors的后置处理器
@@ -952,8 +952,8 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token comment" spellcheck="true">// 判断beanFactory是否实现了BeanDefinitionRegistry, 实现了该结构就有注册和获取Bean定义的能力</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>beanFactory <span class="token keyword">instanceof</span> <span class="token class-name">BeanDefinitionRegistry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             BeanDefinitionRegistry registry <span class="token operator">=</span> <span class="token punctuation">(</span>BeanDefinitionRegistry<span class="token punctuation">)</span> beanFactory<span class="token punctuation">;</span>
-            List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> regularPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> registryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> regularPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">></span> registryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
             <span class="token keyword">for</span> <span class="token punctuation">(</span>BeanFactoryPostProcessor postProcessor <span class="token operator">:</span> beanFactoryPostProcessors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>postProcessor <span class="token keyword">instanceof</span> <span class="token class-name">BeanDefinitionRegistryPostProcessor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1084,7 +1084,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token comment" spellcheck="true">// Separate between BeanFactoryPostProcessors that implement PriorityOrdered,</span>
         <span class="token comment" spellcheck="true">// Ordered, and the rest.</span>
         <span class="token comment" spellcheck="true">// 优先排序的后置处理器</span>
-        List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> priorityOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> priorityOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         List<span class="token operator">&lt;</span>String<span class="token operator">></span> orderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         List<span class="token operator">&lt;</span>String<span class="token operator">></span> nonOrderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span>String ppName <span class="token operator">:</span> postProcessorNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1138,7 +1138,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
          * 定义已处理的后置处理器
          */</span>
         <span class="token comment" spellcheck="true">// Invoke BeanDefinitionRegistryPostProcessors first, if any.</span>
-        Set<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> processedBeans <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Set<span class="token operator">&lt;</span>String<span class="token operator">></span> processedBeans <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment" spellcheck="true">/**
          * 这里一共分为两大步:
@@ -1150,8 +1150,8 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token comment" spellcheck="true">// 判断beanFactory是否实现了BeanDefinitionRegistry, 实现了该结构就有注册和获取Bean定义的能力</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>beanFactory <span class="token keyword">instanceof</span> <span class="token class-name">BeanDefinitionRegistry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             BeanDefinitionRegistry registry <span class="token operator">=</span> <span class="token punctuation">(</span>BeanDefinitionRegistry<span class="token punctuation">)</span> beanFactory<span class="token punctuation">;</span>
-            List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanFactoryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> regularPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> registryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> regularPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">></span> registryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
             <span class="token keyword">for</span> <span class="token punctuation">(</span>BeanFactoryPostProcessor postProcessor <span class="token operator">:</span> beanFactoryPostProcessors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>postProcessor <span class="token keyword">instanceof</span> <span class="token class-name">BeanDefinitionRegistryPostProcessor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1172,7 +1172,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
             <span class="token comment" spellcheck="true">/**
              * 这是一个集合, 存马上即将要被调用的BeanDefinitionRegistryPostProcessor
              */</span>
-            List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> currentRegistryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>BeanDefinitionRegistryPostProcessor<span class="token operator">></span> currentRegistryProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token comment" spellcheck="true">// 第一步, 调用实现了PriorityOrdered的BeanDefinitionRegistryPostProcessors</span>
             <span class="token comment" spellcheck="true">// 在所有创世纪的后置处理器中, 只有 internalConfigurationAnnotationProcessor 实现了 BeanDefinitionRegistryPostProcessors 和 PriorityOrdered</span>
             <span class="token comment" spellcheck="true">// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.</span>
@@ -1282,9 +1282,9 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token comment" spellcheck="true">// Separate between BeanFactoryPostProcessors that implement PriorityOrdered,</span>
         <span class="token comment" spellcheck="true">// Ordered, and the rest.</span>
         <span class="token comment" spellcheck="true">// 优先排序的后置处理器</span>
-        List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanFactoryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> priorityOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> orderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> nonOrderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> priorityOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> orderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> nonOrderedPostProcessorNames <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span>String ppName <span class="token operator">:</span> postProcessorNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>processedBeans<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>ppName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token comment" spellcheck="true">// skip - already processed in first phase above</span>
@@ -1316,7 +1316,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
 
         <span class="token comment" spellcheck="true">// 最后, 调用没有实现任何排序接口的beanFactory后置处理器</span>
         <span class="token comment" spellcheck="true">// Finally, invoke all other BeanFactoryPostProcessors.</span>
-        List<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>BeanFactoryPostProcessor<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> nonOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span>nonOrderedPostProcessorNames<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>BeanFactoryPostProcessor<span class="token operator">></span> nonOrderedPostProcessors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>nonOrderedPostProcessorNames<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span>String postProcessorName <span class="token operator">:</span> nonOrderedPostProcessorNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             nonOrderedPostProcessors<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanFactory<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>postProcessorName<span class="token punctuation">,</span> BeanFactoryPostProcessor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
@@ -1473,7 +1473,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
     <span class="token punctuation">}</span></code></pre>
 <p>这里先看enhanceConfigurationClasses(beanFactory);个方法</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">enhanceConfigurationClasses</span><span class="token punctuation">(</span>ConfigurableListableBeanFactory beanFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Map<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token punctuation">,</span> AbstractBeanDefinition<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> configBeanDefs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> AbstractBeanDefinition<span class="token operator">></span> configBeanDefs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token keyword">for</span> <span class="token punctuation">(</span>String beanName <span class="token operator">:</span> beanFactory<span class="token punctuation">.</span><span class="token function">getBeanDefinitionNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             BeanDefinition beanDef <span class="token operator">=</span> beanFactory<span class="token punctuation">.</span><span class="token function">getBeanDefinition</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1484,7 +1484,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
             <span class="token punctuation">}</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>configClassAttr <span class="token operator">!=</span> null <span class="token operator">||</span> methodMetadata <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> beanDef <span class="token keyword">instanceof</span> <span class="token class-name">AbstractBeanDefinition</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token comment" spellcheck="true">// Configuration class (full or lite) or a configuration-derived @Bean method</span>
-                <span class="token comment" spellcheck="true">// -&amp;gt; resolve bean class at this point...</span>
+                <span class="token comment" spellcheck="true">// -> resolve bean class at this point...</span>
                 AbstractBeanDefinition abd <span class="token operator">=</span> <span class="token punctuation">(</span>AbstractBeanDefinition<span class="token punctuation">)</span> beanDef<span class="token punctuation">;</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>abd<span class="token punctuation">.</span><span class="token function">hasBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     <span class="token keyword">try</span> <span class="token punctuation">{</span>
@@ -1524,18 +1524,18 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>configBeanDefs<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// nothing to enhance -&amp;gt; return immediately</span>
+            <span class="token comment" spellcheck="true">// nothing to enhance -> return immediately</span>
             <span class="token keyword">return</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 
         ConfigurationClassEnhancer enhancer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConfigurationClassEnhancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token punctuation">,</span> AbstractBeanDefinition<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> entry <span class="token operator">:</span> configBeanDefs<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> AbstractBeanDefinition<span class="token operator">></span> entry <span class="token operator">:</span> configBeanDefs<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             AbstractBeanDefinition beanDef <span class="token operator">=</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token comment" spellcheck="true">// If a @Configuration class gets proxied, always proxy the target class</span>
             beanDef<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>AutoProxyUtils<span class="token punctuation">.</span>PRESERVE_TARGET_CLASS_ATTRIBUTE<span class="token punctuation">,</span> Boolean<span class="token punctuation">.</span>TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token comment" spellcheck="true">// Set enhanced subclass of the user-specified bean class</span>
-            Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> configClass <span class="token operator">=</span> beanDef<span class="token punctuation">.</span><span class="token function">getBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> enhancedClass <span class="token operator">=</span> enhancer<span class="token punctuation">.</span><span class="token function">enhance</span><span class="token punctuation">(</span>configClass<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beanClassLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> configClass <span class="token operator">=</span> beanDef<span class="token punctuation">.</span><span class="token function">getBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> enhancedClass <span class="token operator">=</span> enhancer<span class="token punctuation">.</span><span class="token function">enhance</span><span class="token punctuation">(</span>configClass<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beanClassLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>configClass <span class="token operator">!=</span> enhancedClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"Replacing bean definition '%s' existing class '%s' with "</span> <span class="token operator">+</span>
@@ -1581,7 +1581,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>beanDef <span class="token keyword">instanceof</span> <span class="token class-name">AbstractBeanDefinition</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>AbstractBeanDefinition<span class="token punctuation">)</span> beanDef<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">// Check already loaded Class if present...</span>
             <span class="token comment" spellcheck="true">// since we possibly can't even load the class file for this Class.</span>
-            Class<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">?</span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> beanClass <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>AbstractBeanDefinition<span class="token punctuation">)</span> beanDef<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> beanClass <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>AbstractBeanDefinition<span class="token punctuation">)</span> beanDef<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBeanClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>BeanFactoryPostProcessor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
                     BeanPostProcessor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
                     AopInfrastructureBean<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
@@ -1605,7 +1605,7 @@ CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME<span class="token operator">:</span
         <span class="token punctuation">}</span>
 
         <span class="token comment" spellcheck="true">// 判断元数据中是否包含Configuration注解</span>
-        Map<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> config <span class="token operator">=</span> metadata<span class="token punctuation">.</span><span class="token function">getAnnotationAttributes</span><span class="token punctuation">(</span>Configuration<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> config <span class="token operator">=</span> metadata<span class="token punctuation">.</span><span class="token function">getAnnotationAttributes</span><span class="token punctuation">(</span>Configuration<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">/**
          * 判断, proxyBeanMethods属性是否为true, 如果为true就是一个完全的类,
          * 也就是带有@Configuration注解, 设置Configuration_class属性为full
@@ -1993,12 +1993,11 @@ public class Tank {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/15/spring5-postprocess-source-code-analysis/">
+                <a href="/2021/10/16/spring5-build-soure-code/">
                     <div class="card-image">
                         
                         
@@ -2010,27 +2009,25 @@ public class Tank {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一. 研究目标: 解析spring如何加载配置类我们经常会在一个类上打上@Configuration, @Component, @Bean等. 带有这些注解的类, 我们在spring启动的时候,是如何被加载的呢?
-下面就以此为目的,分析sp
+                            一. 准备工作
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/spring5-postProcess/" class="post-category">
-                                    spring5 postProcess
+                            <a href="/categories/build-source-code/" class="post-category">
+                                    build source code
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -2038,8 +2035,8 @@ public class Tank {
                         <span class="chip bg-color">spring5</span>
                     </a>
                     
-                    <a href="/tags/postProcess/">
-                        <span class="chip bg-color">postProcess</span>
+                    <a href="/tags/build-source-code/">
+                        <span class="chip bg-color">build source code</span>
                     </a>
                     
                 </div>
@@ -2243,7 +2240,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">148.1k</span>&nbsp;字
+                class="white-color">148k</span>&nbsp;字
             
             
             
