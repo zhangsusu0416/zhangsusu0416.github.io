@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: Maven, 小张哥blog">
-    <meta name="description" content="分类: Maven | 小张哥blog">
+    <meta name="keywords" content="分类: maven, 小张哥blog">
+    <meta name="description" content="分类: maven | 小张哥blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>分类: Maven | 小张哥blog</title>
+    <title>分类: maven | 小张哥blog</title>
     <link rel="icon" type="image/png" href="/images/avatar.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -344,20 +344,20 @@
                 </a>
                 
                 
-                <a href="/categories/tools/" title="tools: 1">
+                <a href="/categories/docker/" title="docker: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">tools
-                        <span class="tag-length">1</span>
+                            style="background-color: #F5EEF8;">docker
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/docker/" title="docker: 3">
+                <a href="/categories/tools/" title="tools: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">docker
-                        <span class="tag-length">3</span>
+                            style="background-color: #D5F5E3;">tools
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -407,19 +407,19 @@
                 </a>
                 
                 
-                <a href="/categories/Hadoop/" title="Hadoop: 1">
+                <a href="/categories/Hexo/" title="Hexo: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #A3E4D7;">Hadoop
+                            style="background-color: #A3E4D7;">Hexo
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/Hexo/" title="Hexo: 1">
+                <a href="/categories/Hadoop/" title="Hadoop: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #85C1E9;">Hexo
+                            style="background-color: #85C1E9;">Hadoop
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -461,20 +461,20 @@
                 </a>
                 
                 
-                <a href="/categories/maven/" title="maven: 2">
+                <a href="/categories/Maven/" title="Maven: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">maven
-                        <span class="tag-length">2</span>
+                            style="background-color: #F9E79F;">Maven
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/Maven/" title="Maven: 1">
+                <a href="/categories/maven/" title="maven: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #F9E79F;">Maven
-                        <span class="tag-length">1</span>
+                            style="background-color: #FEF9E7;">maven
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -650,19 +650,19 @@
                 </a>
                 
                 
-                <a href="/categories/Golang-Udp/" title="Golang Udp: 1">
+                <a href="/categories/Golang-netpoll/" title="Golang netpoll: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">Golang Udp
+                            style="background-color: #FEF9E7;">Golang netpoll
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/Golang-netpoll/" title="Golang netpoll: 1">
+                <a href="/categories/Golang-Udp/" title="Golang Udp: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">Golang netpoll
+                            style="background-color: #D5F5E3;">Golang Udp
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -734,36 +734,32 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/08/20/maven-skip-test/">
+                    <a href="/2020/02/28/maven-install-local-jar/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="maven.test.skip和skipTests的区别">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Maven加载本地jar文件">
                             
-                            <span class="card-title">maven.test.skip和skipTests的区别</span>
+                            <span class="card-title">Maven加载本地jar文件</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                -DskipTests不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。
-
-pom中配置跳过
-
-&lt;plugin>  
-    &lt;groupId>org.apache.maven.
+                                日常开发中都是maven加载在远程仓库的jar文件，如果远程仓库没有相应的jar文件，一般做法就是自己传到一个特定的nexus服务器上，但是本地开发测试的时候可能nexus服务器不太方便，那么我们可以使用maven加载本地的jar文件
+mv
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-28
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Maven/" class="post-category">
-                                    Maven
+                                <a href="/categories/maven/" class="post-category">
+                                    maven
                                 </a>
                                 
                                 
@@ -774,8 +770,55 @@ pom中配置跳过
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Maven/">
-                            <span class="chip bg-color">Maven</span>
+                        <a href="/tags/maven/">
+                            <span class="chip bg-color">maven</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/01/02/maven-assembly/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="maven归档插件assembly介绍">
+                            
+                            <span class="card-title">maven归档插件assembly介绍</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                2020年的第一篇文章，祝大家新年快乐！
+assembly插件主要用于对打包以后的文件进行归档处理，比如项目中的jar，配置文件，脚本…. 打包需要归档到一起时，就可以使用maven-assembly-plugin。assembly使用很简
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/maven/" class="post-category">
+                                    maven
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/maven/">
+                            <span class="chip bg-color">maven</span>
                         </a>
                         
                     </div>
@@ -801,7 +844,7 @@ pom中配置跳过
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">148k</span>&nbsp;字
+                class="white-color">148.8k</span>&nbsp;字
             
             
             
@@ -904,97 +947,6 @@ pom中配置跳过
 
 
     <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
-
-</div>
-    </div>
-</footer>
-
-<div class="progress-bar"></div>
-
-
-    <!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
-});
-</script>
-    <!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-</div>
-
-
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
-
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
-    
-    
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
-
-</body>
-
-</html>
-lass="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
         <i class="fas fa-rss"></i>
     </a>
 

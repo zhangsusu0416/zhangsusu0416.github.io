@@ -7,7 +7,8 @@
     <meta name="keywords" content="Spring5-源码构建编译, 小张哥blog">
     <meta name="description" content="一. 准备工作1.编译环境mavenjdk8idea
 2. 编译版本:SpringV5.2.7RELEASE+GradleWapper+jdk1.8.0_131编译
-">
+二. 源码下载git地址: spring-framework
+Spring">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -451,14 +452,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25
+                    793
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -476,6 +477,80 @@
             <div id="articleContent">
                 <h3 id="一-准备工作"><a href="#一-准备工作" class="headerlink" title="一. 准备工作"></a>一. 准备工作</h3><h5 id="1-编译环境"><a href="#1-编译环境" class="headerlink" title="1.编译环境"></a>1.编译环境</h5><p>maven<br>jdk8<br>idea</p>
 <h5 id="2-编译版本"><a href="#2-编译版本" class="headerlink" title="2. 编译版本:"></a>2. 编译版本:</h5><p>SpringV5.2.7RELEASE+GradleWapper+jdk1.8.0_131编译</p>
+<h3 id="二-源码下载"><a href="#二-源码下载" class="headerlink" title="二. 源码下载"></a>二. 源码下载</h3><p>git地址: <a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-framework"><code>spring-framework</code></a></p>
+<p>Spring的源码是发布在github上面的</p>
+<blockquote>
+<p>　　注: 需要连接加速科学上网软件才行, 不然git特别慢</p>
+</blockquote>
+<p><img src="/images/spring5-build-soure-code/spring5-build-soure-code-spring-framework-release-tags.png" alt="spring-framework-release-tags.png"><br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-spring-github-page-index.png" alt="spring-github-page-index.png"><br>版本号介绍<br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-new-version-update.png" alt="new-version-update.png"><br>M：M1，M2，…中的M是milestone的简写，意思是里程碑，代表着有重大改进的版本。</p>
+<h3 id="三-构建工作准备"><a href="#三-构建工作准备" class="headerlink" title="三. 构建工作准备"></a>三. 构建工作准备</h3><p>安装源码有两种方式:</p>
+<p>第一种: 下载spring使用的对应的Gradle版本,安装</p>
+<p>第二种: 使用自带的gradleWrapper.</p>
+<p>备注: 我在导入项目到idea的时候, 不能够选择使用的gradle编译类型(使用系统的gradle还是gradleWrapper), 所以, 我是自己安装了Gradle, 然后编译的.</p>
+<p>查看spring源码中gradle的版本. 下载对应版本的gradle.</p>
+<p>在gradle-wrapper.properties中查看版本号<br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-gradle-wrapper-properties.png" alt="gradle-wrapper-properties.png"><br>我们看看到spring5.2.7.RELEASE对应的gradle版本是5.6.4-bin.zip. 我们下载这个文件.</p>
+<p>如果使用方法二, gradleWrapper会自动下载, 这是官方推荐的方式. window平台的idea可以选择使用gradleWrapper的方式.</p>
+<h3 id="四-编译Spring源码项目"><a href="#四-编译Spring源码项目" class="headerlink" title="四. 编译Spring源码项目"></a>四. 编译Spring源码项目</h3><h5 id="1-修改build-gradle"><a href="#1-修改build-gradle" class="headerlink" title="1. 修改build.gradle"></a>1. 修改build.gradle</h5><p>这个文件就相当于我们Maven的pom.xml 管理项目的依赖等配置</p>
+<pre class=" language-properties"><code class="language-properties">设置镜像
+<span class="token attr-name">repositories</span> <span class="token attr-value">{</span>
+<span class="token attr-name">            maven{</span> <span class="token attr-value">url 'https://maven.aliyun.com/nexus/content/groups/public/'}</span>
+<span class="token attr-name">            maven{</span> <span class="token attr-value">url 'https://maven.aliyun.com/nexus/content/repositories/jcenter'}</span>
+            mavenCentral()
+<span class="token attr-name">            maven</span> <span class="token attr-value">{ url "https://repo.spring.io/libs-spring-framework-build" }</span>
+        }</code></pre>
+<h4 id="2-编译compileTestJava模块"><a href="#2-编译compileTestJava模块" class="headerlink" title="2. 编译compileTestJava模块"></a>2. 编译compileTestJava模块</h4><p>进入到源码所在文件夹, 执行一下命令. 我的是mac本, 所以需要加./, 如果是windows本就不需要加</p>
+<pre class=" language-shell"><code class="language-shell">./gradlew :spring-oxm:compileTestJava</code></pre>
+<p>配置了镜像很快（一两分钟）就能编译完成, 如果要很久说明你的镜像没起作用</p>
+<h5 id="3-导入项目到idea中-进行编译"><a href="#3-导入项目到idea中-进行编译" class="headerlink" title="3. 导入项目到idea中, 进行编译"></a>3. 导入项目到idea中, 进行编译</h5><p>我这里导入代码, 自动就会进行编译了. 不需要额外的操作. 这个和idea的版本有关,我的idea是2020.1的<br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-build-info.png" alt="soure-code-build-info.png"><br>最后提示finished就ok了.</p>
+<h3 id="五-测试源码编译是否成功"><a href="#五-测试源码编译是否成功" class="headerlink" title="五. 测试源码编译是否成功"></a>五. 测试源码编译是否成功</h3><h5 id="1-添加测试模块代码"><a href="#1-添加测试模块代码" class="headerlink" title="1. 添加测试模块代码"></a>1. 添加测试模块代码</h5><p>new-&gt;model-&gt;gradle–&gt;输入模块名称<br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-project-gradle-build-info.png" alt="project-gradle-build-info.png"><br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-spring-ioc-show-example.png" alt="spring-ioc-show-example.png"><br>设置项目名, 设置好以后点击finish</p>
+<h5 id="为项目添加依赖"><a href="#为项目添加依赖" class="headerlink" title="为项目添加依赖"></a>为项目添加依赖</h5><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">dependencies</span> <span class="token attr-value">{</span>
+<span class="token attr-name">    testCompile</span> <span class="token attr-value">group: 'junit', name: 'junit', version: '4.12' </span>
+<span class="token attr-name">    compile(project("</span><span class="token punctuation">:</span><span class="token attr-value">spring-context"))     </span>
+}</code></pre>
+<p>compile(project(“:spring-context”)) 代表本项目的</p>
+<h5 id="2-添加测试文件-测试IoC功能"><a href="#2-添加测试文件-测试IoC功能" class="headerlink" title="2. 添加测试文件, 测试IoC功能"></a>2. 添加测试文件, 测试IoC功能</h5><ul>
+<li>为项目添加依赖<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">dependencies</span> <span class="token attr-value">{</span>
+<span class="token attr-name">testCompile</span> <span class="token attr-value">group: 'junit', name: 'junit', version: '4.12' </span>
+<span class="token attr-name">compile(project("</span><span class="token punctuation">:</span><span class="token attr-value">spring-context"))     </span>
+}</code></pre>
+compile(project(“:spring-context”)) 代表本项目的<h5 id="2-添加测试文件-测试IoC功能-1"><a href="#2-添加测试文件-测试IoC功能-1" class="headerlink" title="2. 添加测试文件, 测试IoC功能"></a>2. 添加测试文件, 测试IoC功能</h5></li>
+<li>为项目添加依赖<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">dependencies</span> <span class="token attr-value">{</span>
+<span class="token attr-name">testCompile</span> <span class="token attr-value">group: 'junit', name: 'junit', version: '4.12' </span>
+<span class="token attr-name">compile(project("</span><span class="token punctuation">:</span><span class="token attr-value">spring-context"))     </span>
+}</code></pre>
+compile(project(“:spring-context”)) 代表本项目的</li>
+<li>随意添加一个bean<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>lxl<span class="token punctuation">.</span>www<span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+<p>import org.springframework.stereotype.Service;</p>
+<p>@Service<br>public class UserServiceImpl {</p>
+<pre><code>public void sayHi(){
+    System.out.println("Hello Spring！");
+}</code></pre>
+<p>}</p>
+<pre><code>- 添加启动类
+```java 
+import cn.tulingxueyuan.beans.UserServiceImpl;
+import javafx.application.Application;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan("com.lxl.www")
+public class MainStat {
+
+    public static void main(String[] args) {
+        ApplicationContext context=new AnnotationConfigApplicationContext(MainStat.class);
+        UserServiceImpl bean = context.getBean(UserServiceImpl.class);
+        bean.sayHi();
+
+    }
+
+}</code></pre>
+<p>启动MainStat并运行. 如果看到如下输出, 表示成功了<br><img src="/images/spring5-build-soure-code/spring5-build-soure-code-spring-run-example.png" alt="spring-run-example.png"><br>代码依然会报错, 是一个git的异常, 这个可以忽略. 看到上面编译成功,并且有打印结果, 就说明成功了.</p>
 
             </div>
             <hr/>
@@ -755,7 +830,8 @@
                         
                             一. 准备工作1.编译环境mavenjdk8idea
 2. 编译版本:SpringV5.2.7RELEASE+GradleWapper+jdk1.8.0_131编译
-
+二. 源码下载git地址: spring-framework
+Spring
                         
                     </div>
                     <div class="publish-info">
@@ -988,7 +1064,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">148k</span>&nbsp;字
+                class="white-color">148.8k</span>&nbsp;字
             
             
             
