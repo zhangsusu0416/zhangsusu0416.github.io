@@ -5,8 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="spring5源码 - IOC加载过程 Bean的生命周期, 小张哥blog">
-    <meta name="description" content="一. spring源码整体脉络介绍1.1. 什么是IOCioc是控制反转, 这是一种设计理念, 用来解决的是层和层之间, 类和类之间的耦合问题.
-比如,现在有A, B两个类, 在A类中引用了B类. 那么如果有一天, B类要被替换掉, 我们会">
+    <meta name="description" content="
+目录
+spring整体脉络
+描述BeanFactory
+BeanFactory和ApplicationContext的区别
+简述SpringIoC的加载过程
+简述Bean的生命周期  
+Spring中有哪些扩展接口及调用机制  一. sp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -451,14 +457,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-14
+                    2021-10-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
@@ -481,7 +487,17 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="一-spring源码整体脉络介绍"><a href="#一-spring源码整体脉络介绍" class="headerlink" title="一. spring源码整体脉络介绍"></a>一. spring源码整体脉络介绍</h3><h4 id="1-1-什么是IOC"><a href="#1-1-什么是IOC" class="headerlink" title="1.1. 什么是IOC"></a>1.1. 什么是IOC</h4><p>ioc是控制反转, 这是一种设计理念, 用来解决的是层和层之间, 类和类之间的耦合问题.</p>
+                <ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a><ul>
+<li><a href="#spring%E6%95%B4%E4%BD%93%E8%84%89%E7%BB%9C">spring整体脉络</a></li>
+<li><a href="#%E6%8F%8F%E8%BF%B0BeanFactory">描述BeanFactory</a></li>
+<li><a href="#BeanFactory%E5%92%8CApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB">BeanFactory和ApplicationContext的区别</a></li>
+<li><a href="#%E7%AE%80%E8%BF%B0SpringIoC%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B">简述SpringIoC的加载过程</a></li>
+<li><a href="#%E7%AE%80%E8%BF%B0Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">简述Bean的生命周期</a>  </li>
+<li><a href="#Spring%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3%E5%8F%8A%E8%B0%83%E7%94%A8%E6%9C%BA%E5%88%B6">Spring中有哪些扩展接口及调用机制</a>  <h3 id="一-spring源码整体脉络介绍"><a href="#一-spring源码整体脉络介绍" class="headerlink" title="一. spring源码整体脉络介绍"></a>一. spring源码整体脉络介绍</h3><h4 id="1-1-什么是IOC"><a href="#1-1-什么是IOC" class="headerlink" title="1.1. 什么是IOC"></a>1.1. 什么是IOC</h4>ioc是控制反转, 这是一种设计理念, 用来解决的是层和层之间, 类和类之间的耦合问题.</li>
+</ul>
+</li>
+</ul>
 <p>比如,现在有A, B两个类, 在A类中引用了B类. 那么如果有一天, B类要被替换掉, 我们会怎么办呢?如果B类被引用了100次, 我们要替换100次?</p>
 <p>现在呢, A是直接调用B, 如果我们间接的调用B, 将B包装起来, 如果以后将B换成C, 只需要在包装类里面替换就可以了. 我们不需要修改A类. 这就是控制反转.</p>
 <p>Spring使用了ioc, Spring.ioc(A, B) 将A和B的引用都存在ioc中, spring会帮我们维护好, 完全不用担心.</p>
@@ -494,9 +510,19 @@
 <h4 id="1-2-Spring源码的整体脉络梳理"><a href="#1-2-Spring源码的整体脉络梳理" class="headerlink" title="1.2. Spring源码的整体脉络梳理"></a>1.2. Spring源码的整体脉络梳理</h4><p>Spring IoC是一个容器, 在Spring Ioc中维护了许多Bean</p>
 <p>那这些bean是如何被注册到IoC中的呢? 换句话说, 我们自定义的类, 是如何作为一个bean交给IoC容器去管理的呢?</p>
 <p>先来回忆,我们在开发spring的时候的步骤:</p>
-<blockquote>
-<p>第一步: 配置类. 配置类可以使用的方式通常由<br>      1) xml配置<br>      2) 注解配置<br>      3) javaconfig方式配置<br>第二步: 加载spring上下文<br>      1) 如果是xml, 则new ClassPathXmlApplicationContext(“xml”);<br>      2) 如果是注解配置: 则new AnnotationConfigApplicationContext(config.class)<br>第三步: getBean()<br>    我们会讲自定义的类, 通过xml或者注解的方式注入到ioc容器中.<br>在这一步, 会将xml或注解中指定的类注入到IoC容器中. </p>
-</blockquote>
+<h5 id="第一步-配置类-配置类可以使用的方式通常由"><a href="#第一步-配置类-配置类可以使用的方式通常由" class="headerlink" title="第一步: 配置类. 配置类可以使用的方式通常由"></a>第一步: 配置类. 配置类可以使用的方式通常由</h5><ul>
+<li>xml配置</li>
+<li>注解配置</li>
+<li>javaconfig方式配置</li>
+</ul>
+<h5 id="第二步-加载spring上下文"><a href="#第二步-加载spring上下文" class="headerlink" title="第二步: 加载spring上下文"></a>第二步: 加载spring上下文</h5><ul>
+<li>如果是xml, 则new ClassPathXmlApplicationContext(“xml”);</li>
+<li>如果是注解配置: 则new AnnotationConfigApplicationContext(config.class)</li>
+</ul>
+<h5 id="第三步-getBean"><a href="#第三步-getBean" class="headerlink" title="第三步: getBean()"></a>第三步: getBean()</h5><ul>
+<li>我们会讲自定义的类, 通过xml或者注解的方式注入到ioc容器中.</li>
+</ul>
+<p>在这一步, 会将xml或注解中指定的类注入到IoC容器中. </p>
 <h5 id="1-2-1-那么-到底是如何将一个类注入到ioc中的呢"><a href="#1-2-1-那么-到底是如何将一个类注入到ioc中的呢" class="headerlink" title="1.2.1 那么, 到底是如何将一个类注入到ioc中的呢?"></a>1.2.1 那么, 到底是如何将一个类注入到ioc中的呢?</h5><p>下面就来梳理一下整个过程.</p>
 <h6 id="第一问-一个类要生产成一个Bean-最重要最核心的类是什么"><a href="#第一问-一个类要生产成一个Bean-最重要最核心的类是什么" class="headerlink" title="第一问: 一个类要生产成一个Bean, 最重要最核心的类是什么?"></a>第一问: 一个类要生产成一个Bean, 最重要最核心的类是什么?</h6><p>是BeanFactory</p>
 <p>第二问: BeanFactory是什么呢?<br>BeanFactory是Spring顶层的核心接口–使用了简单工厂模式. 通常都是根据一个名字生产一个实例, 根据传入的唯一的标志来获得bean对象, 但具体是穿入参数后创建, 还是穿入参数前创建, 这个要根据 具体情况而定, 根据名字或类型生产不同的bean.</p>
@@ -505,15 +531,13 @@
         AnnotationConfigApplicationContext context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"***"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<p>这段代码实现的功能是, 读取当前文件所在目录及其子目录中的文件, 然后获取指定名称的bean, 整个流程如下图所示:</p>
+<p>这段代码实现的功能是, 读取当前文件所在目录及其子目录中的文件, 然后获取指定名称的bean, 整个流程如下图所示:<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-beanFactory-init.png" alt="bean-life-cycle-beanFactory-init.png"></p>
 <blockquote>
 <p>首先, 通过ClassPathXmlApplicationContext或者AnnotationConfigApplicationContext去读取配置,<br>然后, 将其交给BeanFactory.<br>第三. BeanFactory调用getBean()方法, 将Bean注入到IoC容器中<br>我们发现, 配置的读取, 可能是xml方式, 也可能是annotation的方式, 不同的方式读取应该使用的是不同的工具. 那么这些工具读取的结果应该是统一的, 然后才能交给BeanFactory去处理.</p>
 </blockquote>
 <p>因为在BeanFactory中是不会对这些异同点进行处理的. BeanFactory的作用只有一个, 就是个生产Bean.</p>
-<h5 id="1-2-2-那么-不同的工具读取配置是如何统一的呢"><a href="#1-2-2-那么-不同的工具读取配置是如何统一的呢" class="headerlink" title="1.2.2 那么, 不同的工具读取配置是如何统一的呢?"></a>1.2.2 那么, 不同的工具读取配置是如何统一的呢?</h5><p>我们知道,读取配置这一块, 应该会有一个不同的实现. 将xml和注解方式读取成统一的东西, 放入到beanFactory中. 这个东西是谁呢?就是BeanDefinition(Bean定义)</p>
-<p>通过不同的工具, 可能是xmlApplicationContext, 可能是annotationApplicationContext工具 读取的配置, 最后都会构造成BeanDefinition对象. 然后将BeanDefinition传递给BeanFactory,<br>BeanFactory统一处理BeanDefinition对象, 调用getBean()方法, 将其放入IoC容器中.</p>
-<h5 id="1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢"><a href="#1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢" class="headerlink" title="1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?"></a>1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?</h5><p>我们来举个例子, 现在有一个人, 比如说我刚买了一个房子, 我要装修. 需要一个衣柜, 这时候, 我会找到一个衣柜店. 然后告诉他我的需求, 柜子的颜色, 款式格式什么样. 然后衣柜店记录我的需求, 这个时候, 他不会自己生产, 他会通知工厂,<br> 让工厂来生产. 工厂按照什么生产呢, 衣柜店有一个设计师, 他们的设计师. 会按照我的需求设计出一张图纸. 然后将图纸交给工厂. 工厂按照图纸要求生产Bean.</p>
-<p>入口是”我”</p>
+<h5 id="1-2-2-那么-不同的工具读取配置是如何统一的呢"><a href="#1-2-2-那么-不同的工具读取配置是如何统一的呢" class="headerlink" title="1.2.2 那么, 不同的工具读取配置是如何统一的呢?"></a>1.2.2 那么, 不同的工具读取配置是如何统一的呢?</h5><p>我们知道,读取配置这一块, 应该会有一个不同的实现. 将xml和注解方式读取成统一的东西, 放入到beanFactory中. 这个东西是谁呢?就是BeanDefinition(Bean定义)<br>什么意思呢? 如下图:<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-beanFactory-beanDefinition.png" alt="life-cycle-beanFactory-beanDefinition.png"><br>看绿色框框住的部分. 这个含义是: 通过不同的工具, 可能是xmlApplicationContext, 可能是annotationApplicationContext工具 读取的配置, 最后都会构造成BeanDefinition对象. 然后将BeanDefinition传递给BeanFactory, BeanFactory统一处理BeanDefinition对象, 调用getBean()方法, 将其放入IoC容器中.</p>
+<h5 id="1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢"><a href="#1-2-3-那么又是是如何读取配置统一构造成BeanDefinition的呢" class="headerlink" title="1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?"></a>1.2.3 那么又是是如何读取配置统一构造成BeanDefinition的呢?</h5><p>我们来举个例子, 现在有一个人, 比如说我刚买了一个房子, 我要装修. 需要一个衣柜, 这时候, 我会找到一个衣柜店. 然后告诉他我的需求, 柜子的颜色, 款式格式什么样. 然后衣柜店记录我的需求, 这个时候, 他不会自己生产, 他会通知工厂,<br> 让工厂来生产. 工厂按照什么生产呢, 衣柜店有一个设计师, 他们的设计师. 会按照我的需求设计出一张图纸. 然后将图纸交给工厂. 工厂按照图纸要求生产Bean.<br>整个过程如下图:<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-beanDefinition-process.png" alt="life-cycle-beanDefinition-process.png"><br>入口是”我”</p>
 <ul>
 <li>1.我有一个需求, 打一个柜子, 找到衣柜店</li>
 <li>2.我告诉衣柜店我的需求, 柜子的颜色, 款式, 然后衣柜店的设计师按照我的要求 ,设计出一张图纸</li>
@@ -529,8 +553,7 @@
 <p>**这是一个带有@Component的类被加载的过程. **</p>
 <p>衣柜店要要想生意好, 那么他要去拉活呀, 所以还需要好的销售. 销售要去扫楼盘, 去联系, 哪些人有装修的需求. 挨个询问.</p>
 <p>可是问了100个人, 可能只有10个人有装修的需求. 于是还要有一个接待, 这个接待要联系客户, 看看哪些是有意向的客户, 将其筛选出来. 然后定制家具.</p>
-<p>这里多了两类人: 销售和接待. 具体工作如下.</p>
-<p>销售就相当于我们的BeanDefinitionReader, 他的作用是去扫楼盘, 找到潜在客户. 对应的就是BeanDefinitionReader去读取xml配置或者Annotation注解.</p>
+<p>这里多了两类人: 销售和接待. 具体工作如下.<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-BeanDefinitionScanner-process.png" alt="life-cycle-BeanDefinitionScanner-process.png"><br>销售就相当于我们的BeanDefinitionReader, 他的作用是去扫楼盘, 找到潜在客户. 对应的就是BeanDefinitionReader去读取xml配置或者Annotation注解.</p>
 <p>xml中的配置有很多, 注解也有很多, 并不都是我们的目标. 于是有了接待</p>
 <p>接待要去扫描所有潜在客户. 将有意向的客户扫描出来. 这就类似于我们的BeanDefinitionScanner, 去扫描潜在客户, 最后将带有@Component注解的类筛选出来</p>
 <p>这就是后面需要定制家具的客户了</p>
@@ -543,17 +566,18 @@
 </ul>
 <p>他们两个都各有使用场景. 使用ApplicationContext的居多.</p>
 <p>另一个区别: 就是后面会说到的, ApplicationContext有两个扩展接口, 可以用来和外部集成. 比如和MyBatis集成.</p>
-<h4 id="1-4-Bean的生命周期"><a href="#1-4-Bean的生命周期" class="headerlink" title="1.4. Bean的生命周期"></a>1.4. Bean的生命周期</h4><h6 id="如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么"><a href="#如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么" class="headerlink" title="如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?"></a>如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?</h6><p>不是的, 生产Bean是有一个流程的. 下面我们来看看Bean的生命周期</p>
+<h4 id="1-4-Bean的生命周期"><a href="#1-4-Bean的生命周期" class="headerlink" title="1.4. Bean的生命周期"></a>1.4. Bean的生命周期</h4><p><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-been-life-cycle.png" alt="been-life-cycle.png"></p>
+<h6 id="如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么"><a href="#如上图-beanFactory拿到BeanDefinition-直接调用getBean-就生产Bean了么" class="headerlink" title="如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?"></a>如上图, beanFactory拿到BeanDefinition, 直接调用getBean()就生产Bean了么?</h6><p>不是的, 生产Bean是有一个流程的. 下面我们来看看Bean的生命周期</p>
 <blockquote>
 <p>第一步: 实例化. bean实例化的时候从BeanDefinition中得到Bean的名字, 然后通过反射机制, 将Bean实例化. 实例化以后, 这是还只是个壳子, 里面什么都没有.<br>第二步: 填充属性. 经过初始化以后, bean的壳子就有了, bean里面有哪些属性呢? 在这一步填充<br>第三步: 初始化. 初始化的时候, 会调用initMethod()初始化方法, destory()初始化结束方法<br>这个时候, 类就被构造好了.<br>第四步: 构造好了的类, 会被放到IoC的一个Map中. Map的key是beanName, value是bean实例. 这个Map是一个单例池, 也就是我们说的一级缓存<br>第五步: 我们就可以通过getBean(“user”), 从单例池中获取雷鸣是user的类了.</p>
 </blockquote>
-<h6 id="在构造bean的过程中-还会有很多细节的问题-比如循环依赖"><a href="#在构造bean的过程中-还会有很多细节的问题-比如循环依赖" class="headerlink" title="在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖."></a>在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖.</h6><p>A类里面调用了B类, 所以BeanFactory在构造A的时候, 会去构造B. 然后在构造B的时候, 发现, B还依赖了A. 这样, 就是循环依赖. 这是不可以的.</p>
+<h6 id="在构造bean的过程中-还会有很多细节的问题-比如循环依赖"><a href="#在构造bean的过程中-还会有很多细节的问题-比如循环依赖" class="headerlink" title="在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖."></a>在构造bean的过程中, 还会有很多细节的问题, 比如循环依赖.</h6><p><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-how-to-solve-circular-dependencies.png" alt="how-to-solve-circular-dependencies.png"><br>A类里面调用了B类, 所以BeanFactory在构造A的时候, 会去构造B. 然后在构造B的时候, 发现, B还依赖了A. 这样, 就是循环依赖. 这是不可以的.</p>
 <p>Spring是如何解决循环依赖的问题的呢?</p>
 <p>设置出口. 比如A在构造的过程中, 那么设置一个标记, 正在构造中. 然后构造B, B在构造的过程中应用了A, 这时候, 有趣构造A, 然后发现A正在构造中, 那么, 就不会再次构造A了.</p>
 <p>后面还会详细讲解Spring是如何解决循环引用的. 这里我们需要知道的是: Spring使用的是三级缓存来解决循环引用的问题</p>
 <p>其实, bean是存在一级缓存里面, 循环引用使用的是三级缓存来解决的. 其实, 一、二、三级缓存就是Map。</p>
 <h4 id="1-5-Spring中的扩展接口"><a href="#1-5-Spring中的扩展接口" class="headerlink" title="1.5. Spring中的扩展接口"></a>1.5. Spring中的扩展接口</h4><p>有两个非常重要的扩展接口. BeanFactoryPostProcessor(Bean工厂的后置处理器) 和 BeanDefinitionRegistryPostProcessor</p>
-<p>这两个接口是干什么的呢?</p>
+<p>这两个接口是干什么的呢?<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-beanFactoryPostProcessor-beanDefinitionRegistryPostProcessor.png" alt="beanFactoryPostProcessor-beanDefinitionRegistryPostProcessor.png"></p>
 <p>我们在这个图里面, 看到了设计师要设计出图纸, 然后把图纸交给工厂去生产. 那么设计师设计出来的图纸, 有没有可能被修改呢?</p>
 <p>当然是可以被修改的. 只要还没有交给工厂, 就可以修改.</p>
 <h6 id="BeanFactoryPostProcessor-Bean工厂的后置处理器-的作用就是修改BeanDefinition"><a href="#BeanFactoryPostProcessor-Bean工厂的后置处理器-的作用就是修改BeanDefinition" class="headerlink" title="BeanFactoryPostProcessor(Bean工厂的后置处理器)的作用就是修改BeanDefinition."></a>BeanFactoryPostProcessor(Bean工厂的后置处理器)的作用就是修改BeanDefinition.</h6><ul>
@@ -590,8 +614,7 @@
 <p>执行流程: 当spring启动的时候, 就会去执行AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TulingCourseApplication.class);</p>
 <p>然后ApplicationContext回去扫描所有实现了BeanFactoryPostProcessor对象的类, 然后执行postProcessBeanFactory方法.</p>
 <p>BeanFactoryPostProcessor被使用到的场景非常多, 在集成其他组件的时候, 比如集成mybatis</p>
-<h6 id="2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition"><a href="#2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition" class="headerlink" title="2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition"></a>2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition</h6><p>这是一个Bean定义注册的后置处理器.BeanDefinitionRegistryPostProcessor本事是实现了BeanFactoryPostProcessor 接口</p>
-<p>我们来看个demo</p>
+<h6 id="2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition"><a href="#2-BeanDefinitionRegistryPostProcessor-注册BeanDefinition" class="headerlink" title="2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition"></a>2. BeanDefinitionRegistryPostProcessor 注册BeanDefinition</h6><p>这是一个Bean定义注册的后置处理器.BeanDefinitionRegistryPostProcessor本事是实现了BeanFactoryPostProcessor 接口<br><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-beanDefinitionRegistryPostProcessor.png" alt="life-cycle-beanDefinitionRegistryPostProcessor.png"><br>我们来看个demo</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefinedPost</span> <span class="token keyword">implements</span> <span class="token class-name">BeanDefinitionRegistryPostProcessor</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -619,6 +642,7 @@
 <blockquote>
 <p>BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor这两个扩展类是很重要的类, 这对于向外部扩展起到了很大的的作用, 比如: 集成mybatis**</p>
 </blockquote>
+<p><img src="/images/spring5-source-code-bean-life-cycle/beanFactoryPostProcessor-beanDefinitionRegistryPostProcessor-diffrent.png" alt="beanFactoryPostProcessor-beanDefinitionRegistryPostProcessor-diffrent.png"></p>
 <h6 id="BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口-这也是ApplicationContext和BeanFactory的区别之一-因为有了这两个扩展节点-就可以和外部做集成-比如Mybatis集成-比如-扫描配置类-就是通过-这两个扩展点的方式实现的"><a href="#BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口-这也是ApplicationContext和BeanFactory的区别之一-因为有了这两个扩展节点-就可以和外部做集成-比如Mybatis集成-比如-扫描配置类-就是通过-这两个扩展点的方式实现的" class="headerlink" title="BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口. 这也是ApplicationContext和BeanFactory的区别之一, 因为有了这两个扩展节点, 就可以和外部做集成. 比如Mybatis集成. 比如: 扫描配置类, 就是通过 这两个扩展点的方式实现的."></a>BeanFactoryPostProcessor和BeanDefinitionRegistryPostProcessor是在ApplicationContext中的两个扩展接口. 这也是ApplicationContext和BeanFactory的区别之一, 因为有了这两个扩展节点, 就可以和外部做集成. 比如Mybatis集成. 比如: 扫描配置类, 就是通过 这两个扩展点的方式实现的.</h6><p>这个扩展点的作用:</p>
 <ul>
 <li>除了IoC, 其他的扩展,比如AOP, 和MyBatis集成, 都要用到这两个扩展点. 之所以Spring能够有序不乱的和很多外部组件整合, 都是这两个扩展点的功能</li>
@@ -630,7 +654,7 @@
 <p>AOP的实现方式有两种: 一种是CGLIB, 另一种是JDK.</p>
 <p>假如说要进行集成, 会在那个步骤继承呢? 比如要加日志, 使用AOP的方式加. 我们通常是在初始化之后加AOP. 在这里将AOP集成进来.</p>
 <p>如上图: 当面试的时候面试官问你, Bean的生命周期, 我们不能只说实例化–&gt;填充属性–&gt;初始化. 还需要说初始化的时候, 还有一些列的aware.</p>
-<h4 id="1-7-Spring-IOC的加载过程"><a href="#1-7-Spring-IOC的加载过程" class="headerlink" title="1.7. Spring IOC的加载过程"></a>1.7. Spring IOC的加载过程</h4><p>对照上图, 我们来简述ioc的加载过程<br>我们将一个类加载成Bean, 不是一步到位的,需要经历一下的过程.</p>
+<h4 id="1-7-Spring-IOC的加载过程"><a href="#1-7-Spring-IOC的加载过程" class="headerlink" title="1.7. Spring IOC的加载过程"></a>1.7. Spring IOC的加载过程</h4><p><img src="/images/spring5-source-code-bean-life-cycle/spring5-source-code-bean-life-cycle-spring-ioc-init-process-spring-ioc-init-process.png" alt="spring-ioc-init-process-spring-ioc-init-process.png"><br>对照上图, 我们来简述ioc的加载过程<br>我们将一个类加载成Bean, 不是一步到位的,需要经历一下的过程.</p>
 <ul>
 <li>使用BeanDefinitionReader加载配置类, 此时是扫描所有的xml文件或者项目中的注解. 这里面有些使我们的目标类, 有些不是</li>
 <li>使用BeanDefinitionScanner扫描出我们的目标类.</li>
@@ -1174,7 +1198,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">148.8k</span>&nbsp;字
+                class="white-color">160.2k</span>&nbsp;字
             
             
             

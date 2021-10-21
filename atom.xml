@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-18T06:53:32.069Z</updated>
+  <updated>2021-10-21T06:14:28.596Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -17,11 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>设计模式-责任链设计模式</title>
+    <link href="http://xiaomozhang.github.io/2021/10/20/design-patterns-responsibility-chain-design-pattern/"/>
+    <id>http://xiaomozhang.github.io/2021/10/20/design-patterns-responsibility-chain-design-pattern/</id>
+    <published>2021-10-20T01:25:45.000Z</published>
+    <updated>2021-10-21T06:14:28.596Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近我们要将业务数据统计链路进行抽象, 用户数据链路, 订单数据链路, 仓库数据链路, 还有通用的数据链路, 如何将这些链路统一抽象出来呢?目前研究了两类设计模式: 责任链设计模式和模板方法设计模式. 今天先来说说责任链设计模式.&lt;/p&gt;
+&lt;p&gt;其实,</summary>
+        
+      
+    
+    
+    
+    <category term="design pattern" scheme="http://xiaomozhang.github.io/categories/design-pattern/"/>
+    
+    
+    <category term="design pattern" scheme="http://xiaomozhang.github.io/tags/design-pattern/"/>
+    
+    <category term="chain of responsibility" scheme="http://xiaomozhang.github.io/tags/chain-of-responsibility/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring5源码-循环依赖之手写代码模拟spring循环依赖</title>
+    <link href="http://xiaomozhang.github.io/2021/10/17/spring5-circular-dependency-manually-build/"/>
+    <id>http://xiaomozhang.github.io/2021/10/17/spring5-circular-dependency-manually-build/</id>
+    <published>2021-10-17T02:25:45.000Z</published>
+    <updated>2021-10-19T02:20:26.748Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%9B%AE%E5%BD%95&quot;&gt;目录&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="spring circular dependency" scheme="http://xiaomozhang.github.io/categories/spring-circular-dependency/"/>
+    
+    
+    <category term="spring5" scheme="http://xiaomozhang.github.io/tags/spring5/"/>
+    
+    <category term="circular dependency" scheme="http://xiaomozhang.github.io/tags/circular-dependency/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring5-源码构建编译</title>
     <link href="http://xiaomozhang.github.io/2021/10/16/spring5-build-soure-code/"/>
     <id>http://xiaomozhang.github.io/2021/10/16/spring5-build-soure-code/</id>
     <published>2021-10-16T01:23:45.000Z</published>
-    <updated>2021-10-18T06:53:32.069Z</updated>
+    <updated>2021-10-18T06:58:24.196Z</updated>
     
     
       
@@ -102,14 +159,17 @@
     <link href="http://xiaomozhang.github.io/2021/10/14/spring5-source-code-bean-life-cycle/"/>
     <id>http://xiaomozhang.github.io/2021/10/14/spring5-source-code-bean-life-cycle/</id>
     <published>2021-10-14T03:54:08.000Z</published>
-    <updated>2021-10-14T13:24:44.082Z</updated>
+    <updated>2021-10-20T01:56:58.528Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h3 id=&quot;一-spring源码整体脉络介绍&quot;&gt;&lt;a href=&quot;#一-spring源码整体脉络介绍&quot; class=&quot;headerlink&quot; title=&quot;一. spring源码整体脉络介绍&quot;&gt;&lt;/a&gt;一. spring源码整体脉络介绍&lt;/h3&gt;&lt;h4</summary>
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%9B%AE%E5%BD%95&quot;&gt;目录&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#spring%E6%95%B4%E4%BD%93%E8%84%89%E7%BB%9C&quot;&gt;spring整体脉络&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -510,55 +570,6 @@
     <category term="Lettuce" scheme="http://xiaomozhang.github.io/tags/Lettuce/"/>
     
     <category term="multiple RedisTemplate" scheme="http://xiaomozhang.github.io/tags/multiple-RedisTemplate/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot 2.x使用mybatis</title>
-    <link href="http://xiaomozhang.github.io/2021/02/01/spring-boot-mybatis/"/>
-    <id>http://xiaomozhang.github.io/2021/02/01/spring-boot-mybatis/</id>
-    <published>2021-02-01T13:35:34.983Z</published>
-    <updated>2021-02-01T13:35:34.983Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;orm框架的本质是简化编程中操作数据库的编码，发展到现在基本上就剩两家了，一个是宣称可以不用写一句SQL的hibernate，一个是可以灵活调试动态sql的mybatis,两者各有特点，在企业级系统开发中可以根据需求灵活使用。&lt;/p&gt;
-&lt;h1 id=&quot;使用注解版&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="http://xiaomozhang.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Spring Boot" scheme="http://xiaomozhang.github.io/tags/Spring-Boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>logstash日期插件支持纳秒</title>
-    <link href="http://xiaomozhang.github.io/2020/12/18/logstash-filter-date-compile/"/>
-    <id>http://xiaomozhang.github.io/2020/12/18/logstash-filter-date-compile/</id>
-    <published>2020-12-18T08:01:58.000Z</published>
-    <updated>2021-02-01T13:35:34.981Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近项目上遇到时间为纳秒的情况，用到logstash解析时是不支持纳秒的，这里提供一个思路就是自己修改logstash的日期插件，让他支持纳秒，具体涉及的插件是&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="logstash" scheme="http://xiaomozhang.github.io/tags/logstash/"/>
     
   </entry>
   
