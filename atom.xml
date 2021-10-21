@@ -6,7 +6,7 @@
   <link href="http://xiaomozhang.github.io/atom.xml" rel="self"/>
   
   <link href="http://xiaomozhang.github.io/"/>
-  <updated>2021-10-21T06:14:28.596Z</updated>
+  <updated>2021-10-21T08:40:30.506Z</updated>
   <id>http://xiaomozhang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式六大原则(一)-单一职责原则</title>
+    <link href="http://xiaomozhang.github.io/2021/10/21/software-design-pattern-single-responsibility-principle/"/>
+    <id>http://xiaomozhang.github.io/2021/10/21/software-design-pattern-single-responsibility-principle/</id>
+    <published>2021-10-21T07:09:21.000Z</published>
+    <updated>2021-10-21T08:40:30.506Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;设计模式六大原则之【单一职则原则】&lt;/p&gt;
+&lt;h3 id=&quot;一、什么是单一职责原则&quot;&gt;&lt;a href=&quot;#一、什么是单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;一、什么是单一职责原则&quot;&gt;&lt;/a&gt;一、什么是单一职责原则&lt;/h3&gt;&lt;p&gt;首先,</summary>
+        
+      
+    
+    
+    
+    <category term="Single Responsibility Principle" scheme="http://xiaomozhang.github.io/categories/Single-Responsibility-Principle/"/>
+    
+    
+    <category term="Single Responsibility Principle" scheme="http://xiaomozhang.github.io/tags/Single-Responsibility-Principle/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式-责任链设计模式</title>
@@ -539,37 +565,6 @@
     <category term="Hexo" scheme="http://xiaomozhang.github.io/tags/Hexo/"/>
     
     <category term="Matery" scheme="http://xiaomozhang.github.io/tags/Matery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot2.X使用Lettuce设置多个RedisTemplate实例</title>
-    <link href="http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/"/>
-    <id>http://xiaomozhang.github.io/2021/02/07/spring-boot-lettuce-multi-instance/</id>
-    <published>2021-02-07T05:04:42.000Z</published>
-    <updated>2021-02-07T08:09:39.632Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近公司产品需求,需要使用同一个redis数据库服务使用不同的序列化方式的redisTemplate对缓存数据库进行读写操作,&lt;br&gt;目前大部分网上的文章在实作Redis分流时，都是以Jedis为样例，但SpringBoot在2.x版本之后已经将Redis库替换成Lettu</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="http://xiaomozhang.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Redis" scheme="http://xiaomozhang.github.io/tags/Redis/"/>
-    
-    <category term="SpringBoot" scheme="http://xiaomozhang.github.io/tags/SpringBoot/"/>
-    
-    <category term="Lettuce" scheme="http://xiaomozhang.github.io/tags/Lettuce/"/>
-    
-    <category term="multiple RedisTemplate" scheme="http://xiaomozhang.github.io/tags/multiple-RedisTemplate/"/>
     
   </entry>
   
