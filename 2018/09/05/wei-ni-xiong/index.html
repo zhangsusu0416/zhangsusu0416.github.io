@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Windows下安装MySQL-5.7.17解压版, 宝哥哥blog">
-    <meta name="description" content="下载MySQL Community Server地址：http://dev.mysql.com/downloads/mysql/
-选择Windows (x86, 64-bit), ZIP Archive进行下载。
-现在最新版本是5.7.19">
+    <meta name="keywords" content="大宝哥, 宝哥哥blog">
+    <meta name="description" content="记录工作中的一些问题和笔记。
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Windows下安装MySQL-5.7.17解压版 | 宝哥哥blog</title>
+    <title>大宝哥 | 宝哥哥blog</title>
     <link rel="icon" type="image/png" href="/images/avatar.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +285,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Windows下安装MySQL-5.7.17解压版</h1>
+                    <h1 class="description center-align post-title">大宝哥</h1>
                 </div>
             </div>
         </div>
@@ -408,23 +407,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/%E6%9C%89%E5%BF%83%E6%80%8E%E4%B9%88%E4%BC%9A%E5%81%9A%E4%B8%8D%E5%88%B0/">
+                                <span class="chip bg-color">有心怎么会做不到</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -433,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-08-10
+                    2018-09-05
                 </div>
                 
 
@@ -447,14 +437,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    569
+                    13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -470,71 +460,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="下载MySQL-Community-Server"><a href="#下载MySQL-Community-Server" class="headerlink" title="下载MySQL Community Server"></a>下载MySQL Community Server</h1><p>地址：<a target="_blank" rel="noopener" href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a></p>
-<p>选择Windows (x86, 64-bit), ZIP Archive进行下载。</p>
-<p>现在最新版本是5.7.19，笔者这里是5.7.17</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-73ecf6d14210466b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载mysql"></p>
-<h1 id="配置mysql-环境变量"><a href="#配置mysql-环境变量" class="headerlink" title="配置mysql 环境变量"></a>配置mysql 环境变量</h1><p>我这里将下载好的mysql-5.7.17 解压到 C:\Program Files\mysql-5.7.17-winx64</p>
-<p>配置</p>
-<p><strong>MYSQL_HOME  —&gt;  C:\Program Files\mysql-5.7.17-winx64</strong></p>
-<p><strong>Path 环境变量中加入    %MYSQL_HOME%/bin;</strong></p>
-<p>注意如果path最后一个没有; 记得自己手动添加;</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-c82f23f38b84c1ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="配置环境变量"></p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-1ed35c42cf341d90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7779890-a0475d1295ec9ce4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="配置MYSQL_HOME"> </p>
-<h1 id="修改mysql-配置文件"><a href="#修改mysql-配置文件" class="headerlink" title="修改mysql 配置文件"></a>修改mysql 配置文件</h1><p>复制解压目录下的 my-default.ini 文件将名称修改为 my.ini 修改文件内容</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-a6de142ab813ad8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="复制 my.ini 文件"></p>
-<p>打开 my.ini 修改文件内容</p>
-<p>basedir = C:\Program Files\mysql-5.7.17-winx64</p>
-<p>datadir = C:\Program Files\mysql-5.7.17-winx64\data</p>
-<p>port = 3306</p>
-<p>注意：去掉源文件上述三行前面的#</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7779890-01482d69cb731a3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="配置 my.ini 文件"> </p>
-<h1 id="注册windows系统服务"><a href="#注册windows系统服务" class="headerlink" title="注册windows系统服务"></a>注册windows系统服务</h1><p>以管理员权限打开cmd</p>
-<p>执行</p>
-<p>mysqld install MySQL –defaults-file=”C:\Program Files\mysql-5.7.17-winx64\my.ini”</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-4b560979e280ef7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="安装windows系统服务"></p>
-<p>注册表中查看ImagePath的值</p>
-<p>我的为</p>
-<p>“C:\Program Files\mysql-5.7.17-winx64\bin\mysqld” –defaults-file=”C:\Program Files\mysql-5.7.17-winx64\my.ini” MySQL</p>
-<p>其中包含了mysqld，就不修改了。</p>
-<p>注册表位置为：</p>
-<p>\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-764ad0cb56f7a1b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="查看注册表"></p>
-<h1 id="执行mysqld-–initialize进行初始化（生成data目录"><a href="#执行mysqld-–initialize进行初始化（生成data目录" class="headerlink" title="执行mysqld –initialize进行初始化（生成data目录"></a>执行mysqld –initialize进行初始化（生成data目录</h1><p><strong>执行 mysqld –initialize</strong></p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-54c06e5e88d80d03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="生成data目录"></p>
-<h1 id="启动-MySQL-服务"><a href="#启动-MySQL-服务" class="headerlink" title="启动 MySQL 服务"></a>启动 MySQL 服务</h1><p>执行 net start mysql</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-36b66e48a493be78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="启动mysql服务"></p>
-<h1 id="登录mysql-修改-root-账户默认密码"><a href="#登录mysql-修改-root-账户默认密码" class="headerlink" title="登录mysql 修改 root 账户默认密码"></a>登录mysql 修改 root 账户默认密码</h1><p>默认密码保存在生成data目录下面的 .err 文件中 记事本打开以后查找初始化密码</p>
-<p>A temporary password is generated for root@localhost: [密码]</p>
-<p>我的为</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-f6105fb43d110ed3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="查看mysql默认密码"></p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-cee82bdbca026017.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="查看mysql默认密码"></p>
-<p>执行 mysql –uroot –p  复制刚刚上面的初始化密码完成登录</p>
-<p>修改默认密码</p>
-<p>执行 SET PASSWORD = PASSWORD(‘’);  我这里将密码设置为空</p>
-<p>执行完成以后退出mysql 就可以使用新密码进行登录了</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7779890-2e1ff6ff641fc0a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="使用默认密码登录mysql"> </p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-78b583f159ef7e16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="修改root账户密码为空"></p>
-<h1 id="修改mysql-默认编码"><a href="#修改mysql-默认编码" class="headerlink" title="修改mysql 默认编码"></a>修改mysql 默认编码</h1><p>执行 show variables like ‘character_set_%’;  查看 mysql 编码</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-f980b405e8a7a985.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
-<p>查看mysql默认编码字符</p>
-<p>修改 my.ini 文件</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-592115d4c335f4fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
-<p>修改配置mysql编码</p>
-<p>重启mysql</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-b9fe603076e9cbb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
-<p>重启mysql并且重新登录</p>
-<p>执行 show variables like ‘character_set_%’;  查看 mysql 编码</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/7779890-ce2989ab8b44781e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
-<p>查看修改以后的编码字符 utf8</p>
-<p>注意：</p>
-<p>网上很多资源都是在[mysqld]下添加</p>
-<p>default-character-set=utf8</p>
-<p>如果这样改会导致5.7版本mysql无法打开</p>
-<p>所以要改为</p>
-<p>character-set-server=utf8</p>
-<p>改完后，要删除数据库中所有数据，才能使用。</p>
+                <p>记录工作中的一些问题和笔记。</p>
 
             </div>
             <hr/>
@@ -560,7 +486,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zhangsusu0416.github.io/2018/08/10/windows-install-mysql-5-7-17/">http://zhangsusu0416.github.io/2018/08/10/windows-install-mysql-5-7-17/</a>
+                    <a href="http://zhangsusu0416.github.io/2018/09/05/wei-ni-xiong/">http://zhangsusu0416.github.io/2018/09/05/wei-ni-xiong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,8 +524,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/%E6%9C%89%E5%BF%83%E6%80%8E%E4%B9%88%E4%BC%9A%E5%81%9A%E4%B8%8D%E5%88%B0/">
+                                    <span class="chip bg-color">有心怎么会做不到</span>
                                 </a>
                             
                         </div>
@@ -770,7 +696,7 @@
         repo: 'zhangsusu0416.github.io',
         owner: 'zhangsusu0416',
         admin: "zhangsusu0416",
-        id: '2018-08-10T17-59-42',
+        id: '2018-09-05T21-26-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -796,35 +722,30 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2018/08/10/windows-install-mysql-5-7-17/">
+                <a href="/2018/09/05/wei-ni-xiong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Windows下安装MySQL-5.7.17解压版">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="大宝哥">
                         
-                        <span class="card-title">Windows下安装MySQL-5.7.17解压版</span>
+                        <span class="card-title">大宝哥</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            下载MySQL Community Server地址：http://dev.mysql.com/downloads/mysql/
-选择Windows (x86, 64-bit), ZIP Archive进行下载。
-现在最新版本是5.7.19
+                            记录工作中的一些问题和笔记。
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-08-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            大宝哥
                             
                         </span>
                     </div>
@@ -833,8 +754,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/%E6%9C%89%E5%BF%83%E6%80%8E%E4%B9%88%E4%BC%9A%E5%81%9A%E4%B8%8D%E5%88%B0/">
+                        <span class="chip bg-color">有心怎么会做不到</span>
                     </a>
                     
                 </div>
@@ -848,35 +769,30 @@
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2018/08/10/windows-install-mysql-5-7-17/">
+                <a href="/2018/09/05/wei-ni-xiong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Windows下安装MySQL-5.7.17解压版">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="大宝哥">
                         
-                        <span class="card-title">Windows下安装MySQL-5.7.17解压版</span>
+                        <span class="card-title">大宝哥</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            下载MySQL Community Server地址：http://dev.mysql.com/downloads/mysql/
-选择Windows (x86, 64-bit), ZIP Archive进行下载。
-现在最新版本是5.7.19
+                            记录工作中的一些问题和笔记。
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-08-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            大宝哥
                             
                         </span>
                     </div>
@@ -885,8 +801,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/%E6%9C%89%E5%BF%83%E6%80%8E%E4%B9%88%E4%BC%9A%E5%81%9A%E4%B8%8D%E5%88%B0/">
+                        <span class="chip bg-color">有心怎么会做不到</span>
                     </a>
                     
                 </div>
@@ -1037,7 +953,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">569</span>&nbsp;字
+                class="white-color">13</span>&nbsp;字
             
             
             

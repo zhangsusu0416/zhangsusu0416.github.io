@@ -6,7 +6,7 @@
   <link href="http://zhangsusu0416.github.io/atom.xml" rel="self"/>
   
   <link href="http://zhangsusu0416.github.io/"/>
-  <updated>2021-11-19T18:15:04.972Z</updated>
+  <updated>2021-11-19T18:29:06.631Z</updated>
   <id>http://zhangsusu0416.github.io/</id>
   
   <author>
@@ -17,27 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Windows下安装MySQL-5.7.17解压版</title>
-    <link href="http://zhangsusu0416.github.io/2018/08/10/windows-install-mysql-5-7-17/"/>
-    <id>http://zhangsusu0416.github.io/2018/08/10/windows-install-mysql-5-7-17/</id>
-    <published>2018-08-10T09:59:42.000Z</published>
-    <updated>2021-11-19T18:15:04.972Z</updated>
+    <title>大宝哥</title>
+    <link href="http://zhangsusu0416.github.io/2018/09/05/wei-ni-xiong/"/>
+    <id>http://zhangsusu0416.github.io/2018/09/05/wei-ni-xiong/</id>
+    <published>2018-09-05T13:26:39.000Z</published>
+    <updated>2021-11-19T18:29:06.631Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;下载MySQL-Community-Server&quot;&gt;&lt;a href=&quot;#下载MySQL-Community-Server&quot; class=&quot;headerlink&quot; title=&quot;下载MySQL Community Server&quot;&gt;&lt;/a&gt;下载MySQL</summary>
+    <summary type="html">&lt;p&gt;记录工作中的一些问题和笔记。&lt;/p&gt;
+</summary>
         
       
     
     
     
-    <category term="MySQL" scheme="http://zhangsusu0416.github.io/categories/MySQL/"/>
     
-    
-    <category term="MySQL" scheme="http://zhangsusu0416.github.io/tags/MySQL/"/>
+    <category term="有心怎么会做不到" scheme="http://zhangsusu0416.github.io/tags/%E6%9C%89%E5%BF%83%E6%80%8E%E4%B9%88%E4%BC%9A%E5%81%9A%E4%B8%8D%E5%88%B0/"/>
     
   </entry>
   
