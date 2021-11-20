@@ -9,7 +9,7 @@
 <p>1、用美区账号登录AppStore （登录AppStore可能会提示使用双重认证,请点[其它选项]-[不升级] 即可）</p>
 </blockquote>
 <blockquote>
-<p>2、点击安装TikTok(请先开启翻墙再点击安装,如果没有提示安装请多点几次安装按钮,使用iphone手机终端Safari浏览器打开当前网页,点击下面<code>点击在线安装TiTok</code>）<br>美区账号1<br>账号：<a href="mailto:kjfx59122@protonmail.com">kjfx59122@protonmail.com</a>   <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/TikTok.21.1.0-zhangsusu0416.ipa"><code>点击在线安装TiTok</code></a><br>密码：Bm115544</p>
+<p>2、点击安装TikTok(请先开启翻墙再点击安装,如果没有提示安装请多点几次安装按钮,使用iphone手机终端Safari浏览器打开当前网页,点击下面<code>点击在线安装TiTok</code>）<br>美区账号1<br>账号：<a href="mailto:kjfx59122@protonmail.com">kjfx59122@protonmail.com</a>   <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-zhangsusu0416.plist"><code>点击在线安装TiTok</code></a><br>密码：Bm115544</p>
 </blockquote>
 <blockquote>
 <p>美区账号2<br>账号：<a href="mailto:ururq658735@protonmail.com">ururq658735@protonmail.com</a>  <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-ururq658735.plist"><code>点击在线安装TiTok</code></a><br>密码：Aer589735点击安装TikTok</p>
@@ -21,7 +21,12 @@
 <p>3、测试一下能不能打开TikTok,如果不能打开,请重新安装。<br>4、记得在AppStore退出美区账号，登录你们自己的账号<br>5、能打开TikTok之后，再添加小火箭配置代码。</p>
 </blockquote>
 <p>IOS看不了TikTok解决方法：<br>1、下载TikTok 21.1.0版本使用。<br>2、插上手机卡，不要拔卡，重新看以上视频教程操作。<br><a href="https://t.me/joinchat/EnHBggxtLiaKQHfI_9JPgw">TikTok 电报交流群：@小张哥YouTube IT教学中文交流群</a></p>
-<h3 id="二、下载-Shadowrocket"><a href="#二、下载-Shadowrocket" class="headerlink" title="二、下载 Shadowrocket"></a>二、下载 Shadowrocket</h3><h3 id="三、Shadowrocket小火箭安装证书步骤"><a href="#三、Shadowrocket小火箭安装证书步骤" class="headerlink" title="三、Shadowrocket小火箭安装证书步骤"></a>三、Shadowrocket小火箭安装证书步骤</h3><p>打开Shadowrocket → 配置 → default.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面<br>在最下面粘贴以下代码：</p>
+<h3 id="二、下载-Shadowrocket"><a href="#二、下载-Shadowrocket" class="headerlink" title="二、下载 Shadowrocket"></a>二、下载 Shadowrocket</h3><h3 id="三、Shadowrocket小火箭安装证书步骤"><a href="#三、Shadowrocket小火箭安装证书步骤" class="headerlink" title="三、Shadowrocket小火箭安装证书步骤"></a>三、Shadowrocket小火箭安装证书步骤</h3><ul>
+<li>第一种方式<br>1、粘贴小张哥提供的小火箭白名单配置文件下载并进行编辑 <code>https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/sr_whitelist_ad.conf</code><br>2、打开Shadowrocket → 配置 → sr_whitelist_ad.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面</li>
+</ul>
+<ul>
+<li>第二种方式<br>1、打开Shadowrocket → 配置 → default.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面<br>2、在最下面粘贴以下代码：</li>
+</ul>
 <pre class=" language-editorconfig"><code class="language-editorconfig">[URL Rewrite]
 (?<=_region=)CN(?=&) JP 307
 (?<=&mcc_mnc=)4 2 307
