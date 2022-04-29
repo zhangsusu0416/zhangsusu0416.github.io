@@ -495,6 +495,41 @@
                     
 
                     
+                        
+
+<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<div class="music-player">
+    
+    <div class="title center-align">
+        <i class="fas fa-music"></i>&nbsp;&nbsp;听音乐阅读岂不美哉
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s12">
+            <div id="aplayer" class="music"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script>
+$(function () {
+    new APlayer({
+        container: document.getElementById('aplayer'),
+        fixed: 'false' === 'true',
+        autoplay: 'false' === 'true',
+        theme: '#42b983',
+        loop: 'all',
+        order: 'list',
+        preload: 'auto',
+        volume: Number('0.7'),
+        listFolded: 'false' === 'true',
+        listMaxHeight: '',
+        audio: eval([{"name":"星空下的老房子","artist":"张大宝","url":"/medias/music/星空下的老房子.mp3","cover":"https://p2.music.126.net/3trW1zC8fatxDOC7GHno_g==/109951164780074517.jpg?param=90y90"},{"name":"辞九门回忆","artist":"张大宝","url":"/medias/music/辞九门回忆.mp3","cover":"https://imgessl.kugou.com/stdmusic/20200902/20200902143229279260.jpg"}])
+    });
+});
+</script>
+                    
 
                     
 
@@ -512,41 +547,6 @@
     </div>
     
 
-    
-        
-
-<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<div class="">
-    
-    <div class="title center-align">
-        <i class="fas fa-music"></i>&nbsp;&nbsp;听听音乐
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s12">
-            <div id="aplayer" class="music"></div>
-        </div>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script>
-$(function () {
-    new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: 'true' === 'true',
-        autoplay: 'true' === 'true',
-        theme: '#42b983',
-        loop: 'all',
-        order: 'list',
-        preload: 'auto',
-        volume: Number('0.7'),
-        listFolded: 'false' === 'true',
-        listMaxHeight: '',
-        audio: eval([{"name":"星空下的老房子","artist":"张大宝","url":"http://m10.music.126.net/20220429170029/dad715d1d8312a8d57f2169737f4917f/ymusic/0409/555b/005a/3cae26c528b1da79199770533ae048b6.mp3","cover":"https://p2.music.126.net/3trW1zC8fatxDOC7GHno_g==/109951164780074517.jpg?param=90y90"}])
-    });
-});
-</script>
     
 
     
