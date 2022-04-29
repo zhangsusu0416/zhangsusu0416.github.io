@@ -1,51 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>2022最新TikTok iOS 免拔卡教程</title>
-      <link href="2022/04/26/youtube-tiktok-no-unplug-simcard-education/"/>
-      <url>2022/04/26/youtube-tiktok-no-unplug-simcard-education/</url>
-      
-        <content type="html"><![CDATA[<p>最新版的TikTok暂时不支持免拔卡使用，需要下载旧版。</p><h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><h3 id="一、下载安装tiktok旧的版本-教程"><a href="#一、下载安装tiktok旧的版本-教程" class="headerlink" title="一、下载安装tiktok旧的版本(教程)"></a>一、下载安装tiktok旧的版本(教程)</h3><p>请严格按视频教程操作: <a href=""><code>小张哥油管2022-tiktok免拔卡教程</code></a></p><blockquote><p>注意<br>尽量使用自己创建的美区iphoneId,原因主要有以下三点</p><ul><li>自行创建的美区iphoneid更稳定,不容易被封锁,且下载完毕应用之后暂时可以不需要立即退出,如果公共的icloud id被锁所且自己的终端没有退出,手机很容易变板砖。</li><li>私密性更好,公用的icloud账号登陆并下载应用会留下历史记录和登陆区域地点信息,退出之后其他人在登陆会一览无余。</li><li>公共的账号会在多人多台机器上登录,短时间内很快就会被icloud标记为异常账号,也就是被锁,得需要创建账号的作者不断的进行密保问题的验证与解锁,耗时耗力。</li></ul></blockquote><p>步骤：</p><blockquote><p>1、用美区账号登录AppStore(登录AppStore可能会提示使用双重认证,请点[其它选项]-[不升级] 即可,如果以下提供的免费美区账号都被封锁,可以参考上面<code>注意</code>事项中的）</p></blockquote><blockquote><p>2、点击安装TikTok(请先开启翻墙再点击安装,如果没有提示安装请多点几次安装按钮,使用iphone手机终端Safari浏览器打开当前网页,点击下面<code>点击在线安装TiTok</code>）<br>美区账号1<br>账号：<a href="mailto:111@appledi.com">111@appledi.com</a> <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-zhangsusu0416.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledicom123</p></blockquote><blockquote><p>美区账号2<br>账号：<a href="mailto:112@appledi.com">112@appledi.com</a>  <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-ururq658735.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledi1234</p></blockquote><blockquote><p>美区账号3<br>账号：<a href="mailto:113@appledi.com">113@appledi.com</a>  <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-zadnqf.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledicom123</p></blockquote><blockquote><p>3、测试一下能不能打开TikTok,如果不能打开,请重新安装。<br>4、记得在AppStore退出美区账号，登录你们自己的账号<br>5、能打开TikTok之后，再添加小火箭配置代码。</p></blockquote><p>IOS看不了TikTok解决方法：<br>1、下载TikTok 21.1.0版本使用。<br>2、插上手机卡，不要拔卡，重新看以上视频教程操作。<br><a href="https://t.me/joinchat/EnHBggxtLiaKQHfI_9JPgw">TikTok 电报交流群：@小张哥YouTube IT教学中文交流群</a></p><h3 id="二、下载-Shadowrocket"><a href="#二、下载-Shadowrocket" class="headerlink" title="二、下载 Shadowrocket"></a>二、下载 Shadowrocket</h3><h3 id="三、Shadowrocket小火箭安装证书步骤"><a href="#三、Shadowrocket小火箭安装证书步骤" class="headerlink" title="三、Shadowrocket小火箭安装证书步骤"></a>三、Shadowrocket小火箭安装证书步骤</h3><ul><li>第一种方式<br>1、粘贴小张哥提供的小火箭白名单配置文件下载并进行编辑 <code>https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/sr_whitelist_ad.conf</code><br>2、打开Shadowrocket → 配置 → sr_whitelist_ad.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面</li></ul><ul><li>第二种方式<br>1、打开Shadowrocket → 配置 → default.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面<br>2、在最下面粘贴以下代码：</li></ul><pre class=" language-editorconfig"><code class="language-editorconfig">[URL Rewrite](?<=_region=)CN(?=&) JP 307(?<=&mcc_mnc=)4 2 307^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$3 302(^https?:\/\/*\.\w{4}okv.com\/.+&.+)(\d{2}\.3\.\d)(.+) $118.0$3 302[MITM]hostname = *.tiktokv.com,*.byteoversea.com,*.tik-tokapi.com</code></pre><p>再点击保存。</p><h3 id="四、在Shadowrocket添加节点，开启科学上网。"><a href="#四、在Shadowrocket添加节点，开启科学上网。" class="headerlink" title="四、在Shadowrocket添加节点，开启科学上网。"></a>四、在Shadowrocket添加节点，开启科学上网。</h3><p><img src="/images/youtube-tiktok/youtube-tiktok-shadowrocket.png" alt="shadowrocket.png"></p><h3 id="五、打开TikTok-App-即可实现免拔卡看"><a href="#五、打开TikTok-App-即可实现免拔卡看" class="headerlink" title="五、打开TikTok App 即可实现免拔卡看"></a>五、打开TikTok App 即可实现免拔卡看</h3><p><img src="/images/youtube-tiktok/2A50F7D1-CBCA-43A4-8B40-5A91364DA86D-2.png" alt="djsoda.png"></p><h3 id="六、备注"><a href="#六、备注" class="headerlink" title="六、备注"></a>六、备注</h3><p>如果需要更改国家:</p><blockquote><p>默认是日本区，可以更改这行代码中的JP 【(?&lt;=_region=)CN(?=&amp;) JP 307】<br> 美国示例： (?&lt;=_region=)CN(?=&amp;) US 307<br> 英文简写 JP（日本）｜KR（韩国）｜UK（英国）｜US（美国）｜TW（台湾）</p></blockquote>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>2022最新TikTok iOS 免拔卡教程</title>
+    <url>/2022/04/26/youtube-tiktok-no-unplug-simcard-education/</url>
+    <content><![CDATA[<p>最新版的TikTok暂时不支持免拔卡使用，需要下载旧版。</p>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><h3 id="一、下载安装tiktok旧的版本-教程"><a href="#一、下载安装tiktok旧的版本-教程" class="headerlink" title="一、下载安装tiktok旧的版本(教程)"></a>一、下载安装tiktok旧的版本(教程)</h3><p>请严格按视频教程操作: <a href=""><code>小张哥油管2022-tiktok免拔卡教程</code></a></p>
+<blockquote>
+<p>注意<br>尽量使用自己创建的美区iphoneId,原因主要有以下三点</p>
+<ul>
+<li>自行创建的美区iphoneid更稳定,不容易被封锁,且下载完毕应用之后暂时可以不需要立即退出,如果公共的icloud id被锁所且自己的终端没有退出,手机很容易变板砖。</li>
+<li>私密性更好,公用的icloud账号登陆并下载应用会留下历史记录和登陆区域地点信息,退出之后其他人在登陆会一览无余。</li>
+<li>公共的账号会在多人多台机器上登录,短时间内很快就会被icloud标记为异常账号,也就是被锁,得需要创建账号的作者不断的进行密保问题的验证与解锁,耗时耗力。</li>
+</ul>
+</blockquote>
+<p>步骤：</p>
+<blockquote>
+<p>1、用美区账号登录AppStore(登录AppStore可能会提示使用双重认证,请点[其它选项]-[不升级] 即可,如果以下提供的免费美区账号都被封锁,可以参考上面<code>注意</code>事项中的）</p>
+</blockquote>
+<blockquote>
+<p>2、点击安装TikTok(请先开启翻墙再点击安装,如果没有提示安装请多点几次安装按钮,使用iphone手机终端Safari浏览器打开当前网页,点击下面<code>点击在线安装TiTok</code>）<br>美区账号1<br>账号：<a href="mailto:111@appledi.com">111@appledi.com</a> <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-zhangsusu0416.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledicom123</p>
+</blockquote>
+<blockquote>
+<p>美区账号2<br>账号：<a href="mailto:112@appledi.com">112@appledi.com</a>  <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-ururq658735.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledi1234</p>
+</blockquote>
+<blockquote>
+<p>美区账号3<br>账号：<a href="mailto:113@appledi.com">113@appledi.com</a>  <a href="itms-services://?action=download-manifest&amp;url=https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/ipa-zadnqf.plist"><code>点击在线安装TiTok</code></a><br>密码：Appledicom123</p>
+</blockquote>
+<blockquote>
+<p>3、测试一下能不能打开TikTok,如果不能打开,请重新安装。<br>4、记得在AppStore退出美区账号，登录你们自己的账号<br>5、能打开TikTok之后，再添加小火箭配置代码。</p>
+</blockquote>
+<p>IOS看不了TikTok解决方法：<br>1、下载TikTok 21.1.0版本使用。<br>2、插上手机卡，不要拔卡，重新看以上视频教程操作。<br><a href="https://t.me/joinchat/EnHBggxtLiaKQHfI_9JPgw">TikTok 电报交流群：@小张哥YouTube IT教学中文交流群</a></p>
+<h3 id="二、下载-Shadowrocket"><a href="#二、下载-Shadowrocket" class="headerlink" title="二、下载 Shadowrocket"></a>二、下载 Shadowrocket</h3><h3 id="三、Shadowrocket小火箭安装证书步骤"><a href="#三、Shadowrocket小火箭安装证书步骤" class="headerlink" title="三、Shadowrocket小火箭安装证书步骤"></a>三、Shadowrocket小火箭安装证书步骤</h3><ul>
+<li>第一种方式<br>1、粘贴小张哥提供的小火箭白名单配置文件下载并进行编辑 <code>https://github.com/zhangsusu0416/tiktok-ipa/releases/download/tiktok/sr_whitelist_ad.conf</code><br>2、打开Shadowrocket → 配置 → sr_whitelist_ad.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面</li>
+</ul>
+<ul>
+<li>第二种方式<br>1、打开Shadowrocket → 配置 → default.conf → 编辑配置 → HTTPS解密 → 开启HTTPS解密 → 生成新的CA订书 → 生成新的CA订书 → 安装证书 → 允许 → 打开设置 → 已下载描述文件 → 安装 → 安装 → 安装 → 完成 → 通用 → 关于本机 → 证书信任设置 → 开启信任Shadowrocket证书 → 继续 → 打开Shadowrocket → 关闭 → √ → √ → 配置 → default.conf → 编辑纯文本 → 滚动条拉到最下面<br>2、在最下面粘贴以下代码：</li>
+</ul>
+<pre class=" language-editorconfig"><code class="language-editorconfig">[URL Rewrite]
+(?<=_region=)CN(?=&) JP 307
+(?<=&mcc_mnc=)4 2 307
+^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$3 302
+(^https?:\/\/*\.\w{4}okv.com\/.+&.+)(\d{2}\.3\.\d)(.+) $118.0$3 302
+
+[MITM]
+hostname = *.tiktokv.com,*.byteoversea.com,*.tik-tokapi.com</code></pre>
+<p>再点击保存。</p>
+<h3 id="四、在Shadowrocket添加节点，开启科学上网。"><a href="#四、在Shadowrocket添加节点，开启科学上网。" class="headerlink" title="四、在Shadowrocket添加节点，开启科学上网。"></a>四、在Shadowrocket添加节点，开启科学上网。</h3><p><img src="/images/youtube-tiktok/youtube-tiktok-shadowrocket.png" alt="shadowrocket.png"></p>
+<h3 id="五、打开TikTok-App-即可实现免拔卡看"><a href="#五、打开TikTok-App-即可实现免拔卡看" class="headerlink" title="五、打开TikTok App 即可实现免拔卡看"></a>五、打开TikTok App 即可实现免拔卡看</h3><p><img src="/images/youtube-tiktok/2A50F7D1-CBCA-43A4-8B40-5A91364DA86D-2.png" alt="djsoda.png"></p>
+<h3 id="六、备注"><a href="#六、备注" class="headerlink" title="六、备注"></a>六、备注</h3><p>如果需要更改国家:</p>
+<blockquote>
+<p>默认是日本区，可以更改这行代码中的JP 【(?&lt;=_region=)CN(?=&amp;) JP 307】<br> 美国示例： (?&lt;=_region=)CN(?=&amp;) US 307<br> 英文简写 JP（日本）｜KR（韩国）｜UK（英国）｜US（美国）｜TW（台湾）</p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> youtube-apple-中国大陆tiktok免拔卡 </category>
-          
+        <category>youtube-apple-中国大陆tiktok免拔卡</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> ios tiktok 免拔卡观看 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>大宝哥哥</title>
-      <link href="2021/09/05/wei-ni-xiong/"/>
-      <url>2021/09/05/wei-ni-xiong/</url>
-      
-        <content type="html"><![CDATA[<p>大宝哥哥,别名又称张大宝(<code>家中仨宝,鄙人排行老大</code>),谷歌圈内大家都俗称我小张哥。中国IT大厂新生代农民工一枚。日常善于整理一些IT技术知识分享。比如全平台网络应用小软件、下载工具、通讯工具、始终爱好钻研<br>探索各种免费穿越<a href="https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E"><code>防火长城</code></a>的通信协议和工具。当然<a href="https://www.youtube.com/channel/UC3kE6LgdQvm1qpE_itfgzgQ"><code>视频剪辑&amp;自媒体</code></a><br>也是我个人比较爱好提升自我技能的空间,闲暇之余也在不断的分享给更多的知识做到知识共享并同步给身边的伙伴<a href="https://t.me/joinchat/EnHBggxtLiaKQHfI_9JPgw"><code>小张哥IT教学TG分享交流群</code></a>。日记月累,对自己也算是一点点技能的沉淀。<br>当自己年过花甲在回首历历在目整理的技能知识笔记,也不枉此生。可以这么说,中国强大的网络激发我强烈的求知欲并赋予了我对知识与科技网络技能勇往直前信心与梦想。希望各位伙伴能够支持大宝哥哥.您的不断支持才是我持之以恒做下去的动力。<br><img src="/images/pay/wechatavatar.png" alt="乞讨赞赏码"></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 有心怎么会做不到 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>ios tiktok 免拔卡观看</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大宝哥哥</title>
+    <url>/2021/09/05/wei-ni-xiong/</url>
+    <content><![CDATA[<p>大宝哥哥,别名又称张大宝(<code>家中仨宝,鄙人排行老大</code>),谷歌圈内大家都俗称我小张哥。中国IT大厂新生代农民工一枚。日常善于整理一些IT技术知识分享。比如全平台网络应用小软件、下载工具、通讯工具、始终爱好钻研<br>探索各种免费穿越<a href="https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E"><code>防火长城</code></a>的通信协议和工具。当然<a href="https://www.youtube.com/channel/UC3kE6LgdQvm1qpE_itfgzgQ"><code>视频剪辑&amp;自媒体</code></a><br>也是我个人比较爱好提升自我技能的空间,闲暇之余也在不断的分享给更多的知识做到知识共享并同步给身边的伙伴<a href="https://t.me/joinchat/EnHBggxtLiaKQHfI_9JPgw"><code>小张哥IT教学TG分享交流群</code></a>。日记月累,对自己也算是一点点技能的沉淀。<br>当自己年过花甲在回首历历在目整理的技能知识笔记,也不枉此生。可以这么说,中国强大的网络激发我强烈的求知欲并赋予了我对知识与科技网络技能勇往直前信心与动力。希望各位伙伴能够支持大宝哥哥.您的不断支持才是我持之以恒做下去的动力。<br><img src="/images/pay/wechatavatar.png" alt="乞讨赞赏码"></p>
+]]></content>
+      <tags>
+        <tag>有心怎么会做不到</tag>
+      </tags>
+  </entry>
 </search>
